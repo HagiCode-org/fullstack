@@ -1,6 +1,6 @@
 In this lesson you start three services together: Nginx as a web server, a Node.js program, and a PostgreSQL database. You describe them once in a file called `compose.yaml`, and Docker Compose starts, lists, reads and stops all of them with one command. Compose also creates a network for the services, so Nginx reaches the Node.js program by its name.
 
-Compose is part of Docker. Use the current command, `docker compose` with a space. The older `docker-compose` command is no longer used in this course.
+Compose is part of Docker. Use the current command, `docker compose` with a space. The older `docker-compose` command is no longer used in this course. Every key used in the file is described in the [Compose file reference](https://docs.docker.com/reference/compose-file/).
 
 ## Step 1: Create the project folder and its files
 

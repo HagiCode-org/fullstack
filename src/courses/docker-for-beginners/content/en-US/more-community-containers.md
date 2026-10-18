@@ -51,13 +51,13 @@ docker run -d --name dozzle -p 9999:8080 -v dozzle_data:/data -v /var/run/docker
 docker run -d --name uptime-kuma -p 3001:3001 -v uptime-kuma:/app/data --restart=always louislam/uptime-kuma:2
 ```
 
-- **Port:** 3001 on your computer leads to port 3001 inside the container. Open **http://localhost:3001** and create the administrator account on the first visit.
+- **Port:** 3001 on your computer leads to port 3001 inside the container. Open **http://localhost:3001**. On the first visit, follow the setup pages to choose the database and create the administrator account.
 - **Official link:** [Uptime Kuma documentation](https://uptime.kuma.pet/)
 
 ## Card: Adminer
 
 - **Purpose:** a web page for a database. Adminer lets you browse tables, run SQL and edit rows, without the `psql` command line.
-- **Why Adminer and not pgAdmin:** both work with PostgreSQL. Adminer starts as a single container with one command and asks for no login of its own, while pgAdmin needs its own login details set when its container starts. For a beginner's next step, Adminer is the simpler start.
+- **Why Adminer and not pgAdmin:** both work with PostgreSQL. Adminer starts as a single container with one command and asks for no login of its own, while [pgAdmin's container guide](https://www.pgadmin.org/docs/pgadmin4/latest/container_deployment.html) needs its own login details set when its container starts. For a beginner's next step, Adminer is the simpler start.
 - **Do you need it yet?** Useful as soon as you want to look at the data in the PostgreSQL database from the **Run PostgreSQL** lesson.
 - **Image and tag:** `adminer:6`, on [Docker Hub](https://hub.docker.com/_/adminer/tags).
 - **Security:** Adminer does not need the Docker socket, but it can change any row in your database. Keep its page on your own computer.
@@ -88,9 +88,13 @@ Then run `docker compose up -d` in the `docker-course` folder. Adminer joins the
 docker run -d --name npm -p 80:80 -p 81:81 -p 443:443 -v npm_data:/data -v npm_letsencrypt:/etc/letsencrypt jc21/nginx-proxy-manager:2
 ```
 
-- **Port:** 81 on your computer leads to the admin page, at **http://localhost:81**. Ports 80 and 443 carry the visits to your services. Another program may already use port 80 or 443, in which case Docker reports `address already in use`. The **Troubleshooting** lesson explains what to do.
+- **Port:** 81 on your computer leads to the admin page, at **http://localhost:81**. On the first visit, the page asks for a full name, an email address and a new password for the admin account. Use a strong password you do not use anywhere else. Ports 80 and 443 carry the visits to your services. Another program may already use port 80 or 443, in which case Docker reports `address already in use`. The **Troubleshooting** lesson explains what to do.
 - **Official link:** [Nginx Proxy Manager guide](https://nginxproxymanager.com/guide/)
 
 ## After you try a card
 
 Stop and remove any container you started and no longer need. The **Clean up and next steps** lesson lists every container, network and volume the course created, including the ones in this lesson.
+
+## What comes next
+
+Go on to **Troubleshooting**, which lists the messages you are most likely to meet, with their causes and fixes.

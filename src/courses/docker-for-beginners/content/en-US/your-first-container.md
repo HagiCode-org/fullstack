@@ -1,6 +1,6 @@
 In this lesson you start your first container, look at it, and remove it. The container runs `hello-world`, a tiny official test image whose only job is to print a message and stop. Every command below is typed in the terminal you opened in the **What is Docker?** lesson.
 
-The image tag is `latest`, the default for `hello-world`. It is the only image in this course that uses that tag, because its output never changes.
+The image tag is `latest`, the default for `hello-world`. It is the only image in this course that uses that tag, because its output never changes. The options of the `docker run` command are described in the [docker run reference](https://docs.docker.com/reference/cli/docker/container/run/).
 
 ## Step 1: Check that Docker answers
 

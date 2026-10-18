@@ -1,6 +1,6 @@
 In this lesson you connect containers to each other. A **network** lets containers find one another by name, and you prove it by running a command in one container that reaches a database in another. You also see why a container on the default network cannot do the same thing.
 
-Two ways of reaching a container are easy to mix up:
+Docker's own guide to networking is at [Docker networking](https://docs.docker.com/engine/network/). Two ways of reaching a container are easy to mix up:
 
 - **A published port** connects your computer to a container. Your browser uses a published port such as `8080` to reach Nginx.
 - **A network path** connects one container to another. A container reaches a second container by the second container's name and its own port, such as `db:5432`. No port of your computer is involved.

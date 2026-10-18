@@ -33,7 +33,15 @@ const readBody = (id) => {
   return existsSync(file) ? readFileSync(file, 'utf8') : '';
 };
 const fencedBlocks = (text) => [...text.matchAll(/^```[^\n]*\n([\s\S]*?)^```/gmu)].map((match) => match[1]);
-const linksIn = (text) => [...text.matchAll(/https?:\/\/[^\s)>\]"'`]+/gu)].map((match) => match[0]);
+// Addresses on the reader's own computer, such as http://localhost:8080, point at the reader's services, not at documentation.
+const LOCAL_HOSTS = new Set(['localhost', '127.0.0.1', '[::1]']);
+const isLocal = (url) => LOCAL_HOSTS.has(new URL(url).hostname);
+// Links that name a remote site, written in the prose. Code blocks and inline code hold commands and config, so they are skipped.
+// Trailing markdown punctuation is not part of the address.
+const proseOf = (text) => text.replace(/^```[\s\S]*?^```/gmu, '').replace(/`[^`\n]*`/gu, '');
+const linksIn = (text) => [...proseOf(text).matchAll(/https?:\/\/[^\s)>\]"'`*<]+/gu)]
+  .map((match) => match[0].replace(/[.,;:]+$/u, ''))
+  .filter((url) => !isLocal(url));
 
 describe('docker-for-beginners registration', () => {
   it('is registered as a real course, not a demo', () => {

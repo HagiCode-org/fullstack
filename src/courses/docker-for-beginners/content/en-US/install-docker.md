@@ -94,3 +94,7 @@ docker run hello-world
 It downloads a small test image the first time, then prints a message that starts with `Hello from Docker!` and ends with `For more examples and ideas, visit:` followed by a web address. Seeing `Hello from Docker!` means Docker can start containers.
 
 If `docker version` says that it cannot connect to the Docker engine, Docker is not running yet. Start Docker Desktop on Windows or macOS, or start the Docker service on Linux, then run the command again. If anything else fails, read the matching entry in the **Troubleshooting** lesson at the end of this course.
+
+## What comes next
+
+Go on to **Your first container**, where you start a container, list it and remove it.

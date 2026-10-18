@@ -1,4 +1,4 @@
-Docker is a tool that runs programs in small, sealed packages called containers. A container holds a program together with the files and settings it needs, so the program runs the same way on any computer that has Docker. You will use Docker to run a web server, a database and a small Node.js program on your own computer without installing each one by hand.
+Docker is a tool that runs programs in small, sealed packages called containers. A container holds a program together with the files and settings it needs, so the program runs the same way on any computer that has Docker. You will use Docker to run three kinds of program on your own computer without installing each one by hand: a web server (a program that sends web pages to a browser), a database (a program that stores data in organized tables) and a small Node.js program (a program written in JavaScript).
 
 In this lesson you will learn the handful of words the rest of the course uses. You will also see how to open a terminal, the window where you type commands. Nothing here needs to be installed yet.
 
