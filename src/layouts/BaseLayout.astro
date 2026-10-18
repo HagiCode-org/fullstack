@@ -3,22 +3,65 @@ import Footer from '@hagicode/hagilight/Footer';
 import SEOHead from '@hagicode/hagilight/SEOHead';
 import { resolveFaviconHeadEntry } from '@hagicode/hagilight-core/favicon';
 import sharedFaviconUrl from '@hagicode/hagilight-core/favicon.ico';
-import { DEFAULT_LOCALE, SITE_DESCRIPTION, SITE_NAME } from '@/config/site';
+import { Notice } from '@/components/course/Notice';
+import { SiteHeader } from '@/components/course/SiteHeader';
+import type { SwitcherItem } from '@/components/course/types';
+import {
+  DEFAULT_LOCALE,
+  LOCALE_NATIVE_NAMES,
+  SITE_DESCRIPTION,
+  SITE_NAME,
+  SUPPORTED_LOCALES,
+} from '@/config/site';
+import { courses } from '@/courses/registry';
+import { uiStringsFor } from '@/i18n/ui';
+import { routePath, switchLocale, type Route } from '@/lib/routes';
 import '@/styles/global.css';
 
 interface Props {
   title?: string;
   description?: string;
+  route: Route;
+  // Lesson and course pages are wider than the reading column, so they widen main with a utility class.
+  wide?: boolean;
 }
 
-const { title = SITE_NAME, description = SITE_DESCRIPTION } = Astro.props;
+const { title = SITE_NAME, description = SITE_DESCRIPTION, route, wide = false } = Astro.props;
+const locale = route.locale;
+const ui = uiStringsFor(locale);
 
 // hagilightFavicon() only edits Astro's config head, which this layout does not render. The shared
 // icon is therefore supplied here, through SEOHead, so the page links it.
 const faviconEntry = resolveFaviconHeadEntry([], { href: sharedFaviconUrl });
+
+// hreflang alternates: the same page in each locale, plus x-default pointing at the en-US page.
+const pageUrl = (target: Route) => new URL(routePath(target), Astro.site).href;
+const alternates = [
+  ...SUPPORTED_LOCALES.map((code) => ({
+    tag: 'link' as const,
+    attrs: { rel: 'alternate', hreflang: code, href: pageUrl(switchLocale(route, code)) },
+  })),
+  {
+    tag: 'link' as const,
+    attrs: { rel: 'alternate', hreflang: 'x-default', href: pageUrl(switchLocale(route, DEFAULT_LOCALE)) },
+  },
+];
+
+const courseSwitcher: SwitcherItem[] = courses.map((course) => ({
+  id: course.id,
+  label: course.title[locale],
+  href: routePath({ kind: 'course', locale, courseId: course.id }),
+  current: route.kind !== 'home' && route.courseId === course.id,
+}));
+const languageSwitcher: SwitcherItem[] = SUPPORTED_LOCALES.map((code) => ({
+  id: code,
+  label: LOCALE_NATIVE_NAMES[code],
+  href: routePath(switchLocale(route, code)),
+  current: code === locale,
+}));
 ---
 
-<html lang={DEFAULT_LOCALE}>
+<html lang={locale}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -26,14 +69,23 @@ const faviconEntry = resolveFaviconHeadEntry([], { href: sharedFaviconUrl });
     <SEOHead
       site={Astro.site}
       page={{ title, description }}
-      head={faviconEntry ? [faviconEntry] : []}
+      head={[...(faviconEntry ? [faviconEntry] : []), ...alternates]}
       siteSeo={{ title: SITE_NAME, description: SITE_DESCRIPTION }}
     />
   </head>
   <body>
-    <main>
+    <SiteHeader
+      siteName={SITE_NAME}
+      homeHref={routePath({ kind: 'home', locale })}
+      courseLabel={ui.courseSwitcherLabel}
+      courses={courseSwitcher}
+      languageLabel={ui.languageSwitcherLabel}
+      languages={languageSwitcher}
+    />
+    <main class:list={[wide && 'max-w-5xl']}>
+      <Notice storage hidden>{ui.storageUnavailableNotice}</Notice>
       <slot />
     </main>
-    <Footer locale={DEFAULT_LOCALE} />
+    <Footer locale={locale} />
   </body>
 </html>

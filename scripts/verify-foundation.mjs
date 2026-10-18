@@ -2,6 +2,11 @@
 import { existsSync, readFileSync, statSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { SUPPORTED_LOCALES } from '../src/config/site.ts';
+import { courses } from '../src/courses/registry.ts';
+import { findCourseFailures } from '../src/courses/integrity.ts';
+import { allRoutes, routePath, switchLocale } from '../src/lib/routes.ts';
+import { readBodyKeys } from './course-bodies.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const dist = join(root, 'dist');
@@ -175,6 +180,61 @@ if (fileExists(metadataPath)) {
 }
 for (const file of FORBIDDEN_PUBLIC_FILES) {
   expect(!existsSync(join(root, 'public', file)), `public/${file} must not exist; Hagilight generates or ships it`);
+}
+
+// Course data: the registry passes the same integrity rules the unit tests use, with the bodies read from disk.
+for (const failure of findCourseFailures(courses, readBodyKeys(join(root, 'src', 'courses')))) {
+  failures.push(`course data: ${failure}`);
+}
+
+// Every page of every locale: built, its own language, one canonical, alternates for all ten locales and x-default
+// that point at the matching built pages, no island or hydration script, and no internal link to a missing page.
+const pageHtmlOf = (url) => {
+  const file = distFileFor(url);
+  return file === null ? null : readFileSync(file, 'utf8');
+};
+for (const route of allRoutes()) {
+  const routeUrl = routePath(route);
+  const page = `${route.locale} ${routeUrl}`;
+  const pageUrl = new URL(routeUrl, SITE_URL);
+  const html = pageHtmlOf(pageUrl);
+  if (html === null) {
+    failures.push(`page missing from dist/: ${page} (${route.kind})`);
+    continue;
+  }
+  const tags = html.match(/<link\b[^>]*>/giu) ?? [];
+
+  expect(new RegExp(`<html\\b[^>]*\\slang="${route.locale}"`, 'u').test(html), `${page} must declare lang="${route.locale}"`);
+
+  const canonical = tags.filter((tag) => attr(tag, 'rel') === 'canonical');
+  expect(
+    canonical.length === 1 && decodeAttr(attr(canonical[0], 'href') ?? '') === pageUrl.href,
+    `${page} must have one canonical link to ${pageUrl.href}`,
+  );
+
+  const alternates = tags.filter((tag) => attr(tag, 'rel') === 'alternate');
+  const expectedAlternates = new Map([
+    ...SUPPORTED_LOCALES.map((code) => [code, new URL(routePath(switchLocale(route, code)), SITE_URL).href]),
+    ['x-default', new URL(routePath(switchLocale(route, 'en-US')), SITE_URL).href],
+  ]);
+  const found = new Map(alternates.map((tag) => [attr(tag, 'hreflang'), decodeAttr(attr(tag, 'href') ?? '')]));
+  expect(
+    found.size === expectedAlternates.size && [...expectedAlternates].every(([code, href]) => found.get(code) === href),
+    `${page} must list alternates for the ten locales and x-default pointing at the matching pages; found ${[...found.keys()].join(', ')}`,
+  );
+  for (const [code, href] of found) {
+    const target = siteUrl(href);
+    expect(target !== null && distFileFor(target) !== null, `${page} alternate ${code} points at a missing page: ${href}`);
+  }
+
+  expect(!/astro-island|hydrat/iu.test(html), `${page} must not contain an island or hydration script`);
+
+  for (const href of [...html.matchAll(/<(?:a|link)\b[^>]*\shref="([^"]*)"/giu)].map((match) => decodeAttr(match[1]))) {
+    if (href.startsWith('#')) continue;
+    const target = siteUrl(href);
+    if (target === null || target.origin !== SITE_ORIGIN) continue;
+    expect(distFileFor(target) !== null, `${page} links to a page missing from dist/: ${href}`);
+  }
 }
 
 if (failures.length > 0) {

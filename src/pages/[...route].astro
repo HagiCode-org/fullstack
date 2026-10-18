@@ -1,0 +1,148 @@
+---
+import { getCollection, render } from 'astro:content';
+import { CourseBreadcrumb } from '@/components/course/CourseBreadcrumb';
+import { CourseCard } from '@/components/course/CourseCard';
+import { ContinueButton } from '@/components/course/ContinueButton';
+import { Disclosure } from '@/components/course/Disclosure';
+import { LessonNav } from '@/components/course/LessonNav';
+import { MarkReadButton } from '@/components/course/MarkReadButton';
+import { Notice } from '@/components/course/Notice';
+import { OutlineTree } from '@/components/course/OutlineTree';
+import { ProgressSummary } from '@/components/course/ProgressSummary';
+import { hookProps } from '@/components/course/hooks';
+import ProgressRuntime from '@/components/ProgressRuntime.astro';
+import { SITE_DESCRIPTION, SITE_NAME } from '@/config/site';
+import { courses, flattenLessons, getCourse } from '@/courses/registry';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { uiStringsFor } from '@/i18n/ui';
+import { formatText } from '@/lib/format';
+import { selectLessonBody } from '@/lib/lessonBody';
+import { neighbourLinks, treeOf } from '@/lib/courseView';
+import { buildProgressIsland } from '@/lib/progressIsland';
+import { allRoutes, routePath, type Route } from '@/lib/routes';
+
+// One page per route. The route model decides every path, so each locale gets the same set of pages.
+export function getStaticPaths() {
+  return allRoutes().map((route) => {
+    const path = routePath(route).replace(/^\/|\/$/gu, '');
+    return { params: { route: path === '' ? undefined : path }, props: { route } };
+  });
+}
+
+const { route } = Astro.props as { route: Route };
+const locale = route.locale;
+const ui = uiStringsFor(locale);
+const homeHref = routePath({ kind: 'home', locale });
+
+const lessonEntries = await getCollection('lessons');
+const bodies = new Map(lessonEntries.map((entry) => [entry.id, entry]));
+
+const course = route.kind === 'home' ? undefined : getCourse(route.courseId);
+if (route.kind !== 'home' && !course) throw new Error(`No course "${route.courseId}" for ${routePath(route)}`);
+const courseTitle = course?.title[locale] ?? SITE_NAME;
+const courseHref = course ? routePath({ kind: 'course', locale, courseId: course.id }) : homeHref;
+const lessonCount = course ? flattenLessons(course.outline).length : 0;
+const hrefFor = (lessonId: string) => routePath({ kind: 'lesson', locale, courseId: course?.id ?? '', lessonId });
+
+const overview = course ? treeOf(course, locale, hrefFor) : [];
+const firstLessonId = course ? flattenLessons(course.outline)[0]?.id : undefined;
+const outlineLabels = {
+  readText: ui.readLabel,
+  unreadText: ui.unreadLabel,
+  currentText: ui.currentLessonLabel,
+  progressText: ui.progressText,
+};
+
+const lesson = route.kind === 'lesson' && course ? route : undefined;
+const lessonNode = lesson && course ? flattenLessons(course.outline).find((item) => item.id === lesson.lessonId) : undefined;
+const lessonTitle = lessonNode?.title[locale] ?? '';
+const body = lesson ? selectLessonBody((id) => bodies.get(id), lesson.courseId, lesson.lessonId, locale) : null;
+const rendered = body ? await render(body.body) : null;
+const links = lesson && course ? neighbourLinks(course, locale, lesson.lessonId, hrefFor, { previous: ui.previousLabel, next: ui.nextLabel }) : null;
+const back = { href: courseHref, caption: ui.backToCourseLabel, title: courseTitle };
+
+const pageTitle = lesson ? `${lessonTitle} | ${courseTitle}` : courseTitle;
+const island = buildProgressIsland(locale, { courseId: course?.id, lessonId: lesson?.lessonId });
+---
+
+{route.kind === 'home' && (
+  <BaseLayout title={SITE_NAME} description={SITE_DESCRIPTION} route={route}>
+    <h1>{SITE_NAME}</h1>
+    <p>{ui.homePurpose}</p>
+    <ul class="m-0 grid list-none gap-4 p-0 sm:grid-cols-2">
+      {courses.map((item) => {
+        const total = flattenLessons(item.outline).length;
+        const first = flattenLessons(item.outline)[0]?.id ?? '';
+        return (
+          <li>
+            <CourseCard
+              courseId={item.id}
+              title={item.title[locale]}
+              overviewHref={routePath({ kind: 'course', locale, courseId: item.id })}
+              demo={item.demo}
+              demoLabel={ui.demoLabel}
+              lessonCountText={formatText(ui.lessonCountText, { total })}
+              progressText={ui.progressText}
+              total={total}
+              continueHref={routePath({ kind: 'lesson', locale, courseId: item.id, lessonId: first })}
+              continueLabel={ui.startLabel}
+            />
+          </li>
+        );
+      })}
+    </ul>
+    <ProgressRuntime island={island} />
+  </BaseLayout>
+)}
+
+{route.kind === 'course' && course && (
+  <BaseLayout title={pageTitle} description={SITE_DESCRIPTION} route={route} wide>
+    <CourseBreadcrumb items={[{ label: ui.siteHome, href: homeHref }, { label: courseTitle }]} label={ui.breadcrumbLabel} />
+    <h1>{courseTitle}</h1>
+    <div class="mb-8 flex max-w-md flex-col gap-4">
+      <ProgressSummary courseId={course.id} total={lessonCount} progressText={ui.progressText} />
+      <p class="m-0 text-foreground" hidden {...hookProps('courseComplete')} {...hookProps('courseId', course.id)}>
+        {ui.completeText}
+      </p>
+      <ContinueButton courseId={course.id} href={routePath({ kind: 'lesson', locale, courseId: course.id, lessonId: firstLessonId ?? '' })} label={ui.startLabel} />
+    </div>
+    <OutlineTree courseId={course.id} nodes={overview} labels={outlineLabels} />
+    <ProgressRuntime island={island} />
+  </BaseLayout>
+)}
+
+{lesson && course && body && links && rendered && (
+  <BaseLayout title={pageTitle} description={SITE_DESCRIPTION} route={route} wide>
+    <div class="lg:grid lg:grid-cols-[minmax(0,16rem)_minmax(0,1fr)] lg:items-start lg:gap-10">
+      <aside class="mb-8 lg:sticky lg:top-6 lg:mb-0">
+        <Disclosure id="course-outline" summary={ui.outlineLabel}>
+          <div class="flex flex-col gap-4">
+            <ProgressSummary courseId={course.id} total={lessonCount} progressText={ui.progressText} compact />
+            <OutlineTree courseId={course.id} nodes={overview} currentLessonId={lesson.lessonId} labels={outlineLabels} />
+          </div>
+        </Disclosure>
+      </aside>
+      <article class="min-w-0">
+        <CourseBreadcrumb
+          items={[
+            { label: ui.siteHome, href: homeHref },
+            { label: courseTitle, href: courseHref },
+            { label: lessonTitle },
+          ]}
+          label={ui.breadcrumbLabel}
+        />
+        <h1>{lessonTitle}</h1>
+        {body.fallback && <Notice>{ui.fallbackNotice}</Notice>}
+        <div class="mt-6 [&_code]:rounded [&_code]:bg-muted [&_code]:px-1 [&_ol]:list-decimal [&_ol]:pl-6 [&_ul]:list-disc [&_ul]:pl-6">
+          {rendered && <rendered.Content />}
+        </div>
+        <div aria-hidden="true" class="h-px" {...hookProps('lessonEnd')} />
+        <div class="mt-8 flex flex-col gap-4">
+          <MarkReadButton courseId={course.id} lessonId={lesson.lessonId} markReadLabel={ui.markReadLabel} />
+          <LessonNav previous={links.previous ?? undefined} next={links.next ?? undefined} back={back} />
+        </div>
+      </article>
+    </div>
+    <ProgressRuntime island={island} />
+  </BaseLayout>
+)}

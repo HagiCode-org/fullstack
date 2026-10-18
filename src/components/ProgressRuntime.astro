@@ -1,0 +1,163 @@
+---
+import type { ProgressIsland } from '@/lib/progressIsland';
+
+// The only client code in the site. The page carries the lesson ids and texts as JSON; the script applies the
+// progress stored in this browser to the hooks the course components render. Without it, every page still reads.
+interface Props {
+  island: ProgressIsland;
+}
+
+const { island } = Astro.props;
+// Escaping < keeps the JSON from closing its script element early.
+const json = JSON.stringify(island).replace(/</gu, '\\u003c');
+---
+
+<script type="application/json" id="progress-island" set:html={json} />
+
+<script>
+  import { HOOK } from '@/components/course/hooks';
+  import { formatText } from '@/lib/format';
+  import { PROGRESS_STORAGE_KEY, createProgressStore } from '@/lib/progress';
+  import type { ProgressIsland } from '@/lib/progressIsland';
+
+  const islandElement = document.getElementById('progress-island');
+  if (islandElement?.textContent) {
+    const island = JSON.parse(islandElement.textContent) as ProgressIsland;
+    start(island);
+  }
+
+  function start(island: ProgressIsland) {
+    const current = island.courseId;
+    const lessonId = island.lessonId;
+
+    // Storage that cannot be reached leaves the store in memory; the notice tells the reader.
+    let storage: Storage | null = null;
+    try {
+      storage = window.localStorage;
+    } catch {
+      storage = null;
+    }
+    const store = createProgressStore(storage);
+
+    const all = (selector: string) => document.querySelectorAll<HTMLElement>(selector);
+    const scoped = (hook: string, courseId: string, groupId?: string) =>
+      `[${hook}][${HOOK.courseId}="${courseId}"]${groupId === undefined ? ':not([' + HOOK.groupId + '])' : `[${HOOK.groupId}="${groupId}"]`}`;
+
+    const paintBar = (bar: HTMLElement, read: number, total: number, text: string) => {
+      const percent = total === 0 ? 0 : Math.round((read / total) * 100);
+      const state = percent === 100 ? 'complete' : 'loading';
+      bar.setAttribute('aria-valuenow', String(percent));
+      bar.setAttribute('aria-label', text);
+      bar.dataset.state = state;
+      bar.dataset.value = String(percent);
+      const indicator = bar.querySelector<HTMLElement>('[data-slot="progress-indicator"]');
+      if (indicator) {
+        indicator.dataset.state = state;
+        indicator.style.transform = `translateX(-${100 - percent}%)`;
+      }
+    };
+
+    const render = () => {
+      for (const [courseId, course] of Object.entries(island.courses)) {
+        const total = course.lessons.length;
+        const read = store.summarize(courseId, course.lessons).read;
+        const text = formatText(island.texts.progressText, { read, total });
+        all(scoped(HOOK.progressCount, courseId)).forEach((el) => {
+          el.textContent = text;
+        });
+        all(scoped(HOOK.progressBar, courseId)).forEach((bar) => paintBar(bar, read, total, text));
+
+        for (const [groupId, lessonIds] of Object.entries(course.groups)) {
+          const groupRead = store.summarize(courseId, lessonIds).read;
+          const groupText = formatText(island.texts.progressText, { read: groupRead, total: lessonIds.length });
+          all(scoped(HOOK.progressCount, courseId, groupId)).forEach((el) => {
+            el.textContent = groupText;
+          });
+          all(scoped(HOOK.progressBar, courseId, groupId)).forEach((bar) =>
+            paintBar(bar, groupRead, lessonIds.length, groupText),
+          );
+        }
+
+        // The continue action opens the next unread lesson; once everything is read it starts again from the first.
+        const next = store.nextLesson(courseId, course.lessons);
+        const complete = next === null;
+        const target = complete ? course.lessons[0] : next;
+        const label =
+          read === 0 ? island.texts.startLabel : complete ? island.texts.restartLabel : island.texts.continueLabel;
+        all(`[${HOOK.continue}][${HOOK.courseId}="${courseId}"]`).forEach((link) => {
+          link.textContent = label;
+          if (target !== undefined) link.setAttribute('href', course.hrefs[target]);
+        });
+        all(`[${HOOK.courseComplete}][${HOOK.courseId}="${courseId}"]`).forEach((el) => {
+          el.hidden = !complete;
+        });
+      }
+
+      if (current !== undefined) {
+        all(`[${HOOK.readMarker}]`).forEach((marker) => {
+          const id = marker.getAttribute(HOOK.lessonId) ?? '';
+          marker.dataset.state = store.isRead(current, id) ? 'read' : 'unread';
+        });
+        all(`[${HOOK.markRead}]`).forEach((button) => {
+          if (lessonId === undefined) return;
+          const read = store.isRead(current, lessonId);
+          button.hidden = false;
+          button.setAttribute('aria-pressed', String(read));
+          button.textContent = read ? island.texts.markUnreadLabel : island.texts.markReadLabel;
+        });
+      }
+
+      all(`[${HOOK.storageNotice}]`).forEach((notice) => {
+        notice.hidden = store.persisted;
+      });
+    };
+
+    store.subscribe(render);
+
+    if (current !== undefined && lessonId !== undefined) {
+      store.setLast(current, lessonId);
+
+      // A restored scroll position would put the end of the body back in view on reload, and an unread lesson would be
+      // marked read again without the reader scrolling. The browser therefore starts a lesson at the top.
+      if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+
+      all(`[${HOOK.markRead}]`).forEach((button) => {
+        button.addEventListener('click', () => {
+          if (store.isRead(current, lessonId)) {
+            store.markUnread(current, lessonId);
+          } else {
+            store.markRead(current, lessonId);
+          }
+        });
+      });
+
+      // The end of the body marks the lesson read the first time it is seen in this page load. The observer then
+      // disconnects, so unmarking it on this page does not mark it again.
+      const sentinel = document.querySelector<HTMLElement>(`[${HOOK.lessonEnd}]`);
+      if (sentinel && 'IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+          if (!entries.some((entry) => entry.isIntersecting)) return;
+          observer.disconnect();
+          if (!store.isRead(current, lessonId)) store.markRead(current, lessonId);
+        });
+        observer.observe(sentinel);
+      }
+    }
+
+    window.addEventListener('storage', (event) => {
+      if (event.key === null || event.key === PROGRESS_STORAGE_KEY) store.refresh();
+    });
+
+    // On wide viewports the lesson's outline starts open beside the body; on narrow ones it stays collapsed.
+    const outline = document.getElementById('course-outline') as HTMLDetailsElement | null;
+    const wide = window.matchMedia('(min-width: 64rem)');
+    if (outline) {
+      if (wide.matches) outline.open = true;
+      wide.addEventListener('change', (event) => {
+        if (event.matches) outline.open = true;
+      });
+    }
+
+    render();
+  }
+</script>
