@@ -21,6 +21,9 @@ Run every command from this directory.
 | `npm run preview` | Serve the built `dist/` locally |
 | `npm run check` | Run `astro check` and `tsc --noEmit` |
 | `npm run verify` | Build, then check the foundation facts in `dist/` with `scripts/verify-foundation.mjs` |
+| `npm run deploy:payload` | Stage `.deploy/gh-pages` with `esa.jsonc`, `wrangler.jsonc`, and `dist/`. Run after `npm run build`; it fails and names any missing input |
+| `npm run deploy:warmup` | Request the worker domain and `fullstack.hagicode.com` with bounded retries. Add `-- --summary-markdown <path>` to write a Markdown summary |
+| `npm test` | Run the `node:test` suites for payload staging, domain warmup, and the deploy workflow contract. No dependencies are needed |
 
 `verify` fails and names the missing item when the build output does not match the foundation: the exact Hagilight pins, the home page head and footer, the discovery files, the favicon, internal link targets, and the absence of forbidden files in `public/`.
 
@@ -58,6 +61,54 @@ Outside a Git checkout the build still succeeds, and branch and commit read `unk
 - `src/config/site.ts` holds the site name, the description, and the default locale `en-US`. The page title, description metadata, and page heading read from this file.
 - `astro.config.mjs` holds the production origin `https://fullstack.hagicode.com`, the base path `/`, and the `en-US` i18n setup with `prefixDefaultLocale: false`.
 
+## Deployment
+
+`.github/workflows/fullstack-deploy-gh-pages.yml` publishes the site. Cloudflare serves the result, not GitHub Pages.
+
+- **Trigger:** a push to `main`, or a manual `workflow_dispatch` for any ref. Pull requests do not publish. Runs are serialized by the `fullstack-deploy-gh-pages` concurrency group, and a run in progress is never cancelled.
+- **Build job:** installs from `package-lock.json`, runs `npm run verify`, stages the payload with `npm run deploy:payload`, and uploads it as the `site-gh-pages-payload` artifact. It has read-only permissions. If the build, verification, or staging fails, the workflow stops before `gh-pages` is touched.
+- **Deploy job:** downloads the staged payload and publishes it with `peaceiris/actions-gh-pages@v4`. It does not rebuild the site. It runs in the GitHub environment `fullstack-production`, whose URL is `https://fullstack.hagicode.com`.
+- **Warmup:** after publication, `npm run deploy:warmup` requests the worker domain and `fullstack.hagicode.com` with 4 attempts, a 3-second delay, and a 10-second timeout. A `2xx` or `3xx` response counts as success. The domains are the `domains` list in `FULLSTACK_WARMUP_CONFIG` in `scripts/warm-deployment-domains.mjs`.
+
+### Payload layout
+
+The root of the `gh-pages` branch holds exactly these items:
+
+```text
+esa.jsonc        # from .github/gh-pages/esa.jsonc
+wrangler.jsonc   # from .github/gh-pages/wrangler.jsonc
+dist/            # the validated build output, including dist/index.html
+```
+
+`esa.jsonc` names the site `hagicode fullstack` and serves `./dist`. Its install and build commands are no-ops, because the payload is already built. `wrangler.jsonc` names the worker `fullstack` and serves `./dist` as static assets.
+
+### Permissions
+
+- The workflow declares `contents: read` at the top level. Only the deploy job raises this to `contents: write`, for the `GITHUB_TOKEN` push to `gh-pages`.
+- No repository secret is needed beyond the default `GITHUB_TOKEN`.
+- The `fullstack-production` environment must exist in the repository settings. Add protection rules there if publication needs approval.
+
+### Hosting setting
+
+The Cloudflare project that serves `fullstack.hagicode.com` must read the `gh-pages` branch of `HagiCode-org/fullstack`. Until it does, publication succeeds but nothing is served, and warmup fails.
+
+### Single-commit branch
+
+Each publication replaces `gh-pages` with one orphan commit that contains only the newest payload (`force_orphan: true`). Jekyll processing is disabled (`enable_jekyll: false`). The branch keeps no history, so it cannot be rolled back by resetting it.
+
+### First deploy checks
+
+1. Confirm the `fullstack-production` environment exists in the repository settings.
+2. Confirm that the Cloudflare project reads `gh-pages` from `HagiCode-org/fullstack`, and that its worker name is `fullstack`. The warmup domain `fullstack.472158246.workers.dev` assumes that name under the same account subdomain as the site. If the name differs, change the constant in `scripts/warm-deployment-domains.mjs` before the first production run.
+3. Dispatch the workflow manually from `main`, and read the run summary: publication outcome, payload contents, and per-domain warmup.
+4. Open `https://fullstack.hagicode.com/` and confirm the home page loads.
+
+If warmup fails after a successful publication, the summary states that the `gh-pages` snapshot was already published before warmup verification failed. The published snapshot stays in place. Fix the hosting or domain issue, then rerun the workflow. Republishing is enough.
+
+### Rollback
+
+Publish a known-good state again. Either revert the offending commit on `main`, or dispatch the workflow for an older ref. CI then rebuilds, verifies, and replaces `gh-pages` with that state. Do not reset or force-push the `gh-pages` branch by hand. Its single-commit history is not kept, and the workflow is the only supported publisher.
+
 ## Follow-up work
 
 Not part of this foundation:
@@ -65,4 +116,4 @@ Not part of this foundation:
 - Tutorial content and its structure
 - Site navigation
 - Additional locales
-- Analytics and deployment for `fullstack.hagicode.com`
+- Analytics for `fullstack.hagicode.com`
