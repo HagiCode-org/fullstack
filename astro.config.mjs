@@ -11,7 +11,8 @@ export default defineConfig({
     base: '/',
     i18n: {
         defaultLocale: 'en-US',
-        locales: ['en-US'],
+        // Mirrors SUPPORTED_LOCALES in src/config/site.ts; scripts/__tests__/routes.test.mjs checks they match.
+        locales: ['en-US', 'zh-CN', 'zh-Hant', 'ja-JP', 'ko-KR', 'de-DE', 'fr-FR', 'es-ES', 'pt-BR', 'ru-RU'],
         routing: {
             prefixDefaultLocale: false,
         },
