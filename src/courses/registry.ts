@@ -1,9 +1,10 @@
 import { demoFoundations } from './demo-foundations/outline.ts';
 import { demoSampler } from './demo-sampler/outline.ts';
+import { dockerForBeginners } from './docker-for-beginners/outline.ts';
 import type { Course, GroupNode, LessonNode, OutlineNode } from './types.ts';
 
 // The only list of courses. The course list, the course switcher, and the course routes all read from here.
-export const courses: readonly Course[] = [demoFoundations, demoSampler];
+export const courses: readonly Course[] = [demoFoundations, demoSampler, dockerForBeginners];
 
 export function getCourse(id: string, list: readonly Course[] = courses): Course | undefined {
   return list.find((course) => course.id === id);
