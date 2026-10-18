@@ -1,0 +1,318 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-18T22:40:24Z",
+  "title": "Design System: HagiCode Fullstack",
+  "extensions": {
+    "colorMeta": {
+      "primary": {
+        "role": "primary",
+        "displayName": "Ink Black",
+        "canonical": "oklch(0.205 0 0)",
+        "tonalRamp": [
+          "oklch(15% 0 0)",
+          "oklch(27% 0 0)",
+          "oklch(39% 0 0)",
+          "oklch(51% 0 0)",
+          "oklch(63% 0 0)",
+          "oklch(75% 0 0)",
+          "oklch(86% 0 0)",
+          "oklch(95% 0 0)"
+        ]
+      },
+      "link-blue": {
+        "role": "secondary",
+        "displayName": "Link Blue",
+        "canonical": "#1d4ed8",
+        "tonalRamp": [
+          "oklch(15% 0.118 264.4)",
+          "oklch(27% 0.156 264.4)",
+          "oklch(39% 0.195 264.4)",
+          "oklch(51% 0.2 264.4)",
+          "oklch(63% 0.188 264.4)",
+          "oklch(75% 0.15 264.4)",
+          "oklch(86% 0.115 264.4)",
+          "oklch(95% 0.086 264.4)"
+        ]
+      },
+      "foreground": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "#1b1f24",
+        "tonalRamp": [
+          "oklch(15% 0.011 254)",
+          "oklch(27% 0.011 254)",
+          "oklch(39% 0.011 254)",
+          "oklch(51% 0.011 254)",
+          "oklch(63% 0.011 254)",
+          "oklch(75% 0.011 254)",
+          "oklch(86% 0.011 254)",
+          "oklch(95% 0.011 254)"
+        ]
+      },
+      "muted-foreground": {
+        "role": "neutral",
+        "displayName": "Soft Ink",
+        "canonical": "#55606b",
+        "tonalRamp": [
+          "oklch(15% 0.022 248.3)",
+          "oklch(27% 0.022 248.3)",
+          "oklch(39% 0.022 248.3)",
+          "oklch(51% 0.022 248.3)",
+          "oklch(63% 0.022 248.3)",
+          "oklch(75% 0.022 248.3)",
+          "oklch(86% 0.022 248.3)",
+          "oklch(95% 0.022 248.3)"
+        ]
+      },
+      "surface-quiet": {
+        "role": "neutral",
+        "displayName": "Quiet Surface",
+        "canonical": "oklch(0.97 0 0)",
+        "tonalRamp": [
+          "oklch(15% 0 0)",
+          "oklch(27% 0 0)",
+          "oklch(39% 0 0)",
+          "oklch(51% 0 0)",
+          "oklch(63% 0 0)",
+          "oklch(75% 0 0)",
+          "oklch(86% 0 0)",
+          "oklch(95% 0 0)"
+        ]
+      },
+      "border": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "oklch(0.922 0 0)",
+        "tonalRamp": [
+          "oklch(15% 0 0)",
+          "oklch(27% 0 0)",
+          "oklch(39% 0 0)",
+          "oklch(51% 0 0)",
+          "oklch(63% 0 0)",
+          "oklch(75% 0 0)",
+          "oklch(86% 0 0)",
+          "oklch(95% 0 0)"
+        ]
+      },
+      "destructive": {
+        "role": "semantic",
+        "displayName": "Alarm Red",
+        "canonical": "oklch(0.577 0.245 27.325)",
+        "tonalRamp": [
+          "oklch(15% 0.142 27.3)",
+          "oklch(27% 0.188 27.3)",
+          "oklch(39% 0.234 27.3)",
+          "oklch(51% 0.24 27.3)",
+          "oklch(63% 0.226 27.3)",
+          "oklch(75% 0.18 27.3)",
+          "oklch(86% 0.138 27.3)",
+          "oklch(95% 0.103 27.3)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "The single page h1: course title, lesson title, or the site name on the home page."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Course card heading (h2)."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Lesson text and base paragraphs in Soft Ink, inside the 42rem column."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Buttons, outline links, switcher values, breadcrumb and alert text."
+      },
+      "caption": {
+        "displayName": "Caption",
+        "purpose": "Switcher label, previous/next captions, compact progress counts."
+      }
+    },
+    "shadows": [
+      {
+        "name": "none",
+        "value": "none",
+        "purpose": "The system has no box shadows. Separation is a 1px foreground-at-10% ring on cards and a Hairline border on outline buttons."
+      },
+      {
+        "name": "card-ring",
+        "value": "0 0 0 1px color-mix(in oklab, var(--foreground) 10%, transparent)",
+        "purpose": "Card edge (ring-1 ring-foreground/10)."
+      },
+      {
+        "name": "focus-ring",
+        "value": "0 0 0 3px color-mix(in oklab, var(--ring) 50%, transparent)",
+        "purpose": "shadcn control focus-visible ring, paired with a ring-coloured border."
+      }
+    ],
+    "motion": [
+      {
+        "name": "state-transition",
+        "value": "150ms cubic-bezier(0.4, 0, 0.2, 1)",
+        "purpose": "Tailwind default for transition-all on buttons and transition-colors on links."
+      },
+      {
+        "name": "chevron-turn",
+        "value": "rotate(180deg) via transition-transform",
+        "purpose": "Disclosure chevron when a details element opens."
+      },
+      {
+        "name": "press",
+        "value": "translateY(1px)",
+        "purpose": "Active state of buttons."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "40rem"
+      },
+      {
+        "name": "lg",
+        "value": "64rem"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The next-step action of a course; Ink Black fill, 80% on hover, 1px press.",
+      "html": "<button class=\"ds-btn-primary\">Start learning</button>",
+      "css": ".ds-btn-primary{display:inline-flex;align-items:center;justify-content:center;height:32px;padding:0 10px;border:1px solid transparent;border-radius:10px;font:500 0.875rem/1 var(--font-sans, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif);white-space:nowrap;cursor:pointer;transition:all .15s;outline:none;text-decoration:none;background:var(--primary, oklch(0.205 0 0));color:var(--primary-foreground, oklch(0.985 0 0));} .ds-btn-primary:hover{background:color-mix(in oklab,var(--primary, oklch(0.205 0 0)) 80%,transparent);} .ds-btn-primary:active{transform:translateY(1px);} .ds-btn-primary:focus-visible{border-color:var(--ring, oklch(0.708 0 0));box-shadow:0 0 0 3px color-mix(in oklab,var(--ring, oklch(0.708 0 0)) 50%,transparent);}"
+    },
+    {
+      "name": "Outline Button",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Secondary actions such as mark as read; Paper fill, Hairline border, Quiet Surface on hover.",
+      "html": "<button class=\"ds-btn-outline\" aria-pressed=\"false\">Mark as read</button>",
+      "css": ".ds-btn-outline{display:inline-flex;align-items:center;justify-content:center;height:32px;padding:0 10px;border:1px solid transparent;border-radius:10px;font:500 0.875rem/1 var(--font-sans, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif);white-space:nowrap;cursor:pointer;transition:all .15s;outline:none;text-decoration:none;background:var(--background, #ffffff);color:var(--foreground, #1b1f24);border-color:var(--border, oklch(0.922 0 0));} .ds-btn-outline:hover{background:var(--muted, oklch(0.97 0 0));} .ds-btn-outline:active{transform:translateY(1px);} .ds-btn-outline:focus-visible{border-color:var(--ring, oklch(0.708 0 0));box-shadow:0 0 0 3px color-mix(in oklab,var(--ring, oklch(0.708 0 0)) 50%,transparent);}"
+    },
+    {
+      "name": "Lesson Navigation Button",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Previous/next lesson: an outline button that wraps, with a caption above the lesson title.",
+      "html": "<a class=\"ds-lesson-nav\" href=\"#\"><span class=\"ds-lesson-nav-caption\">Next lesson</span><span class=\"ds-lesson-nav-title\">Build your first component</span></a>",
+      "css": ".ds-lesson-nav{display:flex;flex-direction:column;align-items:flex-start;gap:2px;width:100%;box-sizing:border-box;padding:8px 10px;border:1px solid var(--border, oklch(0.922 0 0));border-radius:10px;background:var(--background, #ffffff);text-decoration:none;font-family:var(--font-sans, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif);transition:all .15s;} .ds-lesson-nav:hover{background:var(--muted, oklch(0.97 0 0));} .ds-lesson-nav:focus-visible{outline:none;border-color:var(--ring, oklch(0.708 0 0));box-shadow:0 0 0 3px color-mix(in oklab,var(--ring, oklch(0.708 0 0)) 50%,transparent);} .ds-lesson-nav-caption{font-size:0.75rem;font-weight:400;color:var(--muted-foreground, #55606b);} .ds-lesson-nav-title{font-size:0.875rem;font-weight:500;color:var(--foreground, #1b1f24);}"
+    },
+    {
+      "name": "Course Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "One course on the home page: badge, title link, count, progress, continue action on a muted footer.",
+      "html": "<div class=\"ds-card\"><div class=\"ds-card-head\"><span class=\"ds-badge\">Demo</span><h2 class=\"ds-card-title\"><a href=\"#\">Demo foundations</a></h2><span class=\"ds-card-meta\">6 lessons</span></div><div class=\"ds-card-body\"><span class=\"ds-progress-text\">0 of 6 read</span><div class=\"ds-progress\" role=\"progressbar\" aria-valuenow=\"0\" aria-valuemin=\"0\" aria-valuemax=\"100\"><div class=\"ds-progress-bar\"></div></div></div><div class=\"ds-card-foot\"><a class=\"ds-card-cta\" href=\"#\">Start learning</a></div></div>",
+      "css": ".ds-card{display:flex;flex-direction:column;gap:16px;padding-top:16px;overflow:hidden;border-radius:14px;background:var(--card, oklch(1 0 0));color:var(--foreground, #1b1f24);box-shadow:0 0 0 1px color-mix(in oklab,var(--foreground, #1b1f24) 10%,transparent);font:400 0.875rem/1.7 var(--font-sans, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif);max-width:22rem;} .ds-card-head,.ds-card-body{display:flex;flex-direction:column;gap:8px;padding:0 16px;} .ds-card-title{margin:0;font-size:1.125rem;font-weight:600;line-height:1.375;} .ds-card-title a{color:var(--foreground, #1b1f24);text-decoration:none;} .ds-card-title a:hover{text-decoration:underline;} .ds-card-meta,.ds-progress-text{font-size:0.875rem;color:var(--muted-foreground, #55606b);} .ds-badge{align-self:flex-start;display:inline-flex;align-items:center;height:20px;padding:2px 8px;border-radius:9999px;background:var(--muted, oklch(0.97 0 0));color:var(--primary, oklch(0.205 0 0));font-size:0.75rem;font-weight:500;} .ds-progress{height:6px;border-radius:9999px;background:var(--muted, oklch(0.97 0 0));overflow:hidden;} .ds-progress-bar{height:100%;width:0%;background:var(--primary, oklch(0.205 0 0));} .ds-card-foot{display:flex;align-items:center;padding:16px;border-top:1px solid currentColor;background:color-mix(in oklab,var(--muted, oklch(0.97 0 0)) 50%,transparent);} .ds-card-cta{display:inline-flex;align-items:center;height:32px;padding:0 10px;border-radius:10px;background:var(--primary, oklch(0.205 0 0));color:var(--primary-foreground, oklch(0.985 0 0));font-weight:500;text-decoration:none;} .ds-card-cta:hover{background:color-mix(in oklab,var(--primary, oklch(0.205 0 0)) 80%,transparent);} .ds-card-cta:focus-visible{outline:2px solid var(--color-accent,#1d4ed8);outline-offset:3px;}"
+    },
+    {
+      "name": "Notice",
+      "kind": "custom",
+      "refersTo": "alert",
+      "description": "Fallback-language and storage notices: Card White alert with a circle-alert icon.",
+      "html": "<div class=\"ds-notice\" role=\"alert\"><svg viewBox=\"0 0 24 24\" width=\"16\" height=\"16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><line x1=\"12\" x2=\"12\" y1=\"8\" y2=\"12\"/><line x1=\"12\" x2=\"12.01\" y1=\"16\" y2=\"16\"/></svg><p>This lesson is not translated yet, so it is shown in English.</p></div>",
+      "css": ".ds-notice{display:grid;grid-template-columns:auto 1fr;column-gap:8px;align-items:start;padding:8px 10px;border:1px solid currentColor;border-radius:10px;background:var(--card, oklch(1 0 0));color:var(--foreground, #1b1f24);font:400 0.875rem/1.5 var(--font-sans, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif);} .ds-notice svg{margin-top:3px;} .ds-notice p{margin:0;}"
+    },
+    {
+      "name": "Switcher Menu",
+      "kind": "nav",
+      "refersTo": "outline-link-current",
+      "description": "Course or language switcher in the top bar: a native disclosure with a caption, current value, chevron and a floating list of real links.",
+      "html": "<details class=\"ds-switcher\" open style=\"min-height:9rem\"><summary><span class=\"ds-switcher-text\"><span class=\"ds-switcher-label\">Language</span><span class=\"ds-switcher-value\">English</span></span><svg viewBox=\"0 0 24 24\" width=\"16\" height=\"16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"m6 9 6 6 6-6\"/></svg></summary><ul><li><a href=\"#\" aria-current=\"page\">English</a></li><li><a href=\"#\">简体中文</a></li><li><a href=\"#\">日本語</a></li></ul></details>",
+      "css": ".ds-switcher{position:relative;width:16rem;font-family:var(--font-sans, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif);color:var(--foreground, #1b1f24);} .ds-switcher summary{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:6px 8px;border-radius:8px;cursor:pointer;list-style:none;font-weight:500;} .ds-switcher summary::-webkit-details-marker{display:none;} .ds-switcher summary svg{color:var(--muted-foreground, #55606b);transition:transform .15s;} .ds-switcher[open] summary svg{transform:rotate(180deg);} .ds-switcher-text{display:flex;flex-direction:column;} .ds-switcher-label{font-size:0.75rem;font-weight:400;color:var(--muted-foreground, #55606b);} .ds-switcher-value{font-size:0.875rem;} .ds-switcher summary:hover{background:var(--muted, oklch(0.97 0 0));} .ds-switcher ul{position:absolute;top:100%;left:0;right:0;z-index:2;list-style:none;margin:4px 0 0;padding:4px;display:flex;flex-direction:column;gap:2px;border-radius:10px;background:var(--card, oklch(1 0 0));box-shadow:0 0 0 1px color-mix(in oklab,var(--foreground, #1b1f24) 10%,transparent);} .ds-switcher li a{display:block;padding:6px 8px;border-radius:8px;color:var(--foreground, #1b1f24);font-size:0.875rem;font-weight:400;text-decoration:none;} .ds-switcher li a:hover{background:var(--muted, oklch(0.97 0 0));} .ds-switcher li a[aria-current]{background:var(--muted, oklch(0.97 0 0));font-weight:600;} .ds-switcher li a:focus-visible{outline:2px solid var(--color-accent,#1d4ed8);outline-offset:3px;}"
+    },
+    {
+      "name": "Outline Lesson Row",
+      "kind": "custom",
+      "refersTo": "outline-link-current",
+      "description": "Lesson link in the outline with a read marker; the current lesson is bold on Quiet Surface.",
+      "html": "<ul class=\"ds-outline\"><li><a href=\"#\"><span class=\"ds-marker ds-unread\"><svg viewBox=\"0 0 24 24\" width=\"16\" height=\"16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"10\"/></svg></span><span>Set up your editor</span></a></li><li><a href=\"#\" aria-current=\"page\"><span class=\"ds-marker ds-read\"><svg viewBox=\"0 0 24 24\" width=\"16\" height=\"16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><path d=\"m9 12 2 2 4-4\"/></svg></span><span>Build your first component</span></a></li><li><a href=\"#\"><span class=\"ds-marker ds-unread\"><svg viewBox=\"0 0 24 24\" width=\"16\" height=\"16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"10\"/></svg></span><span>Ship to production</span></a></li></ul>",
+      "css": ".ds-outline{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:4px;font:400 0.875rem/1.5 var(--font-sans, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif);max-width:18rem;} .ds-outline a{display:flex;align-items:flex-start;gap:8px;padding:6px 8px;border-radius:8px;color:var(--foreground, #1b1f24);text-decoration:none;} .ds-outline a:hover{background:var(--muted, oklch(0.97 0 0));} .ds-outline a[aria-current]{background:var(--muted, oklch(0.97 0 0));font-weight:600;} .ds-outline a:focus-visible{outline:2px solid var(--color-accent,#1d4ed8);outline-offset:3px;} .ds-marker{display:inline-flex;flex-shrink:0;margin-top:2px;} .ds-unread{color:var(--muted-foreground, #55606b);} .ds-read{color:var(--primary, oklch(0.205 0 0));}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Plain Workbook",
+    "overview": "HagiCode Fullstack is a tutorial, so the lesson text is the product and everything else is margin. The system looks like a well-set workbook: white page, near-black ink, a single blue reserved for links, and thin grey rules that organise the page without decorating it. Nothing glows, nothing floats. A reader arrives to read a lesson, tick it off, and move to the next one.\n\nThe interface earns trust by working before anything else loads. Every page is static HTML; the course switcher, language switcher and outline are native `details` elements and real links, and the only client script restores read marks and the continue target from this browser. Components are built so that the page reads in full without that script, and so that its absence is invisible rather than broken. Dark mode follows the visitor's `prefers-color-scheme`; there is no theme switch.\n\nThe system is built on shadcn/ui (`radix-nova` style, `neutral` base colour, CSS variables) rendered to static HTML. It inherits the shadcn vocabulary of tokens, radii and `data-slot` hooks, and keeps the site-specific pieces small: a reading column, a lesson layout with a sticky outline, and a progress vocabulary of count, bar and read marker.",
+    "keyCharacteristics": [
+      "Text first: a 42rem reading column, body line-height 1.7, one `h1` per page.",
+      "Achromatic surfaces with one blue (link-blue) for links and focus; the neutral ramp carries all hierarchy.",
+      "Flat depth: surfaces are separated by a hairline ring or border, never by shadow.",
+      "State is never colour alone: read state is an icon swap plus screen-reader text; the current lesson is bold plus a surface plus `aria-current`.",
+      "Works without scripting; progress UI is hidden or neutral until `ProgressRuntime` fills it in.",
+      "Ten locales: every label must tolerate long German, French or Russian strings and CJK without breaking the layout."
+    ],
+    "rules": [
+      {
+        "name": "The One Blue Rule",
+        "body": "Blue appears only as link text and the global focus outline. It never fills a surface, and a second accent colour is not added without a change to this file.",
+        "section": "colors"
+      },
+      {
+        "name": "The Two Meanings Rule",
+        "body": "In `global.css`, `--color-accent` and `--color-muted` as CSS variables keep their legacy text-colour meaning (link blue and soft ink), while the `accent` and `muted` utilities and shadcn components mean surfaces (Quiet Surface). Read the token's role before reaching for the variable.",
+        "section": "colors"
+      },
+      {
+        "name": "The Token Only Rule",
+        "body": "Components take colour from tokens through utilities (`bg-card`, `text-muted-foreground`, `border`). Raw hex or oklch values do not appear in components.",
+        "section": "colors"
+      },
+      {
+        "name": "The One H1 Rule",
+        "body": "Each page has exactly one `h1`. The site header is a link, not a heading, so it does not compete.",
+        "section": "typography"
+      },
+      {
+        "name": "The Native Stack Rule",
+        "body": "No web font is loaded. Weight and colour carry hierarchy; a decorative display face is not introduced.",
+        "section": "typography"
+      },
+      {
+        "name": "The Rails Stay Put Rule",
+        "body": "The top bar and the sidebar are the fixed frame; the page itself scrolls under them with the browser's own scrolling. Do not turn the main pane into a nested scroll container, because find-in-page, scroll position and the end-of-lesson read mark all depend on the window scrolling.",
+        "section": "layout"
+      },
+      {
+        "name": "The Column Before The Grid Rule",
+        "body": "Content starts from a single measured column. Add the sidebar pane only where the page has a tree to navigate; home and overview content does not become a dashboard.",
+        "section": "layout"
+      },
+      {
+        "name": "The No Shadow Rule",
+        "body": "Do not add `box-shadow` to a component to make it feel raised. If a surface needs separation, give it the ring or the border.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Focus Is Visible Rule",
+        "body": "Plain links and unstyled interactive elements get the global 2px Link Blue outline with a 3px offset; shadcn controls get a border of Focus Grey plus a 3px ring at 50% opacity. Never remove an outline without replacing it.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** use the token utilities (`bg-card`, `text-muted-foreground`, `border`, `ring-foreground/10`) and keep dark values in `global.css` under `prefers-color-scheme`.",
+      "**Do** keep one `h1` per page and use the Display step only for it.",
+      "**Do** render new components as static HTML with native elements first (`details`, `a`, `button`); add script only through `ProgressRuntime` hooks.",
+      "**Do** pair every state with a second cue besides colour: an icon, weight, text or an ARIA attribute.",
+      "**Do** let labels wrap or truncate deliberately for ten locales; use `min-w-0` in flex and grid children and `whitespace-normal` on buttons that carry titles.",
+      "**Do** keep primary actions full width below `sm` and auto width from `sm`.",
+      "**Do** put a navigable tree in the sidebar pane and let everything else live in the one measured column.",
+      "**Do** add new shadcn primitives with `npx shadcn add <name>` and keep the `radix-nova` style."
+    ],
+    "donts": [
+      "**Don't** make the main pane scroll inside its own box; the window scrolls.",
+      "**Don't** add a theme toggle; dark mode follows `prefers-color-scheme`.",
+      "**Don't** add `box-shadow`, gradients, glass or decorative imagery to make a surface feel richer.",
+      "**Don't** use Link Blue as a fill or introduce a second accent colour.",
+      "**Don't** use hex, oklch or pixel literals in components when a token or a scale step exists.",
+      "**Don't** rely on `--color-accent` or `--color-muted` as surface colours; they are text colours.",
+      "**Don't** add a `client:*` directive or ship a hydration script for a presentational component.",
+      "**Don't** load a web font or set body copy outside the 42rem reading column.",
+      "**Don't** hand-write `robots.txt`, `sitemap.xml`, `llms.txt` or an icon into `public/`; Hagilight generates them."
+    ]
+  }
+}
