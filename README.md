@@ -63,7 +63,7 @@ The site uses shadcn/ui components. `components.json` mirrors the configuration 
 - Add a component from this directory with `npx shadcn add <name>`, for example `npx shadcn add badge`.
 - Generated components land in `src/components/ui/`. Import them through the `@/` alias, for example `import { Button } from '@/components/ui/button'`.
 - The `cn()` class-merge helper lives in `src/lib/utils.ts`. The `npx shadcn add` output for the primitives added in the course change imports `cn` from the `cn` package and not from `@/lib/utils`; see the note under [Components and reuse](#components-and-reuse) before changing that.
-- Design tokens and the dark variant live in `src/styles/global.css`. Dark values follow `prefers-color-scheme`, because the site has no theme switch.
+- Design tokens and the dark variant live in `src/styles/global.css`. The active theme is `data-theme` on `<html>`: dark values sit under `:root[data-theme="dark"]` and again under a `prefers-color-scheme` block for a visitor with no stored choice. The two copies must list the same tokens; `npm test` checks that.
 - Components render to static HTML at build time through `@astrojs/react`. Do not add a `client:*` directive unless a change deliberately adds client-side behaviour. `npm run verify` fails if the build ships an island or hydration script for the seed components.
 - `repos/web` is the reference for the configuration and the component style. Do not edit `repos/web` from this repository.
 
@@ -145,6 +145,16 @@ Progress is stored in the reader's browser only, under the key `hagicode-fullsta
 A lesson is read when its end scrolls into view, or when the reader activates the mark control, which can also mark it unread. A stored record with an unknown version or unreadable JSON counts as empty and is replaced by the next change. If the browser blocks storage or a write fails, every page still works, and the reader sees a notice that progress cannot be saved.
 
 Clearing the site data in the browser clears the progress.
+
+### Theme
+
+The header's toggle switches the page between a light and a dark theme. The choice is stored in the reader's browser under `hagicode-fullstack:theme`, as `light` or `dark`, and it applies to every course and locale on the origin. Any other stored value is ignored.
+
+Without a valid stored choice the theme follows `prefers-color-scheme`, so a first visit looks the same as it did before the toggle existed. A small inline script in `<head>` sets `data-theme` before the stylesheet paints, so a stored dark choice never flashes a light page. A press flips the theme on the current page at once, and other open tabs of the site follow through the `storage` event. While nothing is stored, the page also follows changes to the system setting.
+
+The toggle starts hidden and `ThemeRuntime.astro` shows it, so a page without scripting has no dead control. With scripting off, the theme follows the system and the icon that matches it is shown. If the browser blocks storage, a press still switches the current page and no notice is shown.
+
+The `dark:` variant follows the same state, so shadcn components switch with the page. It is written as an attribute selector plus a `prefers-color-scheme` branch for the no-attribute case, and the build emits both.
 
 ## Deployment
 

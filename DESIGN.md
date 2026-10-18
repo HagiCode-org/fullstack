@@ -115,7 +115,7 @@ components:
 
 HagiCode Fullstack is a tutorial, so the lesson text is the product and everything else is margin. The system looks like a well-set workbook: white page, near-black ink, a single blue reserved for links, and thin grey rules that organise the page without decorating it. Nothing glows, nothing floats. A reader arrives to read a lesson, tick it off, and move to the next one.
 
-The interface earns trust by working before anything else loads. Every page is static HTML; the course switcher, language switcher and outline are native `details` elements and real links, and the only client script restores read marks and the continue target from this browser. Components are built so that the page reads in full without that script, and so that its absence is invisible rather than broken. Dark mode follows the visitor's `prefers-color-scheme`; there is no theme switch.
+The interface earns trust by working before anything else loads. Every page is static HTML; the course switcher, language switcher and outline are native `details` elements and real links, and the only client script restores read marks and the continue target from this browser. Components are built so that the page reads in full without that script, and so that its absence is invisible rather than broken. Dark mode follows the visitor's `prefers-color-scheme` until they press the header's theme toggle, and the choice is remembered in this browser.
 
 The system is built on shadcn/ui (`radix-nova` style, `neutral` base colour, CSS variables) rendered to static HTML. It inherits the shadcn vocabulary of tokens, radii and `data-slot` hooks, and keeps the site-specific pieces small: a reading column, a lesson layout with a sticky outline, and a progress vocabulary of count, bar and read marker.
 
@@ -148,6 +148,10 @@ A grey-scale workbook with one blue: white and ink in light, a blue-black page a
 
 ### Semantic
 - **Alarm Red** (`destructive`, oklch(0.577 0.245 27.325); oklch(0.704 0.191 22.216) in dark): the destructive button and invalid states. The course UI does not use it yet.
+
+### Theme state
+
+The active theme is `data-theme="light"` or `data-theme="dark"` on `<html>`. Tokens, the `dark:` variant and `color-scheme` all read that one attribute. Light values sit on `:root`. Dark values sit under `:root[data-theme="dark"]` and again under `@media (prefers-color-scheme: dark)` for `:root:not([data-theme])`, which covers a visitor with no stored choice and no script. The two dark lists name the same tokens, and `npm test` checks that. The reader's choice is stored as `hagicode-fullstack:theme`. Without a choice the page follows the system.
 
 ### Named Rules
 **The One Blue Rule.** Blue appears only as link text and the global focus outline. It never fills a surface, and a second accent colour is not added without a change to this file.
@@ -182,14 +186,16 @@ A workbench: a top bar, an optional sidebar pane, and a main pane that holds one
 
 - **Top bar:** 48px (`h-12`) from `lg`, full width, bottom Hairline, Paper background, sticky at the top while the panes scroll. Site link on the left, the course and language switchers on the right, each with a 16px side gutter. Below `lg` it is not sticky, and below `sm` the switchers drop to a second row that spans the bar.
 - **Sidebar pane:** lesson pages only. 18rem wide from `lg`, sticky under the top bar (`top-12`), as tall as the viewport minus the bar, scrolling on its own, with a Hairline right edge and 20px top padding. It holds the course outline. Below `lg` it stacks above the main pane as a collapsed "Outline" disclosure with a Hairline bottom edge; the runtime opens it from `lg`.
-- **Main pane:** takes the remaining width (`minmax(0, 1fr)`), with 16px side padding and 32px top and bottom padding, growing to 40px at `lg`. It holds one column centred with `mx-auto`: 42rem (`max-w-2xl`) for a lesson, 48rem (`max-w-3xl`) for a course overview, 56rem (`max-w-4xl`) for the course list. The column is the only place text is measured.
-- **Home:** the title and a purpose line, then course cards in a one-column grid that becomes two columns from `sm`, with a 1rem (`gap-4`) gap. No sidebar.
+- **Main pane:** takes the remaining width (`minmax(0, 1fr)`), with 16px side padding and 32px top and bottom padding, growing to 40px at `lg`. It holds one column centred with `mx-auto`: 42rem (`max-w-2xl`) for a lesson, 48rem (`max-w-3xl`) for a course overview, 64rem (`max-w-5xl`) for the home page. The column is the only place text is measured.
+- **Home:** a 64rem column on one 5fr / 7fr split that every section shares. The hero puts the site name (display up to 4rem, home only) and the purpose line on the left and a four-step "how it works" track on the right; below it a Courses section stacks one wide card per course, split on the same axis (course, progress and action | a preview of its lessons with read markers, on a muted strip), and a language band closes the page. No sidebar.
 - **Course overview:** breadcrumb, title, a progress block capped at `max-w-md` with the continue button, then the outline tree in the main pane. No sidebar, because the outline is the page.
 - **Lesson:** sidebar with the outline, main pane with breadcrumb, title, body, mark-as-read and previous/next. `min-w-0` on the article stops wide code from forcing horizontal scroll.
 - **Footer:** the shared Hagilight footer sits full width after the panes, as the page's last element. It is not restyled here.
 - **Rhythm:** a 4px base from Tailwind's scale. The common steps are 4, 8, 12 and 16px inside components and 24 to 40px between page regions. Primary actions are full width on narrow screens and auto width from `sm`.
 
 ### Named Rules
+**The One Axis Rule.** Home sections share one 5fr / 7fr split, so the hero, the course cards and the language band line up on a single vertical edge.
+
 **The Rails Stay Put Rule.** The top bar and the sidebar are the fixed frame; the page itself scrolls under them with the browser's own scrolling. Do not turn the main pane into a nested scroll container, because find-in-page, scroll position and the end-of-lesson read mark all depend on the window scrolling.
 
 **The Column Before The Grid Rule.** Content starts from a single measured column. Add the sidebar pane only where the page has a tree to navigate; home and overview content does not become a dashboard.
@@ -199,6 +205,9 @@ A workbench: a top bar, an optional sidebar pane, and a main pane that holds one
 Flat by default, with no box shadows anywhere in the system. Depth is carried by tone and edge: cards use a 1px ring of the foreground at 10% opacity (`ring-1 ring-foreground/10`), outline buttons use the Hairline border, alerts use a Hairline border, and in dark mode the card is one tonal step lighter than the page. A card footer sits on a `bg-muted/50` strip separated by a top border.
 
 Interaction is shown by fill and position, not elevation: link and outline rows take the Quiet Surface on hover, the primary button drops to 80% opacity on hover and moves down 1px while pressed, and the disclosure chevron rotates 180° when open.
+
+### Motion
+Two moments, both in `global.css`, both off under `prefers-reduced-motion`. The home "how it works" track plays in once on load: each read marker ticks in with a spring, the line to the next one draws on an exponential ease-out, and the step text darkens from Soft Ink to Ink; at rest the track is complete. Cross-document view transitions (`@view-transition`) carry a course title from the home card to the course page's heading through a shared `view-transition-name`, and keep the top bar in place. Everything else stays still.
 
 ### Named Rules
 **The No Shadow Rule.** Do not add `box-shadow` to a component to make it feel raised. If a surface needs separation, give it the ring or the border.
@@ -239,6 +248,7 @@ Components are shadcn/ui primitives in `src/components/ui/` and course component
 - **Style:** an alert on Card White with a Hairline border, a 16px circle-alert icon and Ink-coloured 14px text. Used for the fallback-language notice and the storage-unavailable notice; the latter starts `hidden`.
 
 ### Navigation
+- **Theme toggle:** a ghost icon button, 36px square, in the header. On a phone it sits on the site-name row, and from sm it ends the switchers' row. It shows the moon under the light theme and the sun under the dark one, so the icon names the theme a press switches to. `aria-pressed` carries the state, and its accessible name is the localized `themeToggleLabel`. It starts hidden and `ThemeRuntime.astro` shows it, so a page without scripting has no dead control.
 - **Breadcrumb:** Soft Ink 14px wrapping list with chevron separators; the last item is the current page, Ink-coloured and not a link. Links darken to Ink on hover.
 - **Top bar:** see Layout. The site link is 16px semibold Ink without underline.
 - **Switchers (course, language):** a native disclosure in the top bar. The summary shows a small Soft Ink label above the current value (label only, on one line, when nothing is current, as on the home page) with a chevron, and fills with Quiet Surface on hover. The list floats under the trigger as a popover (Card White, a foreground-at-10% ring, 4px padding, 14px rows, 256px wide, `z-30`); below `sm` it spans the bar. Items are real links; the current one is bold on Quiet Surface with `aria-current`. It closes on a click on the summary or a link, not on an outside click, because there is no script.
@@ -253,7 +263,7 @@ Rendered Markdown inside the article, with only light rules: unordered and order
 ## Do's and Don'ts
 
 ### Do:
-- **Do** use the token utilities (`bg-card`, `text-muted-foreground`, `border`, `ring-foreground/10`) and keep dark values in `global.css` under `prefers-color-scheme`.
+- **Do** use the token utilities (`bg-card`, `text-muted-foreground`, `border`, `ring-foreground/10`) and keep dark values in `global.css`, in the `data-theme="dark"` block and its `prefers-color-scheme` copy.
 - **Do** keep one `h1` per page and use the Display step only for it.
 - **Do** render new components as static HTML with native elements first (`details`, `a`, `button`); add script only through `ProgressRuntime` hooks.
 - **Do** pair every state with a second cue besides colour: an icon, weight, text or an ARIA attribute.
@@ -264,7 +274,7 @@ Rendered Markdown inside the article, with only light rules: unordered and order
 
 ### Don't:
 - **Don't** make the main pane scroll inside its own box; the window scrolls.
-- **Don't** add a theme toggle; dark mode follows `prefers-color-scheme`.
+- **Don't** add a third "system" choice to the toggle, or a second toggle elsewhere. It switches light and dark only; until the reader presses it, the theme follows `prefers-color-scheme`.
 - **Don't** add `box-shadow`, gradients, glass or decorative imagery to make a surface feel richer.
 - **Don't** use Link Blue as a fill or introduce a second accent colour.
 - **Don't** use hex, oklch or pixel literals in components when a token or a scale step exists.
