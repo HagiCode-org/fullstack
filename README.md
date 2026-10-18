@@ -23,7 +23,7 @@ Run every command from this directory.
 | `npm run verify` | Build, then check the foundation facts in `dist/` with `scripts/verify-foundation.mjs` |
 | `npm run deploy:payload` | Stage `.deploy/gh-pages` with `esa.jsonc`, `wrangler.jsonc`, and `dist/`. Run after `npm run build`; it fails and names any missing input |
 | `npm run deploy:warmup` | Request the worker domain and `fullstack.hagicode.com` with bounded retries. Add `-- --summary-markdown <path>` to write a Markdown summary |
-| `npm test` | Run the `node:test` suites for payload staging, domain warmup, and the deploy workflow contract. No dependencies are needed |
+| `npm test` | Run the `node:test` suites for payload staging, domain warmup, the deploy workflow contract, and the shadcn foundation. No dependencies are needed |
 
 `verify` fails and names the missing item when the build output does not match the foundation: the exact Hagilight pins, the home page head and footer, the discovery files, the favicon, internal link targets, and the absence of forbidden files in `public/`.
 
@@ -55,6 +55,19 @@ HAGILIGHT_BUILD_BRANCH=main npm run build
 ```
 
 Outside a Git checkout the build still succeeds, and branch and commit read `unknown`.
+
+## shadcn/ui components
+
+The site uses shadcn/ui components. `components.json` mirrors the configuration of `repos/web`: style `radix-nova`, `neutral` base colour, CSS variables, and `lucide` icons. The only difference is the CSS entry, `src/styles/global.css`, because the two sites are separate repositories.
+
+- Add a component from this directory with `npx shadcn add <name>`, for example `npx shadcn add badge`.
+- Generated components land in `src/components/ui/`. Import them through the `@/` alias, for example `import { Button } from '@/components/ui/button'`.
+- The `cn()` class-merge helper lives in `src/lib/utils.ts`.
+- Design tokens and the dark variant live in `src/styles/global.css`. Dark values follow `prefers-color-scheme`, because the site has no theme switch.
+- Components render to static HTML at build time through `@astrojs/react`. Do not add a `client:*` directive unless a change deliberately adds client-side behaviour. `npm run verify` fails if the build ships an island or hydration script for the seed components.
+- `repos/web` is the reference for the configuration and the component style. Do not edit `repos/web` from this repository.
+
+The seed components are `button` and `card`. `npm test` checks the configuration, the helper, the seed components, their declared dependencies, the tokens and the base-layer rules. `npm run verify` checks the card marker, the token definitions and the `bg-card` utility in the built stylesheet.
 
 ## Site configuration
 
