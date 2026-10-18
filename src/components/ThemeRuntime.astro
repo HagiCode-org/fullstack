@@ -1,0 +1,58 @@
+---
+// The theme toggle's client code. The head bootstrap has already set data-theme; this script shows the toggle, keeps its
+// aria-pressed in step, flips and stores the choice on a press, and follows the other tabs. While nothing is stored it
+// also follows the system. Without it the toggle stays hidden and the page keeps the theme the bootstrap or CSS chose.
+---
+
+<script>
+  import { HOOK } from '@/components/course/hooks';
+  import { THEME_STORAGE_KEY, isTheme, nextTheme, resolveTheme, type Theme } from '@/lib/theme';
+
+  const root = document.documentElement;
+  const systemQuery = window.matchMedia('(prefers-color-scheme: dark)');
+  const toggles = document.querySelectorAll<HTMLElement>(`[${HOOK.themeToggle}]`);
+
+  // Storage that cannot be reached counts as nothing stored, and a failed write only means the choice is not kept.
+  const readStored = (): string | null => {
+    try {
+      return window.localStorage.getItem(THEME_STORAGE_KEY);
+    } catch {
+      return null;
+    }
+  };
+  const writeStored = (theme: Theme) => {
+    try {
+      window.localStorage.setItem(THEME_STORAGE_KEY, theme);
+    } catch {
+      // The switch still applies to this page.
+    }
+  };
+
+  const apply = (theme: Theme) => {
+    root.dataset.theme = theme;
+    toggles.forEach((toggle) => toggle.setAttribute('aria-pressed', String(theme === 'dark')));
+  };
+
+  toggles.forEach((toggle) => {
+    toggle.hidden = false;
+    toggle.addEventListener('click', () => {
+      const theme = nextTheme(root.dataset.theme === 'dark' ? 'dark' : 'light');
+      apply(theme);
+      writeStored(theme);
+    });
+  });
+
+  apply(isTheme(root.dataset.theme) ? root.dataset.theme : resolveTheme(readStored(), systemQuery.matches));
+
+  // A choice made in another tab of this site arrives as a storage event; a cleared storage arrives with no key.
+  window.addEventListener('storage', (event) => {
+    if (event.key === null || event.key === THEME_STORAGE_KEY) {
+      apply(resolveTheme(readStored(), systemQuery.matches));
+    }
+  });
+
+  // The page follows the system only while the reader has made no choice.
+  systemQuery.addEventListener('change', (event) => {
+    if (!isTheme(readStored())) apply(event.matches ? 'dark' : 'light');
+  });
+</script>

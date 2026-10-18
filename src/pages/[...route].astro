@@ -2,12 +2,15 @@
 import { getCollection, render } from 'astro:content';
 import { CourseBreadcrumb } from '@/components/course/CourseBreadcrumb';
 import { CourseCard } from '@/components/course/CourseCard';
+import { HomeSteps } from '@/components/course/HomeSteps';
+import { LanguageBand } from '@/components/course/LanguageBand';
 import { ContinueButton } from '@/components/course/ContinueButton';
 import { Disclosure } from '@/components/course/Disclosure';
 import { LessonNav } from '@/components/course/LessonNav';
 import { MarkReadButton } from '@/components/course/MarkReadButton';
 import { Notice } from '@/components/course/Notice';
 import { OutlineTree } from '@/components/course/OutlineTree';
+import { PageToc } from '@/components/course/PageToc';
 import { ProgressSummary } from '@/components/course/ProgressSummary';
 import { hookProps } from '@/components/course/hooks';
 import ProgressRuntime from '@/components/ProgressRuntime.astro';
@@ -17,9 +20,10 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import { uiStringsFor } from '@/i18n/ui';
 import { formatText } from '@/lib/format';
 import { selectLessonBody } from '@/lib/lessonBody';
-import { neighbourLinks, treeOf } from '@/lib/courseView';
+import { neighbourLinks, previewSections, treeOf } from '@/lib/courseView';
 import { buildProgressIsland } from '@/lib/progressIsland';
-import { allRoutes, routePath, type Route } from '@/lib/routes';
+import { allRoutes, routePath, switchLocale, type Route } from '@/lib/routes';
+import { LOCALE_NATIVE_NAMES, SUPPORTED_LOCALES } from '@/config/site';
 
 // One page per route. The route model decides every path, so each locale gets the same set of pages.
 export function getStaticPaths() {
@@ -58,6 +62,8 @@ const lessonNode = lesson && course ? flattenLessons(course.outline).find((item)
 const lessonTitle = lessonNode?.title[locale] ?? '';
 const body = lesson ? selectLessonBody((id) => bodies.get(id), lesson.courseId, lesson.lessonId, locale) : null;
 const rendered = body ? await render(body.body) : null;
+const headings = rendered?.headings ?? [];
+const hasToc = headings.some((heading) => heading.depth === 2 || heading.depth === 3);
 const links = lesson && course ? neighbourLinks(course, locale, lesson.lessonId, hrefFor, { previous: ui.previousLabel, next: ui.nextLabel }) : null;
 const back = { href: courseHref, caption: ui.backToCourseLabel, title: courseTitle };
 
@@ -67,30 +73,55 @@ const island = buildProgressIsland(locale, { courseId: course?.id, lessonId: les
 
 {route.kind === 'home' && (
   <BaseLayout title={SITE_NAME} description={SITE_DESCRIPTION} route={route} width="wide">
-    <h1>{SITE_NAME}</h1>
-    <p>{ui.homePurpose}</p>
-    <ul class="m-0 grid list-none gap-4 p-0 sm:grid-cols-2">
-      {courses.map((item) => {
-        const total = flattenLessons(item.outline).length;
-        const first = flattenLessons(item.outline)[0]?.id ?? '';
-        return (
-          <li>
-            <CourseCard
-              courseId={item.id}
-              title={item.title[locale]}
-              overviewHref={routePath({ kind: 'course', locale, courseId: item.id })}
-              demo={item.demo}
-              demoLabel={ui.demoLabel}
-              lessonCountText={formatText(ui.lessonCountText, { total })}
-              progressText={ui.progressText}
-              total={total}
-              continueHref={routePath({ kind: 'lesson', locale, courseId: item.id, lessonId: first })}
-              continueLabel={ui.startLabel}
-            />
-          </li>
-        );
-      })}
-    </ul>
+    <div class="flex flex-col gap-12 lg:gap-16">
+      <header class="grid gap-10 border-b pb-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:items-end lg:gap-x-8 lg:pb-14">
+        <div>
+          <h1 class="m-0 text-[clamp(2.5rem,7vw,4rem)] leading-[1.05] font-bold tracking-[-0.025em] text-balance">{SITE_NAME}</h1>
+          <p class="mt-5 mb-0 max-w-[34rem] text-lg text-pretty">{ui.homePurpose}</p>
+        </div>
+        <HomeSteps heading={ui.homeStepsHeading} steps={[ui.homeStep1, ui.homeStep2, ui.homeStep3, ui.homeStep4]} />
+      </header>
+      <section aria-labelledby="home-courses-heading" class="flex flex-col gap-6">
+        <h2 id="home-courses-heading" class="m-0 text-lg leading-snug font-semibold text-foreground">{ui.coursesHeading}</h2>
+        <ul class="m-0 flex list-none flex-col gap-4 p-0">
+          {courses.map((item) => {
+            const total = flattenLessons(item.outline).length;
+            const first = flattenLessons(item.outline)[0]?.id ?? '';
+            const lessonHref = (lessonId: string) => routePath({ kind: 'lesson', locale, courseId: item.id, lessonId });
+            const preview = previewSections(item, locale, lessonHref, 8);
+            return (
+              <li>
+                <CourseCard
+                  courseId={item.id}
+                  title={item.title[locale]}
+                  overviewHref={routePath({ kind: 'course', locale, courseId: item.id })}
+                  demo={item.demo}
+                  demoLabel={ui.demoLabel}
+                  lessonCountText={formatText(ui.lessonCountText, { total })}
+                  progressText={ui.progressText}
+                  total={total}
+                  continueHref={lessonHref(first)}
+                  continueLabel={ui.startLabel}
+                  sections={preview.sections}
+                  fullOutlineLabel={preview.truncated ? ui.fullOutlineLabel : undefined}
+                  readText={ui.readLabel}
+                  unreadText={ui.unreadLabel}
+                />
+              </li>
+            );
+          })}
+        </ul>
+      </section>
+      <LanguageBand
+        heading={ui.languagesHeading}
+        items={SUPPORTED_LOCALES.map((code) => ({
+          id: code,
+          label: LOCALE_NATIVE_NAMES[code],
+          href: routePath(switchLocale(route, code)),
+          current: code === locale,
+        }))}
+      />
+    </div>
     <ProgressRuntime island={island} />
   </BaseLayout>
 )}
@@ -98,7 +129,7 @@ const island = buildProgressIsland(locale, { courseId: course?.id, lessonId: les
 {route.kind === 'course' && course && (
   <BaseLayout title={pageTitle} description={SITE_DESCRIPTION} route={route} width="medium">
     <CourseBreadcrumb items={[{ label: ui.siteHome, href: homeHref }, { label: courseTitle }]} label={ui.breadcrumbLabel} />
-    <h1>{courseTitle}</h1>
+    <h1 style={`view-transition-name: course-${course.id}`}>{courseTitle}</h1>
     <div class="mb-8 flex max-w-md flex-col gap-4">
       <ProgressSummary courseId={course.id} total={lessonCount} progressText={ui.progressText} />
       <p class="m-0 text-foreground" hidden {...hookProps('courseComplete')} {...hookProps('courseId', course.id)}>
@@ -121,7 +152,12 @@ const island = buildProgressIsland(locale, { courseId: course?.id, lessonId: les
         </div>
       </Disclosure>
     </Fragment>
-    <article class="min-w-0">
+    {hasToc && (
+      <Fragment slot="rail">
+        <PageToc headings={headings} label={ui.onThisPageLabel} />
+      </Fragment>
+    )}
+    <article class="min-w-0 3xl:text-[1.125rem]">
       <CourseBreadcrumb
         items={[
           { label: ui.siteHome, href: homeHref },
@@ -132,7 +168,7 @@ const island = buildProgressIsland(locale, { courseId: course?.id, lessonId: les
       />
       <h1>{lessonTitle}</h1>
       {body.fallback && <Notice>{ui.fallbackNotice}</Notice>}
-      <div class="mt-6 [&_code]:rounded [&_code]:bg-muted [&_code]:px-1 [&_ol]:list-decimal [&_ol]:pl-6 [&_ul]:list-disc [&_ul]:pl-6">
+      <div class="mt-6 [&_code]:rounded [&_code]:bg-muted [&_code]:px-1 [&_h2]:mt-10 [&_h2]:mb-3 [&_h2]:scroll-mt-16 [&_h2]:text-2xl [&_h2]:leading-snug [&_h2]:font-semibold [&_h3]:mt-8 [&_h3]:mb-2 [&_h3]:scroll-mt-16 [&_h3]:text-lg [&_h3]:leading-snug [&_h3]:font-semibold [&_ol]:list-decimal [&_ol]:pl-6 [&_ul]:list-disc [&_ul]:pl-6">
         {rendered && <rendered.Content />}
       </div>
       <div aria-hidden="true" class="h-px" {...hookProps('lessonEnd')} />

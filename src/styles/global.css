@@ -2,8 +2,18 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
-/* The site has no theme switch, so the dark variant follows the visitor's colour-scheme preference. */
-@custom-variant dark (@media (prefers-color-scheme: dark));
+/* The dark variant follows the active theme: an explicit data-theme="dark", or, with no attribute yet, a dark system
+   preference. An explicit light choice turns it off even on a dark system. */
+@custom-variant dark {
+  &:where([data-theme="dark"], [data-theme="dark"] *) {
+    @slot;
+  }
+  @media (prefers-color-scheme: dark) {
+    &:where(:root:not([data-theme]), :root:not([data-theme]) *) {
+      @slot;
+    }
+  }
+}
 
 /* shadcn design tokens. Background, foreground and muted text keep the values the site had before
    the shadcn foundation, so the page looks the same. */
@@ -34,6 +44,8 @@
   --color-muted: var(--muted-foreground);
   --color-accent: #1d4ed8;
   --content-width: 42rem;
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
   --page-gutter: 1rem;
   font-family:
     system-ui,
@@ -48,8 +60,40 @@
   color-scheme: light dark;
 }
 
+/* An explicit light choice keeps the light tokens above and turns off the browser's dark controls. */
+:root[data-theme="light"] {
+  color-scheme: light;
+}
+
+/* An explicit dark choice. The same token list appears again in the media block below, which covers a visitor with
+   no stored choice and no script; scripts/__tests__/theme.test.mjs and shadcn-foundation.test.mjs keep the two copies equal. */
+:root[data-theme="dark"] {
+  --background: #0f1115;
+  --foreground: #e6e8eb;
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.269 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: #9aa4af;
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+
+  --color-accent: #7aa2ff;
+  color-scheme: dark;
+}
+
+/* No data-theme attribute yet (no script, or no stored choice that the script could apply): the system preference decides. */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme]) {
     --background: #0f1115;
     --foreground: #e6e8eb;
     --card: oklch(0.205 0 0);
@@ -76,6 +120,8 @@
 /* Utilities such as bg-card come from these theme entries. `inline` substitutes the token values, so
    the legacy --color-accent variable above is not overwritten. */
 @theme inline {
+  /* Very wide screens, where the reading column and its type size step up. */
+  --breakpoint-3xl: 120rem;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -142,5 +188,173 @@
   :focus-visible {
     outline: 2px solid var(--color-accent);
     outline-offset: 3px;
+  }
+}
+
+/* The home page's "how it works" track. Four read markers joined by a line, vertical on a phone and horizontal from lg.
+   At rest every marker is ticked and every line drawn; the animation only plays the track in from empty, and it is
+   switched off for visitors who ask for reduced motion. */
+@layer components {
+  .home-steps__track {
+    --gap: 1.25rem;
+    display: grid;
+    gap: var(--gap);
+  }
+
+  .home-step {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1.25rem minmax(0, 1fr);
+    column-gap: 0.75rem;
+    align-items: start;
+    font-size: 0.875rem;
+    line-height: 1.4;
+    color: var(--foreground);
+  }
+
+  .home-step:nth-child(1) { --n: 0; }
+  .home-step:nth-child(2) { --n: 1; }
+  .home-step:nth-child(3) { --n: 2; }
+  .home-step:nth-child(4) { --n: 3; }
+  .home-step:nth-child(5) { --n: 4; }
+  .home-step:nth-child(6) { --n: 5; }
+
+  .home-step__mark {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    color: var(--muted-foreground);
+  }
+
+  .home-step__mark > svg {
+    grid-area: 1 / 1;
+  }
+
+  .home-step__done {
+    color: var(--primary);
+  }
+
+  /* The line from this marker to the next, 0.5rem clear of both. */
+  .home-step:not(:last-child)::before {
+    content: '';
+    position: absolute;
+    inset-inline-start: calc(0.625rem - 0.5px);
+    top: 1.75rem;
+    width: 1px;
+    height: calc(100% + var(--gap) - 2.25rem);
+    background: var(--ring);
+    transform-origin: top;
+  }
+
+  @media (min-width: 64rem) {
+    .home-steps__track {
+      --gap: 1.5rem;
+      grid-auto-flow: column;
+      grid-auto-columns: minmax(0, 1fr);
+    }
+
+    .home-step {
+      grid-template-columns: minmax(0, 1fr);
+      row-gap: 0.75rem;
+    }
+
+    .home-step:not(:last-child)::before {
+      inset-inline-start: 1.75rem;
+      top: calc(0.625rem - 0.5px);
+      width: calc(100% + var(--gap) - 2.25rem);
+      height: 1px;
+      transform-origin: left;
+    }
+
+    .home-step:dir(rtl):not(:last-child)::before {
+      transform-origin: right;
+    }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .home-step__done {
+      animation: home-tick 520ms var(--ease-spring) backwards;
+      animation-delay: calc(var(--n) * 320ms + 240ms);
+    }
+
+    .home-step__text {
+      animation: home-text 520ms var(--ease-out-expo) backwards;
+      animation-delay: calc(var(--n) * 320ms + 240ms);
+    }
+
+    .home-step:not(:last-child)::before {
+      animation: home-draw 320ms var(--ease-out-expo) backwards;
+      animation-delay: calc(var(--n) * 320ms + 320ms);
+      --from: scaleY(0);
+    }
+
+    @media (min-width: 64rem) {
+      .home-step:not(:last-child)::before {
+        --from: scaleX(0);
+      }
+    }
+  }
+
+  @keyframes home-tick {
+    from {
+      opacity: 0;
+      transform: scale(0.55);
+    }
+  }
+
+  @keyframes home-text {
+    from {
+      color: var(--muted-foreground);
+    }
+  }
+
+  @keyframes home-draw {
+    from {
+      transform: var(--from);
+    }
+  }
+}
+
+/* The header's theme toggle. Both icons are in the static markup, and the theme decides which one shows: the moon under a
+   light theme (a press switches to dark), the sun under a dark one. With no attribute, the system preference decides. */
+@layer components {
+  .theme-toggle__sun {
+    display: none;
+  }
+
+  :root[data-theme="dark"] .theme-toggle__moon {
+    display: none;
+  }
+
+  :root[data-theme="dark"] .theme-toggle__sun {
+    display: block;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme]) .theme-toggle__moon {
+      display: none;
+    }
+
+    :root:not([data-theme]) .theme-toggle__sun {
+      display: block;
+    }
+  }
+}
+
+/* Cross-document view transitions: a course title travels from the home page to the course page's heading, and the top
+   bar stays where it is. Browsers without support, and visitors who ask for reduced motion, just navigate. */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
+
+  ::view-transition-group(*) {
+    animation-duration: 420ms;
+    animation-timing-function: var(--ease-out-expo);
+  }
+
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 180ms;
   }
 }

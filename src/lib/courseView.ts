@@ -39,3 +39,49 @@ export function neighbourLinks(
     next: link(next, captions.next),
   };
 }
+
+export interface PreviewSection {
+  title?: string;
+  lessons: { id: string; title: string; href: string }[];
+}
+
+// The first lessons of a course for the home page, grouped by top-level group. Lessons that sit outside any group form
+// one untitled section, and a nested group's lessons count towards its top-level group. The preview stops at `limit`
+// lessons and says so, so a long course does not grow its card without bound.
+export function previewSections(
+  course: Course,
+  locale: Locale,
+  hrefFor: (lessonId: string) => string,
+  limit: number,
+): { sections: PreviewSection[]; truncated: boolean } {
+  const lessonsOf = (nodes: readonly OutlineNode[]): { id: string; title: string; href: string }[] =>
+    nodes.flatMap((node) =>
+      node.kind === 'lesson'
+        ? [{ id: node.id, title: node.title[locale], href: hrefFor(node.id) }]
+        : lessonsOf(node.children),
+    );
+  const sections: PreviewSection[] = [];
+  let loose: PreviewSection | null = null;
+  for (const node of course.outline) {
+    if (node.kind === 'group') {
+      sections.push({ title: node.title[locale], lessons: lessonsOf(node.children) });
+    } else {
+      if (!loose) {
+        loose = { lessons: [] };
+        sections.push(loose);
+      }
+      loose.lessons.push(...lessonsOf([node]));
+    }
+  }
+  let room = limit;
+  const kept: PreviewSection[] = [];
+  for (const section of sections) {
+    if (room === 0) break;
+    const lessons = section.lessons.slice(0, room);
+    room -= lessons.length;
+    if (lessons.length > 0) kept.push({ ...section, lessons });
+  }
+  const shown = kept.reduce((sum, section) => sum + section.lessons.length, 0);
+  const total = sections.reduce((sum, section) => sum + section.lessons.length, 0);
+  return { sections: kept, truncated: shown < total };
+}

@@ -6,6 +6,7 @@ import { SUPPORTED_LOCALES } from '../src/config/site.ts';
 import { courses } from '../src/courses/registry.ts';
 import { findCourseFailures } from '../src/courses/integrity.ts';
 import { allRoutes, routePath, switchLocale } from '../src/lib/routes.ts';
+import { THEME_STORAGE_KEY } from '../src/lib/theme.ts';
 import { readBodyKeys } from './course-bodies.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
@@ -228,6 +229,16 @@ for (const route of allRoutes()) {
   }
 
   expect(!/astro-island|hydrat/iu.test(html), `${page} must not contain an island or hydration script`);
+
+  // Theme: the head bootstrap sets data-theme before the stylesheet link, and the header carries exactly one toggle.
+  const headHtml = html.slice(0, html.indexOf('</head>'));
+  const bootstrapAt = headHtml.search(/dataset\.theme\s*=/u);
+  const stylesheetAt = headHtml.search(/rel="stylesheet"/u);
+  expect(bootstrapAt !== -1 && headHtml.includes(THEME_STORAGE_KEY), `${page} must carry the theme bootstrap with the ${THEME_STORAGE_KEY} key in <head>`);
+  expect(bootstrapAt !== -1 && (stylesheetAt === -1 || bootstrapAt < stylesheetAt), `${page} must run the theme bootstrap before the stylesheet link`);
+  const headerHtml = html.match(/<header\b[\s\S]*?<\/header>/iu)?.[0] ?? '';
+  const toggles = (headerHtml.match(/data-theme-toggle/gu) ?? []).length;
+  expect(toggles === 1, `${page} must render exactly one theme toggle inside <header>, found ${toggles}`);
 
   for (const href of [...html.matchAll(/<(?:a|link)\b[^>]*\shref="([^"]*)"/giu)].map((match) => decodeAttr(match[1]))) {
     if (href.startsWith('#')) continue;

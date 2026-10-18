@@ -12,6 +12,7 @@ export const HOOK = {
   storageNotice: 'data-storage-notice',
   lessonEnd: 'data-lesson-end',
   courseComplete: 'data-course-complete',
+  themeToggle: 'data-theme-toggle',
 } as const;
 
 export type HookName = keyof typeof HOOK;

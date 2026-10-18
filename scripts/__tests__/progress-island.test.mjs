@@ -32,3 +32,30 @@ describe('course tree view', () => {
     assert.equal(treeOf(demoSampler, 'en-US', () => '#').length, 2);
   });
 });
+
+describe('previewSections', () => {
+  const hrefFor = (id) => `/${id}/`;
+
+  it('groups lessons by top-level group and flattens nested groups', async () => {
+    const { previewSections } = await import('../../src/lib/courseView.ts');
+    const { sections, truncated } = previewSections(demoFoundations, 'en-US', hrefFor, 99);
+    assert.equal(truncated, false);
+    assert.ok(sections.length >= 2 && sections.every((section) => section.title));
+    assert.equal(sections.reduce((sum, section) => sum + section.lessons.length, 0), 7);
+  });
+
+  it('puts top-level lessons in one untitled section', async () => {
+    const { previewSections } = await import('../../src/lib/courseView.ts');
+    const { sections } = previewSections(demoSampler, 'en-US', hrefFor, 8);
+    assert.equal(sections.length, 1);
+    assert.equal(sections[0].title, undefined);
+    assert.equal(sections[0].lessons.length, 2);
+  });
+
+  it('stops at the limit and says it truncated', async () => {
+    const { previewSections } = await import('../../src/lib/courseView.ts');
+    const { sections, truncated } = previewSections(demoFoundations, 'en-US', hrefFor, 3);
+    assert.equal(truncated, true);
+    assert.equal(sections.reduce((sum, section) => sum + section.lessons.length, 0), 3);
+  });
+});

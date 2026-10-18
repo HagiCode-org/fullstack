@@ -147,7 +147,13 @@ export async function collectFailures(base, { manifest } = {}) {
   }
   if (css !== null) {
     const rootLight = blockBody(css, ':root {');
-    const rootDark = blockBody(css, '@media (prefers-color-scheme: dark) {');
+    // The dark tokens live in two copies: the explicit data-theme block, and the media block that serves a visitor with
+    // no stored choice. The media block searched for is the one after the attribute block; the dark variant opens one too.
+    const darkAttribute = blockBody(css, ':root[data-theme="dark"] {');
+    const darkFallback = blockBody(
+      blockBody(css.slice(css.indexOf(':root[data-theme="dark"] {')), '@media (prefers-color-scheme: dark) {'),
+      ':root:not([data-theme]) {',
+    );
     const themeInline = blockBody(css, '@theme inline');
     for (const token of TOKENS) {
       if (!new RegExp(`--${token}:`, 'u').test(rootLight)) {
@@ -155,8 +161,11 @@ export async function collectFailures(base, { manifest } = {}) {
       }
     }
     for (const token of COLOR_TOKENS) {
-      if (!new RegExp(`--${token}:`, 'u').test(rootDark)) {
-        failures.push(`${GLOBAL_CSS} must define the dark token --${token} under prefers-color-scheme: dark`);
+      if (!new RegExp(`--${token}:`, 'u').test(darkAttribute)) {
+        failures.push(`${GLOBAL_CSS} must define the dark token --${token} under :root[data-theme="dark"]`);
+      }
+      if (!new RegExp(`--${token}:`, 'u').test(darkFallback)) {
+        failures.push(`${GLOBAL_CSS} must define the dark token --${token} in the prefers-color-scheme fallback`);
       }
     }
     for (const token of COLOR_TOKENS) {
@@ -241,6 +250,24 @@ describe('shadcn foundation guard catches breakage', () => {
       await writeFile(file, css.replace(/\n\s*--card-foreground: oklch\(0\.985 0 0\);/u, ''));
       const failures = await collectFailures(dir);
       assert.ok(failures.some((message) => message.includes('--card-foreground') && message.includes('dark')), failures.join('; '));
+    } finally {
+      await rm(dir, { recursive: true, force: true });
+    }
+  });
+
+  it('names a token removed from the prefers-color-scheme fallback', async () => {
+    const dir = await copyFoundation();
+    try {
+      const file = path.join(dir, GLOBAL_CSS);
+      const css = await readFile(file, 'utf8');
+      const fallbackStart = css.indexOf('@media (prefers-color-scheme: dark) {', css.indexOf(':root[data-theme="dark"] {'));
+      const edited = css.slice(0, fallbackStart) + css.slice(fallbackStart).replace(/\n\s*--card-foreground: oklch\(0\.985 0 0\);/u, '');
+      await writeFile(file, edited);
+      const failures = await collectFailures(dir);
+      assert.ok(
+        failures.some((message) => message.includes('--card-foreground') && message.includes('fallback')),
+        `expected a failure naming --card-foreground in the fallback, got: ${failures.join('; ')}`,
+      );
     } finally {
       await rm(dir, { recursive: true, force: true });
     }

@@ -93,8 +93,14 @@ const json = JSON.stringify(island).replace(/</gu, '\\u003c');
         });
       }
 
+      // A marker that names its course, as on the home page, shows that course's progress on any page.
+      all(`[${HOOK.readMarker}][${HOOK.courseId}]`).forEach((marker) => {
+        const id = marker.getAttribute(HOOK.lessonId) ?? '';
+        marker.dataset.state = store.isRead(marker.getAttribute(HOOK.courseId) ?? '', id) ? 'read' : 'unread';
+      });
+
       if (current !== undefined) {
-        all(`[${HOOK.readMarker}]`).forEach((marker) => {
+        all(`[${HOOK.readMarker}]:not([${HOOK.courseId}])`).forEach((marker) => {
           const id = marker.getAttribute(HOOK.lessonId) ?? '';
           marker.dataset.state = store.isRead(current, id) ? 'read' : 'unread';
         });

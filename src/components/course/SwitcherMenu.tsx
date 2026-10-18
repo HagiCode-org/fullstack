@@ -22,7 +22,7 @@ export function SwitcherMenu({ label, items, className }: SwitcherMenuProps) {
         current ? (
           <span className="flex min-w-0 flex-col">
             <span className="text-xs font-normal text-muted-foreground">{label}</span>
-            <span className="max-w-40 truncate text-sm sm:max-w-64">{current.label}</span>
+            <span className="max-w-32 truncate text-sm sm:max-w-64">{current.label}</span>
           </span>
         ) : (
           <span className="block text-sm">{label}</span>
