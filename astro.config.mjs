@@ -1,6 +1,8 @@
 import { fileURLToPath } from 'node:url';
 import { defineConfig } from 'astro/config';
+import react from '@astrojs/react';
 import { hagilight, hagilightFavicon } from '@hagicode/hagilight/integration';
+import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
@@ -15,6 +17,7 @@ export default defineConfig({
         },
     },
     vite: {
+        plugins: [tailwindcss()],
         resolve: {
             alias: {
                 '@': fileURLToPath(new URL('./src', import.meta.url)),
@@ -24,5 +27,7 @@ export default defineConfig({
     integrations: [
         hagilight(),
         hagilightFavicon(),
+        // React renders the shadcn components to static HTML at build time. No client:* directive is used.
+        react(),
     ],
 });
