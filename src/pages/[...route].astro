@@ -66,7 +66,7 @@ const island = buildProgressIsland(locale, { courseId: course?.id, lessonId: les
 ---
 
 {route.kind === 'home' && (
-  <BaseLayout title={SITE_NAME} description={SITE_DESCRIPTION} route={route}>
+  <BaseLayout title={SITE_NAME} description={SITE_DESCRIPTION} route={route} width="wide">
     <h1>{SITE_NAME}</h1>
     <p>{ui.homePurpose}</p>
     <ul class="m-0 grid list-none gap-4 p-0 sm:grid-cols-2">
@@ -96,7 +96,7 @@ const island = buildProgressIsland(locale, { courseId: course?.id, lessonId: les
 )}
 
 {route.kind === 'course' && course && (
-  <BaseLayout title={pageTitle} description={SITE_DESCRIPTION} route={route} wide>
+  <BaseLayout title={pageTitle} description={SITE_DESCRIPTION} route={route} width="medium">
     <CourseBreadcrumb items={[{ label: ui.siteHome, href: homeHref }, { label: courseTitle }]} label={ui.breadcrumbLabel} />
     <h1>{courseTitle}</h1>
     <div class="mb-8 flex max-w-md flex-col gap-4">
@@ -112,37 +112,35 @@ const island = buildProgressIsland(locale, { courseId: course?.id, lessonId: les
 )}
 
 {lesson && course && body && links && rendered && (
-  <BaseLayout title={pageTitle} description={SITE_DESCRIPTION} route={route} wide>
-    <div class="lg:grid lg:grid-cols-[minmax(0,16rem)_minmax(0,1fr)] lg:items-start lg:gap-10">
-      <aside class="mb-8 lg:sticky lg:top-6 lg:mb-0">
-        <Disclosure id="course-outline" summary={ui.outlineLabel}>
-          <div class="flex flex-col gap-4">
-            <ProgressSummary courseId={course.id} total={lessonCount} progressText={ui.progressText} compact />
-            <OutlineTree courseId={course.id} nodes={overview} currentLessonId={lesson.lessonId} labels={outlineLabels} />
-          </div>
-        </Disclosure>
-      </aside>
-      <article class="min-w-0">
-        <CourseBreadcrumb
-          items={[
-            { label: ui.siteHome, href: homeHref },
-            { label: courseTitle, href: courseHref },
-            { label: lessonTitle },
-          ]}
-          label={ui.breadcrumbLabel}
-        />
-        <h1>{lessonTitle}</h1>
-        {body.fallback && <Notice>{ui.fallbackNotice}</Notice>}
-        <div class="mt-6 [&_code]:rounded [&_code]:bg-muted [&_code]:px-1 [&_ol]:list-decimal [&_ol]:pl-6 [&_ul]:list-disc [&_ul]:pl-6">
-          {rendered && <rendered.Content />}
+  <BaseLayout title={pageTitle} description={SITE_DESCRIPTION} route={route}>
+    <Fragment slot="sidebar">
+      <Disclosure id="course-outline" summary={ui.outlineLabel}>
+        <div class="flex flex-col gap-4">
+          <ProgressSummary courseId={course.id} total={lessonCount} progressText={ui.progressText} compact />
+          <OutlineTree courseId={course.id} nodes={overview} currentLessonId={lesson.lessonId} labels={outlineLabels} />
         </div>
-        <div aria-hidden="true" class="h-px" {...hookProps('lessonEnd')} />
-        <div class="mt-8 flex flex-col gap-4">
-          <MarkReadButton courseId={course.id} lessonId={lesson.lessonId} markReadLabel={ui.markReadLabel} />
-          <LessonNav previous={links.previous ?? undefined} next={links.next ?? undefined} back={back} />
-        </div>
-      </article>
-    </div>
+      </Disclosure>
+    </Fragment>
+    <article class="min-w-0">
+      <CourseBreadcrumb
+        items={[
+          { label: ui.siteHome, href: homeHref },
+          { label: courseTitle, href: courseHref },
+          { label: lessonTitle },
+        ]}
+        label={ui.breadcrumbLabel}
+      />
+      <h1>{lessonTitle}</h1>
+      {body.fallback && <Notice>{ui.fallbackNotice}</Notice>}
+      <div class="mt-6 [&_code]:rounded [&_code]:bg-muted [&_code]:px-1 [&_ol]:list-decimal [&_ol]:pl-6 [&_ul]:list-disc [&_ul]:pl-6">
+        {rendered && <rendered.Content />}
+      </div>
+      <div aria-hidden="true" class="h-px" {...hookProps('lessonEnd')} />
+      <div class="mt-8 flex flex-col gap-4">
+        <MarkReadButton courseId={course.id} lessonId={lesson.lessonId} markReadLabel={ui.markReadLabel} />
+        <LessonNav previous={links.previous ?? undefined} next={links.next ?? undefined} back={back} />
+      </div>
+    </article>
     <ProgressRuntime island={island} />
   </BaseLayout>
 )}

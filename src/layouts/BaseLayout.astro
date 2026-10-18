@@ -22,11 +22,14 @@ interface Props {
   title?: string;
   description?: string;
   route: Route;
-  // Lesson and course pages are wider than the reading column, so they widen main with a utility class.
-  wide?: boolean;
+  // How wide the content column is inside the main pane: the reading column for a lesson, a medium column for a
+  // course overview, and a wide one for the course list.
+  width?: 'reading' | 'medium' | 'wide';
 }
 
-const { title = SITE_NAME, description = SITE_DESCRIPTION, route, wide = false } = Astro.props;
+const { title = SITE_NAME, description = SITE_DESCRIPTION, route, width = 'reading' } = Astro.props;
+const hasSidebar = Astro.slots.has('sidebar');
+const columnWidth = { reading: 'max-w-2xl', medium: 'max-w-3xl', wide: 'max-w-4xl' }[width];
 const locale = route.locale;
 const ui = uiStringsFor(locale);
 
@@ -73,7 +76,7 @@ const languageSwitcher: SwitcherItem[] = SUPPORTED_LOCALES.map((code) => ({
       siteSeo={{ title: SITE_NAME, description: SITE_DESCRIPTION }}
     />
   </head>
-  <body>
+  <body class="flex min-h-dvh flex-col">
     <SiteHeader
       siteName={SITE_NAME}
       homeHref={routePath({ kind: 'home', locale })}
@@ -82,10 +85,20 @@ const languageSwitcher: SwitcherItem[] = SUPPORTED_LOCALES.map((code) => ({
       languageLabel={ui.languageSwitcherLabel}
       languages={languageSwitcher}
     />
-    <main class:list={[wide && 'max-w-5xl']}>
-      <Notice storage hidden>{ui.storageUnavailableNotice}</Notice>
-      <slot />
-    </main>
+    <!-- The workbench: an optional sidebar pane beside the main pane. The sidebar stacks above main below lg. -->
+    <div class:list={['flex-1', hasSidebar && 'lg:grid lg:grid-cols-[18rem_minmax(0,1fr)]']}>
+      {hasSidebar && (
+        <aside class="border-b border-border px-4 py-3 lg:sticky lg:top-12 lg:h-[calc(100dvh-3rem)] lg:self-start lg:overflow-y-auto lg:border-r lg:border-b-0 lg:py-5">
+          <slot name="sidebar" />
+        </aside>
+      )}
+      <main class="min-w-0 max-w-none px-4 py-8 lg:px-10 lg:py-10">
+        <div class:list={['mx-auto w-full', columnWidth]}>
+          <Notice storage hidden>{ui.storageUnavailableNotice}</Notice>
+          <slot />
+        </div>
+      </main>
+    </div>
     <Footer locale={locale} />
   </body>
 </html>

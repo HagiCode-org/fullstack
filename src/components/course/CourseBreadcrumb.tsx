@@ -17,7 +17,7 @@ interface CourseBreadcrumbProps {
 // Home, course, and lesson. The last item is the current page and is not a link.
 export function CourseBreadcrumb({ items, label }: CourseBreadcrumbProps) {
   return (
-    <Breadcrumb aria-label={label}>
+    <Breadcrumb aria-label={label} className="mb-3">
       <BreadcrumbList>
         {items.map((item, index) => {
           const last = index === items.length - 1

@@ -106,6 +106,7 @@
   *::before,
   *::after {
     box-sizing: border-box;
+    border-color: var(--border);
   }
 
   body {
