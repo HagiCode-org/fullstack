@@ -1,7 +1,37 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+/* The site has no theme switch, so the dark variant follows the visitor's colour-scheme preference. */
+@custom-variant dark (@media (prefers-color-scheme: dark));
+
+/* shadcn design tokens. Background, foreground and muted text keep the values the site had before
+   the shadcn foundation, so the page looks the same. */
 :root {
-  --color-bg: #ffffff;
-  --color-fg: #1b1f24;
-  --color-muted: #55606b;
+  --background: #ffffff;
+  --foreground: #1b1f24;
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: #55606b;
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --radius: 0.625rem;
+
+  /* Legacy names, kept as aliases of the tokens so there is one source of colour truth. */
+  --color-bg: var(--background);
+  --color-fg: var(--foreground);
+  --color-muted: var(--muted-foreground);
   --color-accent: #1d4ed8;
   --content-width: 42rem;
   --page-gutter: 1rem;
@@ -20,50 +50,96 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-bg: #0f1115;
-    --color-fg: #e6e8eb;
-    --color-muted: #9aa4af;
+    --background: #0f1115;
+    --foreground: #e6e8eb;
+    --card: oklch(0.205 0 0);
+    --card-foreground: oklch(0.985 0 0);
+    --popover: oklch(0.269 0 0);
+    --popover-foreground: oklch(0.985 0 0);
+    --primary: oklch(0.922 0 0);
+    --primary-foreground: oklch(0.205 0 0);
+    --secondary: oklch(0.269 0 0);
+    --secondary-foreground: oklch(0.985 0 0);
+    --muted: oklch(0.269 0 0);
+    --muted-foreground: #9aa4af;
+    --accent: oklch(0.269 0 0);
+    --accent-foreground: oklch(0.985 0 0);
+    --destructive: oklch(0.704 0.191 22.216);
+    --border: oklch(1 0 0 / 10%);
+    --input: oklch(1 0 0 / 15%);
+    --ring: oklch(0.556 0 0);
+
     --color-accent: #7aa2ff;
   }
 }
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
+/* Utilities such as bg-card come from these theme entries. `inline` substitutes the token values, so
+   the legacy --color-accent variable above is not overwritten. */
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
 }
 
-body {
-  margin: 0;
-  background: var(--color-bg);
-  color: var(--color-fg);
-  line-height: 1.7;
-  overflow-wrap: break-word;
-}
+/* Element rules sit in a layer below utilities, so a utility class always overrides them. */
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
 
-main {
-  width: 100%;
-  max-width: var(--content-width);
-  margin: 0 auto;
-  padding: 3rem var(--page-gutter);
-}
+  body {
+    margin: 0;
+    background: var(--color-bg);
+    color: var(--color-fg);
+    line-height: 1.7;
+    overflow-wrap: break-word;
+  }
 
-h1 {
-  margin: 0 0 1rem;
-  font-size: clamp(2rem, 7vw, 2.75rem);
-  line-height: 1.2;
-}
+  main {
+    width: 100%;
+    max-width: var(--content-width);
+    margin: 0 auto;
+    padding: 3rem var(--page-gutter);
+  }
 
-p {
-  margin: 0 0 1rem;
-  color: var(--color-muted);
-}
+  h1 {
+    margin: 0 0 1rem;
+    font-size: clamp(2rem, 7vw, 2.75rem);
+    line-height: 1.2;
+  }
 
-a {
-  color: var(--color-accent);
-}
+  p {
+    margin: 0 0 1rem;
+    color: var(--color-muted);
+  }
 
-:focus-visible {
-  outline: 2px solid var(--color-accent);
-  outline-offset: 3px;
+  a {
+    color: var(--color-accent);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+  }
 }

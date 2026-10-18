@@ -131,6 +131,28 @@ for (const href of linkTargets) {
   expect(distFileFor(url) !== null, `internal link target missing from dist/: ${href}`);
 }
 
+// shadcn content: the card renders at build time with no island or hydration script, and the linked
+// stylesheet defines every shadcn token, the bg-card utility and the legacy link colour.
+const SHADCN_TOKENS = [
+  'background', 'foreground', 'card', 'card-foreground', 'popover', 'popover-foreground',
+  'primary', 'primary-foreground', 'secondary', 'secondary-foreground', 'muted', 'muted-foreground',
+  'accent', 'accent-foreground', 'destructive', 'border', 'input', 'ring', 'radius',
+];
+expect(html.includes('data-slot="card"'), 'dist/index.html must render the shadcn card marker data-slot="card"');
+expect(!/astro-island|hydrat/iu.test(html), 'dist/index.html must not contain an island or hydration script');
+const stylesheetFile = linkTags
+  .filter((tag) => /\brel="stylesheet"/u.test(tag))
+  .map((tag) => siteUrl(decodeAttr(attr(tag, 'href') ?? '')))
+  .map((url) => (url ? distFileFor(url) : null))
+  .find((file) => file !== null);
+expect(stylesheetFile !== undefined, 'dist/index.html must link a stylesheet that exists in dist/');
+const css = stylesheetFile ? readFileSync(stylesheetFile, 'utf8') : '';
+for (const token of SHADCN_TOKENS) {
+  expect(css.includes(`--${token}:`), `linked stylesheet is missing the shadcn token --${token}`);
+}
+expect(css.includes('.bg-card{'), 'linked stylesheet is missing the bg-card utility');
+expect(/--color-accent:#1d4ed8\b/u.test(css), 'linked stylesheet must keep the legacy link colour --color-accent:#1d4ed8');
+
 // Discovery files produced by Hagilight, and the public/ directory free of forbidden files.
 const discoveryFiles = ['sitemap-index.xml', 'robots.txt', 'rss.xml', 'llms.txt', '.well-known/hagilight.metadata.json'];
 for (const file of discoveryFiles) {
