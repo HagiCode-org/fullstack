@@ -23,9 +23,9 @@ Run every command from this directory.
 | `npm run verify` | Build, then check the foundation facts in `dist/` with `scripts/verify-foundation.mjs` |
 | `npm run deploy:payload` | Stage `.deploy/gh-pages` with `esa.jsonc`, `wrangler.jsonc`, and `dist/`. Run after `npm run build`; it fails and names any missing input |
 | `npm run deploy:warmup` | Request the worker domain and `fullstack.hagicode.com` with bounded retries. Add `-- --summary-markdown <path>` to write a Markdown summary |
-| `npm test` | Run the `node:test` suites for payload staging, domain warmup, the deploy workflow contract, and the shadcn foundation. No dependencies are needed |
+| `npm test` | Run the `node:test` suites for payload staging, domain warmup, the deploy workflow contract, the shadcn foundation, the course data and routes, interface strings, reading progress, and the component tier guard. No dependencies are needed |
 
-`verify` fails and names the missing item when the build output does not match the foundation: the exact Hagilight pins, the home page head and footer, the discovery files, the favicon, internal link targets, and the absence of forbidden files in `public/`.
+`verify` fails and names the missing item when the build output does not match the foundation: the exact Hagilight pins, the home page head and footer, the discovery files, the favicon, internal link targets, and the absence of forbidden files in `public/`. It also checks every page of every locale: the page exists, declares its own `lang`, has one canonical, lists the ten `hreflang` alternates and `x-default` pointing at the matching pages, ships no island or hydration script, and links only to pages that exist.
 
 ## Hagilight
 
@@ -62,7 +62,7 @@ The site uses shadcn/ui components. `components.json` mirrors the configuration 
 
 - Add a component from this directory with `npx shadcn add <name>`, for example `npx shadcn add badge`.
 - Generated components land in `src/components/ui/`. Import them through the `@/` alias, for example `import { Button } from '@/components/ui/button'`.
-- The `cn()` class-merge helper lives in `src/lib/utils.ts`.
+- The `cn()` class-merge helper lives in `src/lib/utils.ts`. The `npx shadcn add` output for the primitives added in the course change imports `cn` from the `cn` package and not from `@/lib/utils`; see the note under [Components and reuse](#components-and-reuse) before changing that.
 - Design tokens and the dark variant live in `src/styles/global.css`. Dark values follow `prefers-color-scheme`, because the site has no theme switch.
 - Components render to static HTML at build time through `@astrojs/react`. Do not add a `client:*` directive unless a change deliberately adds client-side behaviour. `npm run verify` fails if the build ships an island or hydration script for the seed components.
 - `repos/web` is the reference for the configuration and the component style. Do not edit `repos/web` from this repository.
@@ -71,8 +71,80 @@ The seed components are `button` and `card`. `npm test` checks the configuration
 
 ## Site configuration
 
-- `src/config/site.ts` holds the site name, the description, and the default locale `en-US`. The page title, description metadata, and page heading read from this file.
-- `astro.config.mjs` holds the production origin `https://fullstack.hagicode.com`, the base path `/`, and the `en-US` i18n setup with `prefixDefaultLocale: false`.
+- `src/config/site.ts` holds the site name, the description, the default locale `en-US`, and the ten supported locales (`SUPPORTED_LOCALES`) with their native names. The page title, description metadata, and page heading read from this file.
+- `astro.config.mjs` holds the production origin `https://fullstack.hagicode.com`, the base path `/`, and the i18n setup with the same ten locales and `prefixDefaultLocale: false`. `npm test` fails if the two lists differ.
+
+## Courses
+
+The site lists courses from one registry. A course is data: its outline and titles are TypeScript, and its lesson bodies are Markdown.
+
+### Course data layout
+
+```text
+src/courses/
+  types.ts                 # Course, OutlineNode, LessonNode, GroupNode
+  registry.ts              # the only list of courses, plus the outline helpers
+  integrity.ts             # data rules that npm test and npm run verify both run
+  demo-foundations/
+    outline.ts             # one Course: id, demo flag, ten-locale titles, nested outline
+    content/<locale>/<lessonId>.md
+  demo-sampler/
+    outline.ts
+    content/<locale>/<lessonId>.md
+```
+
+`demo-foundations` has a nested group and seven lessons; `demo-sampler` is flat with two lessons. Both are demo content and say so in every locale title.
+
+### Adding a course
+
+1. Create `src/courses/<course-id>/outline.ts` and export a `Course`. The id must match `[a-z0-9-]+` and stay the same in every locale.
+2. Give every course and every group and lesson a title for all ten locales. The type enforces this; the integrity rules name any gap.
+3. Give every lesson an `en-US` body, at `src/courses/<course-id>/content/en-US/<lessonId>.md`.
+4. Add the course to the `courses` array in `src/courses/registry.ts`.
+
+The course list, the course switcher, the course routes, and the progress data all come from the registry, so no page or layout needs an edit. `npm test` checks the data, and `npm run verify` checks the built pages.
+
+### Adding a translated lesson body
+
+Add `src/courses/<course-id>/content/<locale>/<lessonId>.md` with the locale code as the folder name, for example `content/de-DE/what-is-fullstack.md`. Write it in the same Markdown as the `en-US` body and use `##` for headings, because the page already has one `h1`.
+
+A lesson with no body in the page's locale shows the `en-US` body and a notice, written in that locale, that it is shown in English. A missing `en-US` body fails the integrity check and the build. A body whose locale or lesson does not exist fails the integrity check too.
+
+### Routes
+
+Every page is generated from `allRoutes()` in `src/lib/routes.ts`. `en-US` is unprefixed; each other locale is served under its code:
+
+| Page | `en-US` | `zh-CN` |
+| --- | --- | --- |
+| Home | `/` | `/zh-CN/` |
+| Course overview | `/courses/<course>/` | `/zh-CN/courses/<course>/` |
+| Lesson | `/courses/<course>/<lesson>/` | `/zh-CN/courses/<course>/<lesson>/` |
+
+Groups have no page. A lesson id is unique within its course, so the lesson route is unambiguous.
+
+### Interface strings
+
+The text of the interface lives in `src/i18n/ui.ts`, one complete table per locale. `UiStrings` makes a missing key a type error, and `npm test` rejects an empty value. Placeholders such as `{read}` and `{total}` are filled with `formatText()` from `src/lib/format.ts`.
+
+### Components and reuse
+
+Course UI is built in three tiers, and the boundaries are checked by `scripts/__tests__/course-components.test.mjs`:
+
+- **Tier 1, `src/components/ui/`:** shadcn primitives. Add one only with `npx shadcn add <name>`, for example `npx shadcn add badge`. Never edit a generated file by hand.
+- **Tier 2, `src/components/course/`:** one component per pattern, composed from tier 1, `cn()`, and `lucide-react`. A tier 2 file imports only tier 1, `@/lib`, `react`, `lucide-react`, and sibling tier 2 files. Put a variant in a prop, not in a copy.
+- **Tier 3, pages and layout:** `src/pages/[...route].astro`, `src/layouts/BaseLayout.astro`, and `src/components/ProgressRuntime.astro`. They arrange tier 2 components and pass them data. They contain no hand-built card, button, disclosure, notice, or progress markup.
+
+The five primitives added by the course change (`badge`, `progress`, `separator`, `alert`, `breadcrumb`) came from the current shadcn registry, which imports `cn` from the `cn` npm package and adds that package to `package.json`. The helper in `src/lib/utils.ts` is the one the seed components use, and both behave the same. Pointing the new primitives at `@/lib/utils` and dropping the `cn` dependency is a separate decision, and it should be made in one change that also touches `repos/web` if the two sites are to stay aligned.
+
+No component uses a `client:*` directive. The course UI is static HTML, and the only client code is the script in `ProgressRuntime.astro`. Interactive Radix components such as `DropdownMenu`, `Collapsible`, or `Accordion` are not used, because they need hydration. Use `<details>` through `Disclosure`.
+
+### Reading progress
+
+Progress is stored in the reader's browser only, under the key `hagicode-fullstack:progress`. The record holds course ids, lesson ids, and the time a lesson was read. It never holds a locale, so every language on the origin shares it. Nothing is sent to a server, a cookie, or a third-party service.
+
+A lesson is read when its end scrolls into view, or when the reader activates the mark control, which can also mark it unread. A stored record with an unknown version or unreadable JSON counts as empty and is replaced by the next change. If the browser blocks storage or a write fails, every page still works, and the reader sees a notice that progress cannot be saved.
+
+Clearing the site data in the browser clears the progress.
 
 ## Deployment
 
