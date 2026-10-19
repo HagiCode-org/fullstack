@@ -2,28 +2,38 @@
 name: HagiCode Fullstack
 description: A step-by-step tutorial site for becoming a fullstack engineer in the AI era, built as a quiet, text-first workbook that reads without scripting.
 colors:
-  background: "#ffffff"
-  foreground: "#1b1f24"
-  muted-foreground: "#55606b"
+  background: "#f7f9fc"
+  foreground: "#202938"
+  muted-foreground: "#526174"
   link-blue: "#1d4ed8"
   card: "oklch(1 0 0)"
-  primary: "oklch(0.205 0 0)"
-  primary-foreground: "oklch(0.985 0 0)"
-  surface-quiet: "oklch(0.97 0 0)"
-  border: "oklch(0.922 0 0)"
-  ring: "oklch(0.708 0 0)"
+  primary: "#1d4ed8"
+  primary-foreground: "#ffffff"
+  surface-quiet: "#edf2fb"
+  border: "#dce4f1"
+  code-surface: "#eef3fc"
+  code-foreground: "#17243a"
+  code-border: "#d7e1f1"
+  code-inline-surface: "#e7eefb"
+  code-inline-foreground: "#1d3f8a"
+  ring: "#3164d3"
   destructive: "oklch(0.577 0.245 27.325)"
-  background-dark: "#0f1115"
-  foreground-dark: "#e6e8eb"
-  muted-foreground-dark: "#9aa4af"
-  link-blue-dark: "#7aa2ff"
-  card-dark: "oklch(0.205 0 0)"
-  primary-dark: "oklch(0.922 0 0)"
-  primary-foreground-dark: "oklch(0.205 0 0)"
-  surface-quiet-dark: "oklch(0.269 0 0)"
-  border-dark: "oklch(1 0 0 / 10%)"
-  input-dark: "oklch(1 0 0 / 15%)"
-  ring-dark: "oklch(0.556 0 0)"
+  background-dark: "#0d1422"
+  foreground-dark: "#e5ebf5"
+  muted-foreground-dark: "#aab8ce"
+  link-blue-dark: "#8fb0ff"
+  card-dark: "#141e30"
+  primary-dark: "#8fb0ff"
+  primary-foreground-dark: "#101a2a"
+  surface-quiet-dark: "#1b283d"
+  border-dark: "#293851"
+  input-dark: "#33445f"
+  ring-dark: "#8fb0ff"
+  code-surface-dark: "#142239"
+  code-foreground-dark: "#e5edf9"
+  code-border-dark: "#30435f"
+  code-inline-surface-dark: "#22314a"
+  code-inline-foreground-dark: "#bfd0ff"
   destructive-dark: "oklch(0.704 0.191 22.216)"
 typography:
   display:
@@ -129,22 +139,23 @@ The system is built on shadcn/ui (`radix-nova` style, `neutral` base colour, CSS
 
 ## Colors
 
-A grey-scale workbook with one blue: white and ink in light, a blue-black page and soft white ink in dark, both with a quiet blue that appears only on links and focus. Light values are the normative tokens; the `-dark` entries are the values the `prefers-color-scheme: dark` block swaps in.
+A cool-tinted workbook: an ink-blue action colour and pale blue-gray surfaces make links, progress, selection and code easier to find without turning the lesson into a dashboard. Light values are the normative tokens; the `-dark` entries are composed separately for the blue-black page.
 
 ### Primary
-- **Ink Black** (`primary`, oklch(0.205 0 0); inverts to a soft grey-white in dark): the filled button background and the read-marker check. It is the only strong filled colour in the system, so a primary button is always the next step.
+- **Action Blue** (`primary`, #1d4ed8; #8fb0ff in dark): the filled button background and read-marker check. It identifies the next step and the completed state.
 
 ### Secondary
-- **Link Blue** (`link-blue`, #1d4ed8; #7aa2ff in dark): inline links and the global focus outline. Legacy name `--color-accent`. It is a text colour, not a surface.
+- **Link Blue** (`link-blue`, #1d4ed8; #8fb0ff in dark): inline links and the global focus outline. Legacy name `--color-accent`. The same hue is used for primary actions and progress; it is never decorative.
 
 ### Neutral
-- **Paper** (`background`, #ffffff; #0f1115 in dark): the page.
-- **Ink** (`foreground`, #1b1f24; #e6e8eb in dark): headings, link labels in navigation, lesson text emphasis. About 16.6:1 on Paper.
-- **Soft Ink** (`muted-foreground`, #55606b; #9aa4af in dark): paragraph text (every base `p`), captions, counts, breadcrumbs. About 6.4:1 on Paper in light and 7.5:1 on the dark page. Legacy name `--color-muted`.
-- **Card White** (`card`, oklch(1 0 0); oklch(0.205 0 0) in dark): card and alert surfaces; in dark it lifts one tonal step above the page.
-- **Quiet Surface** (`surface-quiet`, oklch(0.97 0 0); oklch(0.269 0 0) in dark): hover and current-item backgrounds, secondary badge, inline code background. The `bg-accent`, `bg-muted` and `bg-secondary` utilities all resolve to it.
-- **Hairline** (`border`, oklch(0.922 0 0); oklch(1 0 0 / 10%) in dark): the outline button border and separators. In dark, `input-dark` (oklch(1 0 0 / 15%)) is used for the outline button edge. The base layer sets it as the default border colour, so a bare `border` or `border-t` utility already renders in Hairline.
-- **Focus Grey** (`ring`, oklch(0.708 0 0); oklch(0.556 0 0) in dark): the component focus ring, drawn at 50% opacity.
+- **Paper** (`background`, #f7f9fc; #0d1422 in dark): the page canvas. White cards sit above the cool light canvas; dark surfaces step up in blue rather than in neutral gray.
+- **Ink** (`foreground`, #202938; #e5ebf5 in dark): headings, navigation and lesson text emphasis.
+- **Soft Ink** (`muted-foreground`, #526174; #aab8ce in dark): paragraph text, captions, counts and breadcrumbs. It remains above AA contrast on the page. Legacy name `--color-muted`.
+- **Card White** (`card`, oklch(1 0 0); #141e30 in dark): card and alert surfaces, one tonal step above the page.
+- **Quiet Surface** (`surface-quiet`, #edf2fb; #1b283d in dark): hover and current-item backgrounds and secondary badge. The `bg-accent`, `bg-muted` and `bg-secondary` utilities resolve to coordinated blue-gray surfaces.
+- **Code Surface** (`code-surface`, #eef3fc; #142239 in dark): fenced blocks. A separate code foreground and hairline keep dense examples legible; inline code uses its own quieter surface. Shiki syntax colors follow the active theme.
+- **Hairline** (`border`, #dce4f1; #293851 in dark): the outline button edge and separators. The base layer sets it as the default border colour, so a bare `border` or `border-t` utility already renders in Hairline.
+- **Focus Blue** (`ring`, #3164d3; #8fb0ff in dark): the component focus ring. Links use the full Link Blue outline.
 
 ### Semantic
 - **Alarm Red** (`destructive`, oklch(0.577 0.245 27.325); oklch(0.704 0.191 22.216) in dark): the destructive button and invalid states. The course UI does not use it yet.
@@ -154,7 +165,7 @@ A grey-scale workbook with one blue: white and ink in light, a blue-black page a
 The active theme is `data-theme="light"` or `data-theme="dark"` on `<html>`. Tokens, the `dark:` variant and `color-scheme` all read that one attribute. Light values sit on `:root`. Dark values sit under `:root[data-theme="dark"]` and again under `@media (prefers-color-scheme: dark)` for `:root:not([data-theme])`, which covers a visitor with no stored choice and no script. The two dark lists name the same tokens, and `npm test` checks that. The reader's choice is stored as `hagicode-fullstack:theme`. Without a choice the page follows the system.
 
 ### Named Rules
-**The One Blue Rule.** Blue appears only as link text and the global focus outline. It never fills a surface, and a second accent colour is not added without a change to this file.
+**The Blue Role Rule.** Blue carries links, primary actions, focus and progress because each helps the reader move or see state. Pale blue-gray is reserved for surfaces; no extra accent hue is added for decoration.
 
 **The Two Meanings Rule.** In `global.css`, `--color-accent` and `--color-muted` as CSS variables keep their legacy text-colour meaning (link blue and soft ink), while the `accent` and `muted` utilities and shadcn components mean surfaces (Quiet Surface). Read the token's role before reaching for the variable.
 
@@ -164,9 +175,9 @@ The active theme is `data-theme="light"` or `data-theme="dark"` on `<html>`. Tok
 
 **Display Font:** the system UI stack (`system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif`)
 **Body Font:** the same stack
-**Label/Mono Font:** none; inline `code` inherits the body face and is set apart by a Quiet Surface background and 4px horizontal padding.
+**Label Font:** the system UI stack. **Code Font:** `ui-monospace, monospace`; inline code and fenced examples use the platform's code face so commands and indentation are easy to scan.
 
-**Character:** One native stack and no web fonts, so type renders instantly in all ten locales and CJK falls back to PingFang SC or Microsoft YaHei. Hierarchy comes from size, weight and the ink-versus-soft-ink colour step, not from font changes.
+**Character:** One native sans stack and no web fonts, so type renders instantly in all ten locales and CJK falls back to PingFang SC or Microsoft YaHei. Headings and body stay in that stack; code uses the platform mono face to make commands and indentation distinct.
 
 ### Hierarchy
 - **Display** (700 by UA default, clamp(2rem, 7vw, 2.75rem), 1.2): the single page `h1`, with a 1rem bottom margin. A course title, a lesson title, or the site name on the home page.
@@ -212,7 +223,7 @@ Two moments, both in `global.css`, both off under `prefers-reduced-motion`. The 
 ### Named Rules
 **The No Shadow Rule.** Do not add `box-shadow` to a component to make it feel raised. If a surface needs separation, give it the ring or the border.
 
-**The Focus Is Visible Rule.** Plain links and unstyled interactive elements get the global 2px Link Blue outline with a 3px offset; shadcn controls get a border of Focus Grey plus a 3px ring at 50% opacity. Never remove an outline without replacing it.
+**The Focus Is Visible Rule.** Plain links and unstyled interactive elements get the global 2px Link Blue outline with a 3px offset; shadcn controls get a border of Focus Blue plus a 3px ring at 50% opacity. Never remove an outline without replacing it.
 
 ## Shapes
 
@@ -225,10 +236,10 @@ Components are shadcn/ui primitives in `src/components/ui/` and course component
 
 ### Buttons
 - **Shape:** large radius (10px), 32px high by default (`h-8`), 10px side padding, 14px medium-weight label.
-- **Primary** (`default`): Ink Black on its foreground, the continue action of a course, full width below `sm`. Hover drops to 80% opacity; pressed moves down 1px.
+- **Primary** (`default`): Action Blue with white foreground in light mode and dark ink in dark mode, the continue action of a course, full width below `sm`. Hover drops to 80% opacity; pressed moves down 1px.
 - **Outline:** Paper background with a Hairline border, used for mark-as-read and previous/next lesson. Hover fills with Quiet Surface; in dark it uses a translucent input fill.
 - **Secondary, ghost, destructive, link:** available from the shadcn variants; the course UI does not use them yet.
-- **Focus:** border becomes Focus Grey with a 3px ring at 50%. Disabled is 50% opacity with no pointer events.
+- **Focus:** border becomes Focus Blue with a 3px ring at 50%. Disabled is 50% opacity with no pointer events.
 - **Previous/next:** an outline button that wraps (`whitespace-normal`), left-aligned, with a small caption above the lesson title, so long titles wrap rather than truncate.
 
 ### Cards / Containers
@@ -239,10 +250,10 @@ Components are shadcn/ui primitives in `src/components/ui/` and course component
 - **Course card:** optional secondary badge, a title link that underlines on hover, the lesson count in Soft Ink, a progress summary, and the continue button in the footer.
 
 ### Chips and Badges
-- **Style:** pill (full radius), 20px high, 12px medium label, 8px side padding. Secondary variant is Quiet Surface with Ink Black text; the course UI uses it for the "demo" marker.
+- **Style:** pill (full radius), 20px high, 12px medium label, 8px side padding. Secondary variant is Quiet Surface with its semantic foreground; the course UI uses it for the "demo" marker.
 
 ### Progress
-- **Bar:** a fully rounded track in Quiet Surface with an Ink Black indicator; 6px high on cards and the overview, 4px in the compact outline. It always sits beneath its own text count, and the count is also the bar's `aria-label`.
+- **Bar:** a fully rounded track in Quiet Surface with an Action Blue indicator; 6px high on cards and the overview, 4px in the compact outline. It always sits beneath its own text count, and the count is also the bar's `aria-label`.
 
 ### Notices
 - **Style:** an alert on Card White with a Hairline border, a 16px circle-alert icon and Ink-coloured 14px text. Used for the fallback-language notice and the storage-unavailable notice; the latter starts `hidden`.
@@ -255,10 +266,10 @@ Components are shadcn/ui primitives in `src/components/ui/` and course component
 - **Outline tree (sidebar):** nested disclosures for groups, each with a compact progress summary; lessons are rows with a read marker and title. The current lesson is bold on Quiet Surface with `aria-current="page"` and screen-reader text. Groups containing the current lesson start open; on the overview every group starts open.
 
 ### Read Marker (signature component)
-An empty circle for unread and a filled check circle in Ink Black for read, swapped by `data-state`, each with its own screen-reader text. It exists so the reader's progress is legible without colour and without sight. Do not replace it with a colour-only dot.
+An empty circle for unread and a filled check circle in Action Blue for read, swapped by `data-state`, each with its own screen-reader text. It exists so the reader's progress is legible without colour and without sight. Do not replace it with a colour-only dot.
 
 ### Lesson body
-Rendered Markdown inside the article, with only light rules: unordered and ordered lists get a 1.5rem indent, inline code gets Quiet Surface and 4px side padding, and the first block sits 1.5rem below the title. Paragraphs inherit Soft Ink.
+Rendered Markdown inside the article: unordered and ordered lists get a 1.5rem indent; inline code uses a compact blue-gray chip with a small 6px radius; fenced code sits in a 14px rounded, horizontally scrollable surface with dual-theme syntax colors. The first block sits 1.5rem below the title. Paragraphs inherit Soft Ink.
 
 ## Do's and Don'ts
 
