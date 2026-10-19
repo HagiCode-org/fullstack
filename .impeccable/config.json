@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "bounce-easing",
+        "value": "*",
+        "files": [
+          "src/styles/global.css"
+        ],
+        "createdAt": "2026-10-19T00:33:00.584Z",
+        "reason": "Existing DESIGN.md explicitly specifies the spring used by the home-step completion marker; this colorize task preserves that interaction."
+      }
+    ]
+  }
+}
