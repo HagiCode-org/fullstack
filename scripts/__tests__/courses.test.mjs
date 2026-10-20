@@ -6,8 +6,7 @@ import { fileURLToPath } from 'node:url';
 
 import { SUPPORTED_LOCALES } from '../../src/config/site.ts';
 import { courses, flattenLessons, getCourse, lessonCount, neighbours, ancestorsOf } from '../../src/courses/registry.ts';
-import { demoFoundations } from '../../src/courses/demo-foundations/outline.ts';
-import { demoSampler } from '../../src/courses/demo-sampler/outline.ts';
+import { dockerForBeginners } from '../../src/courses/docker-for-beginners/outline.ts';
 import { findCourseFailures } from '../../src/courses/integrity.ts';
 import { readBodyKeys } from '../course-bodies.mjs';
 
@@ -26,66 +25,47 @@ const fixtureCourse = () => ({
 });
 const fixtureBodies = () => new Set(['fixture/en-US/one', 'fixture/en-US/two', 'fixture/en-US/three']);
 
+// A group nested in a group, plus a flat course, so the helpers are checked on both shapes.
+const nestedCourse = () => ({
+  id: 'nested',
+  title: titles('Nested'),
+  demo: false,
+  outline: [group('basics', [lesson('one'), group('tooling', [lesson('two'), lesson('three')])]), group('building', [lesson('four')])],
+});
+const flatCourse = () => ({ id: 'flat', title: titles('Flat'), demo: false, outline: [lesson('one'), lesson('two')] });
+
 describe('registry helpers', () => {
   it('flattens lessons in outline order, depth first', () => {
-    assert.deepEqual(lessonIds(demoFoundations), [
-      'what-is-fullstack',
-      'how-the-web-works',
-      'setting-up-your-tools',
-      'version-control-basics',
-      'your-first-page',
-      'adding-data',
-      'shipping-it',
-    ]);
+    assert.deepEqual(lessonIds(nestedCourse()), ['one', 'two', 'three', 'four']);
+    assert.deepEqual(lessonIds(dockerForBeginners).slice(0, 4), ['what-is-docker', 'install-docker', 'your-first-container', 'run-nginx']);
   });
 
   it('finds neighbours across group boundaries and stops at the ends', () => {
-    const across = neighbours(demoFoundations, 'version-control-basics');
-    assert.equal(across.previous.id, 'setting-up-your-tools');
-    assert.equal(across.next.id, 'your-first-page');
-    assert.equal(neighbours(demoFoundations, 'what-is-fullstack').previous, null);
-    assert.equal(neighbours(demoFoundations, 'shipping-it').next, null);
-    assert.deepEqual(neighbours(demoFoundations, 'missing'), { previous: null, next: null });
+    const course = nestedCourse();
+    const across = neighbours(course, 'three');
+    assert.equal(across.previous.id, 'two');
+    assert.equal(across.next.id, 'four');
+    assert.equal(neighbours(course, 'one').previous, null);
+    assert.equal(neighbours(course, 'four').next, null);
+    assert.deepEqual(neighbours(course, 'missing'), { previous: null, next: null });
   });
 
   it('lists the groups that contain a lesson, outermost first', () => {
-    assert.deepEqual(ancestorsOf(demoFoundations, 'setting-up-your-tools').map((node) => node.id), ['basics', 'tooling']);
-    assert.deepEqual(ancestorsOf(demoFoundations, 'your-first-page').map((node) => node.id), ['building']);
-    assert.deepEqual(ancestorsOf(demoFoundations, 'missing'), []);
+    const course = nestedCourse();
+    assert.deepEqual(ancestorsOf(course, 'two').map((node) => node.id), ['basics', 'tooling']);
+    assert.deepEqual(ancestorsOf(course, 'four').map((node) => node.id), ['building']);
+    assert.deepEqual(ancestorsOf(course, 'missing'), []);
   });
 
   it('counts lessons without counting groups', () => {
-    assert.equal(lessonCount(demoFoundations.outline), 7);
-    assert.equal(lessonCount(demoSampler.outline), 2);
+    assert.equal(lessonCount(nestedCourse().outline), 4);
+    assert.equal(lessonCount(flatCourse().outline), 2);
+    assert.equal(lessonCount(dockerForBeginners.outline), 12);
   });
 
   it('looks courses up by id', () => {
-    assert.equal(getCourse('demo-sampler'), demoSampler);
+    assert.equal(getCourse('docker-for-beginners'), dockerForBeginners);
     assert.equal(getCourse('nope'), undefined);
-  });
-});
-
-describe('demo courses', () => {
-  it('ship a multi-level outline with a group nested in a group and at least five lessons', () => {
-    const top = demoFoundations.outline.filter((node) => node.kind === 'group');
-    assert.equal(top.length, 2);
-    const nested = top.flatMap((node) => node.children).filter((node) => node.kind === 'group');
-    assert.equal(nested.length, 1);
-    assert.ok(lessonIds(demoFoundations).length >= 5);
-  });
-
-  it('ship a flat outline with at least two lessons and no group', () => {
-    assert.ok(demoSampler.outline.every((node) => node.kind === 'lesson'));
-    assert.ok(lessonIds(demoSampler).length >= 2);
-  });
-
-  it('mark both courses as demo content in every locale title', () => {
-    for (const course of [demoFoundations, demoSampler]) {
-      assert.equal(course.demo, true);
-      for (const locale of SUPPORTED_LOCALES) {
-        assert.match(course.title[locale], /[(（].+[)）]$/u, `${course.id} title in ${locale} needs a bracketed demo marker`);
-      }
-    }
   });
 });
 
@@ -94,19 +74,18 @@ describe('course data integrity', () => {
     assert.deepEqual(findCourseFailures(courses, bodies), []);
   });
 
-  it('has an en-US body for every lesson, and the first demo lesson in all ten locales', () => {
-    for (const id of lessonIds(demoFoundations)) {
-      assert.ok(bodies.has(`demo-foundations/en-US/${id}`), `missing en-US body for ${id}`);
-    }
-    for (const locale of SUPPORTED_LOCALES) {
-      assert.ok(bodies.has(`demo-foundations/${locale}/what-is-fullstack`), `missing ${locale} body`);
+  it('has an en-US body for every lesson of every course', () => {
+    for (const course of courses) {
+      for (const id of lessonIds(course)) {
+        assert.ok(bodies.has(`${course.id}/en-US/${id}`), `missing en-US body for ${course.id}/${id}`);
+      }
     }
   });
 
   it('names a lesson that has no en-US body', () => {
-    const withoutEnglish = new Set([...bodies].filter((key) => key !== 'demo-foundations/en-US/how-the-web-works'));
+    const withoutEnglish = new Set([...bodies].filter((key) => key !== 'docker-for-beginners/en-US/run-nginx'));
     const failures = findCourseFailures(courses, withoutEnglish);
-    assert.deepEqual(failures, ['lesson "how-the-web-works" in course "demo-foundations" has no en-US body']);
+    assert.deepEqual(failures, ['lesson "run-nginx" in course "docker-for-beginners" has no en-US body']);
   });
 
   it('names a course that lacks a title in one locale', () => {
@@ -145,6 +124,6 @@ describe('course data integrity', () => {
 
   it('reads body files from the disk layout', () => {
     const top = readdirSync(coursesDir, { withFileTypes: true }).filter((entry) => entry.isDirectory()).map((entry) => entry.name);
-    assert.ok(top.includes('demo-foundations') && top.includes('demo-sampler'));
+    assert.ok(top.includes('docker-for-beginners'));
   });
 });

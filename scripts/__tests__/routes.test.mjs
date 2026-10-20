@@ -13,7 +13,7 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '.
 const routes = allRoutes();
 // The page identity of a route with the locale removed, so the same page compares equal across locales.
 const pageOf = (route) => [route.kind, route.courseId ?? '', route.lessonId ?? ''].join('|');
-const lessonRoute = (locale) => ({ kind: 'lesson', locale, courseId: 'demo-foundations', lessonId: 'what-is-fullstack' });
+const lessonRoute = (locale) => ({ kind: 'lesson', locale, courseId: 'docker-for-beginners', lessonId: 'what-is-docker' });
 
 describe('route model', () => {
   it('serves the identical page set in all ten locales once the prefix is removed', () => {
@@ -27,8 +27,8 @@ describe('route model', () => {
   it('builds the default locale without a prefix and other locales under their code', () => {
     assert.equal(routePath({ kind: 'home', locale: 'en-US' }), '/');
     assert.equal(routePath({ kind: 'home', locale: 'zh-CN' }), '/zh-CN/');
-    assert.equal(routePath(lessonRoute('en-US')), '/courses/demo-foundations/what-is-fullstack/');
-    assert.equal(routePath(lessonRoute('zh-CN')), '/zh-CN/courses/demo-foundations/what-is-fullstack/');
+    assert.equal(routePath(lessonRoute('en-US')), '/courses/docker-for-beginners/what-is-docker/');
+    assert.equal(routePath(lessonRoute('zh-CN')), '/zh-CN/courses/docker-for-beginners/what-is-docker/');
   });
 
   it('never produces a route for a group', () => {
@@ -37,13 +37,13 @@ describe('route model', () => {
     for (const route of routes) {
       if (route.kind === 'lesson') assert.ok(!groupIds.includes(route.lessonId), `${route.lessonId} is a group`);
     }
-    assert.equal(parseRoute('/courses/demo-foundations/basics/'), null);
-    assert.equal(parseRoute('/courses/demo-foundations/tooling/'), null);
+    assert.equal(parseRoute('/courses/docker-for-beginners/get-started/'), null);
+    assert.equal(parseRoute('/courses/docker-for-beginners/run-services/'), null);
   });
 
   it('keeps the course and lesson when switching locale', () => {
     assert.deepEqual(switchLocale(lessonRoute('en-US'), 'ja-JP'), lessonRoute('ja-JP'));
-    assert.equal(routePath(switchLocale(lessonRoute('zh-Hant'), 'en-US')), '/courses/demo-foundations/what-is-fullstack/');
+    assert.equal(routePath(switchLocale(lessonRoute('zh-Hant'), 'en-US')), '/courses/docker-for-beginners/what-is-docker/');
   });
 
   it('parses every generated path back to the same route', () => {
@@ -54,10 +54,10 @@ describe('route model', () => {
   });
 
   it('serves nothing under an unsupported prefix or the explicit default prefix', () => {
-    assert.equal(parseRoute('/xx-XX/courses/demo-sampler/first-steps/'), null);
+    assert.equal(parseRoute('/xx-XX/courses/docker-for-beginners/what-is-docker/'), null);
     assert.equal(parseRoute('/en-US/'), null);
-    assert.equal(parseRoute('/en-US/courses/demo-sampler/'), null);
-    assert.equal(parseRoute('/courses/demo-sampler/no-such-lesson/'), null);
+    assert.equal(parseRoute('/en-US/courses/docker-for-beginners/'), null);
+    assert.equal(parseRoute('/courses/docker-for-beginners/no-such-lesson/'), null);
   });
 
   it('keeps astro.config.mjs and SUPPORTED_LOCALES in step', async () => {
@@ -73,21 +73,21 @@ function collectGroupIds(nodes) {
 
 describe('lesson body selection', () => {
   const bodies = new Map([
-    ['demo-foundations/en-US/what-is-fullstack', 'english'],
-    ['demo-foundations/de-DE/what-is-fullstack', 'deutsch'],
-    ['demo-foundations/en-US/how-the-web-works', 'english only'],
+    ['docker-for-beginners/en-US/what-is-docker', 'english'],
+    ['docker-for-beginners/de-DE/what-is-docker', 'deutsch'],
+    ['docker-for-beginners/en-US/install-docker', 'english only'],
   ]);
   const find = (id) => bodies.get(id);
 
   it('returns the page locale body without a fallback flag when it exists', () => {
-    assert.deepEqual(selectLessonBody(find, 'demo-foundations', 'what-is-fullstack', 'de-DE'), { body: 'deutsch', fallback: false });
+    assert.deepEqual(selectLessonBody(find, 'docker-for-beginners', 'what-is-docker', 'de-DE'), { body: 'deutsch', fallback: false });
   });
 
   it('returns the en-US body with the fallback flag when the locale has none', () => {
-    assert.deepEqual(selectLessonBody(find, 'demo-foundations', 'how-the-web-works', 'de-DE'), { body: 'english only', fallback: true });
+    assert.deepEqual(selectLessonBody(find, 'docker-for-beginners', 'install-docker', 'de-DE'), { body: 'english only', fallback: true });
   });
 
   it('returns null when no body exists in any locale', () => {
-    assert.equal(selectLessonBody(find, 'demo-foundations', 'missing', 'de-DE'), null);
+    assert.equal(selectLessonBody(find, 'docker-for-beginners', 'missing', 'de-DE'), null);
   });
 });

@@ -35,7 +35,7 @@ class FullStorage extends FakeStorage {
   }
 }
 
-const COURSE = 'demo-foundations';
+const COURSE = 'docker-for-beginners';
 const OUTLINE = ['l1', 'l2', 'l3'];
 
 describe('progress record', () => {

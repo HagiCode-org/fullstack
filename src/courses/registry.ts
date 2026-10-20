@@ -1,10 +1,30 @@
-import { demoFoundations } from './demo-foundations/outline.ts';
-import { demoSampler } from './demo-sampler/outline.ts';
 import { dockerForBeginners } from './docker-for-beginners/outline.ts';
+import { dockerSelfHostedApps } from './docker-self-hosted-apps/outline.ts';
+import { githubDesktopAndGithub } from './github-desktop-and-github/outline.ts';
+import { buildWithAi } from './build-with-ai/outline.ts';
+import { firstWebsite } from './first-website/outline.ts';
+import { publishYourWebsite } from './publish-your-website/outline.ts';
+import { firstWebApp } from './first-web-app/outline.ts';
+import { appWithData } from './app-with-data/outline.ts';
+import { anotherLanguage } from './another-language/outline.ts';
+import { addAiFeatures } from './add-ai-features/outline.ts';
+import { capstoneProject } from './capstone-project/outline.ts';
 import type { Course, GroupNode, LessonNode, OutlineNode } from './types.ts';
 
 // The only list of courses. The course list, the course switcher, and the course routes all read from here.
-export const courses: readonly Course[] = [demoFoundations, demoSampler, dockerForBeginners];
+export const courses: readonly Course[] = [
+  dockerForBeginners,
+  dockerSelfHostedApps,
+  githubDesktopAndGithub,
+  buildWithAi,
+  firstWebsite,
+  publishYourWebsite,
+  firstWebApp,
+  appWithData,
+  anotherLanguage,
+  addAiFeatures,
+  capstoneProject,
+];
 
 export function getCourse(id: string, list: readonly Course[] = courses): Course | undefined {
   return list.find((course) => course.id === id);
