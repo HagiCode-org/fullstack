@@ -85,17 +85,14 @@ src/courses/
   types.ts                 # Course, OutlineNode, LessonNode, GroupNode
   registry.ts              # the only list of courses, plus the outline helpers
   integrity.ts             # data rules that npm test and npm run verify both run
-  demo-foundations/
+  <courseId>/
     outline.ts             # one Course: id, demo flag, ten-locale titles, nested outline
-    content/<locale>/<lessonId>.md
-  demo-sampler/
-    outline.ts
     content/<locale>/<lessonId>.md
 ```
 
-`demo-foundations` has a nested group and seven lessons; `demo-sampler` is flat with two lessons. Both are demo content and say so in every locale title.
-
 `docker-for-beginners` is the first real course: twelve lessons in five groups, from what Docker is to running Nginx, PostgreSQL and Node.js as containers, networking and Compose, community tools and cleanup. Its en-US bodies live in `src/courses/docker-for-beginners/content/en-US/`, and the other nine locales show the English text with the translation notice. `npm test` runs `scripts/__tests__/docker-course.test.mjs`, which checks its registration, the bodies, the three operating-system sections of the install lesson, the link hosts and the Docker-socket security note in the community lessons.
+
+Ten more courses follow `docker-for-beginners` as draft skeletons: each has an outline with ten-locale titles and an `en-US` body per lesson, and every body starts with a draft notice. In reading order: `docker-self-hosted-apps`, `github-desktop-and-github`, `build-with-ai`, `first-website`, `publish-your-website`, `first-web-app`, `app-with-data`, `another-language`, `add-ai-features`, `capstone-project`. The bodies are outlines to be expanded and fact-checked, not finished lessons.
 
 ### Adding a course
 
