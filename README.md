@@ -155,6 +155,18 @@ The toggle starts hidden and `ThemeRuntime.astro` shows it, so a page without sc
 
 The `dark:` variant follows the same state, so shadcn components switch with the page. It is written as an attribute selector plus a `prefers-color-scheme` branch for the no-attribute case, and the build emits both.
 
+## Add a learning path
+
+A learning path is an ordered list of courses. Its data is TypeScript in `src/learning-paths/`, and `learningPaths` in `src/learning-paths/registry.ts` is the only list of paths. The list starts empty, because a path can name only courses that already exist in `src/courses/registry.ts`.
+
+1. Add a `LearningPath` to `learningPaths`. Its id matches `[a-z0-9-]+` and stays the same in every locale. Give its title and summary for all ten locales.
+2. List the steps in the order a learner follows them. Each step has an id that matches `[a-z0-9-]+` and is unique within the path:
+   - A **course step** (`kind: 'course'`) names one course in `courseId`.
+   - A **choice step** (`kind: 'choice'`) lists two or more interchangeable courses in `options`, and has a `title` for all ten locales. The learner takes exactly one of them.
+3. A course appears at most once in a path, counting choice options. The same course can still appear in many paths.
+
+`npm test` runs `scripts/__tests__/learning-paths.test.mjs`, and `npm run verify` checks the registry against the course registry. Each problem is one `learning path data: ...` line, and it fails the build. `resolvePath(path, choices)` in `registry.ts` turns a learner's choices into the ordered course list. A choice nobody has made stays open; it is never set to the first option.
+
 ## Deployment
 
 `.github/workflows/fullstack-deploy-gh-pages.yml` publishes the site. Cloudflare serves the result, not GitHub Pages.
