@@ -5,6 +5,8 @@ import { fileURLToPath } from 'node:url';
 import { SUPPORTED_LOCALES } from '../src/config/site.ts';
 import { courses } from '../src/courses/registry.ts';
 import { findCourseFailures } from '../src/courses/integrity.ts';
+import { findLearningPathFailures } from '../src/learning-paths/integrity.ts';
+import { learningPaths } from '../src/learning-paths/registry.ts';
 import { allRoutes, routePath, switchLocale } from '../src/lib/routes.ts';
 import { THEME_STORAGE_KEY } from '../src/lib/theme.ts';
 import { readBodyKeys } from './course-bodies.mjs';
@@ -186,6 +188,9 @@ for (const file of FORBIDDEN_PUBLIC_FILES) {
 // Course data: the registry passes the same integrity rules the unit tests use, with the bodies read from disk.
 for (const failure of findCourseFailures(courses, readBodyKeys(join(root, 'src', 'courses')))) {
   failures.push(`course data: ${failure}`);
+}
+for (const failure of findLearningPathFailures(learningPaths, courses)) {
+  failures.push(`learning path data: ${failure}`);
 }
 
 // Every page of every locale: built, its own language, one canonical, alternates for all ten locales and x-default
