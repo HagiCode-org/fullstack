@@ -31,8 +31,8 @@ Run every command from this directory.
 
 The site uses Hagilight as published npm packages, pinned to one exact version with no range operator:
 
-- `@hagicode/hagilight` `0.13.0`: the Astro integration, `SEOHead`, and `Footer`
-- `@hagicode/hagilight-core` `0.13.0`: the shared core that both depend on
+- `@hagicode/hagilight` `0.15.1`: the Astro integration, `SEOHead`, and `Footer`
+- `@hagicode/hagilight-core` `0.15.1`: the shared core that both depend on
 
 Keep the two versions identical. `npm run verify` fails if they differ or if the installed copies do not match `package.json`. Do not copy or patch Hagilight source in this repository. Upgrade both packages together in a separate change.
 
@@ -43,6 +43,8 @@ Keep the two versions identical. `npm run verify` fails if they differ or if the
 - `rss.xml`
 - `llms.txt`
 - `.well-known/hagilight.metadata.json`
+
+`hagilight()` also injects the PostHog loader into every production page head, and `SEOHead` writes the Open Graph, Twitter card and default JSON-LD tags, so this repository renders neither itself.
 
 The shared favicon is linked from `src/layouts/BaseLayout.astro`. Do not add `robots.txt`, `sitemap.xml`, `llms.txt`, or an icon file to `public/`, because Hagilight skips generation or overrides the shared behavior when one exists.
 
