@@ -1,0 +1,1 @@
+var e={courseId:`data-course-id`,groupId:`data-group-id`,lessonId:`data-lesson-id`,progressCount:`data-progress-count`,progressBar:`data-progress-bar`,readMarker:`data-read-marker`,continue:`data-continue`,markRead:`data-mark-read`,storageNotice:`data-storage-notice`,lessonEnd:`data-lesson-end`,courseComplete:`data-course-complete`,themeToggle:`data-theme-toggle`};export{e as t};
