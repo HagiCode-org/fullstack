@@ -8,7 +8,7 @@ Start from zero, follow one short lesson at a time, and keep your place as you g
 
 - **A course catalog with a course switcher.** Pick a course from the list and jump between courses without losing your way.
 - **Lesson pages with outlines.** Each course has an outline of its groups and lessons, previous and next navigation, and a table of contents for the page you are reading.
-- **Reading progress that stays in your browser.** A lesson counts as read when you reach its end or when you mark it yourself, and you can mark it unread again. Progress is stored only in your browser; nothing is sent to a server. Clearing the site data clears your progress.
+- **Reading progress that stays in your browser.** A lesson counts as read when you reach its end or when you mark it yourself, and you can mark it unread again. Progress is stored only in your browser; nothing is sent to a server. Clearing the site data clears your progress. The home page's "Zero to Hero" headline fills in as you read, and is complete when every lesson is read.
 - **Ten interface languages.** English, Simplified Chinese, Traditional Chinese, Japanese, Korean, German, French, Spanish, Brazilian Portuguese and Russian. A lesson that has no translation yet is shown in English with a notice saying so.
 - **A light and dark theme toggle.** Without a saved choice, the theme follows your system setting.
 

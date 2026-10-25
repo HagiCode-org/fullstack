@@ -180,14 +180,14 @@ The active theme is `data-theme="light"` or `data-theme="dark"` on `<html>`. Tok
 **Character:** One native sans stack and no web fonts, so type renders instantly in all ten locales and CJK falls back to PingFang SC or Microsoft YaHei. Headings and body stay in that stack; code uses the platform mono face to make commands and indentation distinct.
 
 ### Hierarchy
-- **Display** (700 by UA default, clamp(2rem, 7vw, 2.75rem), 1.2): the single page `h1`, with a 1rem bottom margin. A course title, a lesson title, or the site name on the home page.
+- **Display** (700 by UA default, clamp(2rem, 7vw, 2.75rem), 1.2): the single page `h1`, with a 1rem bottom margin. A course title, a lesson title, or the slogan on the home page (up to 5rem, tracking -0.03em, the only place the Display step goes above 2.75rem).
 - **Title** (600, 1.125rem, 1.375): the course card heading (`h2`). Card titles in `CardTitle` use 1rem at weight 500.
 - **Body** (400, 1rem, 1.7): lesson text and base paragraphs, in Soft Ink. Prose lines stay inside the 42rem column, about 65 to 75 characters in Latin text.
 - **Label** (500, 0.875rem): buttons, outline links, switcher values, breadcrumb text, alert text.
 - **Caption** (400, 0.75rem): the small label above a switcher value, previous/next captions, compact progress counts. Always Soft Ink.
 
 ### Named Rules
-**The One H1 Rule.** Each page has exactly one `h1`. The site header is a link, not a heading, so it does not compete.
+**The One H1 Rule.** Each page has exactly one `h1`. The site header is a link, not a heading, so it does not compete. On the home page the `h1` is the slogan; the site name lives in the top bar and the document title.
 
 **The Native Stack Rule.** No web font is loaded. Weight and colour carry hierarchy; a decorative display face is not introduced.
 
@@ -198,7 +198,7 @@ A workbench: a top bar, an optional sidebar pane, and a main pane that holds one
 - **Top bar:** 48px (`h-12`) from `lg`, full width, bottom Hairline, Paper background, sticky at the top while the panes scroll. Site link on the left, the course and language switchers on the right, each with a 16px side gutter. Below `lg` it is not sticky, and below `sm` the switchers drop to a second row that spans the bar.
 - **Sidebar pane:** lesson pages only. 18rem wide from `lg`, sticky under the top bar (`top-12`), as tall as the viewport minus the bar, scrolling on its own, with a Hairline right edge and 20px top padding. It holds the course outline. Below `lg` it stacks above the main pane as a collapsed "Outline" disclosure with a Hairline bottom edge; the runtime opens it from `lg`.
 - **Main pane:** takes the remaining width (`minmax(0, 1fr)`), with 16px side padding and 32px top and bottom padding, growing to 40px at `lg`. It holds one column centred with `mx-auto`: 42rem (`max-w-2xl`) for a lesson, 48rem (`max-w-3xl`) for a course overview, 64rem (`max-w-5xl`) for the home page. The column is the only place text is measured.
-- **Home:** a 64rem column on one 5fr / 7fr split that every section shares. The hero puts the site name (display up to 4rem, home only) and the purpose line on the left and a four-step "how it works" track on the right; below it a Courses section stacks one wide card per course, split on the same axis (course, progress and action | a preview of its lessons with read markers, on a muted strip), and a language band closes the page. No sidebar.
+- **Home:** a 64rem column on one 5fr / 7fr split that every section shares. The hero puts the slogan ("Zero to Hero with AI, for everyone"; display up to 5rem, home only), the purpose line and the reader's overall count on the left and a four-step "how it works" track on the right; below it a Courses section stacks one wide card per course, split on the same axis (course, progress and action | a preview of its lessons with read markers, on a muted strip), and a language band closes the page. No sidebar.
 - **Course overview:** breadcrumb, title, a progress block capped at `max-w-md` with the continue button, then the outline tree in the main pane. No sidebar, because the outline is the page.
 - **Lesson:** sidebar with the outline, main pane with breadcrumb, title, body, mark-as-read and previous/next. `min-w-0` on the article stops wide code from forcing horizontal scroll.
 - **Footer:** the shared Hagilight footer sits full width after the panes, as the page's last element. It is not restyled here.
@@ -218,7 +218,7 @@ Flat by default, with no box shadows anywhere in the system. Depth is carried by
 Interaction is shown by fill and position, not elevation: link and outline rows take the Quiet Surface on hover, the primary button drops to 80% opacity on hover and moves down 1px while pressed, and the disclosure chevron rotates 180° when open.
 
 ### Motion
-Two moments, both in `global.css`, both off under `prefers-reduced-motion`. The home "how it works" track plays in once on load: each read marker ticks in with a spring, the line to the next one draws on an exponential ease-out, and the step text darkens from Soft Ink to Ink; at rest the track is complete. Cross-document view transitions (`@view-transition`) carry a course title from the home card to the course page's heading through a shared `view-transition-name`, and keep the top bar in place. Everything else stays still.
+Three moments, all in `global.css`, both off under `prefers-reduced-motion`. The home "how it works" track plays in once on load: each read marker ticks in with a spring, the line to the next one draws on an exponential ease-out, and the step text darkens from Soft Ink to Ink; at rest the track is complete. Cross-document view transitions (`@view-transition`) carry a course title from the home card to the course page's heading through a shared `view-transition-name`, and keep the top bar in place. The home slogan's hero word is a meter: an outline with a Link Blue copy on top, clipped by a hard edge from the left. `--hero-fill` (registered `@property`, 0 to 1) is set by `ProgressRuntime` from the lessons read across every course, through a concave curve (`heroFill` in `progress.ts`) so the first lesson visibly moves it and the last one is what completes it. A returning reader sees it ease from empty to their level on load (1.5s, exponential ease-out); a first-time reader sees nothing move. "Zero to" steps back toward Soft Ink as the fill grows. At 100% the word is solid blue and the count line becomes a completion line. Everything else stays still.
 
 ### Named Rules
 **The No Shadow Rule.** Do not add `box-shadow` to a component to make it feel raised. If a surface needs separation, give it the ring or the border.
@@ -265,6 +265,9 @@ Components are shadcn/ui primitives in `src/components/ui/` and course component
 - **Switchers (course, language):** a native disclosure in the top bar. The summary shows a small Soft Ink label above the current value (label only, on one line, when nothing is current, as on the home page) with a chevron, and fills with Quiet Surface on hover. The list floats under the trigger as a popover (Card White, a foreground-at-10% ring, 4px padding, 14px rows, 256px wide, `z-30`); below `sm` it spans the bar. Items are real links; the current one is bold on Quiet Surface with `aria-current`. It closes on a click on the summary or a link, not on an outside click, because there is no script.
 - **Outline tree (sidebar):** nested disclosures for groups, each with a compact progress summary; lessons are rows with a read marker and title. The current lesson is bold on Quiet Surface with `aria-current="page"` and screen-reader text. Groups containing the current lesson start open; on the overview every group starts open.
 
+### Slogan meter
+The home `h1` (`HomeSlogan`). The lead ("Zero to") and the hero word are separate spans, and the hero word is drawn twice: an outline, and an `aria-hidden` Link Blue copy whose `clip-path` follows `--hero-fill`. The count line under the purpose line carries the same state in words and is hidden at zero. Hard edge only, no gradient. Dense CJK glyphs take a thinner stroke, open tracking and a pale body (zh, ko). Forced-colors shows plain text; reduced motion applies the level without the sweep; without script the fill stays at zero.
+
 ### Read Marker (signature component)
 An empty circle for unread and a filled check circle in Action Blue for read, swapped by `data-state`, each with its own screen-reader text. It exists so the reader's progress is legible without colour and without sight. Do not replace it with a colour-only dot.
 
@@ -274,6 +277,7 @@ Rendered Markdown inside the article: unordered and ordered lists get a 1.5rem i
 ## Do's and Don'ts
 
 ### Do:
+- **Do** keep the slogan's hero word the only thing `--hero-fill` drives; translate lead, hero word, sub-line and completion text together in every locale.
 - **Do** use the token utilities (`bg-card`, `text-muted-foreground`, `border`, `ring-foreground/10`) and keep dark values in `global.css`, in the `data-theme="dark"` block and its `prefers-color-scheme` copy.
 - **Do** keep one `h1` per page and use the Display step only for it.
 - **Do** render new components as static HTML with native elements first (`details`, `a`, `button`); add script only through `ProgressRuntime` hooks.
