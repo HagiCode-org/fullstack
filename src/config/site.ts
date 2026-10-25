@@ -2,7 +2,7 @@
 export const SITE_NAME = 'HagiCode Fullstack';
 
 export const SITE_DESCRIPTION =
-  'A step-by-step tutorial for people who want to become fullstack engineers in the AI era.';
+  'Zero to hero with AI, for everyone: a step-by-step tutorial for people who want to become fullstack engineers in the AI era.';
 
 // The ten locales the site serves. Every page that exists in one locale exists in all of them.
 export const SUPPORTED_LOCALES = [
