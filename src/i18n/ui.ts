@@ -4,6 +4,13 @@ import type { Locale } from '../config/site.ts';
 // scripts/__tests__/ui-strings.test.mjs rejects an empty value. Placeholders such as {read} are filled by formatText().
 export interface UiStrings {
   siteHome: string;
+  // The home slogan, "Zero to Hero with AI, for everyone". The lead may end in a space when the language writes one before the
+  // hero word; the hero word is the part the reader's progress fills in.
+  homeSloganLead: string;
+  homeSloganHero: string;
+  homeSloganSub: string;
+  // Shown under the slogan once every lesson of every course is read.
+  homeHeroDone: string;
   homePurpose: string;
   homeStepsHeading: string;
   homeStep1: string;
@@ -43,6 +50,10 @@ export const UI_STRINGS: Record<Locale, UiStrings> = {
   'en-US': {
     siteHome: 'Home',
     homePurpose: 'Step-by-step courses for people becoming fullstack engineers in the AI era. Pick a course to start reading.',
+    homeSloganLead: 'Zero to ',
+    homeSloganHero: 'Hero',
+    homeSloganSub: 'with AI, for everyone',
+    homeHeroDone: 'Every lesson read. Zero to Hero, done.',
     homeStepsHeading: 'How it works',
     homeStep1: 'Pick a course',
     homeStep2: 'Read one lesson at a time',
@@ -79,6 +90,10 @@ export const UI_STRINGS: Record<Locale, UiStrings> = {
   'zh-CN': {
     siteHome: '首页',
     homePurpose: '面向 AI 时代成为全栈工程师的人，提供循序渐进的课程。选择一门课程开始学习。',
+    homeSloganLead: '从零到',
+    homeSloganHero: '英雄',
+    homeSloganSub: '有 AI，人人都能做到',
+    homeHeroDone: '所有课时都读完了。从零到英雄，完成。',
     homeStepsHeading: '学习方式',
     homeStep1: '选一门课程',
     homeStep2: '一次读一个课时',
@@ -115,6 +130,10 @@ export const UI_STRINGS: Record<Locale, UiStrings> = {
   'zh-Hant': {
     siteHome: '首頁',
     homePurpose: '面向 AI 時代想成為全端工程師的人，提供循序漸進的課程。選擇一門課程開始學習。',
+    homeSloganLead: '從零到',
+    homeSloganHero: '英雄',
+    homeSloganSub: '有 AI，人人都能做到',
+    homeHeroDone: '所有課次都讀完了。從零到英雄，完成。',
     homeStepsHeading: '學習方式',
     homeStep1: '選一門課程',
     homeStep2: '一次讀一個課次',
@@ -151,6 +170,10 @@ export const UI_STRINGS: Record<Locale, UiStrings> = {
   'ja-JP': {
     siteHome: 'ホーム',
     homePurpose: 'AI時代のフルスタックエンジニアを目指す人のための、段階的なコースです。コースを選んで学習を始めましょう。',
+    homeSloganLead: 'ゼロから',
+    homeSloganHero: 'ヒーローへ',
+    homeSloganSub: 'AIと一緒に、すべての人のために',
+    homeHeroDone: 'すべてのレッスンを読了しました。ゼロからヒーローへ、達成です。',
     homeStepsHeading: '学び方',
     homeStep1: 'コースを選ぶ',
     homeStep2: '1レッスンずつ読む',
@@ -187,6 +210,10 @@ export const UI_STRINGS: Record<Locale, UiStrings> = {
   'ko-KR': {
     siteHome: '홈',
     homePurpose: 'AI 시대에 풀스택 엔지니어가 되고자 하는 사람들을 위한 단계별 강좌입니다. 강좌를 골라 학습을 시작하세요.',
+    homeSloganLead: '제로에서 ',
+    homeSloganHero: '히어로로',
+    homeSloganSub: 'AI와 함께, 모두를 위해',
+    homeHeroDone: '모든 레슨을 읽었습니다. 제로에서 히어로로, 완료했습니다.',
     homeStepsHeading: '학습 방법',
     homeStep1: '강좌를 고릅니다',
     homeStep2: '한 번에 한 레슨씩 읽습니다',
@@ -223,6 +250,10 @@ export const UI_STRINGS: Record<Locale, UiStrings> = {
   'de-DE': {
     siteHome: 'Startseite',
     homePurpose: 'Schritt-für-Schritt-Kurse für alle, die im KI-Zeitalter Fullstack-Entwickler werden wollen. Wähle einen Kurs, um zu beginnen.',
+    homeSloganLead: 'Von Null zum ',
+    homeSloganHero: 'Helden',
+    homeSloganSub: 'mit KI, für alle',
+    homeHeroDone: 'Alle Lektionen gelesen. Von Null zum Helden – geschafft.',
     homeStepsHeading: 'So funktioniert es',
     homeStep1: 'Kurs wählen',
     homeStep2: 'Eine Lektion nach der anderen lesen',
@@ -259,6 +290,10 @@ export const UI_STRINGS: Record<Locale, UiStrings> = {
   'fr-FR': {
     siteHome: 'Accueil',
     homePurpose: "Des cours pas à pas pour devenir ingénieur fullstack à l'ère de l'IA. Choisissez un cours pour commencer.",
+    homeSloganLead: 'De zéro à ',
+    homeSloganHero: 'héros',
+    homeSloganSub: "avec l'IA, pour tous",
+    homeHeroDone: "Toutes les leçons sont lues. De zéro à héros : c'est fait.",
     homeStepsHeading: 'Comment ça marche',
     homeStep1: 'Choisissez un cours',
     homeStep2: 'Lisez une leçon à la fois',
@@ -295,6 +330,10 @@ export const UI_STRINGS: Record<Locale, UiStrings> = {
   'es-ES': {
     siteHome: 'Inicio',
     homePurpose: 'Cursos paso a paso para quienes quieren ser ingenieros fullstack en la era de la IA. Elige un curso para empezar.',
+    homeSloganLead: 'De cero a ',
+    homeSloganHero: 'héroe',
+    homeSloganSub: 'con IA, para todos',
+    homeHeroDone: 'Todas las lecciones leídas. De cero a héroe: lo lograste.',
     homeStepsHeading: 'Cómo funciona',
     homeStep1: 'Elige un curso',
     homeStep2: 'Lee una lección cada vez',
@@ -331,6 +370,10 @@ export const UI_STRINGS: Record<Locale, UiStrings> = {
   'pt-BR': {
     siteHome: 'Início',
     homePurpose: 'Cursos passo a passo para quem quer se tornar engenheiro fullstack na era da IA. Escolha um curso para começar.',
+    homeSloganLead: 'Do zero ao ',
+    homeSloganHero: 'herói',
+    homeSloganSub: 'com IA, para todos',
+    homeHeroDone: 'Todas as aulas lidas. Do zero ao herói: você conseguiu.',
     homeStepsHeading: 'Como funciona',
     homeStep1: 'Escolha um curso',
     homeStep2: 'Leia uma aula de cada vez',
@@ -367,6 +410,10 @@ export const UI_STRINGS: Record<Locale, UiStrings> = {
   'ru-RU': {
     siteHome: 'Главная',
     homePurpose: 'Пошаговые курсы для тех, кто хочет стать фулстек-инженером в эпоху ИИ. Выберите курс, чтобы начать.',
+    homeSloganLead: 'Из нуля в ',
+    homeSloganHero: 'герои',
+    homeSloganSub: 'с ИИ, для каждого',
+    homeHeroDone: 'Все уроки прочитаны. Из нуля в герои — готово.',
     homeStepsHeading: 'Как это работает',
     homeStep1: 'Выберите курс',
     homeStep2: 'Читайте по одному уроку',

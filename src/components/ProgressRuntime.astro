@@ -17,7 +17,7 @@ const json = JSON.stringify(island).replace(/</gu, '\\u003c');
 <script>
   import { HOOK } from '@/components/course/hooks';
   import { formatText } from '@/lib/format';
-  import { PROGRESS_STORAGE_KEY, createProgressStore } from '@/lib/progress';
+  import { PROGRESS_STORAGE_KEY, createProgressStore, heroFill } from '@/lib/progress';
   import type { ProgressIsland } from '@/lib/progressIsland';
 
   const islandElement = document.getElementById('progress-island');
@@ -57,10 +57,21 @@ const json = JSON.stringify(island).replace(/</gu, '\\u003c');
       }
     };
 
+    // The home slogan's hero word fills with the lessons read across every course. On the first paint it stays empty for
+    // two frames, so the CSS transition sweeps the fill in from nothing instead of starting full.
+    let heroTarget = 0;
+    let heroStarted = false;
+    const setHero = () =>
+      all(`[${HOOK.heroMeter}]`).forEach((meter) => meter.style.setProperty('--hero-fill', String(heroTarget)));
+
     const render = () => {
+      let readAll = 0;
+      let totalAll = 0;
       for (const [courseId, course] of Object.entries(island.courses)) {
         const total = course.lessons.length;
         const read = store.summarize(courseId, course.lessons).read;
+        readAll += read;
+        totalAll += total;
         const text = formatText(island.texts.progressText, { read, total });
         all(scoped(HOOK.progressCount, courseId)).forEach((el) => {
           el.textContent = text;
@@ -92,6 +103,24 @@ const json = JSON.stringify(island).replace(/</gu, '\\u003c');
           el.hidden = !complete;
         });
       }
+
+      const heroDone = totalAll > 0 && readAll === totalAll;
+      heroTarget = heroFill(readAll, totalAll);
+      if (heroStarted) {
+        setHero();
+      } else {
+        heroStarted = true;
+        requestAnimationFrame(() => requestAnimationFrame(setHero));
+      }
+      all(`[${HOOK.heroMeter}]`).forEach((meter) => {
+        meter.dataset.state = heroDone ? 'complete' : readAll > 0 ? 'growing' : 'idle';
+      });
+      all(`[${HOOK.heroStatus}]`).forEach((status) => {
+        status.hidden = readAll === 0;
+        status.textContent = heroDone
+          ? island.texts.heroDoneText
+          : formatText(island.texts.progressText, { read: readAll, total: totalAll });
+      });
 
       // A marker that names its course, as on the home page, shows that course's progress on any page.
       all(`[${HOOK.readMarker}][${HOOK.courseId}]`).forEach((marker) => {

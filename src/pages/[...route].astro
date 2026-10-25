@@ -2,6 +2,7 @@
 import { getCollection, render } from 'astro:content';
 import { CourseBreadcrumb } from '@/components/course/CourseBreadcrumb';
 import { CourseCard } from '@/components/course/CourseCard';
+import { HomeSlogan } from '@/components/course/HomeSlogan';
 import { HomeSteps } from '@/components/course/HomeSteps';
 import { LanguageBand } from '@/components/course/LanguageBand';
 import { ContinueButton } from '@/components/course/ContinueButton';
@@ -72,13 +73,10 @@ const island = buildProgressIsland(locale, { courseId: course?.id, lessonId: les
 ---
 
 {route.kind === 'home' && (
-  <BaseLayout title={SITE_NAME} description={SITE_DESCRIPTION} route={route} width="wide">
+  <BaseLayout title={`${SITE_NAME}: ${ui.homeSloganLead}${ui.homeSloganHero}`} description={SITE_DESCRIPTION} route={route} width="wide">
     <div class="flex flex-col gap-12 lg:gap-16">
       <header class="grid gap-10 border-b pb-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:items-end lg:gap-x-8 lg:pb-14">
-        <div>
-          <h1 class="m-0 text-[clamp(2.5rem,7vw,4rem)] leading-[1.05] font-bold tracking-[-0.025em] text-balance">{SITE_NAME}</h1>
-          <p class="mt-5 mb-0 max-w-[34rem] text-lg text-pretty">{ui.homePurpose}</p>
-        </div>
+        <HomeSlogan lead={ui.homeSloganLead} hero={ui.homeSloganHero} sub={ui.homeSloganSub} purpose={ui.homePurpose} />
         <HomeSteps heading={ui.homeStepsHeading} steps={[ui.homeStep1, ui.homeStep2, ui.homeStep3, ui.homeStep4]} />
       </header>
       <section aria-labelledby="home-courses-heading" class="flex flex-col gap-6">

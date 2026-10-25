@@ -13,6 +13,8 @@ export const HOOK = {
   lessonEnd: 'data-lesson-end',
   courseComplete: 'data-course-complete',
   themeToggle: 'data-theme-toggle',
+  heroMeter: 'data-hero-meter',
+  heroStatus: 'data-hero-status',
 } as const;
 
 export type HookName = keyof typeof HOOK;

@@ -38,6 +38,14 @@ export interface ProgressStore {
   refresh(): void;
 }
 
+// How much of the home slogan's hero word is filled for `read` of `total` lessons read across every course, from 0 to 1.
+// The curve is concave so the first lessons visibly move the fill, and it stays below 1 until the last lesson is read.
+export function heroFill(read: number, total: number): number {
+  if (total <= 0 || read <= 0) return 0;
+  if (read >= total) return 1;
+  return Math.min(0.97, (read / total) ** 0.6);
+}
+
 export interface ProgressOptions {
   now?: () => number;
 }

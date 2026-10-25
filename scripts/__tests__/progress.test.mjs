@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
 
 import { SUPPORTED_LOCALES } from '../../src/config/site.ts';
-import { PROGRESS_STORAGE_KEY, createProgressStore } from '../../src/lib/progress.ts';
+import { PROGRESS_STORAGE_KEY, createProgressStore, heroFill } from '../../src/lib/progress.ts';
 
 // A Storage-like object backed by a Map, so a test can read exactly what the store wrote.
 class FakeStorage {
@@ -157,5 +157,24 @@ describe('progress failure cases', () => {
     store.markRead(COURSE, 'l2');
     assert.deepEqual(JSON.parse(storage.raw()).version, 1);
     assert.deepEqual(Object.keys(JSON.parse(storage.raw()).courses[COURSE].read), ['l2']);
+  });
+});
+
+describe('heroFill', () => {
+  it('is empty with nothing read and full only when every lesson is read', () => {
+    assert.equal(heroFill(0, 90), 0);
+    assert.equal(heroFill(0, 0), 0);
+    assert.equal(heroFill(90, 90), 1);
+    assert.ok(heroFill(89, 90) < 1);
+  });
+
+  it('moves visibly for the first lesson and never goes backwards', () => {
+    assert.ok(heroFill(1, 90) > 0.05);
+    let previous = 0;
+    for (let read = 1; read <= 90; read += 1) {
+      const fill = heroFill(read, 90);
+      assert.ok(fill >= previous, `fill went back at ${read}`);
+      previous = fill;
+    }
   });
 });

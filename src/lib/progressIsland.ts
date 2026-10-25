@@ -17,6 +17,7 @@ export interface ProgressIsland {
     restartLabel: string;
     markReadLabel: string;
     markUnreadLabel: string;
+    heroDoneText: string;
   };
 }
 
@@ -58,6 +59,7 @@ export function buildProgressIsland(
       restartLabel: ui.restartLabel,
       markReadLabel: ui.markReadLabel,
       markUnreadLabel: ui.markUnreadLabel,
+      heroDoneText: ui.homeHeroDone,
     },
   };
 }

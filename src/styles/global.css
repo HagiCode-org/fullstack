@@ -377,6 +377,97 @@
   }
 }
 
+/* The home slogan. --hero-fill (0 to 1) is set by ProgressRuntime from the lessons read across every course; it is registered so
+   the fill can ease between values. The hero word is an outline with a Link Blue copy on top, clipped by a hard edge that
+   moves from left to right. With no script the fill stays at zero. */
+@property --hero-fill {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0;
+}
+
+@layer components {
+  .home-hero__title {
+    margin: 0;
+    font-size: clamp(3rem, 9vw, 5rem);
+    line-height: 1.02;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    text-wrap: balance;
+  }
+
+  /* "Zero to" steps back toward Soft Ink as the fill grows. */
+  .home-hero__lead {
+    color: color-mix(in oklab, var(--foreground), var(--muted-foreground) calc(var(--hero-fill) * 100%));
+  }
+
+  .home-hero__word {
+    position: relative;
+    display: block;
+    width: fit-content;
+  }
+
+  .home-hero__base {
+    display: block;
+    color: transparent;
+    -webkit-text-stroke: 0.03em var(--muted-foreground);
+  }
+
+  .home-hero__base::selection {
+    background: var(--primary);
+    -webkit-text-fill-color: var(--primary-foreground);
+  }
+
+  .home-hero__fill {
+    position: absolute;
+    inset: 0;
+    color: var(--primary);
+    -webkit-text-stroke: 0.03em var(--primary);
+    pointer-events: none;
+    user-select: none;
+    /* The box is padded by 0.25em so accents and the stroke are not cut, and the right edge travels from 100% to -0.25em. */
+    clip-path: inset(
+      -0.25em calc((1 - var(--hero-fill)) * 100% - var(--hero-fill) * 0.25em) -0.25em -0.25em
+    );
+  }
+
+  /* Dense CJK glyphs turn to mud under a wide outline and negative tracking: thinner stroke, open spacing. */
+  .home-hero__title:lang(zh),
+  .home-hero__title:lang(ja),
+  .home-hero__title:lang(ko) {
+    letter-spacing: 0.02em;
+  }
+
+  .home-hero__title:lang(zh) :is(.home-hero__base, .home-hero__fill),
+  .home-hero__title:lang(ja) :is(.home-hero__base, .home-hero__fill),
+  .home-hero__title:lang(ko) :is(.home-hero__base, .home-hero__fill) {
+    -webkit-text-stroke-width: 0.008em;
+  }
+
+  /* A pale body inside the thin outline keeps the many-stroke glyphs readable before they are filled. */
+  .home-hero__title:lang(zh) .home-hero__base,
+  .home-hero__title:lang(ko) .home-hero__base {
+    color: color-mix(in oklab, var(--muted-foreground) 24%, transparent);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .home-hero__title {
+      transition: --hero-fill 1500ms var(--ease-out-expo);
+    }
+  }
+
+  @media (forced-colors: active) {
+    .home-hero__base {
+      color: CanvasText;
+      -webkit-text-stroke: 0;
+    }
+
+    .home-hero__fill {
+      display: none;
+    }
+  }
+}
+
 /* The header's theme toggle. Both icons are in the static markup, and the theme decides which one shows: the moon under a
    light theme (a press switches to dark), the sun under a dark one. With no attribute, the system preference decides. */
 @layer components {
