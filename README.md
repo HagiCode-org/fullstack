@@ -12,6 +12,24 @@ Start from zero, follow one short lesson at a time, and keep your place as you g
 - **Ten interface languages.** English, Simplified Chinese, Traditional Chinese, Japanese, Korean, German, French, Spanish, Brazilian Portuguese and Russian. A lesson that has no translation yet is shown in English with a notice saying so.
 - **A light and dark theme toggle.** Without a saved choice, the theme follows your system setting.
 
+## PostHog events
+
+When PostHog is loaded and the visitor has not opted out, the progress writer sends two events. Both are sent from the progress store in `src/lib/progress.ts`, through the site's capture wrapper in `src/lib/posthog-events.ts`.
+
+| Event | Properties | Sent when |
+|-------|------------|-----------|
+| `lesson_marked_read` | `course`, `lesson` (public course and lesson ids) | A lesson is stored as read for the first time, whether the reader marks it or reaches its end. |
+| `course_completed` | `course` | A stored mark makes every lesson of the course read, moving the course from incomplete to complete. |
+
+Deduplication rules:
+
+- A lesson that is already stored as read sends nothing when it is marked again.
+- Restoring progress on page load, a reload of a complete course and a change from another tab send nothing.
+- `course_completed` is sent once per transition. It is sent again only after the course became incomplete (a lesson was marked unread) and then complete again.
+- Nothing is sent when storage is blocked or a write fails. Progress still works in memory for that page.
+- Events carry only the two ids above, never lesson text, notes, URLs or raw storage contents.
+- A click on a link with `data-ga-*` attributes may also produce a `cta_click` event. The business event above is the canonical record of the action; dashboards must not add these events to `cta_click` counts.
+
 ## Courses and their status
 
 Only the first course has finished lessons. The rest are drafts, and learning paths are not published yet.
