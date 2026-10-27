@@ -151,6 +151,7 @@ const json = JSON.stringify(island).replace(/</gu, '\\u003c');
 
     if (current !== undefined && lessonId !== undefined) {
       store.setLast(current, lessonId);
+      const courseLessons = island.courses[current]?.lessons ?? [];
 
       // A restored scroll position would put the end of the body back in view on reload, and an unread lesson would be
       // marked read again without the reader scrolling. The browser therefore starts a lesson at the top.
@@ -161,7 +162,7 @@ const json = JSON.stringify(island).replace(/</gu, '\\u003c');
           if (store.isRead(current, lessonId)) {
             store.markUnread(current, lessonId);
           } else {
-            store.markRead(current, lessonId);
+            store.markRead(current, lessonId, courseLessons);
           }
         });
       });
@@ -173,7 +174,7 @@ const json = JSON.stringify(island).replace(/</gu, '\\u003c');
         const observer = new IntersectionObserver((entries) => {
           if (!entries.some((entry) => entry.isIntersecting)) return;
           observer.disconnect();
-          if (!store.isRead(current, lessonId)) store.markRead(current, lessonId);
+          if (!store.isRead(current, lessonId)) store.markRead(current, lessonId, courseLessons);
         });
         observer.observe(sentinel);
       }

@@ -1,6 +1,8 @@
 // Reading progress kept in the reader's browser. The record holds course ids and lesson ids only, never a locale,
 // so every language on this origin reads and writes the same entries.
 
+import { captureSiteEvent } from './posthog-events.ts';
+
 export const PROGRESS_STORAGE_KEY = 'hagicode-fullstack:progress';
 export const PROGRESS_VERSION = 1;
 
@@ -25,7 +27,8 @@ export interface ProgressStore {
   readonly persisted: boolean;
   load(): ProgressRecord;
   isRead(courseId: string, lessonId: string): boolean;
-  markRead(courseId: string, lessonId: string): void;
+  // `lessonIds` is the course's lesson list in reading order. It lets the store tell when this mark completes the course.
+  markRead(courseId: string, lessonId: string, lessonIds?: readonly string[]): void;
   markUnread(courseId: string, lessonId: string): void;
   setLast(courseId: string, lessonId: string): void;
   // Counts only the lessons in `lessonIds`, so entries for removed lessons do not change the result.
@@ -49,6 +52,7 @@ export function heroFill(read: number, total: number): number {
 export interface ProgressOptions {
   now?: () => number;
 }
+
 
 export function emptyRecord(): ProgressRecord {
   return { version: PROGRESS_VERSION, courses: {} };
@@ -105,22 +109,26 @@ export function createProgressStore(storage: StorageLike | null, options: Progre
     persisted = text !== undefined;
   };
 
-  const write = () => {
+  // Returns whether the record reached storage.
+  const write = (): boolean => {
     if (storage === null) {
       persisted = false;
-      return;
+      return false;
     }
     try {
       storage.setItem(PROGRESS_STORAGE_KEY, JSON.stringify(record));
       persisted = true;
+      return true;
     } catch {
       persisted = false;
+      return false;
     }
   };
 
-  const changed = () => {
-    write();
+  const changed = (): boolean => {
+    const saved = write();
     for (const listener of listeners) listener();
+    return saved;
   };
 
   const course = (courseId: string): CourseProgress => {
@@ -136,9 +144,16 @@ export function createProgressStore(storage: StorageLike | null, options: Progre
     },
     load: () => record,
     isRead: (courseId, lessonId) => Object.hasOwn(record.courses[courseId]?.read ?? {}, lessonId),
-    markRead(courseId, lessonId) {
-      course(courseId).read[lessonId] = now();
-      changed();
+    markRead(courseId, lessonId, lessonIds = []) {
+      const wasRead = Object.hasOwn(record.courses[courseId]?.read ?? {}, lessonId);
+      const entry = course(courseId);
+      entry.read[lessonId] = now();
+      const saved = changed();
+      // Events fire only for a new mark that reached storage. A blocked or failed write leaves nothing to report.
+      if (!saved || wasRead) return;
+      captureSiteEvent('lesson_marked_read', { course: courseId, lesson: lessonId });
+      const completes = lessonIds.includes(lessonId) && lessonIds.every((id) => Object.hasOwn(entry.read, id));
+      if (completes) captureSiteEvent('course_completed', { course: courseId });
     },
     markUnread(courseId, lessonId) {
       const entry = record.courses[courseId];
