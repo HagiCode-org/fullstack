@@ -162,7 +162,7 @@ A cool-tinted workbook: an ink-blue action colour and pale blue-gray surfaces ma
 
 ### Theme state
 
-The active theme is `data-theme="light"` or `data-theme="dark"` on `<html>`. Tokens, the `dark:` variant and `color-scheme` all read that one attribute. Light values sit on `:root`. Dark values sit under `:root[data-theme="dark"]` and again under `@media (prefers-color-scheme: dark)` for `:root:not([data-theme])`, which covers a visitor with no stored choice and no script. The two dark lists name the same tokens, and `npm test` checks that. The reader's choice is stored as `hagicode-fullstack:theme`. Without a choice the page follows the system.
+The active theme is `data-theme="light"` or `data-theme="dark"` on `<html>`. Tokens, the `dark:` variant and `color-scheme` all read that one attribute. Light values sit on `:root`. Dark values sit under `:root[data-theme="dark"]` and again under `@media (prefers-color-scheme: dark)` for `:root:not([data-theme])`, which covers a visitor with no stored choice and no script. The two dark lists name the same tokens, and `pnpm test` checks that. The reader's choice is stored as `hagicode-fullstack:theme`. Without a choice the page follows the system.
 
 ### Named Rules
 **The Blue Role Rule.** Blue carries links, primary actions, focus and progress because each helps the reader move or see state. Pale blue-gray is reserved for surfaces; no extra accent hue is added for decoration.
@@ -285,7 +285,7 @@ Rendered Markdown inside the article: unordered and ordered lists get a 1.5rem i
 - **Do** let labels wrap or truncate deliberately for ten locales; use `min-w-0` in flex and grid children and `whitespace-normal` on buttons that carry titles.
 - **Do** keep primary actions full width below `sm` and auto width from `sm`.
 - **Do** put a navigable tree in the sidebar pane and let everything else live in the one measured column.
-- **Do** add new shadcn primitives with `npx shadcn add <name>` and keep the `radix-nova` style.
+- **Do** add new shadcn primitives with `pnpm dlx shadcn add <name>` and keep the `radix-nova` style.
 
 ### Don't:
 - **Don't** make the main pane scroll inside its own box; the window scrolls.
