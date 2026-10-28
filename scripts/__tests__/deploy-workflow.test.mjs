@@ -43,10 +43,10 @@ describe('fullstack deploy workflow contract', () => {
   });
 
   it('verifies the build before staging the payload', () => {
-    assert.match(build, /run: npm run verify\b/u);
+    assert.match(build, /run: pnpm run verify\b/u);
     assert.match(build, /HAGILIGHT_BUILD_BRANCH: \$\{\{ github\.ref_name \}\}/u);
     assert.match(build, /run: node scripts\/assemble-gh-pages-payload\.mjs/u);
-    assert.ok(build.indexOf('npm run verify') < build.indexOf('assemble-gh-pages-payload'));
+    assert.ok(build.indexOf('pnpm run verify') < build.indexOf('assemble-gh-pages-payload'));
   });
 
   it('keeps the build job read-only and uploads the staged payload', () => {
@@ -68,7 +68,7 @@ describe('fullstack deploy workflow contract', () => {
   });
 
   it('warms the domains after publication', () => {
-    assert.match(deploy, /run: npm run deploy:warmup -- --summary-markdown/u);
+    assert.match(deploy, /run: pnpm run deploy:warmup --summary-markdown/u);
     assert.ok(deploy.indexOf('peaceiris/actions-gh-pages@v4') < deploy.indexOf('deploy:warmup'));
   });
 

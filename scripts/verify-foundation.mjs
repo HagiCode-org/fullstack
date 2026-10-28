@@ -1,4 +1,4 @@
-// Checks the foundation facts of the built site. Run after `npm run build`; `npm run verify` does both.
+// Checks the foundation facts of the built site. Run after `pnpm run build`; `pnpm run verify` does both.
 import { existsSync, readFileSync, statSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -62,7 +62,7 @@ expect(
 for (const name of HAGILIGHT_PACKAGES) {
   const installedManifest = join(root, 'node_modules', name, 'package.json');
   if (!fileExists(installedManifest)) {
-    failures.push(`${name} is not installed; run npm install`);
+    failures.push(`${name} is not installed; run pnpm install`);
     continue;
   }
   const installed = readJson(installedManifest).version;
@@ -72,7 +72,7 @@ for (const name of HAGILIGHT_PACKAGES) {
 const indexPage = join(dist, 'index.html');
 if (!fileExists(indexPage)) {
   console.error('verify-foundation: failed');
-  console.error('  - dist/index.html is missing; run npm run build first');
+  console.error('  - dist/index.html is missing; run pnpm run build first');
   process.exit(1);
 }
 const html = readFileSync(indexPage, 'utf8');
