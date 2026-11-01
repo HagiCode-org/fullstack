@@ -31,8 +31,7 @@
 | ✏️ 调整 | `publish-your-website/publish-on-every-push` 每次推送自动发布 | 调整:并入原“初识 Actions 与 Pages”里的 GitHub Actions 介绍 |
 | 🆕 新增 | `app-with-data/front-end-and-back-end` 前端和后端 | 拆分:由原“前端、后端和数据库”拆成两课(旧 id `front-end-back-end-and-database` 作废) |
 | 🆕 新增 | `app-with-data/database-and-api` 数据库与 API | 拆分:同上 |
-| ✏️ 调整 | `add-ai-features/keep-keys-and-costs-safe` 保管好密钥，控制好费用 | 调整顺序:提前到“让第一版跑起来”之前,先保管好密钥再创建密钥 |
-| ✏️ 调整 | `add-ai-features/first-version` 让第一版跑起来 | 调整:紧随“保管密钥”之后;明确说明可能产生少量费用,并要求先设好消费上限(已决定不提供免费方案) |
+| ✏️ 调整 | `add-ai-features/first-version` 让第一版跑起来 | 调整:把最关键的两步前置——创建密钥之前先在服务里设好消费上限,并确定密钥放在项目文件之外;明确说明可能产生少量费用(已决定不提供免费方案)。完整的复查和泄露预案仍在后面的“保管好密钥,控制好费用” |
 | ✏️ 调整 | `github-collaboration/work-on-a-branch` 在分支上工作 | 移动:由“GitHub Desktop 与 GitHub”移到本课(课程路径变化,阅读进度需迁移) |
 | ✏️ 调整 | `github-collaboration/open-a-pull-request` 发起 Pull Request 并查看改动 | 移动:同上;可顺带练习“审阅 AI 做出的改动” |
 | ✏️ 调整 | `github-collaboration/issues-forks-and-open-source` Issue、Fork 与开源 | 移动:同上 |
@@ -774,7 +773,7 @@
 - 课程 id:`add-ai-features`
 - 类型:主线
 - 状态:📝 草稿
-- **概述**:给小应用加上 AI 功能:先了解模型常识、写功能说明,在接入前先学会保管密钥和控制费用,再接入模型 API 让第一版跑起来(课程会说明可能产生的少量费用,并要求先设好消费上限),然后加第二个能力并学会判断输出好不好。
+- **概述**:给小应用加上 AI 功能:先了解模型常识、写功能说明,再接入模型 API 让第一版跑起来(创建密钥之前先设好消费上限,密钥放在项目文件之外,课程会说明可能产生的少量费用),然后加第二个能力、系统地复查密钥与费用,并学会判断输出好不好。
 
 ##### See the finished feature(先看做好的功能)  `see-the-finished-feature`
 
@@ -809,28 +808,17 @@
   - You have at least three test inputs with the answers you would accept.
 - **复习测验**:[`quizzes/add-ai-features/write-the-feature-brief.md`](quizzes/add-ai-features/write-the-feature-brief.md)(3 道单选)
 
-##### Keep keys and costs safe(保管好密钥，控制好费用)  `keep-keys-and-costs-safe`
-
-- **概述**:把 API 密钥当银行卡号一样保密,并给费用设上限。
-- **标记**:✏️ 调整顺序:提前到“让第一版跑起来”之前,先保管好密钥再创建密钥
-- **小节**:What you will do
-- **自检标准**:
-  - The key is not in any project file that is saved to GitHub or shown on the website.
-  - You set a spending limit and an alert at the service.
-  - The feature rejects a very long text instead of sending it.
-  - You have your three-line leak plan written down.
-- **复习测验**:[`quizzes/add-ai-features/keep-keys-and-costs-safe.md`](quizzes/add-ai-features/keep-keys-and-costs-safe.md)(3 道单选)
-
 ##### Get the first version working(让第一版跑起来)  `first-version`
 
-- **概述**:选择可用的模型服务,说明可能产生的少量费用并先设好消费上限,按前一课的方法保管 API 密钥,让应用里的第一个 AI 功能在本机跑起来。
-- **标记**:✏️ 调整:紧随“保管密钥”之后;明确说明可能产生少量费用,并要求先设好消费上限(已决定不提供免费方案)
+- **概述**:选择可用的模型服务,说明可能产生的少量费用;创建密钥之前先设好消费上限,并把密钥放在项目文件之外;让应用里的第一个 AI 功能在本机跑起来。
+- **标记**:✏️ 调整:把最关键的两步前置——创建密钥之前先在服务里设好消费上限,并确定密钥放在项目文件之外;明确说明可能产生少量费用(已决定不提供免费方案)。完整的复查和泄露预案仍在后面的“保管好密钥,控制好费用”
 - **小节**:What you will do
 - **自检标准**:
   - Your app shows an answer from the model for your first test input.
   - The key is not written in any project file you can see.
   - A failure, such as turning off your internet, shows the plain message from your brief.
   - You saved a checkpoint after it worked.
+  - 创建密钥之前,你已经在服务那里设好了消费上限。
 - **复习测验**:[`quizzes/add-ai-features/first-version.md`](quizzes/add-ai-features/first-version.md)(3 道单选)
 
 ##### Add a second ability(再加第二个能力)  `add-a-second-ability`
@@ -843,6 +831,17 @@
   - The brief describes both abilities, including what each must never do.
   - You saved a checkpoint after both worked.
 - **复习测验**:[`quizzes/add-ai-features/add-a-second-ability.md`](quizzes/add-ai-features/add-a-second-ability.md)(3 道单选)
+
+##### Keep keys and costs safe(保管好密钥，控制好费用)  `keep-keys-and-costs-safe`
+
+- **概述**:把 API 密钥当银行卡号一样保密,并给费用设上限。
+- **小节**:What you will do
+- **自检标准**:
+  - The key is not in any project file that is saved to GitHub or shown on the website.
+  - You set a spending limit and an alert at the service.
+  - The feature rejects a very long text instead of sending it.
+  - You have your three-line leak plan written down.
+- **复习测验**:[`quizzes/add-ai-features/keep-keys-and-costs-safe.md`](quizzes/add-ai-features/keep-keys-and-costs-safe.md)(3 道单选)
 
 ##### Judge the output(判断输出好不好)  `judge-the-output`
 

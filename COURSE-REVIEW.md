@@ -40,7 +40,7 @@
 | 6 发布你的网站 | 一次讲 3 种发布方式加域名和 HTTPS;“域名、DNS、CDN、HTTPS”四个词挤在一课 | 主线只保留“GitHub Pages + 一条自动发布路径”;gh-pages 分支、Cloudflare、阿里云 ESA、域名与 HTTPS 作为**进阶选修**;加“一个网页是怎样被打开的”(请求与响应,只讲直觉) | P1 |
 | 8 带数据库的应用 | 前端、后端、数据库、API、端口 5 个新词在一课里出现 | 拆成两课:先前端和后端,再数据库和 API | P1 |
 | 9 用另一种语言做同一个应用 | 引入运行时、依赖、虚拟环境;Windows 上装 Python 常遇路径问题;对入门价值最低。而“不读代码也能验收”这个能力其实更值得提前教 | 降为**选修**;把“不读代码也能验收”并入“与 AI 搭档开发” | P1 |
-| 10 给应用加上 AI 功能 | 要注册模型服务、拿 API 密钥、可能付费 | **已决定不提供免费方案**:课程说明可能产生的少量费用,并要求先设好消费上限;把“保管密钥”放到密钥出现之前 | P1 |
+| 10 给应用加上 AI 功能 | 要注册模型服务、拿 API 密钥、可能付费 | **已决定不提供免费方案**:课程说明可能产生的少量费用;创建密钥之前先设好消费上限,并确定密钥放在项目文件之外。(**更正**:我此前建议把“保管好密钥”整课提前,核对正文后发现不可行——那一课的步骤假设密钥已经存在,所以改为只把最关键的两步前置到“让第一版跑起来”,整课保持原位置) | P1 |
 | 11 毕业项目 | 只到“上线”,没有展示 | 增加“把成果讲给别人”(README、演示、项目说明、作品集链接),再加一课小组协作(用 Pull Request 互相看改动) | P1 |
 
 ## 四、建议新增的内容
@@ -73,7 +73,7 @@
 5. 发布你的网站(精简为主线)
 6. 你的第一个 Web 应用
 7. 带数据库的应用(拆成两课)
-8. 给应用加上 AI 功能(保管密钥提前)
+8. 给应用加上 AI 功能(创建密钥前先设好消费上限)
 9. GitHub 协作:分支与 Pull Request(**新增课程**,由原 GitHub 课拆出)
 10. 毕业项目(+ 展示与协作)
 
@@ -89,3 +89,20 @@
 - **课时 id 是稳定标识**:挪动顺序不影响阅读进度和链接,改名或合并会影响。
 - **“学生已会基础电脑操作”是你的判断**,课程里没有数据支撑。建议让 3 到 5 个目标学生走完 Docker 课的前三课,看他们在哪里卡住,再决定补强的力度。
 - 以上建议基于草稿大纲和我读过的部分正文,没有通读全部 90 篇。
+
+## 八、落地时需要同步修改的正文引用(已核对)
+
+调整顺序和拆分课程之后,下面这些现有正文里的说法会失效,写 `src/courses/` 时要一并改。我只检查了正文里点名引用其他课程、下一课或前一步骤的地方,没有通读全部 90 多篇,所以这份清单不一定完整。
+
+| 现有课时 | 会失效的内容 | 需要怎么改 |
+|----------|--------------|------------|
+| `docker-for-beginners/what-is-docker` | “Open a terminal” 小节;末尾“Go on to Install Docker” | 终端小节移到新课 `terminal-basics`;下一课改为 `check-your-computer` |
+| `docker-for-beginners/install-docker` | 末尾“Go on to Your first container” | 下一课改为 `terminal-basics` |
+| `first-website/first-version` | 末尾“Go on to Add a projects section” | 下一课改为新课 `peek-at-the-files` |
+| `publish-your-website/how-publishing-works` | 第 3 步“note the two paths you will meet later”(Cloudflare 与阿里云 ESA) | 这两条路径现在是进阶选修,需要改写 |
+| `add-ai-features/first-version` | 第 1 步“The next lessons explain where it goes”(密钥) | 改成在这一课里先设好消费上限、确定密钥放在项目文件之外,后面的复查课再系统检查 |
+| `app-with-data/front-end-back-end-and-database` | 一张包含前端、后端、数据库、API、端口的词汇卡 | 拆成 `front-end-and-back-end` 和 `database-and-api` 两课,旧 id 作废 |
+| `github-desktop-and-github/actions-and-pages-preview` | “You will do that in the publishing course.” | 内容并入 `publish-on-every-push` 与 `publish-with-github-pages`,旧课时作废 |
+| `work-on-a-branch`、`open-a-pull-request`、`issues-forks-and-open-source` | 课程路径从 `github-desktop-and-github` 变为 `github-collaboration` | 改课程路径;阅读进度需要迁移 |
+
+已核对、**不需要改**的:`build-with-ai/keep-control` 仍然指向“Your First Website”;`capstone-project` 里要求用分支和 Pull Request,GitHub 协作课现在排在它之前;`app-with-data` 和 `build-with-ai` 里“in the GitHub course”引用的是提交和存档,仍在 GitHub 基础课里。
