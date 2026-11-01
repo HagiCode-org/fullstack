@@ -1,63 +1,122 @@
 # HagiCode Fullstack 课程路线与大纲
 
 > 这是课程的**设计稿**:先在这里调整路线和每课大纲,确定要填什么内容,再去 `src/courses/` 里落地。
-> 下面的内容由现有 `src/courses/*/outline.ts` 与各课 en-US 正文整理而来(共 11 门课程),不是新增内容。
-> 每门课程、每个分组、每个课时都有一段「概述」(中文总结,依据现有草稿正文撰写,可直接改);「小节」和「自检标准」仍取自现有正文。
-> 每个课时有 3 道单选「复习测验」,各自单独存放在 `quizzes/<课程 id>/<课时 id>.md`(含答案和解析),为初稿,依据课时概述与自检标准编写,正式落地前需对照正文逐题核对。
+> 本稿在现有 `src/courses/*/outline.ts` 与各课 en-US 草稿正文的基础上,落实了 `COURSE-REVIEW.md` 中的调整:共 12 门课程(主线 10、选修 2)、97 个课时(其中新增 9 个)。
+> 每门课程、每个分组、每个课时都有一段「概述」(中文总结,可直接改);「小节」和「自检标准」取自现有正文,新增课时为新写。每个课时有 3 道单选「复习测验」,单独存放在 `quizzes/<课程 id>/<课时 id>.md`(含答案和解析),为初稿,落地前需对照正文逐题核对。
+> 标记:🆕 新增(尚无正文);✏️ 调整(现有课时有改动,正文待同步);🔹 选修。其余为沿用现有课时。
 > 状态:✅ 已完成正文;📝 草稿(正文只是大纲,待扩写和核对事实)。
 
 ## 如何用这份文档
 
-1. 先看「课程路线」,决定课程顺序、增删课程、是否分出多条学习路径。
-2. 再逐门课程改「大纲」:课时标题、目标、要覆盖的小节、学完后的自检标准。
-3. 定稿后再改 `outline.ts` 和正文;课时 id(反引号里的名字)是稳定标识,改它会影响阅读进度和链接,改标题则不会。
-4. 带 ❓ 的是需要你拍板的问题。
+1. 先看「本次调整一览」,确认每一项调整是否符合预期。
+2. 再看「课程路线」和「学习路径」,决定课程顺序、选修划分与路径。
+3. 逐门课程改「大纲」:课时标题、概述、小节、自检标准。
+4. 定稿后再改 `outline.ts` 和正文。课时 id(反引号里的名字)是稳定标识,改它会影响阅读进度和链接,改标题则不会;本稿有 2 个现有课时被并入或拆分,其旧 id 会作废。
+
+## 本次调整一览
+
+**前提**:学生从 Docker 开始学;读者是未来的开发者,会基础电脑操作但没有用过终端;交付方式是**学生自学**(不按学期或课堂安排来设计);不新增“电脑基础”课,也不加“聊天 AI 体验”。
+
+| 类型 | 课时 | 说明 |
+|------|------|------|
+| ✏️ 调整 | `docker-for-beginners/what-is-docker` 什么是 Docker？ | 调整:原“打开终端”小节移到新增的“终端第一课”;第一段改为先讲“你会得到什么”,术语后置并配类比 |
+| 🆕 新增 | `docker-for-beginners/check-your-computer` 你的电脑能装 Docker 吗 | 新增课时 |
+| 🆕 新增 | `docker-for-beginners/terminal-basics` 终端第一课 | 新增课时 |
+| 🆕 新增 | `docker-for-beginners/read-errors-and-ask-for-help` 读懂报错,学会求助 | 新增课时 |
+| ✏️ 调整 | `github-desktop-and-github/what-are-git-and-github` 什么是 Git 和 GitHub | 调整:概述明确包含“注册 GitHub 账号并开启二次验证”(现有自检标准已含此项,此前评审误判为缺失) |
+| ✏️ 调整 | `build-with-ai/choose-an-ai-coding-assistant` 选择 AI 编程助手 | 调整:扩成“怎么选 AI 助手”,新增费用与计费方式、能否稳定访问(含国内可用性)、数据与隐私政策、怎样更换,并提供选择对照表;不新增聊天 AI 体验 |
+| ✏️ 调整 | `build-with-ai/check-the-result` 验收结果 | 调整:并入原“另一种语言”课里最有价值的能力——不读代码也能验收(用固定输入对比预期输出) |
+| 🆕 新增 | `first-website/peek-at-the-files` 看一眼 AI 做出的文件 | 新增课时 |
+| 🆕 新增 | `publish-your-website/how-a-page-opens` 一个网页是怎样被打开的 | 新增课时 |
+| ✏️ 调整 | `publish-your-website/publish-on-every-push` 每次推送自动发布 | 调整:并入原“初识 Actions 与 Pages”里的 GitHub Actions 介绍 |
+| 🆕 新增 | `app-with-data/front-end-and-back-end` 前端和后端 | 拆分:由原“前端、后端和数据库”拆成两课(旧 id `front-end-back-end-and-database` 作废) |
+| 🆕 新增 | `app-with-data/database-and-api` 数据库与 API | 拆分:同上 |
+| ✏️ 调整 | `add-ai-features/keep-keys-and-costs-safe` 保管好密钥，控制好费用 | 调整顺序:提前到“让第一版跑起来”之前,先保管好密钥再创建密钥 |
+| ✏️ 调整 | `add-ai-features/first-version` 让第一版跑起来 | 调整:紧随“保管密钥”之后;明确说明可能产生少量费用,并要求先设好消费上限(已决定不提供免费方案) |
+| ✏️ 调整 | `github-collaboration/work-on-a-branch` 在分支上工作 | 移动:由“GitHub Desktop 与 GitHub”移到本课(课程路径变化,阅读进度需迁移) |
+| ✏️ 调整 | `github-collaboration/open-a-pull-request` 发起 Pull Request 并查看改动 | 移动:同上;可顺带练习“审阅 AI 做出的改动” |
+| ✏️ 调整 | `github-collaboration/issues-forks-and-open-source` Issue、Fork 与开源 | 移动:同上 |
+| 🆕 新增 | `capstone-project/show-your-work` 把成果讲给别人 | 新增课时 |
+| 🆕 新增 | `capstone-project/team-collaboration` 小组协作 | 新增课时 |
+| ➖ 并入/拆分 | `github-desktop-and-github/actions-and-pages-preview` | 内容并入 publish-your-website 的 publish-on-every-push 与 publish-with-github-pages |
+| ➖ 并入/拆分 | `app-with-data/front-end-back-end-and-database` | 拆成 front-end-and-back-end 与 database-and-api |
+| 🔹 改为选修 | `publish-your-website/the-gh-pages-branch` 使用 gh-pages 分支发布 | 选修,不影响主线 |
+| 🔹 改为选修 | `publish-your-website/publish-with-cloudflare` 路径 A：用 Cloudflare 发布 | 选修,不影响主线 |
+| 🔹 改为选修 | `publish-your-website/publish-with-aliyun-esa` 路径 B（中国大陆）：用阿里云 ESA 发布 | 选修,不影响主线 |
+| 🔹 改为选修 | `publish-your-website/custom-domain-and-https` 自定义域名与 HTTPS（选做） | 选修,不影响主线 |
+| 🔹 改为选修 | `publish-your-website/choose-where-to-publish` 选择发布位置 | 选修,不影响主线 |
+| 🆕 新增课程 | `github-collaboration` GitHub 协作:分支与 Pull Request | 由原“GitHub Desktop 与 GitHub”拆出,放在“与 AI 搭档开发”之后;原课程只保留基础 |
+| 🔹 整门选修 | `docker-self-hosted-apps`、`another-language` | 移出主线,放在选修 |
 
 ## 课程路线
 
-当前站点按下表顺序展示课程,后一门默认承接前一门。学习路径(把课程组成有序路线、含“多选一”步骤)的数据结构已有,但**还没有定义任何路径**。
+| # | 类型 | 课程 id | 课程 | 课时(含选修) | 状态 |
+|---|------|---------|------|--------------|------|
+| 1 | 主线 | `docker-for-beginners` | Docker for Beginners / Docker 入门 | 15,新增 3 | ✅ 现有课时已完成,新增课时待写 |
+| 2 | 主线 | `github-desktop-and-github` | GitHub Desktop and GitHub / GitHub Desktop 与 GitHub | 5 | 📝 草稿 |
+| 3 | 主线 | `build-with-ai` | Build with an AI Partner / 与 AI 搭档开发 | 7 | 📝 草稿 |
+| 4 | 主线 | `first-website` | Your First Website / 你的第一个网站 | 9,新增 1 | 📝 草稿 |
+| 5 | 主线 | `publish-your-website` | Publish Your Website / 发布你的网站 | 10(选修 5),新增 1 | 📝 草稿 |
+| 6 | 主线 | `first-web-app` | Your First Web App / 你的第一个 Web 应用 | 8 | 📝 草稿 |
+| 7 | 主线 | `app-with-data` | An App with a Database / 带数据库的应用 | 9,新增 2 | 📝 草稿 |
+| 8 | 主线 | `add-ai-features` | Add AI Features to Your App / 给应用加上 AI 功能 | 8 | 📝 草稿 |
+| 9 | 主线 | `github-collaboration` | GitHub: Branches and Pull Requests / GitHub 协作:分支与 Pull Request | 3(选修 1) | 📝 草稿(新增课程) |
+| 10 | 主线 | `capstone-project` | Capstone: Build and Launch Your Own App / 毕业项目：做出并上线你自己的应用 | 8(选修 1),新增 2 | 📝 草稿 |
+| 11 | 选修 | `docker-self-hosted-apps` | Run Ready-Made Apps with Docker / 用 Docker 部署现成应用 | 7 | 📝 草稿 |
+| 12 | 选修 | `another-language` | The Same App in Another Language / 用另一种语言做同一个应用 | 8 | 📝 草稿 |
 
-| # | 课程 id | 课程 | 课时 | 状态 |
-|---|---------|------|------|------|
-| 1 | `docker-for-beginners` | Docker for Beginners / Docker 入门 | 12 | ✅ 已完成 |
-| 2 | `docker-self-hosted-apps` | Run Ready-Made Apps with Docker / 用 Docker 部署现成应用 | 7 | 📝 草稿 |
-| 3 | `github-desktop-and-github` | GitHub Desktop and GitHub / GitHub Desktop 与 GitHub | 9 | 📝 草稿 |
-| 4 | `build-with-ai` | Build with an AI Partner / 与 AI 搭档开发 | 7 | 📝 草稿 |
-| 5 | `first-website` | Your First Website / 你的第一个网站 | 8 | 📝 草稿 |
-| 6 | `publish-your-website` | Publish Your Website / 发布你的网站 | 9 | 📝 草稿 |
-| 7 | `first-web-app` | Your First Web App / 你的第一个 Web 应用 | 8 | 📝 草稿 |
-| 8 | `app-with-data` | An App with a Database / 带数据库的应用 | 8 | 📝 草稿 |
-| 9 | `another-language` | The Same App in Another Language / 用另一种语言做同一个应用 | 8 | 📝 草稿 |
-| 10 | `add-ai-features` | Add AI Features to Your App / 给应用加上 AI 功能 | 8 | 📝 草稿 |
-| 11 | `capstone-project` | Capstone: Build and Launch Your Own App / 毕业项目：做出并上线你自己的应用 | 6 | 📝 草稿 |
+主线按编号 1–10 顺序学习;11–12 是选修课程,可在对应主线课程之后按需选学。
 
-### 学习路径(待设计)
+### 学习路径
 
-- ❓ 是否需要多条路径?例如“零基础全栈”“只想部署自己的应用”等。
-- ❓ 哪些步骤是“多选一”(例如选哪一款 AI 编程软件)?对应的并列课程要不要新建?
-- ❓ 每条路径包含哪几门课程、顺序如何?
+站点已有学习路径的数据结构(课程步骤、多选一步骤),但还没有定义任何路径。建议定义下面三条;“选哪款 AI 助手”由“与 AI 搭档开发”第 1 课负责,不做成多选一的路径步骤。
 
-| 路径 id | 名称 | 步骤(按顺序;多选一用 `A / B`) |
-|---------|------|--------------------------------|
-| _待定_ | | |
+| 路径 id | 名称 | 步骤 |
+|---------|------|------|
+| `quick-start` | 快速上手 | Docker 入门 → GitHub Desktop 与 GitHub(基础)→ 与 AI 搭档开发 → 你的第一个网站 → 发布你的网站(只学到这里,就能拿到一个公开的网站) |
+| `build-apps` | 做出应用 | 快速上手的全部课程 → 你的第一个 Web 应用 → 带数据库的应用 → 给应用加上 AI 功能 → GitHub 协作 → 毕业项目 |
+| `electives` | 进阶选修 | 用 Docker 部署现成应用 / 用另一种语言做同一个应用 / 发布进阶(gh-pages、Cloudflare、阿里云 ESA、域名与 HTTPS)/ Issue、Fork 与开源 / 小组协作(不分先后,按需选学) |
+
+## 站点功能需求(待实现)
+
+- **术语表**:每个新词有一句话解释和一个生活类比,正文里的术语可点开。
+- **每课预计用时和成果提示**:15–30 分钟,“本课你会得到什么”。
+- **自学支持**:每门课程页写明预计总用时和“学完你会得到什么”;“怎样求助”一课要写明学生在哪里能得到帮助(渠道待定);测验的答案和解析用于自测。
+- **每课新词不超过 3 个**,第一课的第一段不放陌生词;操作类课时分 Windows / Mac 两套命令。
+- **正文先只写 en-US**(已决定):其他语言以后再补,缺译时站点现有机制会显示英文并带提示。本稿的大纲、概述和测验用中文,仅作设计用。
 
 ## 课程大纲
 
 ### 1. Docker for Beginners(Docker 入门)
 
 - 课程 id:`docker-for-beginners`
-- 状态:✅ 已完成正文
-- **概述**:从零开始认识 Docker:装好之后,把 Nginx、PostgreSQL 和 Node.js 当作容器跑起来,再用网络和 Docker Compose 把它们连成一套服务,最后学会排错和清理。是整个系列的工具基础。
+- 类型:主线
+- 状态:✅ 现有课时已完成正文;新增课时待写
+- **概述**:从零开始认识 Docker,作为整个系列的入口:先检查电脑、学会用终端和读报错,再把 Nginx、PostgreSQL 和 Node.js 当作容器跑起来,用网络和 Docker Compose 连成一套服务,最后学会排错和清理。
 
 #### 分组:Get started(快速开始)  `get-started`
 
-- **概述**:认识 Docker、在自己的系统上装好它,并运行、查看、删除第一个容器。
+- **概述**:检查电脑、认识终端、装好 Docker,运行并删除第一个容器,学会读报错和求助。
 
 ##### What is Docker?(什么是 Docker？)  `what-is-docker`
 
 - **概述**:用通俗的话解释容器是什么、为什么用它,并介绍后面会遇到的基本词汇和如何打开终端。
-- **小节**:Words you will meet / Open a terminal
+- **标记**:✏️ 调整:原“打开终端”小节移到新增的“终端第一课”;第一段改为先讲“你会得到什么”,术语后置并配类比
+- **小节**:Words you will meet
 - **复习测验**:[`quizzes/docker-for-beginners/what-is-docker.md`](quizzes/docker-for-beginners/what-is-docker.md)(3 道单选)
+
+##### Can your computer run Docker?(你的电脑能装 Docker 吗)  `check-your-computer`
+
+- **概述**:安装之前先检查系统版本、内存与磁盘、是否允许安装软件(受管控的托管电脑常被禁止)以及 Windows 的虚拟化;课程不提供其他环境,所有练习都在你自己的电脑上进行,所以不满足要求时需要先换一台满足要求的电脑。具体要求以 Docker 官方页面为准。
+- **标记**:🆕 新增,尚无正文
+- **小节**:系统与版本 / 内存与磁盘空间 / 是否允许安装软件 / Windows:虚拟化与 WSL 2 / 不满足要求怎么办:换一台满足要求的电脑
+- **自检标准**:
+  - 你知道自己电脑的系统和版本
+  - 你确认了可用内存和磁盘空间
+  - 你知道自己能不能在这台电脑上安装软件
+  - 你知道虚拟化是否可用(Windows)
+  - 如果这台电脑不满足要求,你知道需要换一台电脑再继续
+- **复习测验**:[`quizzes/docker-for-beginners/check-your-computer.md`](quizzes/docker-for-beginners/check-your-computer.md)(3 道单选)
 
 ##### Install Docker(安装 Docker)  `install-docker`
 
@@ -65,11 +124,34 @@
 - **小节**:Windows / macOS / Linux / Check it worked
 - **复习测验**:[`quizzes/docker-for-beginners/install-docker.md`](quizzes/docker-for-beginners/install-docker.md)(3 道单选)
 
+##### Your first look at the terminal(终端第一课)  `terminal-basics`
+
+- **概述**:把终端当作一个新工具来认识:怎样在 Windows 和 Mac 上打开它,怎样原样复制并运行一条命令,怎样看懂输出,以及怎样用 Ctrl+C 停掉正在运行的命令。
+- **标记**:🆕 新增,尚无正文
+- **小节**:什么是终端 / 在 Windows 上打开 / 在 Mac 上打开 / 运行第一条命令 / 复制、粘贴与回车 / 停止正在运行的命令(Ctrl+C)
+- **自检标准**:
+  - 你能自己打开终端
+  - 你能粘贴并运行一条命令
+  - 你能指出输出里的第一行说了什么
+  - 你知道怎样用 Ctrl+C 停止命令
+- **复习测验**:[`quizzes/docker-for-beginners/terminal-basics.md`](quizzes/docker-for-beginners/terminal-basics.md)(3 道单选)
+
 ##### Your first container(第一个容器)  `your-first-container`
 
 - **概述**:运行官方的 hello-world 测试容器,学会查看正在运行和已停止的容器,并把它删除。
 - **小节**:Step 1: Check that Docker answers / Step 2: Run the test container / Step 3: List the running containers / Step 4: List all containers, including stopped ones / Step 5: Remove the container / What you learned
 - **复习测验**:[`quizzes/docker-for-beginners/your-first-container.md`](quizzes/docker-for-beginners/your-first-container.md)(3 道单选)
+
+##### Read an error and ask for help(读懂报错,学会求助)  `read-errors-and-ask-for-help`
+
+- **概述**:红色文字不一定是坏事。学会在报错里找到关键的一行,原样复制它,再连同“你做了什么、期望什么、实际发生了什么、你的系统”向 AI、同学或社区求助。
+- **标记**:🆕 新增,尚无正文
+- **小节**:报错长什么样 / 找到关键的一行 / 原样复制,不要转述 / 求助时要带上什么 / 截图和文字各在什么时候用
+- **自检标准**:
+  - 你能在一段报错里指出关键的一行
+  - 你原样复制过一条报错,没有改写
+  - 你能写出一条包含四项信息的求助
+- **复习测验**:[`quizzes/docker-for-beginners/read-errors-and-ask-for-help.md`](quizzes/docker-for-beginners/read-errors-and-ask-for-help.md)(3 道单选)
 
 #### 分组:Run services(运行服务)  `run-services`
 
@@ -141,92 +223,17 @@
 - **小节**:Step 1: Remove the Compose services and their data / Step 2: Remove every container the course started / Step 3: Remove the network the course created / Step 4: Remove the volumes the course created / Step 5: Check that nothing is left / Where to learn next
 - **复习测验**:[`quizzes/docker-for-beginners/clean-up-and-next-steps.md`](quizzes/docker-for-beginners/clean-up-and-next-steps.md)(3 道单选)
 
-### 2. Run Ready-Made Apps with Docker(用 Docker 部署现成应用)
-
-- 课程 id:`docker-self-hosted-apps`
-- 状态:📝 草稿
-- **概述**:把 Docker 用在“自己托管现成应用”上:读懂应用的 compose 文件,部署 Reactive Resume,配置并保管密钥,做好备份、升级和恢复,再把同一套流程用到更多应用上。
-
-##### Why run apps yourself(为什么要自己运行应用)  `why-self-host`
-
-- **概述**:说明什么是自托管、为什么值得自己运行应用,以及自托管需要承担哪些责任。
-- **小节**:What you will do
-- **自检标准**:
-  - You can explain self-hosting in one sentence to a friend.
-  - You can name two benefits and two costs.
-  - You have a written shortlist of one to three apps and can say which one you would try first.
-- **复习测验**:[`quizzes/docker-self-hosted-apps/why-self-host.md`](quizzes/docker-self-hosted-apps/why-self-host.md)(3 道单选)
-
-##### Understand an app’s compose file with AI(让 AI 帮你读懂应用的 compose 文件)  `read-the-compose-file`
-
-- **概述**:让 AI 帮你读懂应用自带的 compose 文件:它需要哪些容器、彼此如何连接。
-- **小节**:What you will do
-- **自检标准**:
-  - Your note answers all four questions: ports, where data lives, passwords, how to back up.
-  - You found each answer in the file and did not rely on the AI alone.
-  - You can say which service in the file is the database and which is the app.
-- **复习测验**:[`quizzes/docker-self-hosted-apps/read-the-compose-file.md`](quizzes/docker-self-hosted-apps/read-the-compose-file.md)(3 道单选)
-
-##### Deploy Reactive Resume(部署 Reactive Resume)  `deploy-reactive-resume`
-
-- **概述**:以开源简历工具 Reactive Resume 为例,部署一个由多个容器组成的真实应用。
-- **小节**:What you will do
-- **自检标准**:
-  - The app opens in your browser at an address on your own computer.
-  - You can see all of its containers running in Docker.
-  - You made a test resume and it is still there after you refresh the page.
-- **复习测验**:[`quizzes/docker-self-hosted-apps/deploy-reactive-resume.md`](quizzes/docker-self-hosted-apps/deploy-reactive-resume.md)(3 道单选)
-
-##### Configure it and keep secrets safe(配置应用并保管好密钥)  `configure-and-keep-secrets`
-
-- **概述**:认识应用所需的密钥(数据库密码、会话密钥等),学会修改默认值并妥善保管,不让它们泄露。
-- **小节**:What you will do
-- **自检标准**:
-  - No example password or key remains in your `.env` file.
-  - Your new secrets are saved in a password manager.
-  - `.env` is listed in `.gitignore`.
-  - The app still opens after the restart.
-- **复习测验**:[`quizzes/docker-self-hosted-apps/configure-and-keep-secrets.md`](quizzes/docker-self-hosted-apps/configure-and-keep-secrets.md)(3 道单选)
-
-##### Back up, upgrade and restore(备份、升级与恢复)  `back-up-upgrade-restore`
-
-- **概述**:给应用数据做备份、把应用升级到新版本,并演练升级失败时如何退回。
-- **小节**:What you will do
-- **自检标准**:
-  - You have a backup file stored outside Docker.
-  - You have restored it at least once in a test copy.
-  - You know the version you are running and where to change it.
-- **复习测验**:[`quizzes/docker-self-hosted-apps/back-up-upgrade-restore.md`](quizzes/docker-self-hosted-apps/back-up-upgrade-restore.md)(3 道单选)
-
-##### Try more apps(再试几个应用)  `try-more-apps`
-
-- **概述**:把同一套流程(找官方说明、读 compose、四项检查、改密钥、做备份)用到另外两个应用上,并学会安装前评估一个应用。
-- **小节**:What you will do
-- **自检标准**:
-  - Memos runs and keeps a note after a restart.
-  - You can name the four checks and applied them to each new app.
-  - You set a spending limit before entering any key that costs money.
-- **复习测验**:[`quizzes/docker-self-hosted-apps/try-more-apps.md`](quizzes/docker-self-hosted-apps/try-more-apps.md)(3 道单选)
-
-##### Troubleshoot an app(排查应用故障)  `troubleshoot-an-app`
-
-- **概述**:总结应用起不来或页面打不开时最常见的几类原因,以及如何逐项排查。
-- **小节**:What you will do
-- **自检标准**:
-  - You can find and read the log of one container.
-  - You can say what a port conflict is and how to fix it.
-  - You solved one deliberately broken setup, such as a wrong port, using your own steps.
-- **复习测验**:[`quizzes/docker-self-hosted-apps/troubleshoot-an-app.md`](quizzes/docker-self-hosted-apps/troubleshoot-an-app.md)(3 道单选)
-
-### 3. GitHub Desktop and GitHub(GitHub Desktop 与 GitHub)
+### 2. GitHub Desktop and GitHub(GitHub Desktop 与 GitHub)
 
 - 课程 id:`github-desktop-and-github`
+- 类型:主线
 - 状态:📝 草稿
-- **概述**:用 GitHub Desktop 点鼠标完成 Git 与 GitHub 的日常工作:克隆、提交、分支、Pull Request、撤销,并初步了解 Issue、Fork、开源以及 Actions 与 Pages。目的是让你在 AI 改乱文件时能随时退回。
+- **概述**:GitHub 基础:用 GitHub Desktop 点鼠标完成日常工作——注册账号并开启二次验证,安装并登录,克隆仓库,提交,以及撤销和找回旧内容。目的是让你在 AI 改乱文件时能随时退回。分支和 Pull Request 放在紧随其后的“GitHub 协作”课。
 
 ##### What are Git and GitHub(什么是 Git 和 GitHub)  `what-are-git-and-github`
 
-- **概述**:说明为什么和 AI 协作时需要安全地试改并能退回,以及 Git 与 GitHub 各自解决什么问题。
+- **概述**:说明为什么和 AI 协作时需要安全地试改并能退回,Git 与 GitHub 各解决什么问题,并注册 GitHub 账号、开启二次验证。
+- **标记**:✏️ 调整:概述明确包含“注册 GitHub 账号并开启二次验证”(现有自检标准已含此项,此前评审误判为缺失)
 - **小节**:What you will do
 - **自检标准**:
   - You can explain the difference between Git and GitHub in one sentence each.
@@ -264,26 +271,6 @@
   - The commits are visible on the GitHub website after pushing.
 - **复习测验**:[`quizzes/github-desktop-and-github/commit-your-changes.md`](quizzes/github-desktop-and-github/commit-your-changes.md)(3 道单选)
 
-##### Work on a branch(在分支上工作)  `work-on-a-branch`
-
-- **概述**:在分支上做改动,让主线 main 始终保持可用的版本。
-- **小节**:What you will do
-- **自检标准**:
-  - You have a branch with a clear name and at least one commit on it.
-  - You saw the README differ between `main` and your branch.
-  - The branch is visible on GitHub.
-- **复习测验**:[`quizzes/github-desktop-and-github/work-on-a-branch.md`](quizzes/github-desktop-and-github/work-on-a-branch.md)(3 道单选)
-
-##### Open a pull request and read the changes(发起 Pull Request 并查看改动)  `open-a-pull-request`
-
-- **概述**:发起 Pull Request 请求把分支合入 main,并在页面上审阅具体改了什么。
-- **小节**:What you will do
-- **自检标准**:
-  - You opened a pull request and wrote a clear description.
-  - You read all of the changes before merging.
-  - `main` on GitHub and on your computer now contain your work.
-- **复习测验**:[`quizzes/github-desktop-and-github/open-a-pull-request.md`](quizzes/github-desktop-and-github/open-a-pull-request.md)(3 道单选)
-
 ##### Undo a change and restore old work(撤销改动并找回旧内容)  `undo-and-restore`
 
 - **概述**:撤销改动、找回旧内容,体会存档点“什么都不会丢”的意义。
@@ -294,40 +281,23 @@
   - You can explain why committing often makes undoing easier.
 - **复习测验**:[`quizzes/github-desktop-and-github/undo-and-restore.md`](quizzes/github-desktop-and-github/undo-and-restore.md)(3 道单选)
 
-##### Issues, forks and open source(Issue、Fork 与开源)  `issues-forks-and-open-source`
-
-- **概述**:了解 Issue、Fork 与开源:如何阅读、使用并改进别人公开的项目。
-- **小节**:What you will do
-- **自检标准**:
-  - You wrote one clear issue.
-  - You have a fork of a project and a branch with a small change in it.
-  - You can say what the licence of one project lets you do.
-- **复习测验**:[`quizzes/github-desktop-and-github/issues-forks-and-open-source.md`](quizzes/github-desktop-and-github/issues-forks-and-open-source.md)(3 道单选)
-
-##### A first look at Actions and Pages(初识 Actions 与 Pages)  `actions-and-pages-preview`
-
-- **概述**:初步认识 GitHub Actions(事件触发的自动任务)和 GitHub Pages(把仓库变成网站),为后面发布网站做铺垫。
-- **小节**:What you will do
-- **自检标准**:
-  - You can find the Actions tab and tell a passed run from a failed one.
-  - You can explain in one sentence what GitHub Pages does.
-  - You know where the Pages settings live in a repository.
-- **复习测验**:[`quizzes/github-desktop-and-github/actions-and-pages-preview.md`](quizzes/github-desktop-and-github/actions-and-pages-preview.md)(3 道单选)
-
-### 4. Build with an AI Partner(与 AI 搭档开发)
+### 3. Build with an AI Partner(与 AI 搭档开发)
 
 - 课程 id:`build-with-ai`
+- 类型:主线
 - 状态:📝 草稿
-- **概述**:学会和 AI 编程助手协作的通用方法:选助手、写清晰的需求、让第一版跑起来、小步迭代、出错时回退、验收结果,并明确哪些决定必须自己把关。后面所有做项目的课程都沿用这套方法。
+- **概述**:学会和 AI 编程助手协作的通用方法:怎么选并装好助手、写清晰的需求、让第一版跑起来、小步迭代、出错时回退、不读代码也能验收,并明确哪些决定必须自己把关。后面所有做项目的课程都沿用这套方法。
 
 ##### Choose an AI coding assistant(选择 AI 编程助手)  `choose-an-ai-coding-assistant`
 
-- **概述**:了解 AI 编程助手是什么、选择时看哪些方面,以及费用方面的注意点。
-- **小节**:What to look for / A note on cost / What you will do
+- **概述**:了解 AI 编程助手是什么,并学会怎么选:除了“能改文件、能展示改动、能运行”,还要比较费用与计费方式、能否稳定访问(含国内可用性)、数据与隐私政策、以后怎样更换;然后装好一个,让它创建第一个文件。
+- **标记**:✏️ 调整:扩成“怎么选 AI 助手”,新增费用与计费方式、能否稳定访问(含国内可用性)、数据与隐私政策、怎样更换,并提供选择对照表;不新增聊天 AI 体验
+- **小节**:What to look for / 费用与计费方式 / 能否稳定访问 / 数据与隐私政策 / 怎样更换助手 / 选择对照表 / What you will do
 - **自检标准**:
   - The assistant is installed and you are signed in.
   - A file named `hello.txt` exists in your `my-first-site` folder, and you saw it yourself.
   - You know what using this assistant may cost you.
+  - 你填好了一张选择对照表,并写下为什么选它。
 - **复习测验**:[`quizzes/build-with-ai/choose-an-ai-coding-assistant.md`](quizzes/build-with-ai/choose-an-ai-coding-assistant.md)(3 道单选)
 
 ##### Write a clear brief(写一份清晰的需求)  `write-a-clear-brief`
@@ -372,8 +342,9 @@
 
 ##### Check the result(验收结果)  `check-the-result`
 
-- **概述**:助手说“完成”只代表它的判断,学会设计好的检查方法,并知道自检仍然离不开你。
-- **小节**:Good and bad checks / What you will do / Why the self-review still needs you
+- **概述**:助手说“完成”只代表它的判断。学会设计好的检查方法,并学会在不读代码的情况下验收:用固定的输入对比预期输出;知道自检仍然离不开你。
+- **标记**:✏️ 调整:并入原“另一种语言”课里最有价值的能力——不读代码也能验收(用固定输入对比预期输出)
+- **小节**:Good and bad checks / 不读代码也能验收 / What you will do / Why the self-review still needs you
 - **自检标准**:
   - Every line of your checklist is ticked, and you saw each one yourself.
   - You read the assistant's self-review and acted on it.
@@ -390,11 +361,12 @@
   - You asked what a deleting or paid action does before approving it.
 - **复习测验**:[`quizzes/build-with-ai/keep-control.md`](quizzes/build-with-ai/keep-control.md)(3 道单选)
 
-### 5. Your First Website(你的第一个网站)
+### 4. Your First Website(你的第一个网站)
 
 - 课程 id:`first-website`
+- 类型:主线
 - 状态:📝 草稿
-- **概述**:和 AI 搭档做出一个个人主页:先看成品、写需求,得到第一版后加上作品栏目、适配手机、修复一个预设问题,最后验收存档,并用挑战课独立做一个不同的网站。
+- **概述**:和 AI 搭档做出一个个人主页:先看成品、写需求,得到第一版后看一眼 AI 做出的文件,再加上作品栏目、适配手机、修复一个预设问题,最后验收存档,并用挑战课独立做一个不同的网站。
 
 ##### See the finished site(先看看成品)  `see-the-finished-site`
 
@@ -425,6 +397,17 @@
   - You have a written list of problems with the most important first.
   - A commit named `First version` appears in your GitHub Desktop history.
 - **复习测验**:[`quizzes/first-website/first-version.md`](quizzes/first-website/first-version.md)(3 道单选)
+
+##### A first look at the files the AI made(看一眼 AI 做出的文件)  `peek-at-the-files`
+
+- **概述**:只读不写:用生活类比认识 HTML(结构)、CSS(样式)和 JavaScript(行为)三类文件各管什么,学会让 AI 逐个解释它们,并自己核对解释是否对得上页面。
+- **标记**:🆕 新增,尚无正文
+- **小节**:HTML:页面的结构 / CSS:页面的样式 / JavaScript:页面的行为 / 让 AI 解释一个文件,并自己核对
+- **自检标准**:
+  - 你能说出三类文件各管什么
+  - 你能在项目文件夹里找到这三类文件
+  - 你能请 AI 用一句话解释某个文件,并对照页面核实
+- **复习测验**:[`quizzes/first-website/peek-at-the-files.md`](quizzes/first-website/peek-at-the-files.md)(3 道单选)
 
 ##### Add a projects section(添加作品栏目)  `add-a-projects-section`
 
@@ -476,11 +459,27 @@
   - You ticked every line of your checklist by looking at the site yourself.
 - **复习测验**:[`quizzes/first-website/variation-challenge.md`](quizzes/first-website/variation-challenge.md)(3 道单选)
 
-### 6. Publish Your Website(发布你的网站)
+### 5. Publish Your Website(发布你的网站)
 
 - 课程 id:`publish-your-website`
+- 类型:主线
 - 状态:📝 草稿
-- **概述**:把网站放到公网上:先理解发布的原理,再依次学习 GitHub Pages、推送即自动发布、gh-pages 分支,以及 Cloudflare(路径 A)和阿里云 ESA(路径 B,中国大陆)两条发布路径,并学会选择位置和排查问题。
+- **概述**:把网站放到公网上。主线只学一条路:理解网页是怎样被打开的和发布的原理,用 GitHub Pages 发布,并让每次推送自动发布(含 GitHub Actions 是什么),再学会排查发布问题。gh-pages 分支、Cloudflare、阿里云 ESA、域名与 HTTPS 作为进阶选修。
+
+#### 分组:Main line(主线)  `publish-main`
+
+- **概述**:理解发布的原理,用 GitHub Pages 发布并自动化,学会排错。
+
+##### How a web page gets to your screen(一个网页是怎样被打开的)  `how-a-page-opens`
+
+- **概述**:用直觉讲清楚:浏览器向服务器发出请求,服务器把页面文件返回,浏览器把它显示出来;并认识网址由哪几部分组成。只讲直觉,不讲协议细节。
+- **标记**:🆕 新增,尚无正文
+- **小节**:网址的组成 / 请求与响应 / 浏览器做了什么 / 为什么别人暂时打不开你电脑上的网站
+- **自检标准**:
+  - 你能说出网址里哪一段是域名
+  - 你能用自己的话描述“请求与响应”
+  - 你知道为什么本地文件别人打不开
+- **复习测验**:[`quizzes/publish-your-website/how-a-page-opens.md`](quizzes/publish-your-website/how-a-page-opens.md)(3 道单选)
 
 ##### How publishing works(网站是如何发布的)  `how-publishing-works`
 
@@ -504,7 +503,8 @@
 
 ##### Publish on every push(每次推送自动发布)  `publish-on-every-push`
 
-- **概述**:改成自动发布:每次推送到主分支,网站自动构建并发布。
+- **概述**:先认识 GitHub Actions(在仓库发生某些事时自动运行任务),再把发布改成自动的:每次推送到主分支,网站自动构建并发布。
+- **标记**:✏️ 调整:并入原“初识 Actions 与 Pages”里的 GitHub Actions 介绍
 - **小节**:What you will do
 - **自检标准**:
   - A push to the main branch starts a run by itself.
@@ -512,55 +512,6 @@
   - You can find the error text in a failed run and give it to your AI assistant.
   - Images and links work at the published address, not only on your computer.
 - **复习测验**:[`quizzes/publish-your-website/publish-on-every-push.md`](quizzes/publish-your-website/publish-on-every-push.md)(3 道单选)
-
-##### Use a gh-pages branch(使用 gh-pages 分支发布)  `the-gh-pages-branch`
-
-- **概述**:了解把成品站点放在独立的 gh-pages 分支上发布的做法。
-- **小节**:What you will do
-- **自检标准**:
-  - You can say why a finished site is kept on its own branch.
-  - Your repository has a `gh-pages` branch that holds only the finished files.
-  - You can find the main branch history untouched after a publication.
-- **复习测验**:[`quizzes/publish-your-website/the-gh-pages-branch.md`](quizzes/publish-your-website/the-gh-pages-branch.md)(3 道单选)
-
-##### Path A: Publish with Cloudflare(路径 A：用 Cloudflare 发布)  `publish-with-cloudflare`
-
-- **概述**:路径 A:面向能顺畅访问 Cloudflare 的读者,用 Cloudflare 发布网站。
-- **小节**:What you will do
-- **自检标准**:
-  - Your site opens at an address on a Cloudflare domain.
-  - A change on a branch has its own preview link.
-  - You went back to an earlier version once, and then forward again.
-- **复习测验**:[`quizzes/publish-your-website/publish-with-cloudflare.md`](quizzes/publish-your-website/publish-with-cloudflare.md)(3 道单选)
-
-##### Path B (mainland China): Publish with Alibaba Cloud ESA(路径 B（中国大陆）：用阿里云 ESA 发布)  `publish-with-aliyun-esa`
-
-- **概述**:路径 B:面向中国大陆读者,用阿里云 ESA 从离访客更近的节点提供网站。
-- **小节**:What you will do
-- **自检标准**:
-  - Your site opens from the address ESA gives you.
-  - ESA reads the `gh-pages` branch, and a new push changes the site.
-  - You know that real-name verification came first and can say why it takes time.
-- **复习测验**:[`quizzes/publish-your-website/publish-with-aliyun-esa.md`](quizzes/publish-your-website/publish-with-aliyun-esa.md)(3 道单选)
-
-##### Custom domain and HTTPS (optional)(自定义域名与 HTTPS（选做）)  `custom-domain-and-https`
-
-- **概述**:选做:给网站绑定自己的域名并启用 HTTPS,免费地址本身已经可用。
-- **小节**:What you will do
-- **自检标准**:
-  - Your own domain opens your site.
-  - The browser shows a padlock.
-  - You know the yearly cost and whether a filing is needed for your path.
-- **复习测验**:[`quizzes/publish-your-website/custom-domain-and-https.md`](quizzes/publish-your-website/custom-domain-and-https.md)(3 道单选)
-
-##### Choose where to publish(选择发布位置)  `choose-where-to-publish`
-
-- **概述**:对比已学的三种发布位置,为下一个项目选定一个。
-- **小节**:A short comparison / What you will do
-- **自检标准**:
-  - You can name one strength and one limit of each service.
-  - You chose a place for your next project and wrote down why.
-- **复习测验**:[`quizzes/publish-your-website/choose-where-to-publish.md`](quizzes/publish-your-website/choose-where-to-publish.md)(3 道单选)
 
 ##### Fix publishing problems(排查发布问题)  `fix-publishing-problems`
 
@@ -572,9 +523,68 @@
   - You know that nothing secret belongs in a website.
 - **复习测验**:[`quizzes/publish-your-website/fix-publishing-problems.md`](quizzes/publish-your-website/fix-publishing-problems.md)(3 道单选)
 
-### 7. Your First Web App(你的第一个 Web 应用)
+#### 分组:Advanced (optional)(进阶(选修))  `publish-advanced`
+
+- **概述**:其他发布方式和域名,按需选学。
+
+##### Use a gh-pages branch(使用 gh-pages 分支发布)  `the-gh-pages-branch`
+
+- **概述**:了解把成品站点放在独立的 gh-pages 分支上发布的做法。
+- **标记**:🔹 选修
+- **小节**:What you will do
+- **自检标准**:
+  - You can say why a finished site is kept on its own branch.
+  - Your repository has a `gh-pages` branch that holds only the finished files.
+  - You can find the main branch history untouched after a publication.
+- **复习测验**:[`quizzes/publish-your-website/the-gh-pages-branch.md`](quizzes/publish-your-website/the-gh-pages-branch.md)(3 道单选)
+
+##### Path A: Publish with Cloudflare(路径 A：用 Cloudflare 发布)  `publish-with-cloudflare`
+
+- **概述**:路径 A:面向能顺畅访问 Cloudflare 的读者,用 Cloudflare 发布网站。
+- **标记**:🔹 选修
+- **小节**:What you will do
+- **自检标准**:
+  - Your site opens at an address on a Cloudflare domain.
+  - A change on a branch has its own preview link.
+  - You went back to an earlier version once, and then forward again.
+- **复习测验**:[`quizzes/publish-your-website/publish-with-cloudflare.md`](quizzes/publish-your-website/publish-with-cloudflare.md)(3 道单选)
+
+##### Path B (mainland China): Publish with Alibaba Cloud ESA(路径 B（中国大陆）：用阿里云 ESA 发布)  `publish-with-aliyun-esa`
+
+- **概述**:路径 B:面向中国大陆读者,用阿里云 ESA 从离访客更近的节点提供网站。
+- **标记**:🔹 选修
+- **小节**:What you will do
+- **自检标准**:
+  - Your site opens from the address ESA gives you.
+  - ESA reads the `gh-pages` branch, and a new push changes the site.
+  - You know that real-name verification came first and can say why it takes time.
+- **复习测验**:[`quizzes/publish-your-website/publish-with-aliyun-esa.md`](quizzes/publish-your-website/publish-with-aliyun-esa.md)(3 道单选)
+
+##### Custom domain and HTTPS (optional)(自定义域名与 HTTPS（选做）)  `custom-domain-and-https`
+
+- **概述**:选做:给网站绑定自己的域名并启用 HTTPS,免费地址本身已经可用。
+- **标记**:🔹 选修
+- **小节**:What you will do
+- **自检标准**:
+  - Your own domain opens your site.
+  - The browser shows a padlock.
+  - You know the yearly cost and whether a filing is needed for your path.
+- **复习测验**:[`quizzes/publish-your-website/custom-domain-and-https.md`](quizzes/publish-your-website/custom-domain-and-https.md)(3 道单选)
+
+##### Choose where to publish(选择发布位置)  `choose-where-to-publish`
+
+- **概述**:对比已学的三种发布位置,为下一个项目选定一个。
+- **标记**:🔹 选修
+- **小节**:A short comparison / What you will do
+- **自检标准**:
+  - You can name one strength and one limit of each service.
+  - You chose a place for your next project and wrote down why.
+- **复习测验**:[`quizzes/publish-your-website/choose-where-to-publish.md`](quizzes/publish-your-website/choose-where-to-publish.md)(3 道单选)
+
+### 6. Your First Web App(你的第一个 Web 应用)
 
 - 课程 id:`first-web-app`
+- 类型:主线
 - 状态:📝 草稿
 - **概述**:和 AI 搭档做出第一个在浏览器里运行的小应用(记账或待办):从需求到第一版,加上刷新后保留数据、筛选与合计,修复一个预设问题,验收后发布,最后用挑战课独立再做一个不同的小工具。
 
@@ -659,11 +669,12 @@
   - You can explain, in your own words, the loop you used: describe, run, check, save.
 - **复习测验**:[`quizzes/first-web-app/variation-challenge.md`](quizzes/first-web-app/variation-challenge.md)(3 道单选)
 
-### 8. An App with a Database(带数据库的应用)
+### 7. An App with a Database(带数据库的应用)
 
 - 课程 id:`app-with-data`
+- 类型:主线
 - 状态:📝 草稿
-- **概述**:做一个会“记住东西”的应用(留言板或书签管理器):理解前端、后端和数据库三部分,用 Docker Compose 跑起第一版,再添加功能、修复预设问题、保护并备份数据,最后独立做一个不同的数据应用。
+- **概述**:做一个会“记住东西”的应用(留言板或书签管理器):分两步理解前端、后端、数据库和 API,用 Docker Compose 跑起第一版,再添加功能、修复预设问题、保护并备份数据,最后独立做一个不同的数据应用。
 
 ##### See the finished app(看看完成的应用)  `see-the-finished-app`
 
@@ -675,15 +686,26 @@
   - You know that the app runs only on your computer in this course.
 - **复习测验**:[`quizzes/app-with-data/see-the-finished-app.md`](quizzes/app-with-data/see-the-finished-app.md)(3 道单选)
 
-##### Front end, back end and database(前端、后端和数据库)  `front-end-back-end-and-database`
+##### Front end and back end(前端和后端)  `front-end-and-back-end`
 
-- **概述**:介绍带数据的应用由前端、后端和数据库三部分组成;不需要懂内部原理,只需认识它们。
-- **小节**:Words you will meet / What you will do
+- **概述**:认识应用的前端和后端各做什么,以及它们怎样各自监听一个端口;不需要懂内部原理,只需要认识它们。(由原“前端、后端和数据库”拆出)
+- **标记**:🆕 新增,尚无正文;✏️ 拆分:由原“前端、后端和数据库”拆成两课(旧 id `front-end-back-end-and-database` 作废)
+- **小节**:Words you will meet:前端、后端、端口 / What you will do
 - **自检标准**:
-  - You can say which part you see and which part stores the data.
-  - You can explain why the same page still shows your entries after a reload.
-  - You can say what a port number is for.
-- **复习测验**:[`quizzes/app-with-data/front-end-back-end-and-database.md`](quizzes/app-with-data/front-end-back-end-and-database.md)(3 道单选)
+  - 你能说出哪一部分是你看到的,哪一部分在幕后
+  - 你能说出端口的作用
+- **复习测验**:[`quizzes/app-with-data/front-end-and-back-end.md`](quizzes/app-with-data/front-end-and-back-end.md)(3 道单选)
+
+##### The database and the API(数据库与 API)  `database-and-api`
+
+- **概述**:认识数据库怎样把数据保存下来,API 是前端和后端约定的“对话方式”,并能解释为什么刷新页面后条目仍然在。(由原“前端、后端和数据库”拆出)
+- **标记**:🆕 新增,尚无正文;✏️ 拆分:同上
+- **小节**:Words you will meet:数据库、API / 为什么刷新后条目还在 / What you will do
+- **自检标准**:
+  - 你能说出哪一部分负责保存数据
+  - 你能解释为什么刷新后条目仍然在
+  - 你能说出 API 是什么
+- **复习测验**:[`quizzes/app-with-data/database-and-api.md`](quizzes/app-with-data/database-and-api.md)(3 道单选)
 
 ##### Write the app brief(写应用需求说明)  `write-the-app-brief`
 
@@ -747,11 +769,322 @@
   - You finished without copying an example from the course.
 - **复习测验**:[`quizzes/app-with-data/variation-challenge.md`](quizzes/app-with-data/variation-challenge.md)(3 道单选)
 
-### 9. The Same App in Another Language(用另一种语言做同一个应用)
+### 8. Add AI Features to Your App(给应用加上 AI 功能)
+
+- 课程 id:`add-ai-features`
+- 类型:主线
+- 状态:📝 草稿
+- **概述**:给小应用加上 AI 功能:先了解模型常识、写功能说明,在接入前先学会保管密钥和控制费用,再接入模型 API 让第一版跑起来(课程会说明可能产生的少量费用,并要求先设好消费上限),然后加第二个能力并学会判断输出好不好。
+
+##### See the finished feature(先看做好的功能)  `see-the-finished-feature`
+
+- **概述**:先看要加的 AI 功能,并说明“模型读文字、写出有用回答”指的是什么。
+- **小节**:What you will do
+- **自检标准**:
+  - You used the finished example and wrote down at least one good and one weak answer.
+  - You can say your feature in one sentence, for example "Summarise each note in two lines".
+  - You know which earlier app will receive the feature.
+  - You have a model service you can reach from your computer.
+- **复习测验**:[`quizzes/add-ai-features/see-the-finished-feature.md`](quizzes/add-ai-features/see-the-finished-feature.md)(3 道单选)
+
+##### What builders need to know about models(做应用的人需要了解的模型常识)  `how-models-work-for-builders`
+
+- **概述**:一页纸的名词卡,列出做应用前需要知道的模型常识,不涉及内部原理。
+- **小节**:What you will do
+- **自检标准**:
+  - You can explain all five words without looking at the card.
+  - You know that a model can be wrong while sounding sure.
+  - You wrote one thing each word means for your own feature.
+  - You decided what the app shows when the model fails.
+- **复习测验**:[`quizzes/add-ai-features/how-models-work-for-builders.md`](quizzes/add-ai-features/how-models-work-for-builders.md)(3 道单选)
+
+##### Write the feature brief(写功能说明)  `write-the-feature-brief`
+
+- **概述**:写一份功能说明,写清功能必须做什么、不能做什么,作为助手构建和你验收的依据。
+- **小节**:What you will do
+- **自检标准**:
+  - The brief names the person, the input, the output and one real example.
+  - The brief lists at least three things the feature must never do.
+  - The brief says what the person sees when something fails.
+  - You have at least three test inputs with the answers you would accept.
+- **复习测验**:[`quizzes/add-ai-features/write-the-feature-brief.md`](quizzes/add-ai-features/write-the-feature-brief.md)(3 道单选)
+
+##### Keep keys and costs safe(保管好密钥，控制好费用)  `keep-keys-and-costs-safe`
+
+- **概述**:把 API 密钥当银行卡号一样保密,并给费用设上限。
+- **标记**:✏️ 调整顺序:提前到“让第一版跑起来”之前,先保管好密钥再创建密钥
+- **小节**:What you will do
+- **自检标准**:
+  - The key is not in any project file that is saved to GitHub or shown on the website.
+  - You set a spending limit and an alert at the service.
+  - The feature rejects a very long text instead of sending it.
+  - You have your three-line leak plan written down.
+- **复习测验**:[`quizzes/add-ai-features/keep-keys-and-costs-safe.md`](quizzes/add-ai-features/keep-keys-and-costs-safe.md)(3 道单选)
+
+##### Get the first version working(让第一版跑起来)  `first-version`
+
+- **概述**:选择可用的模型服务,说明可能产生的少量费用并先设好消费上限,按前一课的方法保管 API 密钥,让应用里的第一个 AI 功能在本机跑起来。
+- **标记**:✏️ 调整:紧随“保管密钥”之后;明确说明可能产生少量费用,并要求先设好消费上限(已决定不提供免费方案)
+- **小节**:What you will do
+- **自检标准**:
+  - Your app shows an answer from the model for your first test input.
+  - The key is not written in any project file you can see.
+  - A failure, such as turning off your internet, shows the plain message from your brief.
+  - You saved a checkpoint after it worked.
+- **复习测验**:[`quizzes/add-ai-features/first-version.md`](quizzes/add-ai-features/first-version.md)(3 道单选)
+
+##### Add a second ability(再加第二个能力)  `add-a-second-ability`
+
+- **概述**:再加第二个能力,让应用从“一个功能”更像“一个产品”。
+- **小节**:What you will do
+- **自检标准**:
+  - The second ability works on its own test inputs.
+  - The first ability still gives the answers you accepted before.
+  - The brief describes both abilities, including what each must never do.
+  - You saved a checkpoint after both worked.
+- **复习测验**:[`quizzes/add-ai-features/add-a-second-ability.md`](quizzes/add-ai-features/add-a-second-ability.md)(3 道单选)
+
+##### Judge the output(判断输出好不好)  `judge-the-output`
+
+- **概述**:模型可能说得很肯定却是错的,学会判断输出好不好,不能因为它回答了就相信。
+- **小节**:What you will do
+- **自检标准**:
+  - You have at least ten test inputs, each with an accepted answer.
+  - You can rerun the full list and read the score in a minute.
+  - A change is kept only when the score does not get worse.
+  - You tested one input that tries to give the model new instructions.
+- **复习测验**:[`quizzes/add-ai-features/judge-the-output.md`](quizzes/add-ai-features/judge-the-output.md)(3 道单选)
+
+##### Challenge: add an AI feature to an earlier app(挑战：给之前的应用加一个 AI 功能)  `variation-challenge`
+
+- **概述**:不再给示例,用另一个应用和另一个功能,独立重做整门课程。
+- **小节**:What you will do
+- **自检标准**:
+  - The second app has a working AI feature of a different kind from your first.
+  - The brief and the test list were written before the feature was built.
+  - The key, the spending limit and the input limits are in place.
+  - You finished without copying from an earlier lesson's steps line by line.
+- **复习测验**:[`quizzes/add-ai-features/variation-challenge.md`](quizzes/add-ai-features/variation-challenge.md)(3 道单选)
+
+### 9. GitHub: Branches and Pull Requests(GitHub 协作:分支与 Pull Request)
+
+- 课程 id:`github-collaboration`
+- 类型:主线
+- 状态:📝 草稿(新增课程)
+- **概述**:GitHub 协作(新增课程,由原“GitHub Desktop 与 GitHub”拆出):在做完几个应用之后、毕业项目之前,学习用分支隔离改动、用 Pull Request 审阅 AI 写的改动再合并;“Issue、Fork 与开源”为选修。紧接着的毕业项目要求每个改动都走分支和 Pull Request。
+
+##### Work on a branch(在分支上工作)  `work-on-a-branch`
+
+- **概述**:在分支上做改动,让主线 main 始终保持可用的版本。
+- **标记**:✏️ 移动:由“GitHub Desktop 与 GitHub”移到本课(课程路径变化,阅读进度需迁移)
+- **小节**:What you will do
+- **自检标准**:
+  - You have a branch with a clear name and at least one commit on it.
+  - You saw the README differ between `main` and your branch.
+  - The branch is visible on GitHub.
+- **复习测验**:[`quizzes/github-collaboration/work-on-a-branch.md`](quizzes/github-collaboration/work-on-a-branch.md)(3 道单选)
+
+##### Open a pull request and read the changes(发起 Pull Request 并查看改动)  `open-a-pull-request`
+
+- **概述**:发起 Pull Request 请求把分支合入 main,并在页面上审阅具体改了什么。
+- **标记**:✏️ 移动:同上;可顺带练习“审阅 AI 做出的改动”
+- **小节**:What you will do
+- **自检标准**:
+  - You opened a pull request and wrote a clear description.
+  - You read all of the changes before merging.
+  - `main` on GitHub and on your computer now contain your work.
+- **复习测验**:[`quizzes/github-collaboration/open-a-pull-request.md`](quizzes/github-collaboration/open-a-pull-request.md)(3 道单选)
+
+##### Issues, forks and open source(Issue、Fork 与开源)  `issues-forks-and-open-source`
+
+- **概述**:了解 Issue、Fork 与开源:如何阅读、使用并改进别人公开的项目。
+- **标记**:✏️ 移动:同上;🔹 选修
+- **小节**:What you will do
+- **自检标准**:
+  - You wrote one clear issue.
+  - You have a fork of a project and a branch with a small change in it.
+  - You can say what the licence of one project lets you do.
+- **复习测验**:[`quizzes/github-collaboration/issues-forks-and-open-source.md`](quizzes/github-collaboration/issues-forks-and-open-source.md)(3 道单选)
+
+### 10. Capstone: Build and Launch Your Own App(毕业项目：做出并上线你自己的应用)
+
+- 课程 id:`capstone-project`
+- 类型:主线
+- 状态:📝 草稿
+- **概述**:毕业项目:用前面学到的全部方法,从一个空文件夹做出并上线一个属于你自己的小应用——选题、写需求、小步构建、上线前检查、发布,再把成果讲给别人,最后回顾并整理成下一次可用的清单。
+
+##### Choose your project(选定你的项目)  `choose-your-project`
+
+- **概述**:选定属于自己的小应用,从空文件夹一路做到别人能打开。
+- **小节**:What you will do
+- **自检标准**:
+  - You chose one project and can explain it in one sentence.
+  - You named the person who will use it.
+  - You wrote down at least three things you will not build in the first version.
+  - The project exists on GitHub with its goal written down.
+- **复习测验**:[`quizzes/capstone-project/choose-your-project.md`](quizzes/capstone-project/choose-your-project.md)(3 道单选)
+
+##### Write the spec(写需求说明)  `write-the-spec`
+
+- **概述**:写需求说明:在需求之上再加一份“完成清单”,每一条测试时都能判断真假。
+- **小节**:What you will do
+- **自检标准**:
+  - The spec has who and why, what it does, what it does not do and what it must never do.
+  - Every item of "What it does" has a matching line in the done-checklist.
+  - You asked your assistant to review the spec and you fixed what was fair.
+  - The spec is saved in your project.
+- **复习测验**:[`quizzes/capstone-project/write-the-spec.md`](quizzes/capstone-project/write-the-spec.md)(3 道单选)
+
+##### Build in small steps(小步构建)  `build-in-small-steps`
+
+- **概述**:每次改动都小、都在独立分支、都存档,并通过 Pull Request 审阅。
+- **小节**:What you will do
+- **自检标准**:
+  - Each checklist item was built on its own branch and merged by a pull request.
+  - You read the changes of every pull request before accepting it.
+  - Every ticked item passes when you try it yourself.
+  - Your main version always runs, even if it does not do everything yet.
+- **复习测验**:[`quizzes/capstone-project/build-in-small-steps.md`](quizzes/capstone-project/build-in-small-steps.md)(3 道单选)
+
+##### Check before you ship(上线前的检查)  `check-before-you-ship`
+
+- **概述**:上线前再检查一遍,除了自己的主流程,还要查密钥、数据丢失和意外费用。
+- **小节**:What you will do
+- **自检标准**:
+  - Every line of the done-checklist passes, or is written down as a known gap.
+  - No secret appears in the project, its history or the public part of the app.
+  - A wrong click cannot delete data without a question first.
+  - Every paid service has a spending limit and an alert.
+- **复习测验**:[`quizzes/capstone-project/check-before-you-ship.md`](quizzes/capstone-project/check-before-you-ship.md)(3 道单选)
+
+##### Launch it(上线发布)  `launch`
+
+- **概述**:按发布课程学到的方式把应用发布出去,让别人能在一个地址打开。
+- **小节**:What you will do
+- **自检标准**:
+  - A person who is not you can open your app from a link.
+  - The done-checklist passes on the live address.
+  - You watched someone use it and wrote down what you saw.
+  - If there is a back end, you know it is not on a public server yet, and you did not expose your own computer.
+- **复习测验**:[`quizzes/capstone-project/launch.md`](quizzes/capstone-project/launch.md)(3 道单选)
+
+##### Show your work(把成果讲给别人)  `show-your-work`
+
+- **概述**:为项目写 README、准备一段三分钟内能讲完的演示、写一页项目说明,并把它放进你的作品集,让别人不靠你的解释也能看懂你做了什么。
+- **标记**:🆕 新增,尚无正文
+- **小节**:README 写什么 / 演示怎么做 / 项目说明 / 作品集链接
+- **自检标准**:
+  - 别人只看 README 就知道项目做什么、怎么运行
+  - 你有一段能在三分钟内讲完的演示
+  - 项目说明里写明了你自己把关了哪些事
+- **复习测验**:[`quizzes/capstone-project/show-your-work.md`](quizzes/capstone-project/show-your-work.md)(3 道单选)
+
+##### Work on a project with others(小组协作)  `team-collaboration`
+
+- **概述**:用分支和 Pull Request 让组员互相审阅改动,约定谁改什么,并处理合并时遇到的冲突。适合小组完成项目的同学,个人项目可跳过。
+- **标记**:🆕 新增,尚无正文;🔹 选修
+- **小节**:分工与约定 / 分支与 Pull Request / 审阅别人的改动 / 遇到冲突怎么办
+- **自检标准**:
+  - 你们约定了谁负责哪一部分
+  - 你审阅过组员的一个 Pull Request 并留下了意见
+  - 你处理过一次合并冲突,或能说出处理步骤
+- **复习测验**:[`quizzes/capstone-project/team-collaboration.md`](quizzes/capstone-project/team-collaboration.md)(3 道单选)
+
+##### Look back(回顾总结)  `look-back`
+
+- **概述**:回顾整个项目,把学到的东西整理成下一次可用的检查清单。
+- **小节**:What you will do
+- **自检标准**:
+  - You read the full history of your project.
+  - Your checklist has ten lines or fewer, and each can be answered yes or no.
+  - You can name at least one thing the AI got wrong that you caught.
+  - You wrote the goal of your next project.
+- **复习测验**:[`quizzes/capstone-project/look-back.md`](quizzes/capstone-project/look-back.md)(3 道单选)
+
+### 11. Run Ready-Made Apps with Docker(用 Docker 部署现成应用)
+
+- 课程 id:`docker-self-hosted-apps`
+- 类型:🔹 选修
+- 状态:📝 草稿
+- **概述**:把 Docker 用在“自己托管现成应用”上(选修,紧接 Docker 入门之后,不影响主线):读懂应用的 compose 文件,部署 Reactive Resume,配置并保管密钥,做好备份、升级和恢复,再把同一套流程用到更多应用上。
+
+##### Why run apps yourself(为什么要自己运行应用)  `why-self-host`
+
+- **概述**:说明什么是自托管、为什么值得自己运行应用,以及自托管需要承担哪些责任。
+- **小节**:What you will do
+- **自检标准**:
+  - You can explain self-hosting in one sentence to a friend.
+  - You can name two benefits and two costs.
+  - You have a written shortlist of one to three apps and can say which one you would try first.
+- **复习测验**:[`quizzes/docker-self-hosted-apps/why-self-host.md`](quizzes/docker-self-hosted-apps/why-self-host.md)(3 道单选)
+
+##### Understand an app’s compose file with AI(让 AI 帮你读懂应用的 compose 文件)  `read-the-compose-file`
+
+- **概述**:让 AI 帮你读懂应用自带的 compose 文件:它需要哪些容器、彼此如何连接。
+- **小节**:What you will do
+- **自检标准**:
+  - Your note answers all four questions: ports, where data lives, passwords, how to back up.
+  - You found each answer in the file and did not rely on the AI alone.
+  - You can say which service in the file is the database and which is the app.
+- **复习测验**:[`quizzes/docker-self-hosted-apps/read-the-compose-file.md`](quizzes/docker-self-hosted-apps/read-the-compose-file.md)(3 道单选)
+
+##### Deploy Reactive Resume(部署 Reactive Resume)  `deploy-reactive-resume`
+
+- **概述**:以开源简历工具 Reactive Resume 为例,部署一个由多个容器组成的真实应用。
+- **小节**:What you will do
+- **自检标准**:
+  - The app opens in your browser at an address on your own computer.
+  - You can see all of its containers running in Docker.
+  - You made a test resume and it is still there after you refresh the page.
+- **复习测验**:[`quizzes/docker-self-hosted-apps/deploy-reactive-resume.md`](quizzes/docker-self-hosted-apps/deploy-reactive-resume.md)(3 道单选)
+
+##### Configure it and keep secrets safe(配置应用并保管好密钥)  `configure-and-keep-secrets`
+
+- **概述**:认识应用所需的密钥(数据库密码、会话密钥等),学会修改默认值并妥善保管,不让它们泄露。
+- **小节**:What you will do
+- **自检标准**:
+  - No example password or key remains in your `.env` file.
+  - Your new secrets are saved in a password manager.
+  - `.env` is listed in `.gitignore`.
+  - The app still opens after the restart.
+- **复习测验**:[`quizzes/docker-self-hosted-apps/configure-and-keep-secrets.md`](quizzes/docker-self-hosted-apps/configure-and-keep-secrets.md)(3 道单选)
+
+##### Back up, upgrade and restore(备份、升级与恢复)  `back-up-upgrade-restore`
+
+- **概述**:给应用数据做备份、把应用升级到新版本,并演练升级失败时如何退回。
+- **小节**:What you will do
+- **自检标准**:
+  - You have a backup file stored outside Docker.
+  - You have restored it at least once in a test copy.
+  - You know the version you are running and where to change it.
+- **复习测验**:[`quizzes/docker-self-hosted-apps/back-up-upgrade-restore.md`](quizzes/docker-self-hosted-apps/back-up-upgrade-restore.md)(3 道单选)
+
+##### Try more apps(再试几个应用)  `try-more-apps`
+
+- **概述**:把同一套流程(找官方说明、读 compose、四项检查、改密钥、做备份)用到另外两个应用上,并学会安装前评估一个应用。
+- **小节**:What you will do
+- **自检标准**:
+  - Memos runs and keeps a note after a restart.
+  - You can name the four checks and applied them to each new app.
+  - You set a spending limit before entering any key that costs money.
+- **复习测验**:[`quizzes/docker-self-hosted-apps/try-more-apps.md`](quizzes/docker-self-hosted-apps/try-more-apps.md)(3 道单选)
+
+##### Troubleshoot an app(排查应用故障)  `troubleshoot-an-app`
+
+- **概述**:总结应用起不来或页面打不开时最常见的几类原因,以及如何逐项排查。
+- **小节**:What you will do
+- **自检标准**:
+  - You can find and read the log of one container.
+  - You can say what a port conflict is and how to fix it.
+  - You solved one deliberately broken setup, such as a wrong port, using your own steps.
+- **复习测验**:[`quizzes/docker-self-hosted-apps/troubleshoot-an-app.md`](quizzes/docker-self-hosted-apps/troubleshoot-an-app.md)(3 道单选)
+
+### 12. The Same App in Another Language(用另一种语言做同一个应用)
 
 - 课程 id:`another-language`
+- 类型:🔹 选修
 - 状态:📝 草稿
-- **概述**:让 AI 用 Python 把同一件事再做一遍,练习“看不懂代码也能判断结果好坏”:先理解语言与运行环境,写出与语言无关的需求,运行、扩展、对比两个版本,修复预设问题,最后挑战第三种语言。
+- **概述**:让 AI 用 Python 把同一件事再做一遍(选修):先理解语言与运行环境,写出与语言无关的需求,运行、扩展、对比两个版本,修复预设问题,最后挑战第三种语言。“不读代码也能验收”已并入主线的“验收结果”一课。
 
 ##### See the goal(看看目标)  `see-the-goal`
 
@@ -833,174 +1166,21 @@
   - You wrote down what mattered more than the language.
 - **复习测验**:[`quizzes/another-language/variation-challenge.md`](quizzes/another-language/variation-challenge.md)(3 道单选)
 
-### 10. Add AI Features to Your App(给应用加上 AI 功能)
+## 已确定的决定
 
-- 课程 id:`add-ai-features`
-- 状态:📝 草稿
-- **概述**:给小应用加上 AI 功能:先了解做应用的人需要知道的模型常识,写功能说明,接入模型 API 并让第一版跑起来,再加第二个能力,同时管好密钥和费用,并学会判断输出好不好。
-
-##### See the finished feature(先看做好的功能)  `see-the-finished-feature`
-
-- **概述**:先看要加的 AI 功能,并说明“模型读文字、写出有用回答”指的是什么。
-- **小节**:What you will do
-- **自检标准**:
-  - You used the finished example and wrote down at least one good and one weak answer.
-  - You can say your feature in one sentence, for example "Summarise each note in two lines".
-  - You know which earlier app will receive the feature.
-  - You have a model service you can reach from your computer.
-- **复习测验**:[`quizzes/add-ai-features/see-the-finished-feature.md`](quizzes/add-ai-features/see-the-finished-feature.md)(3 道单选)
-
-##### What builders need to know about models(做应用的人需要了解的模型常识)  `how-models-work-for-builders`
-
-- **概述**:一页纸的名词卡,列出做应用前需要知道的模型常识,不涉及内部原理。
-- **小节**:What you will do
-- **自检标准**:
-  - You can explain all five words without looking at the card.
-  - You know that a model can be wrong while sounding sure.
-  - You wrote one thing each word means for your own feature.
-  - You decided what the app shows when the model fails.
-- **复习测验**:[`quizzes/add-ai-features/how-models-work-for-builders.md`](quizzes/add-ai-features/how-models-work-for-builders.md)(3 道单选)
-
-##### Write the feature brief(写功能说明)  `write-the-feature-brief`
-
-- **概述**:写一份功能说明,写清功能必须做什么、不能做什么,作为助手构建和你验收的依据。
-- **小节**:What you will do
-- **自检标准**:
-  - The brief names the person, the input, the output and one real example.
-  - The brief lists at least three things the feature must never do.
-  - The brief says what the person sees when something fails.
-  - You have at least three test inputs with the answers you would accept.
-- **复习测验**:[`quizzes/add-ai-features/write-the-feature-brief.md`](quizzes/add-ai-features/write-the-feature-brief.md)(3 道单选)
-
-##### Get the first version working(让第一版跑起来)  `first-version`
-
-- **概述**:选择可用的模型服务,拿到 API 密钥,让应用里的第一个 AI 功能在本机跑起来。
-- **小节**:What you will do
-- **自检标准**:
-  - Your app shows an answer from the model for your first test input.
-  - The key is not written in any project file you can see.
-  - A failure, such as turning off your internet, shows the plain message from your brief.
-  - You saved a checkpoint after it worked.
-- **复习测验**:[`quizzes/add-ai-features/first-version.md`](quizzes/add-ai-features/first-version.md)(3 道单选)
-
-##### Add a second ability(再加第二个能力)  `add-a-second-ability`
-
-- **概述**:再加第二个能力,让应用从“一个功能”更像“一个产品”。
-- **小节**:What you will do
-- **自检标准**:
-  - The second ability works on its own test inputs.
-  - The first ability still gives the answers you accepted before.
-  - The brief describes both abilities, including what each must never do.
-  - You saved a checkpoint after both worked.
-- **复习测验**:[`quizzes/add-ai-features/add-a-second-ability.md`](quizzes/add-ai-features/add-a-second-ability.md)(3 道单选)
-
-##### Keep keys and costs safe(保管好密钥，控制好费用)  `keep-keys-and-costs-safe`
-
-- **概述**:把 API 密钥当银行卡号一样保密,并给费用设上限。
-- **小节**:What you will do
-- **自检标准**:
-  - The key is not in any project file that is saved to GitHub or shown on the website.
-  - You set a spending limit and an alert at the service.
-  - The feature rejects a very long text instead of sending it.
-  - You have your three-line leak plan written down.
-- **复习测验**:[`quizzes/add-ai-features/keep-keys-and-costs-safe.md`](quizzes/add-ai-features/keep-keys-and-costs-safe.md)(3 道单选)
-
-##### Judge the output(判断输出好不好)  `judge-the-output`
-
-- **概述**:模型可能说得很肯定却是错的,学会判断输出好不好,不能因为它回答了就相信。
-- **小节**:What you will do
-- **自检标准**:
-  - You have at least ten test inputs, each with an accepted answer.
-  - You can rerun the full list and read the score in a minute.
-  - A change is kept only when the score does not get worse.
-  - You tested one input that tries to give the model new instructions.
-- **复习测验**:[`quizzes/add-ai-features/judge-the-output.md`](quizzes/add-ai-features/judge-the-output.md)(3 道单选)
-
-##### Challenge: add an AI feature to an earlier app(挑战：给之前的应用加一个 AI 功能)  `variation-challenge`
-
-- **概述**:不再给示例,用另一个应用和另一个功能,独立重做整门课程。
-- **小节**:What you will do
-- **自检标准**:
-  - The second app has a working AI feature of a different kind from your first.
-  - The brief and the test list were written before the feature was built.
-  - The key, the spending limit and the input limits are in place.
-  - You finished without copying from an earlier lesson's steps line by line.
-- **复习测验**:[`quizzes/add-ai-features/variation-challenge.md`](quizzes/add-ai-features/variation-challenge.md)(3 道单选)
-
-### 11. Capstone: Build and Launch Your Own App(毕业项目：做出并上线你自己的应用)
-
-- 课程 id:`capstone-project`
-- 状态:📝 草稿
-- **概述**:毕业项目:用前面学到的全部方法,从一个空文件夹做出并上线一个属于你自己的小应用——选题、写需求、小步构建、上线前检查、发布,最后回顾并整理成下一次可用的清单。
-
-##### Choose your project(选定你的项目)  `choose-your-project`
-
-- **概述**:选定属于自己的小应用,从空文件夹一路做到别人能打开。
-- **小节**:What you will do
-- **自检标准**:
-  - You chose one project and can explain it in one sentence.
-  - You named the person who will use it.
-  - You wrote down at least three things you will not build in the first version.
-  - The project exists on GitHub with its goal written down.
-- **复习测验**:[`quizzes/capstone-project/choose-your-project.md`](quizzes/capstone-project/choose-your-project.md)(3 道单选)
-
-##### Write the spec(写需求说明)  `write-the-spec`
-
-- **概述**:写需求说明:在需求之上再加一份“完成清单”,每一条测试时都能判断真假。
-- **小节**:What you will do
-- **自检标准**:
-  - The spec has who and why, what it does, what it does not do and what it must never do.
-  - Every item of "What it does" has a matching line in the done-checklist.
-  - You asked your assistant to review the spec and you fixed what was fair.
-  - The spec is saved in your project.
-- **复习测验**:[`quizzes/capstone-project/write-the-spec.md`](quizzes/capstone-project/write-the-spec.md)(3 道单选)
-
-##### Build in small steps(小步构建)  `build-in-small-steps`
-
-- **概述**:每次改动都小、都在独立分支、都存档,并通过 Pull Request 审阅。
-- **小节**:What you will do
-- **自检标准**:
-  - Each checklist item was built on its own branch and merged by a pull request.
-  - You read the changes of every pull request before accepting it.
-  - Every ticked item passes when you try it yourself.
-  - Your main version always runs, even if it does not do everything yet.
-- **复习测验**:[`quizzes/capstone-project/build-in-small-steps.md`](quizzes/capstone-project/build-in-small-steps.md)(3 道单选)
-
-##### Check before you ship(上线前的检查)  `check-before-you-ship`
-
-- **概述**:上线前再检查一遍,除了自己的主流程,还要查密钥、数据丢失和意外费用。
-- **小节**:What you will do
-- **自检标准**:
-  - Every line of the done-checklist passes, or is written down as a known gap.
-  - No secret appears in the project, its history or the public part of the app.
-  - A wrong click cannot delete data without a question first.
-  - Every paid service has a spending limit and an alert.
-- **复习测验**:[`quizzes/capstone-project/check-before-you-ship.md`](quizzes/capstone-project/check-before-you-ship.md)(3 道单选)
-
-##### Launch it(上线发布)  `launch`
-
-- **概述**:按发布课程学到的方式把应用发布出去,让别人能在一个地址打开。
-- **小节**:What you will do
-- **自检标准**:
-  - A person who is not you can open your app from a link.
-  - The done-checklist passes on the live address.
-  - You watched someone use it and wrote down what you saw.
-  - If there is a back end, you know it is not on a public server yet, and you did not expose your own computer.
-- **复习测验**:[`quizzes/capstone-project/launch.md`](quizzes/capstone-project/launch.md)(3 道单选)
-
-##### Look back(回顾总结)  `look-back`
-
-- **概述**:回顾整个项目,把学到的东西整理成下一次可用的检查清单。
-- **小节**:What you will do
-- **自检标准**:
-  - You read the full history of your project.
-  - Your checklist has ten lines or fewer, and each can be answered yes or no.
-  - You can name at least one thing the AI got wrong that you caught.
-  - You wrote the goal of your next project.
-- **复习测验**:[`quizzes/capstone-project/look-back.md`](quizzes/capstone-project/look-back.md)(3 道单选)
+- Docker 放在最前;读者是未来的开发者,会基础电脑操作但没有用过终端。
+- 不新增“电脑基础”课,也不加“聊天 AI 体验”;“与 AI 搭档开发”第 1 课只扩成“怎么选 AI 助手”。
+- “给应用加上 AI 功能”**不提供免费方案**:课程说明可能产生的少量费用,并要求先设好消费上限;**不给具体金额**,只教学生自己设上限和提醒。
+- **不提供共享服务器或其他备选环境**:所有练习都在学生自己的电脑上进行;“你的电脑能装 Docker 吗”一课只负责让学生提前确认电脑是否满足要求。
+- 课程正文**先只写 en-US**。
+- “读懂报错”和“怎样求助”**合并为一课**。
+- **新增的 9 个课时全部都做**,按优先级逐步扩写正文。
+- **“与 AI 搭档”提前**:把 GitHub 拆成“基础”(5 课)和“协作”(分支、Pull Request);基础留在 AI 搭档之前,协作挪到毕业项目之前。AI 之前的课时从 21 个减到 19 个。
+- **交付方式是学生自学**,不按学期或课堂安排来设计;保留“快速上手”路径,让学习者先拿到一个公开网站。
+- **各课程里的“挑战”课保持在主线,不降为选修。**
+- **GitHub 协作放在毕业项目之前**(紧接“给应用加上 AI 功能”)。
+- **移除了“在学校用 AI”一课**:它是按高校场景加的,而课程并不是面向学校学生的。
 
 ## 待拍板的问题
 
-- ❓ 课程之间的衔接是否合理?有没有该合并、拆分或新增的课程?
-- ❓ 哪些草稿课时只需保留大纲、暂不扩写?扩写的优先顺序?
-- ❓ 每门课程是否都要提供全部 10 种界面语言的正文,还是先只做英文(其余显示英文并带提示)?
+目前没有待拍板的问题。
