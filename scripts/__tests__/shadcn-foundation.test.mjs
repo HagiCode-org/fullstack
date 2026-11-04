@@ -9,7 +9,7 @@ import { cn } from '../../src/lib/utils.ts';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
 
-// Values pinned to repos/web/components.json. Only the CSS entry differs, because the sites are separate repositories.
+// Values pinned to repos/web/web/components.json. Only the CSS entry differs, because the sites are separate repositories.
 const PINNED_CONFIG = {
   style: 'radix-nova',
   rsc: false,
