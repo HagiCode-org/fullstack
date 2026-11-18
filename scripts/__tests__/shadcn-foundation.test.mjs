@@ -247,7 +247,7 @@ describe('shadcn foundation guard catches breakage', () => {
     try {
       const file = path.join(dir, GLOBAL_CSS);
       const css = await readFile(file, 'utf8');
-      await writeFile(file, css.replace(/\n\s*--card-foreground: oklch\(0\.985 0 0\);/u, ''));
+      await writeFile(file, css.replace(/\n\s*--card-foreground: #e5ebf5;/u, ''));
       const failures = await collectFailures(dir);
       assert.ok(failures.some((message) => message.includes('--card-foreground') && message.includes('dark')), failures.join('; '));
     } finally {
@@ -261,7 +261,7 @@ describe('shadcn foundation guard catches breakage', () => {
       const file = path.join(dir, GLOBAL_CSS);
       const css = await readFile(file, 'utf8');
       const fallbackStart = css.indexOf('@media (prefers-color-scheme: dark) {', css.indexOf(':root[data-theme="dark"] {'));
-      const edited = css.slice(0, fallbackStart) + css.slice(fallbackStart).replace(/\n\s*--card-foreground: oklch\(0\.985 0 0\);/u, '');
+      const edited = css.slice(0, fallbackStart) + css.slice(fallbackStart).replace(/\n\s*--card-foreground: #e5ebf5;/u, '');
       await writeFile(file, edited);
       const failures = await collectFailures(dir);
       assert.ok(
