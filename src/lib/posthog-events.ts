@@ -36,8 +36,8 @@ const FORBIDDEN_KEYS: ReadonlySet<string> = new Set([
 
 // Replace the entries below for each site. Keys are snake_case event names (object before action).
 export const SITE_POSTHOG_EVENTS: SiteEventTable = Object.freeze({
-  lesson_marked_read: Object.freeze({ course: { kind: 'string' }, lesson: { kind: 'string' } }),
-  course_completed: Object.freeze({ course: { kind: 'string' } }),
+  lesson_marked_read: Object.freeze({ course: { kind: 'string' as const }, lesson: { kind: 'string' as const } }),
+  course_completed: Object.freeze({ course: { kind: 'string' as const } }),
 });
 
 function readWindowPostHog(): PostHogLike | undefined {
