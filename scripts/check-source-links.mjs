@@ -6,8 +6,10 @@
 //   "network unavailable" and exits with NETWORK_UNAVAILABLE_EXIT (3). Re-run it once the network is back; never skip it.
 // Exit codes: 0 all links ok (warnings allowed), 1 at least one link failed or is off the whitelist, 2 bad arguments,
 // 3 network unavailable.
+// Requests are paced: the start of each request is at least --gap-ms (default 1500, 0 turns pacing off) after the start of
+// the previous one, counted across all workers. The local network refuses bursts of new connections, so an unpaced run fails.
 //
-// Usage: node scripts/check-source-links.mjs [--course <course-id>] [--timeout-ms <ms>]
+// Usage: node scripts/check-source-links.mjs [--course <course-id>] [--timeout-ms <ms>] [--gap-ms <ms>]
 import { readdirSync, realpathSync } from 'node:fs';
 import { join } from 'node:path';
 
@@ -17,7 +19,27 @@ export const NETWORK_UNAVAILABLE_EXIT = 3;
 const DNS_CODES = new Set(['ENOTFOUND', 'EAI_NONAME']);
 const DEFAULT_TIMEOUT_MS = 20000;
 const DEFAULT_CONCURRENCY = 4;
+export const DEFAULT_GAP_MS = 1500;
 const USER_AGENT = 'hagicode-fullstack-source-check/1.0';
+// The clock is injected so tests can move time forward without waiting.
+const REAL_CLOCK = {
+  now: () => performance.now(),
+  sleep: (ms) => new Promise((resolve) => setTimeout(resolve, ms)),
+};
+
+// Global request pacing: wait() resolves once at least gapMs has passed since the previous request was started, by any worker.
+// The slot is claimed in the same synchronous step that ends the wait, so two workers can never start inside one gap.
+// A gap of 0 (or less) returns at once.
+export function createPacer(gapMs, clock = REAL_CLOCK) {
+  let nextAllowed = 0;
+  return {
+    async wait() {
+      if (!(gapMs > 0)) return;
+      while (clock.now() < nextAllowed) await clock.sleep(nextAllowed - clock.now());
+      nextAllowed = clock.now() + gapMs;
+    },
+  };
+}
 
 // The error code of a failed fetch: undici puts the socket or DNS error under `cause`.
 export function errorCode(error) {
@@ -32,14 +54,19 @@ export function judgeStatus(status) {
   return { level: 'warn', message: `HTTP ${status}: unexpected status` };
 }
 
-// Checks each url. fetchImpl is injected so tests never reach the network. Returns one result per url:
+// Checks each url. fetchImpl and clock are injected so tests never reach the network or wait. Returns one result per url:
 // { url, lessons, level: 'ok' | 'warn' | 'fail' | 'network', message }.
-export async function checkUrls(targets, { fetchImpl, timeoutMs = DEFAULT_TIMEOUT_MS, concurrency = DEFAULT_CONCURRENCY }) {
+export async function checkUrls(
+  targets,
+  { fetchImpl, timeoutMs = DEFAULT_TIMEOUT_MS, concurrency = DEFAULT_CONCURRENCY, gapMs = DEFAULT_GAP_MS, clock = REAL_CLOCK },
+) {
   const raw = [];
   const queue = [...targets];
+  const pacer = createPacer(gapMs, clock);
   const worker = async () => {
     while (queue.length > 0) {
       const target = queue.shift();
+      await pacer.wait();
       raw.push({ target, outcome: await probe(target.url, fetchImpl, timeoutMs) });
     }
   };
@@ -113,12 +140,20 @@ function listLedgerCourses(root) {
     .sort();
 }
 
+// A gap is a number of milliseconds, 0 or more. An empty or missing value is an error, never a silent 0 (which would turn pacing off).
+function parseGapMs(raw) {
+  const value = typeof raw === 'string' && raw.trim() !== '' ? Number(raw) : Number.NaN;
+  if (!Number.isFinite(value) || value < 0) throw new Error('--gap-ms must be a number of milliseconds, 0 or more');
+  return value;
+}
+
 function parseArgs(argv) {
-  const options = { courseId: null, timeoutMs: DEFAULT_TIMEOUT_MS };
+  const options = { courseId: null, timeoutMs: DEFAULT_TIMEOUT_MS, gapMs: DEFAULT_GAP_MS };
   for (let index = 0; index < argv.length; index += 1) {
     const arg = argv[index];
     if (arg === '--course') options.courseId = argv[(index += 1)] ?? null;
     else if (arg === '--timeout-ms') options.timeoutMs = Number(argv[(index += 1)]);
+    else if (arg === '--gap-ms') options.gapMs = parseGapMs(argv[(index += 1)]);
     else throw new Error(`unknown argument ${arg}`);
   }
   if (options.courseId === null && argv.includes('--course')) throw new Error('--course needs a course id');
@@ -126,7 +161,7 @@ function parseArgs(argv) {
   return options;
 }
 
-export async function main(argv = process.argv.slice(2), root = REPO_ROOT, fetchImpl = globalThis.fetch) {
+export async function main(argv = process.argv.slice(2), root = REPO_ROOT, fetchImpl = globalThis.fetch, clock = REAL_CLOCK) {
   let options;
   let hosts;
   try {
@@ -134,7 +169,7 @@ export async function main(argv = process.argv.slice(2), root = REPO_ROOT, fetch
     hosts = readOfficialHosts(root);
   } catch (error) {
     console.error(`check-source-links: ${error.message}`);
-    console.error('usage: node scripts/check-source-links.mjs [--course <course-id>] [--timeout-ms <ms>]');
+    console.error('usage: node scripts/check-source-links.mjs [--course <course-id>] [--timeout-ms <ms>] [--gap-ms <ms>]');
     return 2;
   }
   let collected;
@@ -149,7 +184,8 @@ export async function main(argv = process.argv.slice(2), root = REPO_ROOT, fetch
     console.log(`FAIL ${entry.url} is not on the official whitelist (${entry.lessons.join(', ')})`);
   }
 
-  const results = await checkUrls(targets, { fetchImpl, timeoutMs: options.timeoutMs });
+  if (targets.length > 0) console.log(`pacing: at least ${options.gapMs} ms between the starts of requests`);
+  const results = await checkUrls(targets, { fetchImpl, timeoutMs: options.timeoutMs, gapMs: options.gapMs, clock });
   for (const result of results) {
     const tag = { ok: 'OK  ', warn: 'WARN', fail: 'FAIL', network: 'NET ' }[result.level];
     console.log(`${tag} ${result.url} (${result.lessons.join(', ')}): ${result.message}`);
