@@ -13,7 +13,10 @@
     "deploy:warmup": "node scripts/warm-deployment-domains.mjs",
     "test": "node --test \"scripts/__tests__/*.test.mjs\"",
     "check:registry": "node scripts/check-registry-neutrality.mjs",
-    "test:registry": "node --test scripts/check-registry-neutrality.node-test.mjs"
+    "test:registry": "node --test scripts/check-registry-neutrality.node-test.mjs",
+    "check:content": "node scripts/check-tutorial-content.mjs --all",
+    "check:quizzes": "node scripts/check-quizzes.mjs --all",
+    "check:sources": "node scripts/check-source-links.mjs"
   },
   "dependencies": {
     "@astrojs/react": "^7.1.0",
