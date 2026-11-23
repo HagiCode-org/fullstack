@@ -2,7 +2,9 @@
 // Compares the design outline OUTLINE.md with the site data.
 //   --courses  the course table (count, type), each course's lesson tree (groups, lesson ids, order, en-US titles and the
 //              选修 marker) against src/courses/registry.ts.
-//   --paths    the learning-path table against src/learning-paths/registry.ts.
+//   --paths    the learning-path table against src/learning-paths/registry.ts. A step names a course, a lesson or a group
+//              (a lesson or group by its Chinese name in the course sections, or ending with that name). In a steps cell that
+//              says 不分先后, the "/"-separated items are steps taken in no particular order, not a choice.
 // Exit 0 when everything matches, 1 on any difference, 2 for bad arguments.
 //
 // Elective marker in the data: a course has `elective: true` and a lesson has `elective: true`; anything else is not elective.
@@ -93,15 +95,16 @@ export function parseCourseSections(lines) {
     }
     const groupLine = /^#### 分组[:：]\s*(.*?)\s+`([a-z0-9-]+)`\s*$/u.exec(line);
     if (groupLine) {
-      group = { kind: 'group', id: groupLine[2], children: [] };
+      const heading = splitHeading(groupLine[1]);
+      group = { kind: 'group', id: groupLine[2], title: heading.english, chinese: heading.chinese, children: [] };
       course.outline.push(group);
       continue;
     }
     const lessonLine = /^##### (.*?)\s+`([a-z0-9-]+)`\s*$/u.exec(line);
     if (lessonLine) {
-      const title = stripCjkSuffix(lessonLine[1]);
+      const heading = splitHeading(lessonLine[1]);
       const elective = lessonMarkedElective(lines, index + 1);
-      const node = { kind: 'lesson', id: lessonLine[2], title, elective };
+      const node = { kind: 'lesson', id: lessonLine[2], title: heading.english, chinese: heading.chinese, elective };
       if (group) group.children.push(node);
       else course.outline.push(node);
     }
@@ -109,22 +112,40 @@ export function parseCourseSections(lines) {
   return courses;
 }
 
-// The English title of a heading such as "Path B (mainland China): …(路径 B（中国大陆）：…)": the trailing bracketed
-// group holds the Chinese title, so it is removed. Brackets nest, so the group is found by counting depth.
-export function stripCjkSuffix(raw) {
+// Splits a heading such as "Path B (mainland China): …(路径 B（中国大陆）：…)" into its English part and its Chinese part.
+// The Chinese part is the trailing bracketed group when that group holds CJK characters; otherwise the whole heading is
+// English and `chinese` is null.
+export function splitHeading(raw) {
   const text = raw.trim();
-  if (!/[)）]$/u.test(text)) return text;
+  const group = trailingBracketGroup(text);
+  if (group === null || !/[一-鿿]/u.test(group.inner)) return { english: text, chinese: null };
+  return { english: group.head.trim(), chinese: group.inner.trim() };
+}
+
+export function stripCjkSuffix(raw) {
+  return splitHeading(raw).english;
+}
+
+// The Chinese name a path row may use for a lesson or group: the Chinese part without its own trailing bracket group,
+// so 进阶(选修) gives 进阶. Null when the heading has no Chinese part.
+export function chineseBase(chinese) {
+  if (chinese === null || chinese === undefined) return null;
+  const group = trailingBracketGroup(chinese);
+  return (group === null ? chinese : group.head).trim();
+}
+
+// The bracketed group that ends `text`, as the text before it and the text inside it. Brackets nest, so the group's start
+// is found by counting depth. Null when `text` does not end with a closing bracket or the brackets do not balance.
+function trailingBracketGroup(text) {
+  if (!/[)）]$/u.test(text)) return null;
   let depth = 0;
   for (let index = text.length - 1; index >= 0; index -= 1) {
     const char = text[index];
     if (char === ')' || char === '）') depth += 1;
     if (char === '(' || char === '（') depth -= 1;
-    if (depth === 0) {
-      const inner = text.slice(index + 1, -1);
-      return /[一-鿿]/u.test(inner) ? text.slice(0, index).trim() : text;
-    }
+    if (depth === 0) return { head: text.slice(0, index), inner: text.slice(index + 1, -1) };
   }
-  return text;
+  return null;
 }
 
 // A lesson is elective when its 标记 line, before the next heading, carries the 🔹 mark.
@@ -261,13 +282,56 @@ export function courseIdForSegment(segment, courseTable) {
   return null;
 }
 
-// Resolves each path's steps to course ids. A segment with " / " is a choice. "<path name>的全部课程" expands to that path's steps.
-// Segments that name no course are listed in `unmatched`, so a step that is not a course shows up as a failure.
-export function resolvePaths(pathRows, courseTable) {
+// Every lesson and group of the course sections that has a Chinese name, with the name a path row can use for it.
+export function lessonAndGroupEntries(sections) {
+  const entries = [];
+  const walk = (courseId, nodes) => {
+    for (const node of nodes) {
+      const name = chineseBase(node.chinese);
+      if (name) entries.push({ kind: node.kind, courseId, id: node.id, name });
+      if (node.kind === 'group') walk(courseId, node.children);
+    }
+  };
+  for (const section of sections) walk(section.id, section.outline);
+  return entries;
+}
+
+// Maps a path-table segment to a lesson or group entry. The segment is that entry's Chinese name, or ends with it (so
+// 发布进阶 names the group 进阶). An exact name wins over a suffix, and a name that matches more than one entry matches nothing.
+export function lessonOrGroupForSegment(segment, entries) {
+  const wanted = segment.trim();
+  const exact = entries.filter((entry) => entry.name === wanted);
+  if (exact.length === 1) return exact[0];
+  if (exact.length > 1) return null;
+  const suffix = entries.filter((entry) => wanted.length > entry.name.length && wanted.endsWith(entry.name));
+  return suffix.length === 1 ? suffix[0] : null;
+}
+
+// The step a single segment names: a course, else a lesson or group. Null when it names none of them.
+function stepForSegment(segment, courseTable, entries) {
+  const courseId = courseIdForSegment(segment, courseTable);
+  if (courseId !== null) return { kind: 'course', courseId };
+  const hit = lessonOrGroupForSegment(segment, entries);
+  if (hit === null) return null;
+  return hit.kind === 'lesson'
+    ? { kind: 'lesson', courseId: hit.courseId, lessonId: hit.id }
+    : { kind: 'group', courseId: hit.courseId, groupId: hit.id };
+}
+
+// Words in a steps cell that mean its "/"-separated items are steps taken in no particular order, not a choice.
+const UNORDERED_NOTE = '不分先后';
+
+// Resolves each path's steps to course, lesson or group steps. A segment with " / " is a choice of courses, unless the cell
+// says 不分先后, then each item is a step of its own. "<path name>的全部课程" expands to that path's steps.
+// Segments that name no step are listed in `unmatched`, so a step that is not in the outline shows up as a failure.
+// `sections` (the parsed course sections) lets a segment name a lesson or group; without them only courses resolve.
+export function resolvePaths(pathRows, courseTable, sections = []) {
+  const entries = lessonAndGroupEntries(sections);
   const resolved = [];
   for (const row of pathRows) {
     const steps = [];
     const unmatched = [];
+    const unordered = row.steps.includes(UNORDERED_NOTE);
     const cleaned = row.steps.replace(/[（(][^（()）]*[)）]/gu, '');
     for (const raw of cleaned.split(/\s*→\s*/u).map((part) => part.trim()).filter(Boolean)) {
       if (raw.endsWith(ALL_PATH_SUFFIX)) {
@@ -277,7 +341,7 @@ export function resolvePaths(pathRows, courseTable) {
         else unmatched.push(raw);
         continue;
       }
-      if (raw.includes('/')) {
+      if (raw.includes('/') && !unordered) {
         const options = [];
         for (const option of raw.split(/\s*\/\s*/u).map((part) => part.trim())) {
           const courseId = courseIdForSegment(option, courseTable);
@@ -287,17 +351,31 @@ export function resolvePaths(pathRows, courseTable) {
         steps.push({ kind: 'choice', options });
         continue;
       }
-      const courseId = courseIdForSegment(raw, courseTable);
-      if (courseId === null) unmatched.push(raw);
-      else steps.push({ kind: 'course', courseId });
+      for (const segment of raw.split(/\s*\/\s*/u).map((part) => part.trim()).filter(Boolean)) {
+        const step = stepForSegment(segment, courseTable, entries);
+        if (step === null) unmatched.push(segment);
+        else steps.push(step);
+      }
     }
     resolved.push({ id: row.id, name: row.name, steps, unmatched });
   }
   return resolved;
 }
 
+// One step of the outline, as text: a course, lesson, group, or choice of course ids.
 function describeStep(step) {
-  return step.kind === 'course' ? `course:${step.courseId}` : `choice:(${step.options.join('|')})`;
+  if (step.kind === 'course') return `course:${step.courseId}`;
+  if (step.kind === 'lesson') return `lesson:${step.courseId}/${step.lessonId}`;
+  if (step.kind === 'group') return `group:${step.courseId}/${step.groupId}`;
+  return `choice:(${step.options.join('|')})`;
+}
+
+// A registry step in the same shape as an outline step, so the two can be compared with describeStep.
+function registryShape(step) {
+  if (step.kind === 'choice') return { kind: 'choice', options: step.options.map((option) => option.courseId) };
+  if (step.kind === 'lesson') return { kind: 'lesson', courseId: step.courseId, lessonId: step.lessonId };
+  if (step.kind === 'group') return { kind: 'group', courseId: step.courseId, groupId: step.groupId };
+  return { kind: 'course', courseId: step.courseId };
 }
 
 export function pathFailures(resolvedPaths, registryPaths) {
@@ -310,7 +388,7 @@ export function pathFailures(resolvedPaths, registryPaths) {
   for (const path of resolvedPaths) {
     const label = `path "${path.id}"`;
     for (const segment of path.unmatched) {
-      failures.push(`${label}: step "${segment}" names no course in OUTLINE.md's course table (learning-path steps are courses)`);
+      failures.push(`${label}: step "${segment}" names no course, lesson or group in OUTLINE.md`);
     }
     const registry = registryPaths.find((candidate) => candidate.id === path.id);
     if (!registry) {
@@ -321,9 +399,7 @@ export function pathFailures(resolvedPaths, registryPaths) {
       failures.push(`${label}: name "${registry.title?.[PATH_LOCALE]}" in the registry, "${path.name}" in OUTLINE.md (${PATH_LOCALE})`);
     }
     const expected = path.steps.map(describeStep).join(' → ');
-    const actual = registry.steps.map((step) => describeStep(step.kind === 'course'
-      ? { kind: 'course', courseId: step.courseId }
-      : { kind: 'choice', options: step.options.map((option) => option.courseId) })).join(' → ');
+    const actual = registry.steps.map((step) => describeStep(registryShape(step))).join(' → ');
     if (expected !== actual) failures.push(`${label}: steps differ. OUTLINE.md "${expected}" vs registry "${actual}"`);
   }
   return failures;
@@ -369,7 +445,7 @@ export async function main(argv = process.argv.slice(2), root = REPO_ROOT) {
 
   const sections = [];
   if (options.courses) sections.push(['courses', courseFailures(outline, registryCourses)]);
-  if (options.paths) sections.push(['paths', pathFailures(resolvePaths(outline.pathTable, outline.courseTable), registryPaths)]);
+  if (options.paths) sections.push(['paths', pathFailures(resolvePaths(outline.pathTable, outline.courseTable, outline.sections), registryPaths)]);
 
   let failed = 0;
   for (const [name, failures] of sections) {

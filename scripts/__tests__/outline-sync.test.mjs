@@ -2,12 +2,15 @@ import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
 
 import {
+  chineseBase,
   courseFailures,
   courseIdForSegment,
+  lessonOrGroupForSegment,
   normalizeRegistryNodes,
   parseOutline,
   pathFailures,
   resolvePaths,
+  splitHeading,
   stripCjkSuffix,
 } from '../check-outline-sync.mjs';
 
@@ -248,6 +251,96 @@ describe('learning path comparison', () => {
     const paths = clone(MATCHING_PATHS);
     paths[0].title['zh-CN'] = '入门';
     assert.ok(pathFailures(resolvePaths(outline.pathTable, outline.courseTable), paths).some((line) => line.includes('name "入门" in the registry')));
+  });
+});
+
+describe('lesson and group steps in the path table', () => {
+  // The resolved steps of the quick path when its steps cell is `steps`, with OUTLINE's course sections available.
+  const resolveQuick = (steps) => {
+    const outline = parseOutline(OUTLINE.replace('| `quick` | 快速 | 阿尔法 → 贝塔 |', `| \`quick\` | 快速 | ${steps} |`));
+    return resolvePaths(outline.pathTable, outline.courseTable, outline.sections)[0];
+  };
+
+  it('reads the Chinese part of group and lesson headings and leaves the bracket of a nested title intact', () => {
+    const outline = parseOutline(OUTLINE);
+    const alpha = outline.sections.find((section) => section.id === 'alpha');
+    assert.equal(alpha.outline[0].chinese, '开始');
+    assert.deepEqual(alpha.outline[0].children.map((lesson) => lesson.chinese), ['第一课', '第二课（选做）']);
+  });
+
+  it('resolves a 不分先后 steps cell to one step per item, with no choice', () => {
+    const resolved = resolveQuick('阿尔法 / 第一课 / 开始(不分先后,按需选学)');
+    assert.deepEqual(resolved.steps, [
+      { kind: 'course', courseId: 'alpha' },
+      { kind: 'lesson', courseId: 'alpha', lessonId: 'first' },
+      { kind: 'group', courseId: 'alpha', groupId: 'start' },
+    ]);
+    assert.deepEqual(resolved.unmatched, []);
+  });
+
+  it('resolves an arrow step to a lesson, and a name that ends with a group name to that group', () => {
+    const resolved = resolveQuick('第一课 → 学习开始 → 贝塔');
+    assert.deepEqual(resolved.steps, [
+      { kind: 'lesson', courseId: 'alpha', lessonId: 'first' },
+      { kind: 'group', courseId: 'alpha', groupId: 'start' },
+      { kind: 'course', courseId: 'beta' },
+    ]);
+  });
+
+  it('leaves a segment that names no course, lesson or group unmatched', () => {
+    const resolved = resolveQuick('阿尔法 / 不存在的内容 (不分先后)');
+    assert.deepEqual(resolved.steps, [{ kind: 'course', courseId: 'alpha' }]);
+    assert.deepEqual(resolved.unmatched, ['不存在的内容']);
+  });
+
+  it('matches nothing when a name is shared by two lessons or groups, and prefers an exact name to a suffix', () => {
+    const entries = [
+      { kind: 'group', courseId: 'a', id: 'x', name: '开始' },
+      { kind: 'lesson', courseId: 'b', id: 'y', name: '开始' },
+    ];
+    assert.equal(lessonOrGroupForSegment('开始', entries), null);
+    assert.equal(lessonOrGroupForSegment('学习开始', entries), null);
+    const mixed = [
+      { kind: 'lesson', courseId: 'a', id: 'x', name: '进阶' },
+      { kind: 'group', courseId: 'b', id: 'y', name: '发布进阶' },
+    ];
+    assert.equal(lessonOrGroupForSegment('发布进阶', mixed).id, 'y');
+    assert.equal(lessonOrGroupForSegment('进阶', mixed).id, 'x');
+  });
+
+  it('reads the Chinese name a path row can use, without the bracket of a group that is marked optional', () => {
+    assert.equal(chineseBase('进阶(选修)'), '进阶');
+    assert.equal(chineseBase('第二课（选做）'), '第二课');
+    assert.equal(chineseBase('小组协作'), '小组协作');
+    assert.equal(chineseBase(null), null);
+    assert.deepEqual(splitHeading('Advanced (optional)(进阶(选修))'), { english: 'Advanced (optional)', chinese: '进阶(选修)' });
+    assert.deepEqual(splitHeading('Plain title'), { english: 'Plain title', chinese: null });
+  });
+
+  it('passes a registry whose lesson and group steps match the outline', () => {
+    const resolved = resolveQuick('第一课 → 开始');
+    const registry = [{
+      id: 'quick',
+      title: { 'zh-CN': '快速' },
+      steps: [
+        { kind: 'lesson', courseId: 'alpha', lessonId: 'first' },
+        { kind: 'group', courseId: 'alpha', groupId: 'start' },
+      ],
+    }];
+    assert.deepEqual(pathFailures([resolved], registry), []);
+  });
+
+  it('fails a registry lesson step that names a different lesson than the outline', () => {
+    const resolved = resolveQuick('第一课 → 贝塔');
+    const registry = [{
+      id: 'quick',
+      title: { 'zh-CN': '快速' },
+      steps: [
+        { kind: 'lesson', courseId: 'alpha', lessonId: 'second' },
+        { kind: 'course', courseId: 'beta' },
+      ],
+    }];
+    assert.ok(pathFailures([resolved], registry).some((line) => line.includes('steps differ') && line.includes('lesson:alpha/second')));
   });
 });
 

@@ -7,6 +7,22 @@ export interface CourseStep {
   courseId: string;
 }
 
+// A lesson step names one lesson of a course. The lesson id is unique within its course.
+export interface LessonStep {
+  kind: 'lesson';
+  id: string;
+  courseId: string;
+  lessonId: string;
+}
+
+// A group step names one group of a course: the learner takes the lessons inside that group.
+export interface GroupStep {
+  kind: 'group';
+  id: string;
+  courseId: string;
+  groupId: string;
+}
+
 // One course a learner can take to complete a choice step.
 export interface ChoiceOption {
   courseId: string;
@@ -20,7 +36,7 @@ export interface ChoiceStep {
   options: ChoiceOption[];
 }
 
-export type PathStep = CourseStep | ChoiceStep;
+export type PathStep = CourseStep | LessonStep | GroupStep | ChoiceStep;
 
 // A learning path is an ordered list of steps. Its id is the same in every locale.
 export interface LearningPath {

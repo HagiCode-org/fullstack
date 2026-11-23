@@ -197,4 +197,146 @@ describe('learning path resolution', () => {
     assert.equal(resolved.length, path.steps.length);
     assert.deepEqual(resolved.map((entry) => entry.step), path.steps);
   });
+
+  it('resolves a lesson step and a group step to their course without a choice', () => {
+    const path = {
+      ...fullstackFromScratch(),
+      steps: [
+        { kind: 'lesson', id: 'lesson', courseId: 'first-website', lessonId: 'intro' },
+        { kind: 'group', id: 'group', courseId: 'github-desktop-and-github', groupId: 'extras' },
+      ],
+    };
+    assert.deepEqual(resolvedCourses(path, {}), ['first-website', 'github-desktop-and-github']);
+  });
+});
+
+// A course with one lesson outside any group and a group of two lessons, for lesson and group steps.
+const groupedCourse = {
+  id: 'grouped',
+  title: titles('Grouped'),
+  demo: true,
+  outline: [
+    { kind: 'lesson', id: 'intro', title: titles('Intro') },
+    {
+      kind: 'group',
+      id: 'extras',
+      title: titles('Extras'),
+      children: [
+        { kind: 'lesson', id: 'deep', title: titles('Deep') },
+        { kind: 'lesson', id: 'deeper', title: titles('Deeper') },
+      ],
+    },
+    { kind: 'group', id: 'empty', title: titles('Empty'), children: [] },
+  ],
+};
+const groupedCourses = [groupedCourse];
+const pathWith = (steps) => ({ ...fullstackFromScratch(), steps });
+const lessonStep = (id, courseId, lessonId) => ({ kind: 'lesson', id, courseId, lessonId });
+const groupStep = (id, courseId, groupId) => ({ kind: 'group', id, courseId, groupId });
+
+describe('learning path steps that name a lesson or a group', () => {
+  it('lists the course of each lesson or group step once, in path order', () => {
+    const path = pathWith([
+      lessonStep('a', 'grouped', 'intro'),
+      groupStep('b', 'grouped', 'extras'),
+      courseStep('c', 'first-website'),
+    ]);
+    assert.deepEqual(pathCourseIds(path), ['grouped', 'first-website']);
+  });
+
+  it('passes lesson and group steps that name lessons and groups the course has', () => {
+    const path = pathWith([lessonStep('a', 'grouped', 'intro'), groupStep('b', 'grouped', 'extras')]);
+    assert.deepEqual(findLearningPathFailures([path], groupedCourses), []);
+  });
+
+  it('names a lesson step whose lesson is not in its course', () => {
+    const path = pathWith([lessonStep('a', 'grouped', 'missing')]);
+    assert.deepEqual(findLearningPathFailures([path], groupedCourses), [
+      'step "a" in path "fullstack-from-scratch" names lesson "missing" that is not in course "grouped"',
+    ]);
+  });
+
+  it('names a group step whose group is not in its course', () => {
+    const path = pathWith([groupStep('a', 'grouped', 'nope')]);
+    assert.deepEqual(findLearningPathFailures([path], groupedCourses), [
+      'step "a" in path "fullstack-from-scratch" names group "nope" that is not in course "grouped"',
+    ]);
+  });
+
+  it('names a lesson or group step whose course is not in the course registry', () => {
+    const path = pathWith([lessonStep('a', 'not-a-course', 'intro')]);
+    assert.deepEqual(findLearningPathFailures([path], groupedCourses), [
+      'step "a" in path "fullstack-from-scratch" names course "not-a-course" that is not in the course registry',
+    ]);
+  });
+
+  it('names a group step whose group has no lessons', () => {
+    const path = pathWith([groupStep('a', 'grouped', 'empty')]);
+    assert.deepEqual(findLearningPathFailures([path], groupedCourses), [
+      'step "a" in path "fullstack-from-scratch" names group "empty" that has no lessons',
+    ]);
+  });
+
+  it('names a lesson already named by a group step of the same path', () => {
+    const path = pathWith([groupStep('a', 'grouped', 'extras'), lessonStep('b', 'grouped', 'deep')]);
+    assert.deepEqual(findLearningPathFailures([path], groupedCourses), [
+      'lesson "grouped/deep" is named by more than one step of path "fullstack-from-scratch" (steps "a" and "b")',
+    ]);
+  });
+
+  it('names lessons of a course that a course step already takes whole', () => {
+    const path = pathWith([courseStep('a', 'grouped'), lessonStep('b', 'grouped', 'intro')]);
+    assert.deepEqual(findLearningPathFailures([path], groupedCourses), [
+      'step "b" in path "fullstack-from-scratch" names lessons of course "grouped" that step "a" already takes as a whole course',
+    ]);
+  });
+
+  it('passes two different lessons of one course, and a lesson of a course that another path takes whole', () => {
+    const path = pathWith([lessonStep('a', 'grouped', 'intro'), lessonStep('b', 'grouped', 'deep')]);
+    assert.deepEqual(findLearningPathFailures([path], groupedCourses), []);
+    const other = { ...fullstackFromScratch(), id: 'other', steps: [courseStep('c', 'grouped')] };
+    assert.deepEqual(findLearningPathFailures([path, other], groupedCourses), []);
+  });
+});
+
+describe('the three learning paths', () => {
+  const byId = (id) => getLearningPath(id, learningPaths);
+
+  it('defines quick-start, build-apps and electives in that order', () => {
+    assert.deepEqual(learningPaths.map((path) => path.id), ['quick-start', 'build-apps', 'electives']);
+  });
+
+  it('lets build-apps start with every course of quick-start, in the same order', () => {
+    assert.deepEqual(byId('build-apps').steps.slice(0, byId('quick-start').steps.length), byId('quick-start').steps);
+    assert.deepEqual(pathCourseIds(byId('build-apps')), [
+      ...pathCourseIds(byId('quick-start')),
+      'first-web-app',
+      'app-with-data',
+      'add-ai-features',
+      'github-collaboration',
+      'capstone-project',
+    ]);
+  });
+
+  it('names the electives steps in the order of the outline: two courses, a group and two lessons', () => {
+    const electives = byId('electives');
+    assert.deepEqual(electives.steps.map((step) => step.kind), ['course', 'course', 'group', 'lesson', 'lesson']);
+    assert.deepEqual(pathCourseIds(electives), [
+      'docker-self-hosted-apps',
+      'another-language',
+      'publish-your-website',
+      'github-collaboration',
+      'capstone-project',
+    ]);
+  });
+
+  it('gives every path a title and a summary in all ten locales, and no path is a demo', () => {
+    for (const path of learningPaths) {
+      assert.equal(path.demo, false);
+      for (const locale of SUPPORTED_LOCALES) {
+        assert.ok(path.title[locale]?.trim(), `${path.id} title for ${locale}`);
+        assert.ok(path.summary[locale]?.trim(), `${path.id} summary for ${locale}`);
+      }
+    }
+  });
 });
