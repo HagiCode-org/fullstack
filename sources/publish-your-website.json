@@ -253,7 +253,7 @@
         },
         {
           "claim": "A www subdomain should be a CNAME record that points to <user>.github.io, without the repository name, and GitHub Pages redirects between the apex and www domains when both records are set.",
-          "url": "https://docs.github.com/en/pages/getting-started-with-github-pages/about-custom-domains-and-github-pages"
+          "url": "https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site"
         },
         {
           "claim": "Do not use wildcard DNS records such as *.example.com, because they put the domain at risk of takeover even when it is verified.",

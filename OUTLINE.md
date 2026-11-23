@@ -1,10 +1,10 @@
 # HagiCode Fullstack 课程路线与大纲
 
 > 这是课程的**设计稿**:先在这里调整路线和每课大纲,确定要填什么内容,再去 `src/courses/` 里落地。
-> 本稿在现有 `src/courses/*/outline.ts` 与各课 en-US 草稿正文的基础上,落实了 `COURSE-REVIEW.md` 中的调整:共 12 门课程(主线 10、选修 2)、97 个课时(其中新增 9 个)。
+> 本稿在现有 `src/courses/*/outline.ts` 与各课 en-US 正文的基础上,落实了 `COURSE-REVIEW.md` 中的调整:共 12 门课程(主线 10、选修 2)、97 个课时(其中新增 9 个)。
 > 每门课程、每个分组、每个课时都有一段「概述」(中文总结,可直接改);「小节」和「自检标准」取自现有正文,新增课时为新写。每个课时有 3 道单选「复习测验」,单独存放在 `quizzes/<课程 id>/<课时 id>.md`(含答案和解析),为初稿,落地前需对照正文逐题核对。
-> 标记:🆕 新增(尚无正文);✏️ 调整(现有课时有改动,正文待同步);🔹 选修。其余为沿用现有课时。
-> 状态:✅ 已完成正文;📝 草稿(正文只是大纲,待扩写和核对事实)。
+> 标记:🆕 新增;✏️ 调整(现有课时有改动);🔹 选修。其余为沿用现有课时。
+> 状态:✅ 已完成正文(课文已扩写,事实已对照官方来源核对并登记在 `sources/`,测验已与课文逐题对齐)。
 
 ## 如何用这份文档
 
@@ -51,24 +51,24 @@
 
 | # | 类型 | 课程 id | 课程 | 课时(含选修) | 状态 |
 |---|------|---------|------|--------------|------|
-| 1 | 主线 | `docker-for-beginners` | Docker for Beginners / Docker 入门 | 15,新增 3 | ✅ 现有课时已完成,新增课时待写 |
-| 2 | 主线 | `github-desktop-and-github` | GitHub Desktop and GitHub / GitHub Desktop 与 GitHub | 5 | 📝 草稿 |
-| 3 | 主线 | `build-with-ai` | Build with an AI Partner / 与 AI 搭档开发 | 7 | 📝 草稿 |
-| 4 | 主线 | `first-website` | Your First Website / 你的第一个网站 | 9,新增 1 | 📝 草稿 |
-| 5 | 主线 | `publish-your-website` | Publish Your Website / 发布你的网站 | 10(选修 5),新增 1 | 📝 草稿 |
-| 6 | 主线 | `first-web-app` | Your First Web App / 你的第一个 Web 应用 | 8 | 📝 草稿 |
-| 7 | 主线 | `app-with-data` | An App with a Database / 带数据库的应用 | 9,新增 2 | 📝 草稿 |
-| 8 | 主线 | `add-ai-features` | Add AI Features to Your App / 给应用加上 AI 功能 | 8 | 📝 草稿 |
-| 9 | 主线 | `github-collaboration` | GitHub: Branches and Pull Requests / GitHub 协作:分支与 Pull Request | 3(选修 1) | 📝 草稿(新增课程) |
-| 10 | 主线 | `capstone-project` | Capstone: Build and Launch Your Own App / 毕业项目：做出并上线你自己的应用 | 8(选修 1),新增 2 | 📝 草稿 |
-| 11 | 选修 | `docker-self-hosted-apps` | Run Ready-Made Apps with Docker / 用 Docker 部署现成应用 | 7 | 📝 草稿 |
-| 12 | 选修 | `another-language` | The Same App in Another Language / 用另一种语言做同一个应用 | 8 | 📝 草稿 |
+| 1 | 主线 | `docker-for-beginners` | Docker for Beginners / Docker 入门 | 15,新增 3 | ✅ 已完成正文 |
+| 2 | 主线 | `github-desktop-and-github` | GitHub Desktop and GitHub / GitHub Desktop 与 GitHub | 5 | ✅ 已完成正文 |
+| 3 | 主线 | `build-with-ai` | Build with an AI Partner / 与 AI 搭档开发 | 7 | ✅ 已完成正文 |
+| 4 | 主线 | `first-website` | Your First Website / 你的第一个网站 | 9,新增 1 | ✅ 已完成正文 |
+| 5 | 主线 | `publish-your-website` | Publish Your Website / 发布你的网站 | 10(选修 5),新增 1 | ✅ 已完成正文 |
+| 6 | 主线 | `first-web-app` | Your First Web App / 你的第一个 Web 应用 | 8 | ✅ 已完成正文 |
+| 7 | 主线 | `app-with-data` | An App with a Database / 带数据库的应用 | 9,新增 2 | ✅ 已完成正文 |
+| 8 | 主线 | `add-ai-features` | Add AI Features to Your App / 给应用加上 AI 功能 | 8 | ✅ 已完成正文 |
+| 9 | 主线 | `github-collaboration` | GitHub: Branches and Pull Requests / GitHub 协作:分支与 Pull Request | 3(选修 1) | ✅ 已完成正文(新增课程) |
+| 10 | 主线 | `capstone-project` | Capstone: Build and Launch Your Own App / 毕业项目：做出并上线你自己的应用 | 8(选修 1),新增 2 | ✅ 已完成正文 |
+| 11 | 选修 | `docker-self-hosted-apps` | Run Ready-Made Apps with Docker / 用 Docker 部署现成应用 | 7 | ✅ 已完成正文 |
+| 12 | 选修 | `another-language` | The Same App in Another Language / 用另一种语言做同一个应用 | 8 | ✅ 已完成正文 |
 
 主线按编号 1–10 顺序学习;11–12 是选修课程,可在对应主线课程之后按需选学。
 
 ### 学习路径
 
-站点已有学习路径的数据结构(课程步骤、多选一步骤),但还没有定义任何路径。建议定义下面三条;“选哪款 AI 助手”由“与 AI 搭档开发”第 1 课负责,不做成多选一的路径步骤。
+站点的学习路径数据结构支持课程步骤、课时步骤、分组步骤和多选一步骤。下面三条路径已在 `src/learning-paths/` 中定义,路径里的每个课程、课时和分组都由完整性检查确认存在(`check-outline-sync.mjs --paths`)。“选哪款 AI 助手”由“与 AI 搭档开发”第 1 课负责,不做成多选一的路径步骤。
 
 | 路径 id | 名称 | 步骤 |
 |---------|------|------|
@@ -76,11 +76,13 @@
 | `build-apps` | 做出应用 | 快速上手的全部课程 → 你的第一个 Web 应用 → 带数据库的应用 → 给应用加上 AI 功能 → GitHub 协作 → 毕业项目 |
 | `electives` | 进阶选修 | 用 Docker 部署现成应用 / 用另一种语言做同一个应用 / 发布进阶(gh-pages、Cloudflare、阿里云 ESA、域名与 HTTPS)/ Issue、Fork 与开源 / 小组协作(不分先后,按需选学) |
 
-## 站点功能需求(待实现)
+## 站点功能需求(已实现)
 
-- **术语表**:每个新词有一句话解释和一个生活类比,正文里的术语可点开。
-- **每课预计用时和成果提示**:15–30 分钟,“本课你会得到什么”。
-- **自学支持**:每门课程页写明预计总用时和“学完你会得到什么”;“怎样求助”一课要写明学生在哪里能得到帮助(渠道待定);测验的答案和解析用于自测。
+以下功能已在站点实现:术语表与课时内术语链接、每课预计用时与“本课你会得到什么”、课程页的预计总用时与“学完你会得到什么”、选修标记、三条学习路径。下面每条是设计要求,保留作对照。
+
+- **术语表**(已实现):每个新词有一句话解释和一个生活类比,正文里的术语可点开,按课程分组的术语表页面为 `/glossary/`。
+- **每课预计用时和成果提示**(已实现):每课 10–45 分钟(由课文 frontmatter 的 `minutes` 给出),“本课你会得到什么”(`outcome`);课程的预计总用时由各课相加得出。
+- **自学支持**:每门课程页写明预计总用时和“学完你会得到什么”(已实现);“怎样求助”一课讲怎样截图、原样复制报错、向 AI 助手或同学描述问题,暂不点名具体求助渠道(用户已决定);测验的答案和解析用于自测。
 - **每课新词不超过 3 个**,第一课的第一段不放陌生词;操作类课时分 Windows / Mac 两套命令。
 - **正文先只写 en-US**(已决定):其他语言以后再补,缺译时站点现有机制会显示英文并带提示。本稿的大纲、概述和测验用中文,仅作设计用。
 
@@ -90,7 +92,7 @@
 
 - 课程 id:`docker-for-beginners`
 - 类型:主线
-- 状态:✅ 现有课时已完成正文;新增课时待写
+- 状态:✅ 已完成正文(含新增课时)
 - **概述**:从零开始认识 Docker,作为整个系列的入口:先检查电脑、学会用终端和读报错,再把 Nginx、PostgreSQL 和 Node.js 当作容器跑起来,用网络和 Docker Compose 连成一套服务,最后学会排错和清理。
 
 #### 分组:Get started(快速开始)  `get-started`
@@ -107,7 +109,7 @@
 ##### Can your computer run Docker?(你的电脑能装 Docker 吗)  `check-your-computer`
 
 - **概述**:安装之前先检查系统版本、内存与磁盘、是否允许安装软件(受管控的托管电脑常被禁止)以及 Windows 的虚拟化;课程不提供其他环境,所有练习都在你自己的电脑上进行,所以不满足要求时需要先换一台满足要求的电脑。具体要求以 Docker 官方页面为准。
-- **标记**:🆕 新增,尚无正文
+- **标记**:🆕 新增
 - **小节**:系统与版本 / 内存与磁盘空间 / 是否允许安装软件 / Windows:虚拟化与 WSL 2 / 不满足要求怎么办:换一台满足要求的电脑
 - **自检标准**:
   - 你知道自己电脑的系统和版本
@@ -126,7 +128,7 @@
 ##### Your first look at the terminal(终端第一课)  `terminal-basics`
 
 - **概述**:把终端当作一个新工具来认识:怎样在 Windows 和 Mac 上打开它,怎样原样复制并运行一条命令,怎样看懂输出,以及怎样用 Ctrl+C 停掉正在运行的命令。
-- **标记**:🆕 新增,尚无正文
+- **标记**:🆕 新增
 - **小节**:什么是终端 / 在 Windows 上打开 / 在 Mac 上打开 / 运行第一条命令 / 复制、粘贴与回车 / 停止正在运行的命令(Ctrl+C)
 - **自检标准**:
   - 你能自己打开终端
@@ -144,7 +146,7 @@
 ##### Read an error and ask for help(读懂报错,学会求助)  `read-errors-and-ask-for-help`
 
 - **概述**:红色文字不一定是坏事。学会在报错里找到关键的一行,原样复制它,再连同“你做了什么、期望什么、实际发生了什么、你的系统”向 AI、同学或社区求助。
-- **标记**:🆕 新增,尚无正文
+- **标记**:🆕 新增
 - **小节**:报错长什么样 / 找到关键的一行 / 原样复制,不要转述 / 求助时要带上什么 / 截图和文字各在什么时候用
 - **自检标准**:
   - 你能在一段报错里指出关键的一行
@@ -226,7 +228,7 @@
 
 - 课程 id:`github-desktop-and-github`
 - 类型:主线
-- 状态:📝 草稿
+- 状态:✅ 已完成正文
 - **概述**:GitHub 基础:用 GitHub Desktop 点鼠标完成日常工作——注册账号并开启二次验证,安装并登录,克隆仓库,提交,以及撤销和找回旧内容。目的是让你在 AI 改乱文件时能随时退回。分支和 Pull Request 放在紧随其后的“GitHub 协作”课。
 
 ##### What are Git and GitHub(什么是 Git 和 GitHub)  `what-are-git-and-github`
@@ -284,7 +286,7 @@
 
 - 课程 id:`build-with-ai`
 - 类型:主线
-- 状态:📝 草稿
+- 状态:✅ 已完成正文
 - **概述**:学会和 AI 编程助手协作的通用方法:怎么选并装好助手、写清晰的需求、让第一版跑起来、小步迭代、出错时回退、不读代码也能验收,并明确哪些决定必须自己把关。后面所有做项目的课程都沿用这套方法。
 
 ##### Choose an AI coding assistant(选择 AI 编程助手)  `choose-an-ai-coding-assistant`
@@ -364,7 +366,7 @@
 
 - 课程 id:`first-website`
 - 类型:主线
-- 状态:📝 草稿
+- 状态:✅ 已完成正文
 - **概述**:和 AI 搭档做出一个个人主页:先看成品、写需求,得到第一版后看一眼 AI 做出的文件,再加上作品栏目、适配手机、修复一个预设问题,最后验收存档,并用挑战课独立做一个不同的网站。
 
 ##### See the finished site(先看看成品)  `see-the-finished-site`
@@ -400,7 +402,7 @@
 ##### A first look at the files the AI made(看一眼 AI 做出的文件)  `peek-at-the-files`
 
 - **概述**:只读不写:用生活类比认识 HTML(结构)、CSS(样式)和 JavaScript(行为)三类文件各管什么,学会让 AI 逐个解释它们,并自己核对解释是否对得上页面。
-- **标记**:🆕 新增,尚无正文
+- **标记**:🆕 新增
 - **小节**:HTML:页面的结构 / CSS:页面的样式 / JavaScript:页面的行为 / 让 AI 解释一个文件,并自己核对
 - **自检标准**:
   - 你能说出三类文件各管什么
@@ -462,7 +464,7 @@
 
 - 课程 id:`publish-your-website`
 - 类型:主线
-- 状态:📝 草稿
+- 状态:✅ 已完成正文
 - **概述**:把网站放到公网上。主线只学一条路:理解网页是怎样被打开的和发布的原理,用 GitHub Pages 发布,并让每次推送自动发布(含 GitHub Actions 是什么),再学会排查发布问题。gh-pages 分支、Cloudflare、阿里云 ESA、域名与 HTTPS 作为进阶选修。
 
 #### 分组:Main line(主线)  `publish-main`
@@ -472,7 +474,7 @@
 ##### How a web page gets to your screen(一个网页是怎样被打开的)  `how-a-page-opens`
 
 - **概述**:用直觉讲清楚:浏览器向服务器发出请求,服务器把页面文件返回,浏览器把它显示出来;并认识网址由哪几部分组成。只讲直觉,不讲协议细节。
-- **标记**:🆕 新增,尚无正文
+- **标记**:🆕 新增
 - **小节**:网址的组成 / 请求与响应 / 浏览器做了什么 / 为什么别人暂时打不开你电脑上的网站
 - **自检标准**:
   - 你能说出网址里哪一段是域名
@@ -584,7 +586,7 @@
 
 - 课程 id:`first-web-app`
 - 类型:主线
-- 状态:📝 草稿
+- 状态:✅ 已完成正文
 - **概述**:和 AI 搭档做出第一个在浏览器里运行的小应用(记账或待办):从需求到第一版,加上刷新后保留数据、筛选与合计,修复一个预设问题,验收后发布,最后用挑战课独立再做一个不同的小工具。
 
 ##### See the finished app(看看完成的应用)  `see-the-finished-app`
@@ -672,7 +674,7 @@
 
 - 课程 id:`app-with-data`
 - 类型:主线
-- 状态:📝 草稿
+- 状态:✅ 已完成正文
 - **概述**:做一个会“记住东西”的应用(留言板或书签管理器):分两步理解前端、后端、数据库和 API,用 Docker Compose 跑起第一版,再添加功能、修复预设问题、保护并备份数据,最后独立做一个不同的数据应用。
 
 ##### See the finished app(看看完成的应用)  `see-the-finished-app`
@@ -688,7 +690,7 @@
 ##### Front end and back end(前端和后端)  `front-end-and-back-end`
 
 - **概述**:认识应用的前端和后端各做什么,以及它们怎样各自监听一个端口;不需要懂内部原理,只需要认识它们。(由原“前端、后端和数据库”拆出)
-- **标记**:🆕 新增,尚无正文;✏️ 拆分:由原“前端、后端和数据库”拆成两课(旧 id `front-end-back-end-and-database` 作废)
+- **标记**:🆕 新增;✏️ 拆分:由原“前端、后端和数据库”拆成两课(旧 id `front-end-back-end-and-database` 作废)
 - **小节**:Words you will meet:前端、后端、端口 / What you will do
 - **自检标准**:
   - 你能说出哪一部分是你看到的,哪一部分在幕后
@@ -698,7 +700,7 @@
 ##### The database and the API(数据库与 API)  `database-and-api`
 
 - **概述**:认识数据库怎样把数据保存下来,API 是前端和后端约定的“对话方式”,并能解释为什么刷新页面后条目仍然在。(由原“前端、后端和数据库”拆出)
-- **标记**:🆕 新增,尚无正文;✏️ 拆分:同上
+- **标记**:🆕 新增;✏️ 拆分:同上
 - **小节**:Words you will meet:数据库、API / 为什么刷新后条目还在 / What you will do
 - **自检标准**:
   - 你能说出哪一部分负责保存数据
@@ -772,7 +774,7 @@
 
 - 课程 id:`add-ai-features`
 - 类型:主线
-- 状态:📝 草稿
+- 状态:✅ 已完成正文
 - **概述**:给小应用加上 AI 功能:先了解模型常识、写功能说明,再接入模型 API 让第一版跑起来(创建密钥之前先设好消费上限,密钥放在项目文件之外,课程会说明可能产生的少量费用),然后加第二个能力、系统地复查密钥与费用,并学会判断输出好不好。
 
 ##### See the finished feature(先看做好的功能)  `see-the-finished-feature`
@@ -869,7 +871,7 @@
 
 - 课程 id:`github-collaboration`
 - 类型:主线
-- 状态:📝 草稿(新增课程)
+- 状态:✅ 已完成正文(新增课程)
 - **概述**:GitHub 协作(新增课程,由原“GitHub Desktop 与 GitHub”拆出):在做完几个应用之后、毕业项目之前,学习用分支隔离改动、用 Pull Request 审阅 AI 写的改动再合并;“Issue、Fork 与开源”为选修。紧接着的毕业项目要求每个改动都走分支和 Pull Request。
 
 ##### Work on a branch(在分支上工作)  `work-on-a-branch`
@@ -909,7 +911,7 @@
 
 - 课程 id:`capstone-project`
 - 类型:主线
-- 状态:📝 草稿
+- 状态:✅ 已完成正文
 - **概述**:毕业项目:用前面学到的全部方法,从一个空文件夹做出并上线一个属于你自己的小应用——选题、写需求、小步构建、上线前检查、发布,再把成果讲给别人,最后回顾并整理成下一次可用的清单。
 
 ##### Choose your project(选定你的项目)  `choose-your-project`
@@ -970,7 +972,7 @@
 ##### Show your work(把成果讲给别人)  `show-your-work`
 
 - **概述**:为项目写 README、准备一段三分钟内能讲完的演示、写一页项目说明,并把它放进你的作品集,让别人不靠你的解释也能看懂你做了什么。
-- **标记**:🆕 新增,尚无正文
+- **标记**:🆕 新增
 - **小节**:README 写什么 / 演示怎么做 / 项目说明 / 作品集链接
 - **自检标准**:
   - 别人只看 README 就知道项目做什么、怎么运行
@@ -981,7 +983,7 @@
 ##### Work on a project with others(小组协作)  `team-collaboration`
 
 - **概述**:用分支和 Pull Request 让组员互相审阅改动,约定谁改什么,并处理合并时遇到的冲突。适合小组完成项目的同学,个人项目可跳过。
-- **标记**:🆕 新增,尚无正文;🔹 选修
+- **标记**:🆕 新增;🔹 选修
 - **小节**:分工与约定 / 分支与 Pull Request / 审阅别人的改动 / 遇到冲突怎么办
 - **自检标准**:
   - 你们约定了谁负责哪一部分
@@ -1004,7 +1006,7 @@
 
 - 课程 id:`docker-self-hosted-apps`
 - 类型:🔹 选修
-- 状态:📝 草稿
+- 状态:✅ 已完成正文
 - **概述**:把 Docker 用在“自己托管现成应用”上(选修,紧接 Docker 入门之后,不影响主线):读懂应用的 compose 文件,部署 Reactive Resume,配置并保管密钥,做好备份、升级和恢复,再把同一套流程用到更多应用上。
 
 ##### Why run apps yourself(为什么要自己运行应用)  `why-self-host`
@@ -1082,7 +1084,7 @@
 
 - 课程 id:`another-language`
 - 类型:🔹 选修
-- 状态:📝 草稿
+- 状态:✅ 已完成正文
 - **概述**:让 AI 用 Python 把同一件事再做一遍(选修):先理解语言与运行环境,写出与语言无关的需求,运行、扩展、对比两个版本,修复预设问题,最后挑战第三种语言。“不读代码也能验收”已并入主线的“验收结果”一课。
 
 ##### See the goal(看看目标)  `see-the-goal`
