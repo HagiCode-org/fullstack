@@ -2,10 +2,13 @@
 import { getCollection, render } from 'astro:content';
 import { CourseBreadcrumb } from '@/components/course/CourseBreadcrumb';
 import { CourseCard } from '@/components/course/CourseCard';
+import { ElectiveBadge } from '@/components/course/ElectiveBadge';
 import { HomeSlogan } from '@/components/course/HomeSlogan';
 import { HomeSteps } from '@/components/course/HomeSteps';
 import { LanguageBand } from '@/components/course/LanguageBand';
 import { ContinueButton } from '@/components/course/ContinueButton';
+import { GlossaryList } from '@/components/course/GlossaryList';
+import { ReadingMeta } from '@/components/course/ReadingMeta';
 import { Disclosure } from '@/components/course/Disclosure';
 import { LessonNav } from '@/components/course/LessonNav';
 import { MarkReadButton } from '@/components/course/MarkReadButton';
@@ -20,11 +23,14 @@ import { courses, flattenLessons, getCourse } from '@/courses/registry';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { uiStringsFor } from '@/i18n/ui';
 import { formatText } from '@/lib/format';
-import { selectLessonBody } from '@/lib/lessonBody';
+import { bodyId, selectLessonBody } from '@/lib/lessonBody';
+import { glossaryGroups } from '@/lib/glossary';
+import { glossaries } from '@/lib/glossaryData';
+import { presentText, totalMinutes, validMinutes } from '@/lib/lessonMeta';
 import { neighbourLinks, previewSections, treeOf } from '@/lib/courseView';
 import { buildProgressIsland } from '@/lib/progressIsland';
 import { allRoutes, routePath, switchLocale, type Route } from '@/lib/routes';
-import { LOCALE_NATIVE_NAMES, SUPPORTED_LOCALES } from '@/config/site';
+import { DEFAULT_LOCALE, LOCALE_NATIVE_NAMES, SUPPORTED_LOCALES } from '@/config/site';
 
 // One page per route. The route model decides every path, so each locale gets the same set of pages.
 export function getStaticPaths() {
@@ -42,20 +48,27 @@ const homeHref = routePath({ kind: 'home', locale });
 const lessonEntries = await getCollection('lessons');
 const bodies = new Map(lessonEntries.map((entry) => [entry.id, entry]));
 
-const course = route.kind === 'home' ? undefined : getCourse(route.courseId);
-if (route.kind !== 'home' && !course) throw new Error(`No course "${route.courseId}" for ${routePath(route)}`);
+const course = route.kind === 'course' || route.kind === 'lesson' ? getCourse(route.courseId) : undefined;
+if ((route.kind === 'course' || route.kind === 'lesson') && !course) throw new Error(`No course "${route.courseId}" for ${routePath(route)}`);
 const courseTitle = course?.title[locale] ?? SITE_NAME;
 const courseHref = course ? routePath({ kind: 'course', locale, courseId: course.id }) : homeHref;
 const lessonCount = course ? flattenLessons(course.outline).length : 0;
 const hrefFor = (lessonId: string) => routePath({ kind: 'lesson', locale, courseId: course?.id ?? '', lessonId });
 
-const overview = course ? treeOf(course, locale, hrefFor) : [];
+// A lesson's reading time comes from its en-US frontmatter; the page shows none when the lesson has no valid time.
+const minutesOf = (lessonId: string): number | undefined =>
+  course ? validMinutes(bodies.get(bodyId(course.id, DEFAULT_LOCALE, lessonId))?.data.minutes) : undefined;
+const courseMinutes = course ? totalMinutes(flattenLessons(course.outline).map((item) => minutesOf(item.id))) : undefined;
+
+const overview = course ? treeOf(course, locale, hrefFor, minutesOf) : [];
 const firstLessonId = course ? flattenLessons(course.outline)[0]?.id : undefined;
 const outlineLabels = {
   readText: ui.readLabel,
   unreadText: ui.unreadLabel,
   currentText: ui.currentLessonLabel,
   progressText: ui.progressText,
+  electiveText: ui.electiveLabel,
+  minutesText: ui.outlineMinutesText,
 };
 
 const lesson = route.kind === 'lesson' && course ? route : undefined;
@@ -67,8 +80,18 @@ const headings = rendered?.headings ?? [];
 const hasToc = headings.some((heading) => heading.depth === 2 || heading.depth === 3);
 const links = lesson && course ? neighbourLinks(course, locale, lesson.lessonId, hrefFor, { previous: ui.previousLabel, next: ui.nextLabel }) : null;
 const back = { href: courseHref, caption: ui.backToCourseLabel, title: courseTitle };
+const lessonMinutes = body ? validMinutes(body.body.data.minutes) : undefined;
+const lessonOutcome = body ? presentText(body.body.data.outcome) : undefined;
 
-const pageTitle = lesson ? `${lessonTitle} | ${courseTitle}` : courseTitle;
+// The glossary page: one group per course in registry order, read from the glossary files.
+const glossaryView = route.kind === 'glossary' ? glossaryGroups(courses, glossaries, locale) : [];
+const glossaryHasFallback = glossaryView.some((group) => group.entries.some((entry) => entry.fallback));
+
+const pageTitle = lesson
+  ? `${lessonTitle} | ${courseTitle}`
+  : route.kind === 'glossary'
+    ? `${ui.glossaryLabel} | ${SITE_NAME}`
+    : courseTitle;
 const island = buildProgressIsland(locale, { courseId: course?.id, lessonId: lesson?.lessonId });
 ---
 
@@ -95,6 +118,8 @@ const island = buildProgressIsland(locale, { courseId: course?.id, lessonId: les
                   overviewHref={routePath({ kind: 'course', locale, courseId: item.id })}
                   demo={item.demo}
                   demoLabel={ui.demoLabel}
+                  elective={item.elective === true}
+                  electiveLabel={ui.electiveLabel}
                   lessonCountText={formatText(ui.lessonCountText, { total })}
                   progressText={ui.progressText}
                   total={total}
@@ -127,7 +152,13 @@ const island = buildProgressIsland(locale, { courseId: course?.id, lessonId: les
 {route.kind === 'course' && course && (
   <BaseLayout title={pageTitle} description={SITE_DESCRIPTION} route={route} width="medium">
     <CourseBreadcrumb items={[{ label: ui.siteHome, href: homeHref }, { label: courseTitle }]} label={ui.breadcrumbLabel} />
+    {course.elective && <div class="mb-2"><ElectiveBadge label={ui.electiveLabel} /></div>}
     <h1 style={`view-transition-name: course-${course.id}`}>{courseTitle}</h1>
+    <ReadingMeta
+      minutesText={courseMinutes === undefined ? undefined : formatText(ui.estimatedTimeText, { minutes: courseMinutes })}
+      outcomeLabel={ui.courseOutcomeLabel}
+      outcome={course.outcome}
+    />
     <div class="mb-8 flex max-w-md flex-col gap-4">
       <ProgressSummary courseId={course.id} total={lessonCount} progressText={ui.progressText} />
       <p class="m-0 text-foreground" hidden {...hookProps('courseComplete')} {...hookProps('courseId', course.id)}>
@@ -137,6 +168,15 @@ const island = buildProgressIsland(locale, { courseId: course?.id, lessonId: les
     </div>
     <OutlineTree courseId={course.id} nodes={overview} labels={outlineLabels} />
     <ProgressRuntime island={island} />
+  </BaseLayout>
+)}
+
+{route.kind === 'glossary' && (
+  <BaseLayout title={pageTitle} description={SITE_DESCRIPTION} route={route} width="medium">
+    <h1>{ui.glossaryLabel}</h1>
+    <p class="m-0 mb-8 text-muted-foreground">{ui.glossaryIntro}</p>
+    {glossaryHasFallback && <Notice>{ui.glossaryFallbackNotice}</Notice>}
+    <GlossaryList groups={glossaryView} analogyLabel={ui.glossaryAnalogyLabel} emptyText={ui.glossaryEmptyText} />
   </BaseLayout>
 )}
 
@@ -164,7 +204,13 @@ const island = buildProgressIsland(locale, { courseId: course?.id, lessonId: les
         ]}
         label={ui.breadcrumbLabel}
       />
+      {lessonNode?.elective && <div class="mb-2"><ElectiveBadge label={ui.electiveLabel} /></div>}
       <h1>{lessonTitle}</h1>
+      <ReadingMeta
+        minutesText={lessonMinutes === undefined ? undefined : formatText(ui.estimatedTimeText, { minutes: lessonMinutes })}
+        outcomeLabel={ui.lessonOutcomeLabel}
+        outcome={lessonOutcome}
+      />
       {body.fallback && <Notice>{ui.fallbackNotice}</Notice>}
       <div class="lesson-content mt-6 [&_h2]:mt-10 [&_h2]:mb-3 [&_h2]:scroll-mt-16 [&_h2]:text-2xl [&_h2]:leading-snug [&_h2]:font-semibold [&_h3]:mt-8 [&_h3]:mb-2 [&_h3]:scroll-mt-16 [&_h3]:text-lg [&_h3]:leading-snug [&_h3]:font-semibold [&_ol]:list-decimal [&_ol]:pl-6 [&_ul]:list-disc [&_ul]:pl-6">
         {rendered && <rendered.Content />}

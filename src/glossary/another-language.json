@@ -1,0 +1,119 @@
+[
+  {
+    "id": "programming-language",
+    "term": {
+      "en-US": "Programming language"
+    },
+    "definition": {
+      "en-US": "A set of written rules, with its own words and grammar, that tells a computer what to do."
+    },
+    "analogy": {
+      "en-US": "Like a recipe written in a shared cooking language, which any cook who knows that language can follow."
+    },
+    "introducedIn": "what-a-language-and-runtime-are"
+  },
+  {
+    "id": "runtime",
+    "term": {
+      "en-US": "Runtime"
+    },
+    "definition": {
+      "en-US": "The software a program needs while it runs, such as the interpreter that reads and carries out its code."
+    },
+    "analogy": {
+      "en-US": "Like the stage, lights and crew that a play needs on the night it is performed."
+    },
+    "introducedIn": "what-a-language-and-runtime-are"
+  },
+  {
+    "id": "dependency",
+    "term": {
+      "en-US": "Dependency"
+    },
+    "definition": {
+      "en-US": "A ready-made piece of code, written by someone else, that your program uses instead of writing that part itself."
+    },
+    "analogy": {
+      "en-US": "Like buying a ready-made sauce for a dish instead of making it from scratch."
+    },
+    "introducedIn": "what-a-language-and-runtime-are"
+  },
+  {
+    "id": "brief",
+    "term": {
+      "en-US": "Brief"
+    },
+    "definition": {
+      "en-US": "A written description of the job you want done, the rules the AI must follow and how you will check the result."
+    },
+    "analogy": {
+      "en-US": "Like the order ticket a waiter gives the kitchen, which says what the table wants and what must not be changed."
+    },
+    "introducedIn": "write-the-brief-for-python"
+  },
+  {
+    "id": "virtual-environment",
+    "term": {
+      "en-US": "Virtual environment"
+    },
+    "definition": {
+      "en-US": "A folder of its own inside a project that holds the packages for that project, separate from packages used elsewhere on your computer."
+    },
+    "analogy": {
+      "en-US": "Like a separate toolbox for each job, so that one job's tools do not get mixed up with another's."
+    },
+    "introducedIn": "first-version"
+  },
+  {
+    "id": "framework",
+    "term": {
+      "en-US": "Framework"
+    },
+    "definition": {
+      "en-US": "A ready-made set of tools and rules for building a certain kind of program, such as a web app."
+    },
+    "analogy": {
+      "en-US": "Like a flat-pack furniture kit, where the parts and instructions are already designed so you do not cut the wood yourself."
+    },
+    "introducedIn": "first-version"
+  },
+  {
+    "id": "regression",
+    "term": {
+      "en-US": "Regression"
+    },
+    "definition": {
+      "en-US": "A problem where something that worked before stops working after a change."
+    },
+    "analogy": {
+      "en-US": "Like repainting one wall of a room and finding that the light switch on another wall no longer works."
+    },
+    "introducedIn": "add-a-feature"
+  },
+  {
+    "id": "test-case",
+    "term": {
+      "en-US": "Test case"
+    },
+    "definition": {
+      "en-US": "One fixed input together with the result you expect from it, used to compare two versions fairly."
+    },
+    "analogy": {
+      "en-US": "Like tasting two batches of soup made from the same recipe and the same amount of salt, so that the difference is easy to judge."
+    },
+    "introducedIn": "compare-with-the-first-version"
+  },
+  {
+    "id": "traceback",
+    "term": {
+      "en-US": "Traceback"
+    },
+    "definition": {
+      "en-US": "The list of files and lines a Python program was running when it failed, printed with the error at the end."
+    },
+    "analogy": {
+      "en-US": "Like the trail of footprints left in the snow that shows the route someone took before they fell."
+    },
+    "introducedIn": "fix-a-planted-problem"
+  }
+]

@@ -1,0 +1,100 @@
+[
+  {
+    "id": "ai-coding-assistant",
+    "term": { "en-US": "AI coding assistant" },
+    "definition": { "en-US": "An AI coding assistant is a program that reads your project files, makes the changes you ask for, and reports back in plain language." },
+    "analogy": { "en-US": "It is like a helper who can open your filing cabinet, edit the papers you point to, and tell you exactly what they changed." },
+    "introducedIn": "choose-an-ai-coding-assistant"
+  },
+  {
+    "id": "usage-based-billing",
+    "term": { "en-US": "usage-based billing" },
+    "definition": { "en-US": "Usage-based billing charges you for the amount of text a model reads and writes, measured in tokens, rather than a fixed monthly fee." },
+    "analogy": { "en-US": "It is like a taxi meter, where you pay for the distance you actually travel instead of one flat fare." },
+    "introducedIn": "choose-an-ai-coding-assistant"
+  },
+  {
+    "id": "api-key",
+    "term": { "en-US": "API key" },
+    "definition": { "en-US": "An API key is a secret string that identifies your account to a service so the service can serve your requests and bill you for them." },
+    "analogy": { "en-US": "It is like a hotel key card that opens your room and is tied to your bill." },
+    "introducedIn": "choose-an-ai-coding-assistant"
+  },
+  {
+    "id": "brief",
+    "term": { "en-US": "brief" },
+    "definition": { "en-US": "A brief is a short written request that tells an assistant what to build, why, and how you will know it is done." },
+    "analogy": { "en-US": "It is like the order form you hand a carpenter before any wood is cut, so you both picture the same table." },
+    "introducedIn": "write-a-clear-brief"
+  },
+  {
+    "id": "done-checklist",
+    "term": { "en-US": "done checklist" },
+    "definition": { "en-US": "A done checklist is a list of things you can check by looking or clicking, which you write before the work starts." },
+    "analogy": { "en-US": "It is like the list you tick through before a trip, checking the passport and tickets one by one." },
+    "introducedIn": "write-a-clear-brief"
+  },
+  {
+    "id": "local-preview",
+    "term": { "en-US": "local preview" },
+    "definition": { "en-US": "A local preview is your site opened in your own browser from files on your computer, before anyone else can see it." },
+    "analogy": { "en-US": "It is like trying on a jacket in the mirror at home before you buy it." },
+    "introducedIn": "get-the-first-version"
+  },
+  {
+    "id": "checkpoint",
+    "term": { "en-US": "checkpoint" },
+    "definition": { "en-US": "A checkpoint is a saved state of the files and conversation that an assistant can return to later." },
+    "analogy": { "en-US": "It is like a bookmark in a long book that lets you flip back to a page you know was good." },
+    "introducedIn": "get-the-first-version"
+  },
+  {
+    "id": "commit",
+    "term": { "en-US": "commit" },
+    "definition": { "en-US": "A commit is a saved snapshot of your project's files with a short message that describes the change." },
+    "analogy": { "en-US": "It is like a save point in a video game that you can load if the next level goes wrong." },
+    "introducedIn": "iterate-in-small-steps"
+  },
+  {
+    "id": "diff",
+    "term": { "en-US": "diff" },
+    "definition": { "en-US": "A diff is a view of what changed between two versions of a file, showing the lines that were added and removed." },
+    "analogy": { "en-US": "It is like comparing two drafts of an essay, with every new sentence marked in one colour and every deleted one struck through." },
+    "introducedIn": "iterate-in-small-steps"
+  },
+  {
+    "id": "rollback",
+    "term": { "en-US": "rollback" },
+    "definition": { "en-US": "A rollback returns your files to an earlier saved state that you know worked." },
+    "analogy": { "en-US": "It is like tearing out the pages you wrote after the last good draft and starting again from that draft." },
+    "introducedIn": "when-something-breaks"
+  },
+  {
+    "id": "self-review",
+    "term": { "en-US": "self-review" },
+    "definition": { "en-US": "A self-review is an assistant's own report on whether its work matches the request, which you should treat as a second opinion." },
+    "analogy": { "en-US": "It is like a student marking their own exam, which is useful but does not replace the teacher's grading." },
+    "introducedIn": "check-the-result"
+  },
+  {
+    "id": "acceptance-check",
+    "term": { "en-US": "acceptance check" },
+    "definition": { "en-US": "An acceptance check is a test you run yourself, with a fixed input and an expected output, to decide that the work is finished." },
+    "analogy": { "en-US": "It is like a building inspector who walks through the finished house with the plans in hand before signing it off." },
+    "introducedIn": "check-the-result"
+  },
+  {
+    "id": "permission-mode",
+    "term": { "en-US": "permission mode" },
+    "definition": { "en-US": "A permission mode is the setting that decides which actions an assistant may take without asking you first." },
+    "analogy": { "en-US": "It is like a family rule about which errands a child may run alone and which need a phone call first." },
+    "introducedIn": "keep-control"
+  },
+  {
+    "id": "secret",
+    "term": { "en-US": "secret" },
+    "definition": { "en-US": "A secret is any value, such as a password or an API key, that lets someone act as you or spend your money." },
+    "analogy": { "en-US": "It is like a spare key under the doormat, because anyone who finds it can walk in." },
+    "introducedIn": "keep-control"
+  }
+]

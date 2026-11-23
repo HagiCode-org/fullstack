@@ -1,0 +1,171 @@
+[
+  {
+    "id": "prompt",
+    "term": {
+      "en-US": "Prompt"
+    },
+    "definition": {
+      "en-US": "The text you send to a model, including your instructions and the material it should work on."
+    },
+    "analogy": {
+      "en-US": "Like the note you give a waiter that says what you want and how you want it cooked."
+    },
+    "introducedIn": "see-the-finished-feature"
+  },
+  {
+    "id": "model",
+    "term": {
+      "en-US": "Model"
+    },
+    "definition": {
+      "en-US": "A program trained on large amounts of text that reads the text you give it and writes an answer."
+    },
+    "analogy": {
+      "en-US": "Like a well-read friend who answers from everything they have read, and who can still get one detail wrong."
+    },
+    "introducedIn": "see-the-finished-feature"
+  },
+  {
+    "id": "token",
+    "term": {
+      "en-US": "Token"
+    },
+    "definition": {
+      "en-US": "The smallest unit of text a model reads and counts, which may be a word, part of a word, a character or a byte."
+    },
+    "analogy": {
+      "en-US": "Like a bead on a string, where the length you pay for depends on how many beads are on it."
+    },
+    "introducedIn": "how-models-work-for-builders"
+  },
+  {
+    "id": "context-window",
+    "term": {
+      "en-US": "Context window"
+    },
+    "definition": {
+      "en-US": "The amount of text, counted in tokens, that a model can look at in one request."
+    },
+    "analogy": {
+      "en-US": "Like the desk you work at, which can hold only so many papers at once."
+    },
+    "introducedIn": "how-models-work-for-builders"
+  },
+  {
+    "id": "hallucination",
+    "term": {
+      "en-US": "Hallucination"
+    },
+    "definition": {
+      "en-US": "An answer that sounds confident but is factually incorrect or does not match the text it was given."
+    },
+    "analogy": {
+      "en-US": "Like a student who writes a confident essay from memory and gets a date wrong without noticing."
+    },
+    "introducedIn": "how-models-work-for-builders"
+  },
+  {
+    "id": "api",
+    "term": {
+      "en-US": "API"
+    },
+    "definition": {
+      "en-US": "A set of rules that lets one program send a request to another program and receive a reply."
+    },
+    "analogy": {
+      "en-US": "Like an order form at a restaurant, where the kitchen acts only on requests written in the agreed form."
+    },
+    "introducedIn": "first-version"
+  },
+  {
+    "id": "api-key",
+    "term": {
+      "en-US": "API key"
+    },
+    "definition": {
+      "en-US": "A secret code that identifies your account to a service, so the service knows whose requests to accept and whom to bill."
+    },
+    "analogy": {
+      "en-US": "Like a library card number, which proves who you are and should be kept private."
+    },
+    "introducedIn": "first-version"
+  },
+  {
+    "id": "environment-variable",
+    "term": {
+      "en-US": "Environment variable"
+    },
+    "definition": {
+      "en-US": "A named setting that your terminal passes to the programs it starts, so they can read the value without it being written in their files."
+    },
+    "analogy": {
+      "en-US": "Like a note on the fridge that everyone in the house can read, instead of writing the phone number inside every letter."
+    },
+    "introducedIn": "first-version"
+  },
+  {
+    "id": "regression-test",
+    "term": {
+      "en-US": "Regression test"
+    },
+    "definition": {
+      "en-US": "A check that repeats earlier test inputs after a change, to confirm that answers you accepted before are still accepted."
+    },
+    "analogy": {
+      "en-US": "Like checking that the other rooms still work after you repaint one room."
+    },
+    "introducedIn": "add-a-second-ability"
+  },
+  {
+    "id": "spend-limit",
+    "term": {
+      "en-US": "Spend limit"
+    },
+    "definition": {
+      "en-US": "A maximum amount that a service lets you spend in a period, after which the service refuses further requests until you raise the limit or the period resets."
+    },
+    "analogy": {
+      "en-US": "Like a prepaid phone plan that stops calls once the credit is used up."
+    },
+    "introducedIn": "keep-keys-and-costs-safe"
+  },
+  {
+    "id": "spend-alert",
+    "term": {
+      "en-US": "Spend alert"
+    },
+    "definition": {
+      "en-US": "A notification that a service sends when your tracked spending reaches an amount you chose, without stopping your requests."
+    },
+    "analogy": {
+      "en-US": "Like the low-fuel warning light, which comes on before the tank is empty."
+    },
+    "introducedIn": "keep-keys-and-costs-safe"
+  },
+  {
+    "id": "test-set",
+    "term": {
+      "en-US": "Test set"
+    },
+    "definition": {
+      "en-US": "A fixed list of test inputs, each with the answer you accept, which you run again after every change."
+    },
+    "analogy": {
+      "en-US": "Like a spelling test that you give to the same class each week to see whether it is improving."
+    },
+    "introducedIn": "judge-the-output"
+  },
+  {
+    "id": "prompt-injection",
+    "term": {
+      "en-US": "Prompt injection"
+    },
+    "definition": {
+      "en-US": "Text that tries to make a model ignore its instructions and follow new instructions hidden in the content it reads."
+    },
+    "analogy": {
+      "en-US": "Like a note slipped into a stack of papers that tells you to ignore your boss and do something else instead."
+    },
+    "introducedIn": "judge-the-output"
+  }
+]

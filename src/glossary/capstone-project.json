@@ -1,0 +1,197 @@
+[
+  {
+    "id": "scope",
+    "term": {
+      "en-US": "Scope"
+    },
+    "definition": {
+      "en-US": "The list of what a project will do and what it will leave out for now."
+    },
+    "analogy": {
+      "en-US": "Like packing for a weekend trip, where you choose what fits in the bag and leave the rest at home."
+    },
+    "introducedIn": "choose-your-project"
+  },
+  {
+    "id": "spec",
+    "term": {
+      "en-US": "Spec"
+    },
+    "definition": {
+      "en-US": "A written description of what an app must do, who uses it and what it must never do."
+    },
+    "analogy": {
+      "en-US": "Like a recipe card that lists the dish to make, the ingredients to use and the steps that must never be skipped."
+    },
+    "introducedIn": "write-the-spec"
+  },
+  {
+    "id": "done-checklist",
+    "term": {
+      "en-US": "Done-checklist"
+    },
+    "definition": {
+      "en-US": "A list of statements that are each either true or false when you test the app, and that are all true when the first version is finished."
+    },
+    "analogy": {
+      "en-US": "Like a packing list that you tick off at the door, where the trip is ready only when every line is ticked."
+    },
+    "introducedIn": "write-the-spec"
+  },
+  {
+    "id": "branch",
+    "term": {
+      "en-US": "Branch"
+    },
+    "definition": {
+      "en-US": "A separate line of work in a repository, so that changes can be made and tested without changing the main version."
+    },
+    "analogy": {
+      "en-US": "Like a draft copy of a document that you edit on the side, while the signed original stays in the drawer."
+    },
+    "introducedIn": "build-in-small-steps"
+  },
+  {
+    "id": "pull-request",
+    "term": {
+      "en-US": "Pull request"
+    },
+    "definition": {
+      "en-US": "A request to bring the changes from one branch into another branch after other people have read them."
+    },
+    "analogy": {
+      "en-US": "Like handing a finished homework page to a teacher for marking before it goes into the class folder."
+    },
+    "introducedIn": "build-in-small-steps"
+  },
+  {
+    "id": "secret",
+    "term": {
+      "en-US": "Secret"
+    },
+    "definition": {
+      "en-US": "A key, password or token that gives access to a service or an account, and that must never appear in a public file."
+    },
+    "analogy": {
+      "en-US": "Like the spare key under the doormat, because anyone who finds it can open the door."
+    },
+    "introducedIn": "check-before-you-ship"
+  },
+  {
+    "id": "spending-limit",
+    "term": {
+      "en-US": "Spending limit"
+    },
+    "definition": {
+      "en-US": "A monthly cap on what a paid service may charge you, which stops requests or warns you when the cap is reached."
+    },
+    "analogy": {
+      "en-US": "Like a prepaid phone plan that stops calls when the credit runs out, instead of letting the bill keep growing."
+    },
+    "introducedIn": "check-before-you-ship"
+  },
+  {
+    "id": "deployment",
+    "term": {
+      "en-US": "Deployment"
+    },
+    "definition": {
+      "en-US": "Putting a finished version of your app on a server where other people can open it at an address."
+    },
+    "analogy": {
+      "en-US": "Like moving a finished painting from the studio to the gallery wall, where visitors can see it."
+    },
+    "introducedIn": "launch"
+  },
+  {
+    "id": "readme",
+    "term": {
+      "en-US": "README"
+    },
+    "definition": {
+      "en-US": "A text file at the front of a project that tells visitors what it is, why it is useful and how to use it."
+    },
+    "analogy": {
+      "en-US": "Like the label on a jar, which tells you what is inside, what it is for and how to open it."
+    },
+    "introducedIn": "show-your-work"
+  },
+  {
+    "id": "portfolio",
+    "term": {
+      "en-US": "Portfolio"
+    },
+    "definition": {
+      "en-US": "A small collection of your best finished work, shown so that other people can judge what you have made."
+    },
+    "analogy": {
+      "en-US": "Like a photo album you hand to a new neighbour so they can see what you did last summer."
+    },
+    "introducedIn": "show-your-work"
+  },
+  {
+    "id": "review",
+    "term": {
+      "en-US": "Review"
+    },
+    "definition": {
+      "en-US": "A check of a proposed change by another person, who leaves comments and then approves the change or asks for changes."
+    },
+    "analogy": {
+      "en-US": "Like a second reader who checks an essay for mistakes before it is handed in."
+    },
+    "introducedIn": "team-collaboration"
+  },
+  {
+    "id": "merge-conflict",
+    "term": {
+      "en-US": "Merge conflict"
+    },
+    "definition": {
+      "en-US": "A stop in merging that happens when two branches change the same part of a file, so that Git cannot choose between the two versions."
+    },
+    "analogy": {
+      "en-US": "Like two friends editing the same sentence in a shared document, so someone has to decide which words stay."
+    },
+    "introducedIn": "team-collaboration"
+  },
+  {
+    "id": "branch-protection",
+    "term": {
+      "en-US": "Branch protection"
+    },
+    "definition": {
+      "en-US": "A rule on an important branch that controls who can change it and what must happen before a change is accepted, such as a review."
+    },
+    "analogy": {
+      "en-US": "Like a museum rule that a painting can only be moved after two staff members sign the form."
+    },
+    "introducedIn": "team-collaboration"
+  },
+  {
+    "id": "retrospective",
+    "term": {
+      "en-US": "Retrospective"
+    },
+    "definition": {
+      "en-US": "A short review of a finished project that records what went well, what went wrong and what to change next time."
+    },
+    "analogy": {
+      "en-US": "Like a coach who watches the match video after the game to decide what the team should practise next."
+    },
+    "introducedIn": "look-back"
+  },
+  {
+    "id": "commit-history",
+    "term": {
+      "en-US": "Commit history"
+    },
+    "definition": {
+      "en-US": "The list of saved checkpoints in a repository, showing what changed in each one and when it was saved."
+    },
+    "analogy": {
+      "en-US": "Like the list of saved versions of a document, which shows each time someone pressed save."
+    },
+    "introducedIn": "look-back"
+  }
+]

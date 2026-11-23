@@ -2,6 +2,7 @@ import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
 import { cn } from "@/lib/utils"
 import { ContinueButton } from "./ContinueButton"
+import { ElectiveBadge } from "./ElectiveBadge"
 import { ProgressSummary } from "./ProgressSummary"
 import { ReadMarker } from "./ReadMarker"
 import type { PreviewSection } from "./types"
@@ -12,6 +13,9 @@ interface CourseCardProps {
   overviewHref: string
   demo: boolean
   demoLabel: string
+  // Set for an optional course (选修); the card then carries the elective badge.
+  elective?: boolean
+  electiveLabel: string
   lessonCountText: string
   progressText: string
   total: number
@@ -33,6 +37,8 @@ export function CourseCard({
   overviewHref,
   demo,
   demoLabel,
+  elective,
+  electiveLabel,
   lessonCountText,
   progressText,
   total,
@@ -48,6 +54,7 @@ export function CourseCard({
       <CardContent className="flex flex-col gap-4 px-5 py-5 lg:px-6 lg:py-6">
         <div className="flex flex-col gap-2">
           {demo && <Badge variant="secondary" className="w-fit">{demoLabel}</Badge>}
+          {elective && <ElectiveBadge label={electiveLabel} />}
           <h3 className="m-0 text-xl leading-snug font-semibold text-foreground text-balance" style={{ viewTransitionName: `course-${courseId}` }}>
             <a href={overviewHref} className="no-underline hover:underline">
               {title}

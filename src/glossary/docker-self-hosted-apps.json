@@ -1,0 +1,158 @@
+[
+  {
+    "id": "self-hosting",
+    "term": {
+      "en-US": "Self-hosting"
+    },
+    "definition": {
+      "en-US": "Running a program on a computer you control, such as your own computer or a rented server, instead of using a website that someone else runs for you."
+    },
+    "analogy": {
+      "en-US": "Like cooking dinner at home instead of ordering takeout, so you choose the ingredients and you clean up afterwards."
+    },
+    "introducedIn": "why-self-host"
+  },
+  {
+    "id": "open-source",
+    "term": {
+      "en-US": "Open source"
+    },
+    "definition": {
+      "en-US": "Software whose source code is published so that people can read it, and whose license says how they may use and change it."
+    },
+    "analogy": {
+      "en-US": "Like a recipe card that anyone can read, copy and adjust, as long as they follow the terms written on the card."
+    },
+    "introducedIn": "why-self-host"
+  },
+  {
+    "id": "database",
+    "term": {
+      "en-US": "Database"
+    },
+    "definition": {
+      "en-US": "A program that keeps organised records, such as accounts and resumes, so that other programs can save, search and change them."
+    },
+    "analogy": {
+      "en-US": "Like a filing cabinet with labelled folders, where every record has its place and can be found again."
+    },
+    "introducedIn": "read-the-compose-file"
+  },
+  {
+    "id": "port-mapping",
+    "term": {
+      "en-US": "Port mapping"
+    },
+    "definition": {
+      "en-US": "A setting that connects a port number on your computer to a port number inside a container, written as host:container."
+    },
+    "analogy": {
+      "en-US": "Like the sign at a building's front desk that sends each visitor to the right room number inside."
+    },
+    "introducedIn": "read-the-compose-file"
+  },
+  {
+    "id": "health-check",
+    "term": {
+      "en-US": "Health check"
+    },
+    "definition": {
+      "en-US": "A regular test that a container runs to report whether its program is ready and working."
+    },
+    "analogy": {
+      "en-US": "Like a traffic light that shows whether a road is open, without moving any cars."
+    },
+    "introducedIn": "deploy-reactive-resume"
+  },
+  {
+    "id": "secret",
+    "term": {
+      "en-US": "Secret"
+    },
+    "definition": {
+      "en-US": "A private value, such as a password or a signing key, that an app needs and that must not be shared."
+    },
+    "analogy": {
+      "en-US": "Like the spare key to your house, which opens the door for anyone who holds it."
+    },
+    "introducedIn": "configure-and-keep-secrets"
+  },
+  {
+    "id": "gitignore",
+    "term": {
+      "en-US": "gitignore file"
+    },
+    "definition": {
+      "en-US": "A file in a project folder that lists the files and folders Git should not record when you make a commit."
+    },
+    "analogy": {
+      "en-US": "Like a note on a shared fridge that tells everyone which items to leave alone."
+    },
+    "introducedIn": "configure-and-keep-secrets"
+  },
+  {
+    "id": "backup",
+    "term": {
+      "en-US": "Backup"
+    },
+    "definition": {
+      "en-US": "A copy of data kept somewhere else, so that the data can be recovered after a mistake, a failure or a bad update."
+    },
+    "analogy": {
+      "en-US": "Like a spare set of house keys kept at a neighbour's, so you can still get in if you lose yours."
+    },
+    "introducedIn": "back-up-upgrade-restore"
+  },
+  {
+    "id": "migration",
+    "term": {
+      "en-US": "Migration"
+    },
+    "definition": {
+      "en-US": "A script that changes the layout of a database so that a new version of an app can read and write it."
+    },
+    "analogy": {
+      "en-US": "Like moving the papers in a filing cabinet into new folders when the office adopts a new labelling system."
+    },
+    "introducedIn": "back-up-upgrade-restore"
+  },
+  {
+    "id": "license",
+    "term": {
+      "en-US": "License"
+    },
+    "definition": {
+      "en-US": "The legal terms that say what you may do with a piece of software, such as use, copy or change it."
+    },
+    "analogy": {
+      "en-US": "Like the rules on a library card that say what you may borrow and for how long."
+    },
+    "introducedIn": "try-more-apps"
+  },
+  {
+    "id": "log",
+    "term": {
+      "en-US": "Log"
+    },
+    "definition": {
+      "en-US": "A written record of the events a program or container reports while it runs, usually with the time and a message."
+    },
+    "analogy": {
+      "en-US": "Like a ship's logbook, where each entry notes what happened and when."
+    },
+    "introducedIn": "troubleshoot-an-app"
+  },
+  {
+    "id": "port-conflict",
+    "term": {
+      "en-US": "Port conflict"
+    },
+    "definition": {
+      "en-US": "A situation in which two programs try to use the same port number on one computer, so that one of them cannot start."
+    },
+    "analogy": {
+      "en-US": "Like two people trying to sit in the same chair, so one of them has to find another seat."
+    },
+    "introducedIn": "troubleshoot-an-app"
+  }
+]

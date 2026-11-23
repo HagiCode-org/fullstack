@@ -1,5 +1,7 @@
+import { formatText } from "@/lib/format"
 import { cn } from "@/lib/utils"
 import { Disclosure } from "./Disclosure"
+import { ElectiveBadge } from "./ElectiveBadge"
 import { ProgressSummary } from "./ProgressSummary"
 import { ReadMarker } from "./ReadMarker"
 import type { TreeNode } from "./types"
@@ -9,6 +11,9 @@ export interface OutlineLabels {
   unreadText: string
   currentText: string
   progressText: string
+  electiveText: string
+  // A template with {minutes}, shown after a lesson's title when the lesson has a reading time.
+  minutesText: string
 }
 
 interface OutlineTreeProps {
@@ -85,6 +90,10 @@ function LessonLink({ node, current, labels }: { node: Extract<TreeNode, { kind:
     >
       <ReadMarker lessonId={node.id} readText={labels.readText} unreadText={labels.unreadText} />
       <span className="min-w-0 flex-1">{node.title}</span>
+      {node.minutes !== undefined && (
+        <span className="shrink-0 text-xs text-muted-foreground">{formatText(labels.minutesText, { minutes: node.minutes })}</span>
+      )}
+      {node.elective && <ElectiveBadge label={labels.electiveText} />}
       {current && <span className="sr-only">{labels.currentText}</span>}
     </a>
   )

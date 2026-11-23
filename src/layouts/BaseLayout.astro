@@ -59,7 +59,7 @@ const courseSwitcher: SwitcherItem[] = courses.map((course) => ({
   id: course.id,
   label: course.title[locale],
   href: routePath({ kind: 'course', locale, courseId: course.id }),
-  current: route.kind !== 'home' && route.courseId === course.id,
+  current: (route.kind === 'course' || route.kind === 'lesson') && route.courseId === course.id,
 }));
 const languageSwitcher: SwitcherItem[] = SUPPORTED_LOCALES.map((code) => ({
   id: code,
@@ -107,6 +107,9 @@ const languageSwitcher: SwitcherItem[] = SUPPORTED_LOCALES.map((code) => ({
       languageLabel={ui.languageSwitcherLabel}
       languages={languageSwitcher}
       themeLabel={ui.themeToggleLabel}
+      glossaryLabel={ui.glossaryLabel}
+      glossaryHref={routePath({ kind: 'glossary', locale })}
+      glossaryCurrent={route.kind === 'glossary'}
     />
     <!-- The workbench: an optional sidebar pane beside the main pane. The sidebar stacks above main below lg. From xl the
          panes sit on three tracks: the outer two flex, so the outline and the optional "On this page" rail stay beside the

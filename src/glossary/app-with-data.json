@@ -1,0 +1,158 @@
+[
+  {
+    "id": "database",
+    "term": {
+      "en-US": "Database"
+    },
+    "definition": {
+      "en-US": "A program that stores organized data so that the data is still there after the app that uses it stops."
+    },
+    "analogy": {
+      "en-US": "Like a well-kept filing cabinet, where every folder stays in its drawer even after the office closes for the night."
+    },
+    "introducedIn": "see-the-finished-app"
+  },
+  {
+    "id": "front-end",
+    "term": {
+      "en-US": "Front end"
+    },
+    "definition": {
+      "en-US": "The part of an app that runs in the browser and shows the page, the buttons and the forms that you use."
+    },
+    "analogy": {
+      "en-US": "Like the dining room of a restaurant, where you see the tables and the menu but not the kitchen."
+    },
+    "introducedIn": "front-end-and-back-end"
+  },
+  {
+    "id": "back-end",
+    "term": {
+      "en-US": "Back end"
+    },
+    "definition": {
+      "en-US": "The part of an app that runs on a server, receives requests, saves and reads data, and sends back a reply."
+    },
+    "analogy": {
+      "en-US": "Like the kitchen behind the counter, which prepares every order that comes in from the dining room."
+    },
+    "introducedIn": "front-end-and-back-end"
+  },
+  {
+    "id": "port",
+    "term": {
+      "en-US": "Port"
+    },
+    "definition": {
+      "en-US": "A numbered door on a computer that a program listens on for connections, such as 5432 for PostgreSQL."
+    },
+    "analogy": {
+      "en-US": "Like the room number of one office in a large building, so that a visitor knows exactly which door to knock on."
+    },
+    "introducedIn": "front-end-and-back-end"
+  },
+  {
+    "id": "table",
+    "term": {
+      "en-US": "Table"
+    },
+    "definition": {
+      "en-US": "A set of rows and columns in a database that holds one kind of thing, such as all the guestbook messages."
+    },
+    "analogy": {
+      "en-US": "Like one page of a paper ledger, with a line for each item and a box for each detail."
+    },
+    "introducedIn": "database-and-api"
+  },
+  {
+    "id": "api",
+    "term": {
+      "en-US": "API"
+    },
+    "definition": {
+      "en-US": "A set of addresses and rules that lets one program ask another program for data or ask it to do something."
+    },
+    "analogy": {
+      "en-US": "Like a restaurant menu, which lists what you may order without showing you the kitchen."
+    },
+    "introducedIn": "database-and-api"
+  },
+  {
+    "id": "brief",
+    "term": {
+      "en-US": "Brief"
+    },
+    "definition": {
+      "en-US": "A short written description of what you want an app to do, which the AI reads before it writes any code."
+    },
+    "analogy": {
+      "en-US": "Like the notes a customer hands a builder before any work begins."
+    },
+    "introducedIn": "write-the-app-brief"
+  },
+  {
+    "id": "env-file",
+    "term": {
+      "en-US": "Env file"
+    },
+    "definition": {
+      "en-US": "A plain text file named .env, with lines of the form NAME=value, that Docker Compose reads to fill in its settings."
+    },
+    "analogy": {
+      "en-US": "Like a sticky note in a drawer that lists the codes you need, kept apart from the instructions for building the house."
+    },
+    "introducedIn": "first-version-with-compose"
+  },
+  {
+    "id": "column",
+    "term": {
+      "en-US": "Column"
+    },
+    "definition": {
+      "en-US": "A named part of a table that holds one kind of value in every row, and has a data type that limits what it accepts."
+    },
+    "analogy": {
+      "en-US": "Like a labelled box on a form, which accepts only the kind of answer its label asks for."
+    },
+    "introducedIn": "add-a-feature"
+  },
+  {
+    "id": "log",
+    "term": {
+      "en-US": "Log"
+    },
+    "definition": {
+      "en-US": "A running list of messages that a program writes about what it is doing, including the errors it meets."
+    },
+    "analogy": {
+      "en-US": "Like the logbook a ship's crew writes in every hour, which shows what happened and when."
+    },
+    "introducedIn": "fix-a-planted-problem"
+  },
+  {
+    "id": "secret",
+    "term": {
+      "en-US": "Secret"
+    },
+    "definition": {
+      "en-US": "A password, key or other piece of data that gives access to something and must not be shared or stored in source code."
+    },
+    "analogy": {
+      "en-US": "Like the key to your house, which opens the door for anyone who holds it, so you keep it in your pocket and not under the doormat."
+    },
+    "introducedIn": "protect-and-back-up-your-data"
+  },
+  {
+    "id": "backup",
+    "term": {
+      "en-US": "Backup"
+    },
+    "definition": {
+      "en-US": "A copy of your data, kept in another place, so that you can restore it if the original is lost or damaged."
+    },
+    "analogy": {
+      "en-US": "Like a photocopy of an important letter, kept in a different drawer in case the original is lost."
+    },
+    "introducedIn": "protect-and-back-up-your-data"
+  }
+]

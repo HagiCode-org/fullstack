@@ -1,0 +1,93 @@
+[
+  {
+    "id": "page",
+    "term": { "en-US": "Page" },
+    "definition": { "en-US": "One screen of content, such as a home page, that a browser shows as a single document." },
+    "analogy": { "en-US": "Like one sheet in a folder of printed sheets, where the whole folder stands for the website." },
+    "introducedIn": "see-the-finished-site"
+  },
+  {
+    "id": "browser",
+    "term": { "en-US": "Browser" },
+    "definition": { "en-US": "The program that finds a web page on the internet and draws it on your screen." },
+    "analogy": { "en-US": "Like a librarian who fetches a book from the shelves and opens it on your table." },
+    "introducedIn": "see-the-finished-site"
+  },
+  {
+    "id": "file",
+    "term": { "en-US": "File" },
+    "definition": { "en-US": "A named piece of stored data on a computer, such as a text file, from which a website is built." },
+    "analogy": { "en-US": "Like a document saved in a labelled folder on your desk, so you can find it again later." },
+    "introducedIn": "see-the-finished-site"
+  },
+  {
+    "id": "brief",
+    "term": { "en-US": "Brief" },
+    "definition": { "en-US": "The written request that says what to build, who it is for and how you will know it is finished." },
+    "analogy": { "en-US": "Like the order form you give a carpenter, which says what to build and how you will check it when it is done." },
+    "introducedIn": "write-the-site-brief"
+  },
+  {
+    "id": "html",
+    "term": { "en-US": "HTML" },
+    "definition": { "en-US": "HyperText Markup Language, the code that gives a web page its structure, such as headings, paragraphs and links." },
+    "analogy": { "en-US": "Like the skeleton of a house, which decides where the rooms and walls go." },
+    "introducedIn": "peek-at-the-files"
+  },
+  {
+    "id": "css",
+    "term": { "en-US": "CSS" },
+    "definition": { "en-US": "Cascading Style Sheets, the code that styles web content so that it looks the way you want." },
+    "analogy": { "en-US": "Like the paint, furniture and decorations that make the same rooms feel warm or cold." },
+    "introducedIn": "peek-at-the-files"
+  },
+  {
+    "id": "javascript",
+    "term": { "en-US": "JavaScript" },
+    "definition": { "en-US": "A programming language that adds features and behaviour to a web page, such as reacting when someone clicks a button." },
+    "analogy": { "en-US": "Like the electric switches in a house, which make something happen when you press them." },
+    "introducedIn": "peek-at-the-files"
+  },
+  {
+    "id": "link",
+    "term": { "en-US": "Link" },
+    "definition": { "en-US": "An element that takes the reader to another page, file or address when it is activated." },
+    "analogy": { "en-US": "Like a road sign that points to another town." },
+    "introducedIn": "add-a-projects-section"
+  },
+  {
+    "id": "alt-text",
+    "term": { "en-US": "Alt text" },
+    "definition": { "en-US": "The text in an image element that describes the picture and that the browser can show in its place." },
+    "analogy": { "en-US": "Like the caption under a photo, which tells someone what the picture shows when they cannot see it." },
+    "introducedIn": "add-a-projects-section"
+  },
+  {
+    "id": "responsive-design",
+    "term": { "en-US": "Responsive design" },
+    "definition": { "en-US": "A way of designing a page so that its layout adapts to the width of the screen it is shown on." },
+    "analogy": { "en-US": "Like a folding table that becomes bigger or smaller depending on how many people sit down." },
+    "introducedIn": "make-it-work-on-phones"
+  },
+  {
+    "id": "viewport",
+    "term": { "en-US": "Viewport" },
+    "definition": { "en-US": "The area of the screen where a browser draws the page, which a meta tag can hint how to size." },
+    "analogy": { "en-US": "Like the window of a shop, which decides how much of the room people can see from the street." },
+    "introducedIn": "make-it-work-on-phones"
+  },
+  {
+    "id": "media-query",
+    "term": { "en-US": "Media query" },
+    "definition": { "en-US": "A CSS rule that applies its styles only when a condition, such as a narrow screen, is true." },
+    "analogy": { "en-US": "Like a rule that says the umbrella comes out only when it is raining." },
+    "introducedIn": "make-it-work-on-phones"
+  },
+  {
+    "id": "cascade",
+    "term": { "en-US": "Cascade" },
+    "definition": { "en-US": "The algorithm that decides which CSS value applies when more than one rule sets the same property." },
+    "analogy": { "en-US": "Like a family rule list where the most specific instruction for the situation is the one that is followed." },
+    "introducedIn": "fix-a-planted-problem"
+  }
+]

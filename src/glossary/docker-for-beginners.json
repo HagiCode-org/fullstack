@@ -1,0 +1,288 @@
+[
+  {
+    "id": "image",
+    "term": {
+      "en-US": "Image"
+    },
+    "definition": {
+      "en-US": "A package of a program and everything it needs to start, used as a template for containers."
+    },
+    "analogy": {
+      "en-US": "Like a recipe card that you can cook from many times without changing the card."
+    },
+    "introducedIn": "what-is-docker"
+  },
+  {
+    "id": "container",
+    "term": {
+      "en-US": "Container"
+    },
+    "definition": {
+      "en-US": "A running copy of an image that runs separately from other containers and from the rest of your computer."
+    },
+    "analogy": {
+      "en-US": "Like one meal cooked from a recipe, which you can eat and throw away without changing the recipe."
+    },
+    "introducedIn": "what-is-docker"
+  },
+  {
+    "id": "volume",
+    "term": {
+      "en-US": "Volume"
+    },
+    "definition": {
+      "en-US": "Storage that Docker keeps outside a container, so its data survives when the container is removed."
+    },
+    "analogy": {
+      "en-US": "Like a storage locker rented separately from your house, so your things stay there when you move out."
+    },
+    "introducedIn": "what-is-docker"
+  },
+  {
+    "id": "virtualization",
+    "term": {
+      "en-US": "Virtualization"
+    },
+    "definition": {
+      "en-US": "A processor and computer setting that lets software run a separate virtual computer inside your computer."
+    },
+    "analogy": {
+      "en-US": "Like a room built inside a house, with its own walls and furniture but the same building."
+    },
+    "introducedIn": "check-your-computer"
+  },
+  {
+    "id": "docker-engine",
+    "term": {
+      "en-US": "Docker Engine"
+    },
+    "definition": {
+      "en-US": "The background program that builds and runs containers on your computer."
+    },
+    "analogy": {
+      "en-US": "Like the kitchen staff of a restaurant, who work out of sight while the customers only place orders."
+    },
+    "introducedIn": "install-docker"
+  },
+  {
+    "id": "terminal",
+    "term": {
+      "en-US": "Terminal"
+    },
+    "definition": {
+      "en-US": "A window where you type a command and read the text the computer prints back."
+    },
+    "analogy": {
+      "en-US": "Like a text chat with your computer, where you send one line and it replies underneath."
+    },
+    "introducedIn": "terminal-basics"
+  },
+  {
+    "id": "command",
+    "term": {
+      "en-US": "Command"
+    },
+    "definition": {
+      "en-US": "One line of text that tells a program what to do, such as docker version."
+    },
+    "analogy": {
+      "en-US": "Like a written order handed to a waiter, which the kitchen then carries out."
+    },
+    "introducedIn": "terminal-basics"
+  },
+  {
+    "id": "tag",
+    "term": {
+      "en-US": "Tag"
+    },
+    "definition": {
+      "en-US": "A label after an image name, such as nginx:stable, that names a version or release line of the image."
+    },
+    "analogy": {
+      "en-US": "Like the edition label printed on a book, such as second edition, next to its title."
+    },
+    "introducedIn": "your-first-container"
+  },
+  {
+    "id": "exit-code",
+    "term": {
+      "en-US": "Exit code"
+    },
+    "definition": {
+      "en-US": "The number a program returns when it stops, where 0 means it finished without an error."
+    },
+    "analogy": {
+      "en-US": "Like the stamp on a receipt, where a done stamp means it worked and any other stamp means something went wrong."
+    },
+    "introducedIn": "your-first-container"
+  },
+  {
+    "id": "error-message",
+    "term": {
+      "en-US": "Error message"
+    },
+    "definition": {
+      "en-US": "Text a program prints when it cannot finish what you asked, often naming the problem."
+    },
+    "analogy": {
+      "en-US": "Like the warning light on a car dashboard that names the part that needs attention."
+    },
+    "introducedIn": "read-errors-and-ask-for-help"
+  },
+  {
+    "id": "port",
+    "term": {
+      "en-US": "Port"
+    },
+    "definition": {
+      "en-US": "A numbered entrance on your computer, such as 8080, that a published container port connects to."
+    },
+    "analogy": {
+      "en-US": "Like the numbered door of an apartment building, which leads to one specific flat."
+    },
+    "introducedIn": "run-nginx"
+  },
+  {
+    "id": "bind-mount",
+    "term": {
+      "en-US": "Bind mount"
+    },
+    "definition": {
+      "en-US": "A folder on your computer that a container reads directly, under a path you choose inside the container."
+    },
+    "analogy": {
+      "en-US": "Like sharing a folder from your own shelf with a friend, so they read your copy rather than their own."
+    },
+    "introducedIn": "run-nginx"
+  },
+  {
+    "id": "named-volume",
+    "term": {
+      "en-US": "Named volume"
+    },
+    "definition": {
+      "en-US": "A volume with a name, such as pgdata, that Docker keeps and can attach to a later container."
+    },
+    "analogy": {
+      "en-US": "Like a labelled storage box that you can hand to a new helper the next day."
+    },
+    "introducedIn": "run-postgres"
+  },
+  {
+    "id": "environment-variable",
+    "term": {
+      "en-US": "Environment variable"
+    },
+    "definition": {
+      "en-US": "A named setting that a program reads when it starts, such as the password for a database."
+    },
+    "analogy": {
+      "en-US": "Like a sticky note on the front door that tells every visitor one fact about the house."
+    },
+    "introducedIn": "run-postgres"
+  },
+  {
+    "id": "detached-mode",
+    "term": {
+      "en-US": "Detached mode"
+    },
+    "definition": {
+      "en-US": "Running a container in the background, so the terminal is free for the next command."
+    },
+    "analogy": {
+      "en-US": "Like a dishwasher that runs by itself while you do something else in the kitchen."
+    },
+    "introducedIn": "run-nodejs"
+  },
+  {
+    "id": "working-directory",
+    "term": {
+      "en-US": "Working directory"
+    },
+    "definition": {
+      "en-US": "The folder inside a container where its command starts."
+    },
+    "analogy": {
+      "en-US": "Like the desk where you start work each morning, with the tools you need within reach."
+    },
+    "introducedIn": "run-nodejs"
+  },
+  {
+    "id": "user-defined-network",
+    "term": {
+      "en-US": "User-defined network"
+    },
+    "definition": {
+      "en-US": "A network you create yourself, on which containers can find each other by name."
+    },
+    "analogy": {
+      "en-US": "Like a group chat where everyone can call each other by their first names."
+    },
+    "introducedIn": "docker-networks"
+  },
+  {
+    "id": "compose-file",
+    "term": {
+      "en-US": "Compose file"
+    },
+    "definition": {
+      "en-US": "A YAML file, usually named compose.yaml, that describes several services and how to start them together."
+    },
+    "analogy": {
+      "en-US": "Like a seating plan for a dinner party, listing every guest and where each one sits."
+    },
+    "introducedIn": "docker-compose"
+  },
+  {
+    "id": "service",
+    "term": {
+      "en-US": "Service"
+    },
+    "definition": {
+      "en-US": "One container described in a Compose file, with its own name, image and settings."
+    },
+    "analogy": {
+      "en-US": "Like one position on a sports team, with its own role and its own name on the roster."
+    },
+    "introducedIn": "docker-compose"
+  },
+  {
+    "id": "docker-socket",
+    "term": {
+      "en-US": "Docker socket"
+    },
+    "definition": {
+      "en-US": "The connection on your computer through which programs send commands to the Docker engine."
+    },
+    "analogy": {
+      "en-US": "Like a master key that opens every room in a building for whoever holds it."
+    },
+    "introducedIn": "manage-with-portainer"
+  },
+  {
+    "id": "reverse-proxy",
+    "term": {
+      "en-US": "Reverse proxy"
+    },
+    "definition": {
+      "en-US": "A web server that receives visits and passes each one on to the service behind it, so visitors use one address."
+    },
+    "analogy": {
+      "en-US": "Like a receptionist who takes every call and transfers it to the right person."
+    },
+    "introducedIn": "more-community-containers"
+  },
+  {
+    "id": "prune",
+    "term": {
+      "en-US": "Prune"
+    },
+    "definition": {
+      "en-US": "A Docker command that removes every unused container, network and image in one step."
+    },
+    "analogy": {
+      "en-US": "Like sweeping up every item in a shared workshop that nobody is using, including items that belong to someone else."
+    },
+    "introducedIn": "clean-up-and-next-steps"
+  }
+]

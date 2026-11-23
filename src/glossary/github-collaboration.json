@@ -1,0 +1,65 @@
+[
+  {
+    "id": "branch",
+    "term": { "en-US": "Branch" },
+    "definition": { "en-US": "A branch is a separate line of work that starts from the main version of a project, so changes on it do not reach main until you choose to merge them." },
+    "analogy": { "en-US": "It is like a sheet of tracing paper laid over a drawing, where you sketch changes that stay separate until you copy them onto the original." },
+    "introducedIn": "work-on-a-branch"
+  },
+  {
+    "id": "commit",
+    "term": { "en-US": "Commit" },
+    "definition": { "en-US": "A commit is a saved checkpoint that records the changes to one or more files, together with a message that says what changed." },
+    "analogy": { "en-US": "It is like dating and labelling a photo album page after you have added the pictures to it." },
+    "introducedIn": "work-on-a-branch"
+  },
+  {
+    "id": "push",
+    "term": { "en-US": "Push" },
+    "definition": { "en-US": "To push means to send your saved commits and branches from your computer to GitHub." },
+    "analogy": { "en-US": "It is like uploading a finished photo album to a shared cloud folder so that the whole family can see it." },
+    "introducedIn": "work-on-a-branch"
+  },
+  {
+    "id": "pull-request",
+    "term": { "en-US": "Pull request" },
+    "definition": { "en-US": "A pull request is a proposal to merge the changes on one branch into another, with a place for people to review and discuss them first." },
+    "analogy": { "en-US": "It is like handing your homework to a teacher for marking before it counts toward your grade." },
+    "introducedIn": "open-a-pull-request"
+  },
+  {
+    "id": "merge",
+    "term": { "en-US": "Merge" },
+    "definition": { "en-US": "To merge means to combine the changes on one branch into another branch, usually into main." },
+    "analogy": { "en-US": "It is like pouring the water from one glass into a larger jug, so that the contents of both end up in one place." },
+    "introducedIn": "open-a-pull-request"
+  },
+  {
+    "id": "base-branch",
+    "term": { "en-US": "Base branch" },
+    "definition": { "en-US": "The base branch is the branch that a pull request would merge into, such as main." },
+    "analogy": { "en-US": "It is like the final copy of a shared essay, into which each suggested paragraph is copied once the teacher approves it." },
+    "introducedIn": "open-a-pull-request"
+  },
+  {
+    "id": "issue",
+    "term": { "en-US": "Issue" },
+    "definition": { "en-US": "An issue is a written note on GitHub that describes a bug, an idea or a request, and that people can discuss." },
+    "analogy": { "en-US": "It is like a sticky note on a community board that says what needs fixing, so anyone can add a comment under it." },
+    "introducedIn": "issues-forks-and-open-source"
+  },
+  {
+    "id": "fork",
+    "term": { "en-US": "Fork" },
+    "definition": { "en-US": "A fork is your own copy of another repository on GitHub, which stays connected to the original." },
+    "analogy": { "en-US": "It is like copying a recipe into your own cookbook, where you can change it freely while the original book stays the same." },
+    "introducedIn": "issues-forks-and-open-source"
+  },
+  {
+    "id": "open-source",
+    "term": { "en-US": "Open source" },
+    "definition": { "en-US": "Open source software is software whose source code is shared so that others may read, use and change it under a license." },
+    "analogy": { "en-US": "It is like a community cookbook that anyone may copy and adapt, as long as they follow the rules printed on its first page." },
+    "introducedIn": "issues-forks-and-open-source"
+  }
+]

@@ -5,6 +5,7 @@ import type { Course } from '../courses/types.ts';
 // Every page of the site. Groups have no route; a lesson route always names a lesson of its course.
 export type Route =
   | { kind: 'home'; locale: Locale }
+  | { kind: 'glossary'; locale: Locale }
   | { kind: 'course'; locale: Locale; courseId: string }
   | { kind: 'lesson'; locale: Locale; courseId: string; lessonId: string };
 
@@ -12,14 +13,16 @@ export type Route =
 export function routePath(route: Route): string {
   const prefix = route.locale === DEFAULT_LOCALE ? '' : `/${route.locale}`;
   if (route.kind === 'home') return `${prefix}/`;
+  if (route.kind === 'glossary') return `${prefix}/glossary/`;
   if (route.kind === 'course') return `${prefix}/courses/${route.courseId}/`;
   return `${prefix}/courses/${route.courseId}/${route.lessonId}/`;
 }
 
-// Every route in every locale: the home page, each course overview, and each lesson.
+// Every route in every locale: the home page, the glossary, each course overview, and each lesson.
 export function allRoutes(list: readonly Course[] = courses): Route[] {
   return SUPPORTED_LOCALES.flatMap((locale) => [
     { kind: 'home' as const, locale },
+    { kind: 'glossary' as const, locale },
     ...list.flatMap((course) => [
       { kind: 'course' as const, locale, courseId: course.id },
       ...flattenLessons(course.outline).map((lesson) => ({
@@ -38,13 +41,14 @@ export function parseRoute(pathname: string, list: readonly Course[] = courses):
   // Only a non-default locale has a prefix. A first segment that is neither a locale nor "courses" serves nothing.
   let locale: Locale = DEFAULT_LOCALE;
   const [first] = segments;
-  if (first !== undefined && first !== 'courses') {
+  if (first !== undefined && first !== 'courses' && first !== 'glossary') {
     if (!isLocale(first) || first === DEFAULT_LOCALE) return null;
     locale = first;
     segments.shift();
   }
 
   if (segments.length === 0) return { kind: 'home', locale };
+  if (segments.length === 1 && segments[0] === 'glossary') return { kind: 'glossary', locale };
   if (segments[0] !== 'courses' || segments.length > 3) return null;
 
   const course = list.find((candidate) => candidate.id === segments[1]);

@@ -18,7 +18,7 @@ export interface Crumb {
 }
 
 export type TreeNode =
-  | { kind: 'lesson'; id: string; title: string; href: string }
+  | { kind: 'lesson'; id: string; title: string; href: string; elective?: boolean; minutes?: number }
   | { kind: 'group'; id: string; title: string; children: TreeNode[] };
 
 // The lessons of one top-level group for the home page preview, or the top-level lessons outside any group (no title).

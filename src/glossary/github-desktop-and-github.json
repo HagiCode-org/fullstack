@@ -1,0 +1,79 @@
+[
+  {
+    "id": "git",
+    "term": { "en-US": "Git" },
+    "definition": { "en-US": "Git is a version control system that records the history of changes to a folder of files, so you can return to an earlier state." },
+    "analogy": { "en-US": "It works like a notebook that keeps every draft of a recipe, so you can go back to the version that tasted best." },
+    "introducedIn": "what-are-git-and-github"
+  },
+  {
+    "id": "repository",
+    "term": { "en-US": "Repository" },
+    "definition": { "en-US": "A repository is a project together with the complete record of how each of its files has changed." },
+    "analogy": { "en-US": "It is like a recipe binder that holds each recipe card together with every earlier draft of that card." },
+    "introducedIn": "what-are-git-and-github"
+  },
+  {
+    "id": "commit",
+    "term": { "en-US": "Commit" },
+    "definition": { "en-US": "A commit is a saved checkpoint that records the changes to one or more files, together with a message that says what changed." },
+    "analogy": { "en-US": "It is like a save point in a video game, which you can load again if the next part goes wrong." },
+    "introducedIn": "what-are-git-and-github"
+  },
+  {
+    "id": "github-desktop",
+    "term": { "en-US": "GitHub Desktop" },
+    "definition": { "en-US": "GitHub Desktop is a free app from GitHub that lets you do Git work with buttons and menus instead of typed commands." },
+    "analogy": { "en-US": "It is like a car dashboard, which shows what the engine is doing in clear dials so you never have to look under the hood." },
+    "introducedIn": "install-github-desktop"
+  },
+  {
+    "id": "remote-repository",
+    "term": { "en-US": "Remote repository" },
+    "definition": { "en-US": "A remote repository is the copy of a repository that is stored on GitHub, where anyone with access can reach it over the internet." },
+    "analogy": { "en-US": "It is like a shared document stored in an online drive, where everyone who has been given access can open the same version." },
+    "introducedIn": "install-github-desktop"
+  },
+  {
+    "id": "clone",
+    "term": { "en-US": "Clone" },
+    "definition": { "en-US": "To clone a repository means to make a complete copy of it on your computer, including its history." },
+    "analogy": { "en-US": "It is like photocopying a whole book, margin notes included, so that you can write in your own copy." },
+    "introducedIn": "clone-a-repository"
+  },
+  {
+    "id": "local-repository",
+    "term": { "en-US": "Local repository" },
+    "definition": { "en-US": "A local repository is the copy of a repository on your own computer, where you make changes before you send them to GitHub." },
+    "analogy": { "en-US": "It is like a draft you keep on your own desk, which you can edit freely before you send the final version to the shared office." },
+    "introducedIn": "clone-a-repository"
+  },
+  {
+    "id": "push",
+    "term": { "en-US": "Push" },
+    "definition": { "en-US": "To push means to send your saved commits from your computer to the remote repository on GitHub." },
+    "analogy": { "en-US": "It is like posting a finished letter to the family group chat, so that the others can read it too." },
+    "introducedIn": "commit-your-changes"
+  },
+  {
+    "id": "diff",
+    "term": { "en-US": "Diff" },
+    "definition": { "en-US": "A diff is a view that shows which lines of a file were added, removed or changed since the last saved version." },
+    "analogy": { "en-US": "It is like a teacher's red-pen marks on an essay, showing exactly which sentences were added or crossed out." },
+    "introducedIn": "commit-your-changes"
+  },
+  {
+    "id": "revert",
+    "term": { "en-US": "Revert" },
+    "definition": { "en-US": "To revert a commit means to create a new commit that cancels its changes, while the original commit stays in the history." },
+    "analogy": { "en-US": "It is like a refund for a purchase: the refund is a new record, and the original purchase is still in your books." },
+    "introducedIn": "undo-and-restore"
+  },
+  {
+    "id": "reset",
+    "term": { "en-US": "Reset" },
+    "definition": { "en-US": "To reset to a commit means to move the branch back to an older commit that has not been pushed, and bring the later changes back into your working files." },
+    "analogy": { "en-US": "It is like taking a book back to an earlier chapter, with the later pages in your hands so you can reread them or tear them out." },
+    "introducedIn": "undo-and-restore"
+  }
+]

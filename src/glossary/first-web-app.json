@@ -1,0 +1,106 @@
+[
+  {
+    "id": "state",
+    "term": {
+      "en-US": "State"
+    },
+    "definition": {
+      "en-US": "Everything an app remembers at a given moment, and the screen shows what the state says."
+    },
+    "analogy": {
+      "en-US": "Like the scoreboard in a game, which holds the current score until the score changes."
+    },
+    "introducedIn": "see-the-finished-app"
+  },
+  {
+    "id": "browser-storage",
+    "term": {
+      "en-US": "Browser storage"
+    },
+    "definition": {
+      "en-US": "A small space inside your browser where a website can keep data on your own computer, separate from other websites."
+    },
+    "analogy": {
+      "en-US": "Like a locker that the hotel gives each guest, which the guest can use but other guests cannot open."
+    },
+    "introducedIn": "see-the-finished-app"
+  },
+  {
+    "id": "brief",
+    "term": {
+      "en-US": "Brief"
+    },
+    "definition": {
+      "en-US": "A short written description of what an app should do, for an AI assistant or a person to follow."
+    },
+    "analogy": {
+      "en-US": "Like the note you give a carpenter before a shelf is built, saying what it holds and how big it should be."
+    },
+    "introducedIn": "write-the-app-brief"
+  },
+  {
+    "id": "done-checklist",
+    "term": {
+      "en-US": "Done checklist"
+    },
+    "definition": {
+      "en-US": "A list of sentences that each start with I can, where the app is finished when every sentence is true."
+    },
+    "analogy": {
+      "en-US": "Like the list you tick off before you leave the house, checking that the keys and the wallet are in your bag."
+    },
+    "introducedIn": "write-the-app-brief"
+  },
+  {
+    "id": "checkpoint",
+    "term": {
+      "en-US": "Checkpoint"
+    },
+    "definition": {
+      "en-US": "A saved version of your project, made with a commit, that you can go back to later."
+    },
+    "analogy": {
+      "en-US": "Like a save point in a video game, so you can start again from that spot if the next part goes wrong."
+    },
+    "introducedIn": "first-version"
+  },
+  {
+    "id": "backup",
+    "term": {
+      "en-US": "Backup"
+    },
+    "definition": {
+      "en-US": "A second copy of your data, kept somewhere else, so you can restore it if the first copy is lost."
+    },
+    "analogy": {
+      "en-US": "Like a photocopy of an important letter, kept in a drawer in case the original is lost."
+    },
+    "introducedIn": "add-saving-in-the-browser"
+  },
+  {
+    "id": "filter",
+    "term": {
+      "en-US": "Filter"
+    },
+    "definition": {
+      "en-US": "A rule that shows only the items that match what you chose, and hides the rest."
+    },
+    "analogy": {
+      "en-US": "Like a coffee filter, which holds back the grounds and lets only the coffee through."
+    },
+    "introducedIn": "add-filters-and-totals"
+  },
+  {
+    "id": "total",
+    "term": {
+      "en-US": "Total"
+    },
+    "definition": {
+      "en-US": "The sum of several numbers, found by adding them all together."
+    },
+    "analogy": {
+      "en-US": "Like the bill at a restaurant, which adds up the price of every dish you ordered."
+    },
+    "introducedIn": "add-filters-and-totals"
+  }
+]

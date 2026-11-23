@@ -1,0 +1,163 @@
+[
+  {
+    "id": "url",
+    "term": { "en-US": "URL" },
+    "definition": { "en-US": "A URL is the text address that says where a resource such as a web page or an image can be found on the internet." },
+    "analogy": { "en-US": "It is like a full postal address written on one line, with the country, city, street and house number all in order." },
+    "introducedIn": "how-a-page-opens"
+  },
+  {
+    "id": "https",
+    "term": { "en-US": "HTTPS" },
+    "definition": { "en-US": "HTTPS is the encrypted form of HTTP, which protects everything that passes between your browser and the server." },
+    "analogy": { "en-US": "It is like sending a letter in a sealed envelope that only the person it is addressed to can open." },
+    "introducedIn": "how-a-page-opens"
+  },
+  {
+    "id": "request",
+    "term": { "en-US": "Request" },
+    "definition": { "en-US": "A request is the message a browser sends to a server to ask for a page or a file, and the server answers it with a response." },
+    "analogy": { "en-US": "It is like asking the librarian at a desk for a book and waiting while they fetch it for you." },
+    "introducedIn": "how-a-page-opens"
+  },
+  {
+    "id": "domain",
+    "term": { "en-US": "Domain name" },
+    "definition": { "en-US": "A domain name is a website's address on the internet, made of labels separated by dots, such as example.com." },
+    "analogy": { "en-US": "It is like the name on a shop front that people use to find the shop, while the street address is hidden behind it." },
+    "introducedIn": "how-publishing-works"
+  },
+  {
+    "id": "dns",
+    "term": { "en-US": "DNS" },
+    "definition": { "en-US": "DNS, the Domain Name System, translates a domain name into the numeric address of the server that holds the site." },
+    "analogy": { "en-US": "It is like a phone book that turns a person's name into the number you need to call." },
+    "introducedIn": "how-publishing-works"
+  },
+  {
+    "id": "cdn",
+    "term": { "en-US": "CDN" },
+    "definition": { "en-US": "A CDN, or content delivery network, is a group of servers in many places that keep copies of the same files so that each visitor gets a nearby copy." },
+    "analogy": { "en-US": "It is like a chain of shops that stock the same products in every city, so you buy from the one closest to you." },
+    "introducedIn": "how-publishing-works"
+  },
+  {
+    "id": "static-site",
+    "term": { "en-US": "Static site" },
+    "definition": { "en-US": "A static site is a website made of files that the browser receives exactly as they are, without a program that builds each page when someone asks for it." },
+    "analogy": { "en-US": "It is like a printed brochure, where every copy says the same thing until someone prints a new edition." },
+    "introducedIn": "publish-with-github-pages"
+  },
+  {
+    "id": "build",
+    "term": { "en-US": "Build" },
+    "definition": { "en-US": "A build is the step that turns source files, such as templates and notes, into the final files a browser can read." },
+    "analogy": { "en-US": "It is like baking a cake from a recipe, where the recipe is your source and the cake is what you serve." },
+    "introducedIn": "publish-with-github-pages"
+  },
+  {
+    "id": "push",
+    "term": { "en-US": "Push" },
+    "definition": { "en-US": "To push means to send your saved commits from your computer to the copy of the repository on GitHub." },
+    "analogy": { "en-US": "It is like mailing a finished chapter to the publisher so that it can be printed." },
+    "introducedIn": "publish-on-every-push"
+  },
+  {
+    "id": "workflow",
+    "term": { "en-US": "Workflow" },
+    "definition": { "en-US": "A workflow is a file of steps that GitHub Actions runs automatically when a chosen event happens in a repository." },
+    "analogy": { "en-US": "It is like a recipe card that a kitchen robot follows each time a new order arrives." },
+    "introducedIn": "publish-on-every-push"
+  },
+  {
+    "id": "run",
+    "term": { "en-US": "Run" },
+    "definition": { "en-US": "A run is one execution of a workflow, which shows a status and a log for each job and each step." },
+    "analogy": { "en-US": "It is like one rehearsal of a play, with notes on every scene so you can see where it went wrong." },
+    "introducedIn": "publish-on-every-push"
+  },
+  {
+    "id": "log",
+    "term": { "en-US": "Log" },
+    "definition": { "en-US": "A log is the written record of what a run or a program printed, step by step, including any error text." },
+    "analogy": { "en-US": "It is like the flight recorder on an aeroplane, which writes down each event in the order it happened." },
+    "introducedIn": "fix-publishing-problems"
+  },
+  {
+    "id": "cache",
+    "term": { "en-US": "Cache" },
+    "definition": { "en-US": "A cache is a stored copy of a response that a browser or a service reuses instead of asking the server again." },
+    "analogy": { "en-US": "It is like a photocopy of a menu kept at your table, which can be out of date once the restaurant changes it." },
+    "introducedIn": "fix-publishing-problems"
+  },
+  {
+    "id": "not-found",
+    "term": { "en-US": "Not found (404)" },
+    "definition": { "en-US": "A 404 Not Found response means the server cannot find the file at the address that was requested." },
+    "analogy": { "en-US": "It is like a letter that comes back to the sender because no house with that number exists on the street." },
+    "introducedIn": "fix-publishing-problems"
+  },
+  {
+    "id": "branch",
+    "term": { "en-US": "Branch" },
+    "definition": { "en-US": "A branch is a separate line of saved changes inside a repository, so work on one branch does not change another until you combine them." },
+    "analogy": { "en-US": "It is like a sheet of tracing paper laid over a drawing, where you sketch changes that stay separate until you copy them across." },
+    "introducedIn": "the-gh-pages-branch"
+  },
+  {
+    "id": "deploy",
+    "term": { "en-US": "Deploy" },
+    "definition": { "en-US": "To deploy means to put finished files where the public address can serve them to visitors." },
+    "analogy": { "en-US": "It is like hanging a finished painting in the gallery window so that passers-by can see it." },
+    "introducedIn": "the-gh-pages-branch"
+  },
+  {
+    "id": "preview-deployment",
+    "term": { "en-US": "Preview deployment" },
+    "definition": { "en-US": "A preview deployment is a test copy of a branch's changes at its own address, which does not replace the live site." },
+    "analogy": { "en-US": "It is like a dress rehearsal on a separate stage before the show opens to the public." },
+    "introducedIn": "publish-with-cloudflare"
+  },
+  {
+    "id": "rollback",
+    "term": { "en-US": "Rollback" },
+    "definition": { "en-US": "A rollback makes an earlier production version of a site live again." },
+    "analogy": { "en-US": "It is like turning back to the last page you saved in a notebook before a messy edit." },
+    "introducedIn": "publish-with-cloudflare"
+  },
+  {
+    "id": "edge-node",
+    "term": { "en-US": "Edge node" },
+    "definition": { "en-US": "An edge node is a server placed near visitors that answers their requests with copies of the site it has stored." },
+    "analogy": { "en-US": "It is like a branch library in your neighbourhood that keeps the books you borrow most often." },
+    "introducedIn": "publish-with-aliyun-esa"
+  },
+  {
+    "id": "access-key",
+    "term": { "en-US": "Access key" },
+    "definition": { "en-US": "An access key is a credential, made of an ID and a secret, that lets a program act for a cloud account, so it must stay private." },
+    "analogy": { "en-US": "It is like a spare house key, because anyone who holds it can walk in, so you keep it somewhere safe." },
+    "introducedIn": "publish-with-aliyun-esa"
+  },
+  {
+    "id": "icp-filing",
+    "term": { "en-US": "ICP filing" },
+    "definition": { "en-US": "An ICP filing is a registration with the Chinese authorities that a domain must complete before some acceleration regions in mainland China can serve it." },
+    "analogy": { "en-US": "It is like registering a shop with the city office before you open it to walk-in customers." },
+    "introducedIn": "custom-domain-and-https"
+  },
+  {
+    "id": "certificate",
+    "term": { "en-US": "Certificate" },
+    "definition": { "en-US": "An HTTPS certificate is a document issued for a domain that lets browsers confirm the site is genuine and set up an encrypted connection." },
+    "analogy": { "en-US": "It is like an official identity card that shows the person in front of you is who they say they are." },
+    "introducedIn": "custom-domain-and-https"
+  },
+  {
+    "id": "dns-record",
+    "term": { "en-US": "DNS record" },
+    "definition": { "en-US": "A DNS record is one entry in the naming system that says where a domain name or a subdomain should point, such as an A record or a CNAME record." },
+    "analogy": { "en-US": "It is like one line in the phone book that says which number to call for a given name." },
+    "introducedIn": "custom-domain-and-https"
+  }
+]

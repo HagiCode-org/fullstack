@@ -4,7 +4,7 @@ import type { Course, OutlineNode } from '../courses/types.ts';
 
 // The outline as the tree component renders it: titles in one locale, and a link for each lesson.
 export type TreeItem =
-  | { kind: 'lesson'; id: string; title: string; href: string }
+  | { kind: 'lesson'; id: string; title: string; href: string; elective?: boolean; minutes?: number }
   | { kind: 'group'; id: string; title: string; children: TreeItem[] };
 
 export interface LessonLink {
@@ -13,13 +13,26 @@ export interface LessonLink {
   title: string;
 }
 
-export function treeOf(course: Course, locale: Locale, hrefFor: (lessonId: string) => string): TreeItem[] {
+// `minutesOf` gives a lesson's reading time, or undefined when it has none; the outline shows no time for that lesson.
+export function treeOf(
+  course: Course,
+  locale: Locale,
+  hrefFor: (lessonId: string) => string,
+  minutesOf: (lessonId: string) => number | undefined = () => undefined,
+): TreeItem[] {
   const convert = (nodes: readonly OutlineNode[]): TreeItem[] =>
-    nodes.map((node) =>
-      node.kind === 'lesson'
-        ? { kind: 'lesson', id: node.id, title: node.title[locale], href: hrefFor(node.id) }
-        : { kind: 'group', id: node.id, title: node.title[locale], children: convert(node.children) },
-    );
+    nodes.map((node) => {
+      if (node.kind === 'group') return { kind: 'group', id: node.id, title: node.title[locale], children: convert(node.children) };
+      const minutes = minutesOf(node.id);
+      return {
+        kind: 'lesson',
+        id: node.id,
+        title: node.title[locale],
+        href: hrefFor(node.id),
+        elective: node.elective === true,
+        ...(minutes !== undefined ? { minutes } : {}),
+      };
+    });
   return convert(course.outline);
 }
 
