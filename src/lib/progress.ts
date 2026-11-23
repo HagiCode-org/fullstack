@@ -2,6 +2,7 @@
 // so every language on this origin reads and writes the same entries.
 
 import { captureSiteEvent } from './posthog-events.ts';
+import { migrateRecord } from './progressMigration.ts';
 
 export const PROGRESS_STORAGE_KEY = 'hagicode-fullstack:progress';
 export const PROGRESS_VERSION = 1;
@@ -105,7 +106,7 @@ export function createProgressStore(storage: StorageLike | null, options: Progre
 
   const reload = () => {
     const text = readStorage();
-    record = parseRecord(text ?? null);
+    record = migrateRecord(parseRecord(text ?? null));
     persisted = text !== undefined;
   };
 

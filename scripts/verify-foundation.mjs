@@ -7,6 +7,7 @@ import { courses } from '../src/courses/registry.ts';
 import { findCourseFailures } from '../src/courses/integrity.ts';
 import { findLearningPathFailures } from '../src/learning-paths/integrity.ts';
 import { learningPaths } from '../src/learning-paths/registry.ts';
+import { movedLessonRedirects } from '../src/lib/lessonMoves.ts';
 import { allRoutes, routePath, switchLocale } from '../src/lib/routes.ts';
 import { THEME_STORAGE_KEY } from '../src/lib/theme.ts';
 import { readBodyKeys } from './course-bodies.mjs';
@@ -26,10 +27,10 @@ const expect = (condition, message) => {
 const fileExists = (path) => existsSync(path) && statSync(path).isFile();
 const readJson = (path) => JSON.parse(readFileSync(path, 'utf8'));
 
-// Resolve an href to a URL on the site, or null when it is not a web address.
-const siteUrl = (href) => {
+// Resolve an href to a URL on the site, or null when it is not a web address. Relative hrefs resolve against `base`.
+const siteUrl = (href, base = SITE_URL) => {
   try {
-    const url = new URL(href, SITE_URL);
+    const url = new URL(href, base);
     return url.protocol === 'http:' || url.protocol === 'https:' ? url : null;
   } catch {
     return null;
@@ -111,7 +112,7 @@ for (const label of [`Powered By hagilight@${hagilightVersion}`, 'Branch:', 'Com
 }
 const footerHrefs = [...footer.matchAll(/<a\b[^>]*\shref="([^"]*)"/giu)].map((match) => decodeAttr(match[1]));
 for (const [suffix, label] of [['sitemap-index.xml', 'sitemap'], ['rss.xml', 'RSS']]) {
-  const link = footerHrefs.map(siteUrl).find((url) => url?.origin === SITE_ORIGIN && url.pathname.endsWith(suffix));
+  const link = footerHrefs.map((href) => siteUrl(href)).find((url) => url?.origin === SITE_ORIGIN && url.pathname.endsWith(suffix));
   expect(link !== undefined, `footer must link the ${label} (${suffix})`);
   expect(link === undefined || distFileFor(link) !== null, `footer ${label} link does not resolve to a file in dist/: ${link?.href}`);
 }
@@ -247,10 +248,25 @@ for (const route of allRoutes()) {
 
   for (const href of [...html.matchAll(/<(?:a|link)\b[^>]*\shref="([^"]*)"/giu)].map((match) => decodeAttr(match[1]))) {
     if (href.startsWith('#')) continue;
-    const target = siteUrl(href);
+    // Relative hrefs (term links in lesson text) resolve against this page, so each locale's own glossary is checked.
+    const target = siteUrl(href, pageUrl);
     if (target === null || target.origin !== SITE_ORIGIN) continue;
-    expect(distFileFor(target) !== null, `${page} links to a page missing from dist/: ${href}`);
+    const targetFile = distFileFor(target);
+    expect(targetFile !== null, `${page} links to a page missing from dist/: ${href}`);
+    // A link with a fragment must name an element of the target page, such as a glossary entry.
+    if (targetFile !== null && target.hash !== '') {
+      const fragment = decodeURIComponent(target.hash.slice(1));
+      expect(readFileSync(targetFile, 'utf8').includes(`id="${fragment}"`), `${page} links to ${href}, which has no element with id "${fragment}"`);
+    }
   }
+}
+
+// Moved lessons: every old lesson address is a redirect page in dist/ that sends the reader to the new address.
+for (const [from, to] of Object.entries(movedLessonRedirects())) {
+  const file = distFileFor(new URL(from, SITE_URL));
+  expect(file !== null, `redirect page missing from dist/: ${from}`);
+  if (file === null) continue;
+  expect(readFileSync(file, 'utf8').includes(`url=${to}"`), `redirect page ${from} must send readers to ${to}`);
 }
 
 if (failures.length > 0) {
