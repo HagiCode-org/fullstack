@@ -3,6 +3,7 @@ import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
 import { hagilight, hagilightFavicon } from '@hagicode/hagilight/integration';
 import tailwindcss from '@tailwindcss/vite';
+import { movedLessonRedirects } from './src/lib/lessonMoves.ts';
 
 // https://astro.build/config
 export default defineConfig({
@@ -17,6 +18,8 @@ export default defineConfig({
             prefixDefaultLocale: false,
         },
     },
+    // Old addresses of lessons that moved to another course (src/lib/lessonMoves.ts) send readers to the new address.
+    redirects: movedLessonRedirects(),
     markdown: {
         shikiConfig: {
             themes: {
