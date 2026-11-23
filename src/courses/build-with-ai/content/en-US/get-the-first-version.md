@@ -1,29 +1,39 @@
-> **Draft:** this lesson is an outline and will be expanded.
+---
+minutes: 20
+outcome: "You get a first version of your site running on your own computer and write down what is wrong or missing, without fixing anything yet."
+terms: [local-preview, checkpoint]
+---
 
-The first version is the assistant's first attempt at your brief. It will not be perfect, and that is fine. In this lesson you ask for it, open it and look at it with your own eyes. By the end you will have a site you can see in your browser.
+In this lesson you let the assistant build the first version of your site from your brief. The first version will not be perfect, and that is normal. Your job is to get it running, look at it honestly, and write down the gaps. You will fix them in later lessons, one at a time.
 
-A browser is the program you use to visit websites. A site made of plain files can be opened in a browser straight from your computer, with no internet needed.
+Start by asking for the whole first version at once. Paste your brief, then ask the assistant to build the files it needs. Keep the request to what the brief says, and do not add extra features while it works.
 
 ## What you will do
 
-1. Open your `my-first-site` folder in the assistant.
-2. Paste your brief and add one line: `Build the first version. Keep it simple, and tell me how to open it in my browser.`
-3. Let the assistant work. When it finishes, read its summary. It should list the files it made.
-4. Follow its instructions to open the site in your browser. If it opens a file, double-click the file named `index.html` in your folder.
-5. Click through every page. Look at the text, the pictures and the links.
-6. Write down what is wrong or missing, one item per line. Do not fix anything yet.
-7. Compare the site with the "it is done when" part of your brief and mark which checks already pass.
+1. Ask the assistant to build the site from your brief and to list every file it creates or changes.
+2. Open the folder yourself and check that each file on the list exists. Note any file that is missing.
+3. Open the site in your browser. A [local preview](../../../glossary/#build-with-ai-local-preview) shows the site from files on your own computer, so nobody else can see it yet.
+   - **Windows:** open `index.html` from your `my-first-site` folder by double-clicking it.
+   - **Mac:** open `index.html` from your `my-first-site` folder by double-clicking it.
+4. Click through every page. Check that each link from the home page reaches the page it names.
+5. Write a list called `gaps.md`, with one line for each thing that is wrong or missing, measured against your brief's done checklist.
+
+A useful line in the gap list says what you saw and where you saw it, for example: "The about page has no link back to the home page." A weak line such as "it looks ugly" is true but cannot be acted on, so rewrite it until someone else could find the problem and check the fix.
+
+If the assistant offers to start a local server or to run the site for you, read what it proposes first. Only accept commands you understand.
 
 ## Why you do not fix anything yet
 
-A list of everything that is wrong shows you what matters most. In the next lesson you will fix the items one at a time. If you ask for ten changes at once, the assistant may change things you liked.
+It is tempting to ask for fixes straight away. Resist that for now. Fixing a list of problems in one go makes it hard to tell which change helped and which broke something else. In the next lesson you will change one thing at a time, and each change will get its own save point.
+
+Your assistant may keep its own record of the edits it made. Claude Code, for example, keeps [checkpoints](../../../glossary/#build-with-ai-checkpoint) of its file edits and offers a rewind option. Those checkpoints are useful, but Anthropic's documentation says they are not a replacement for version control, so you will also save your work yourself. Source: [Claude Code checkpointing](https://code.claude.com/docs/en/checkpointing).
 
 ## Check yourself
 
-- The site opens in your browser and every page can be reached.
-- You have a written list of what is wrong or missing.
-- You know which checks from your brief already pass.
+- The site opens in your browser, and every page can be reached from the home page.
+- Your `gaps.md` list names each problem in plain words, with no fixes written in.
+- You know which checks from your brief already pass, and you wrote them down.
 
 ## What comes next
 
-Go on to **Change one thing at a time**, where you improve the site step by step and keep a save point after each step.
+Go on to **Change one thing at a time**, where you make small, separate changes and save each one before the next.

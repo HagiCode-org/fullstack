@@ -3,7 +3,9 @@ import type { Course } from '../types.ts';
 // Second course: run ready-made apps with Docker, with an AI helper explaining each project's own setup files.
 export const dockerSelfHostedApps: Course = {
   id: 'docker-self-hosted-apps',
+  elective: true,
   demo: false,
+  outcome: 'You will run three ready-made apps with Docker, read their compose files, keep their secrets safe and back up, upgrade and restore them.',
   title: {
     'en-US': 'Run Ready-Made Apps with Docker',
     'zh-CN': '用 Docker 部署现成应用',

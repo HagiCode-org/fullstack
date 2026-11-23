@@ -1,0 +1,125 @@
+{
+  "lessons": {
+    "what-are-git-and-github": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "Git is a version control system that tracks changes to files over time, so earlier versions can be recovered.",
+          "url": "https://docs.github.com/en/get-started/using-git/about-git"
+        },
+        {
+          "claim": "GitHub hosts Git repositories in the cloud and adds planning and collaboration tools such as issues and pull requests.",
+          "url": "https://docs.github.com/en/get-started/start-your-journey/about-github-and-git"
+        },
+        {
+          "claim": "A commit records changes to one or more files, and Git gives each commit a unique ID called a SHA or hash, along with when and by whom the change was made.",
+          "url": "https://docs.github.com/en/pull-requests/committing-changes-to-your-project/creating-and-editing-commits/about-commits"
+        },
+        {
+          "claim": "To use GitHub.com you need a personal account with a verified email address, and you are asked to verify the address during sign-up.",
+          "url": "https://docs.github.com/en/get-started/start-your-journey/creating-an-account-on-github"
+        },
+        {
+          "claim": "GitHub recommends a time-based one-time password (TOTP) app for two-factor authentication, with security keys as backup methods instead of SMS, and recovery codes should be saved in a secure location.",
+          "url": "https://docs.github.com/en/authentication/securing-your-account-with-two-factor-authentication-2fa/configuring-two-factor-authentication"
+        }
+      ]
+    },
+    "install-github-desktop": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "The official GitHub Desktop download page is desktop.github.com, which offers Download for Windows and Download for macOS.",
+          "url": "https://desktop.github.com/"
+        },
+        {
+          "claim": "GitHub Desktop is a free, open source application for working with projects hosted on GitHub, available for Windows and macOS.",
+          "url": "https://docs.github.com/en/desktop/overview/about-github-desktop"
+        },
+        {
+          "claim": "GitHub Desktop requires macOS 12.0 or later, or Windows 10 64-bit or later, and Linux is not supported.",
+          "url": "https://docs.github.com/en/desktop/overview/supported-operating-systems-for-github-desktop"
+        },
+        {
+          "claim": "The GitHub Desktop download page is at desktop.github.com; on Windows you run the setup file and on macOS you unzip the download and open the application file.",
+          "url": "https://docs.github.com/en/desktop/installing-and-authenticating-to-github-desktop/installing-github-desktop"
+        },
+        {
+          "claim": "GitHub Desktop signs in through the browser: in Settings on macOS or Options on Windows, the Accounts pane has a Sign Into button, then Continue With Browser opens the browser; username and password sign-in is not supported.",
+          "url": "https://docs.github.com/en/desktop/installing-and-authenticating-to-github-desktop/authenticating-to-github-in-github-desktop"
+        },
+        {
+          "claim": "The name and email for commits are set in the Git pane of Settings on macOS (GitHub Desktop, then Settings) or Options on Windows (File, then Options), and the default branch name for new repositories is main.",
+          "url": "https://docs.github.com/en/desktop/configuring-and-customizing-github-desktop/configuring-git-for-github-desktop"
+        },
+        {
+          "claim": "The repository bar at the top shows the current repository and the current branch, and the Changes and History views are in the left sidebar.",
+          "url": "https://docs.github.com/en/desktop/overview/creating-your-first-repository-using-github-desktop"
+        }
+      ]
+    },
+    "clone-a-repository": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "A repository can be created on GitHub with a chosen owner, a name, an optional description and a visibility (public or private), and a README can be created at the same time.",
+          "url": "https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-new-repository"
+        },
+        {
+          "claim": "On GitHub, clicking Code on the repository page and then Open with GitHub Desktop opens the app to clone the repository, and in the app File, then Clone Repository, lets you pick from the GitHub tab or enter a URL, choose a Local Path and click Clone.",
+          "url": "https://docs.github.com/en/desktop/adding-and-cloning-repositories/cloning-and-forking-repositories-from-github-desktop"
+        },
+        {
+          "claim": "Cloning creates a local copy of the repository on your computer, and if you have write access you can sync between the local and remote copies.",
+          "url": "https://docs.github.com/en/desktop/adding-and-cloning-repositories/cloning-and-forking-repositories-from-github-desktop"
+        }
+      ]
+    },
+    "commit-your-changes": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "A commit records changes to one or more files in a branch, with a commit message, and each commit has a unique ID called a SHA or hash.",
+          "url": "https://docs.github.com/en/pull-requests/committing-changes-to-your-project/creating-and-editing-commits/about-commits"
+        },
+        {
+          "claim": "GitHub Desktop tracks changes to all files as you edit them, shows removed, modified and added files with red, yellow and green icons, and lets you choose which files go into a commit.",
+          "url": "https://docs.github.com/en/desktop/making-changes-in-a-branch/committing-and-reviewing-changes-to-your-project-in-github-desktop"
+        },
+        {
+          "claim": "The diff view can be displayed as Unified or Split from the top-right corner of the diff view, and you write a commit message in the Summary field with an optional Description, then click Commit to BRANCH.",
+          "url": "https://docs.github.com/en/desktop/making-changes-in-a-branch/committing-and-reviewing-changes-to-your-project-in-github-desktop"
+        },
+        {
+          "claim": "Discard Changes removes uncommitted changes from the files after a confirmation, and discarded changes are saved in a dated file in the Trash until the Trash is emptied.",
+          "url": "https://docs.github.com/en/desktop/making-changes-in-a-branch/committing-and-reviewing-changes-to-your-project-in-github-desktop"
+        },
+        {
+          "claim": "Pushing sends the committed changes in your local repository to the remote repository on GitHub, using Push origin in the repository bar, and requires write permission to the repository.",
+          "url": "https://docs.github.com/en/desktop/making-changes-in-a-branch/pushing-changes-to-github-from-github-desktop"
+        },
+        {
+          "claim": "A .gitignore file is a set of ignore rules for files you do not want in the project, and it can be added when a repository is created.",
+          "url": "https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-new-repository"
+        }
+      ]
+    },
+    "undo-and-restore": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "Undo at the bottom of the Changes sidebar undoes a commit that has not been pushed, restores its changes to the working directory and resets the branch to the previous commit.",
+          "url": "https://docs.github.com/en/desktop/managing-commits/undoing-a-commit-in-github-desktop"
+        },
+        {
+          "claim": "Reset to commit, chosen by right-clicking a commit in History, restores the changes in the later commits to the working directory and can only go back as far as the most recent pushed commit.",
+          "url": "https://docs.github.com/en/desktop/managing-commits/resetting-to-a-commit-in-github-desktop"
+        },
+        {
+          "claim": "Revert Changes in Commit, chosen by right-clicking a commit in History, creates a new commit that removes the commit's changes while the original commit remains in the history, and reverting several commits is best done from newest to oldest.",
+          "url": "https://docs.github.com/en/desktop/managing-commits/reverting-a-commit-in-github-desktop"
+        }
+      ]
+    }
+  }
+}

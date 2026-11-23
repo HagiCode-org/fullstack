@@ -1,6 +1,12 @@
+---
+minutes: 25
+outcome: "You will run a Node.js script and a small web server in containers, without installing Node.js on your computer."
+terms: [detached-mode, working-directory]
+---
+
 In this lesson you run a small Node.js program without installing Node.js on your computer. The program runs inside a container from the official `node` image. First it prints a message and stops. Then it becomes a tiny web server that your browser can visit.
 
-The image tag is `node:24`, which is the Node.js 24 line. It is an LTS release, meaning Node.js supports it for a long period. The tags are listed on the [official Node.js image page on Docker Hub](https://hub.docker.com/_/node/tags). The programming reference for the server you write is the [Node.js HTTP documentation](https://nodejs.org/api/http.html).
+The image tag is `node:24`. Node.js's [release page](https://nodejs.org/en/about/previous-releases) lists version 24 with the status LTS, which means it is a long-term support release that production applications can use. The tags are listed on the [official Node.js image page](https://hub.docker.com/_/node/tags). The server in this lesson uses the [Node.js HTTP module](https://nodejs.org/api/http.html), which is the reference for the code you copy.
 
 ## Step 1: Write a one-file script
 
@@ -31,17 +37,10 @@ The parts of the command are:
 
 - `--rm` removes the container when it finishes, so nothing is left behind.
 - `-v` connects your `my-node` folder to a folder named `/app` inside the container.
-- `-w /app` makes `/app` the folder where the command starts.
+- `-w /app` sets the [working directory](../../../glossary/#docker-for-beginners-working-directory), which is the folder where the command starts. Here it is `/app`.
 - `node:24` is the image, and `node hello.js` is the command the container runs.
 
-The first time, Docker downloads the image, which takes a little while. Then the output is:
-
-```
-Hello from Node.js inside a container
-Node.js version: v24.22.0
-```
-
-The version number may be a newer one in the `v24` line. The program ran with Node.js from the image, so your computer does not need Node.js at all.
+The first time, Docker downloads the image, which takes a little while. Then the output shows the message, followed by the version of Node.js that the image contains. The version number starts with `v24`, and the exact patch number may differ from the one you see here. The program ran with Node.js from the image, so your computer does not need Node.js at all.
 
 ## Step 3: Turn the script into a web server
 
@@ -63,7 +62,7 @@ http.createServer((request, response) => {
 
 The program does not stop, because it keeps waiting for visits. Each visit gets the same text in reply.
 
-Start it in the background from the same folder as before. Use the command for your system:
+Start it in the background from the same folder as before. The option `-d` runs a container in [detached mode](../../../glossary/#docker-for-beginners-detached-mode), which means in the background. Use the command for your system:
 
 **macOS and Linux:**
 
@@ -79,7 +78,7 @@ docker run -d --name my-node -p 3000:3000 -v "${PWD}\my-node:/app" -w /app node:
 
 The new part is `-p 3000:3000`, which publishes port 3000 of the container on port 3000 of your computer. If port 3000 is already in use, the **Troubleshooting** lesson shows how to pick another number.
 
-Type `docker logs my-node` and press Enter. It shows `Listening on port 3000`.
+Type `docker logs my-node` and press Enter. It shows the line `Listening on port 3000`.
 
 Open a browser and go to **http://localhost:3000**. You should see:
 

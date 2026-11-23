@@ -1,0 +1,71 @@
+import type { Course } from '../types.ts';
+
+// Course 9: branches and pull requests on GitHub, after the AI partner course; issues and forks are an elective lesson.
+export const githubCollaboration: Course = {
+  id: 'github-collaboration',
+  demo: false,
+  outcome: 'You can work on a branch, open a pull request to review changes before they reach main, and take part in open-source projects through issues and forks.',
+  title: {
+    'en-US': 'GitHub: Branches and Pull Requests',
+    'zh-CN': 'GitHub 协作:分支与 Pull Request',
+    'zh-Hant': 'GitHub 協作：分支與 Pull Request',
+    'ja-JP': 'GitHub 共同作業：ブランチとプルリクエスト',
+    'ko-KR': 'GitHub 협업: 브랜치와 풀 리퀘스트',
+    'de-DE': 'GitHub-Zusammenarbeit: Branches und Pull Requests',
+    'fr-FR': 'Collaborer sur GitHub : branches et pull requests',
+    'es-ES': 'Colaboración en GitHub: ramas y pull requests',
+    'pt-BR': 'Colaboração no GitHub: branches e pull requests',
+    'ru-RU': 'Совместная работа в GitHub: ветки и pull request',
+  },
+  outline: [
+    {
+      kind: 'lesson',
+      id: 'work-on-a-branch',
+      title: {
+        'en-US': 'Work on a branch',
+        'zh-CN': '在分支上工作',
+        'zh-Hant': '在分支上工作',
+        'ja-JP': 'ブランチで作業する',
+        'ko-KR': '브랜치에서 작업하기',
+        'de-DE': 'Auf einem Branch arbeiten',
+        'fr-FR': 'Travailler sur une branche',
+        'es-ES': 'Trabaja en una rama',
+        'pt-BR': 'Trabalhe em um branch',
+        'ru-RU': 'Работа в ветке',
+      },
+    },
+    {
+      kind: 'lesson',
+      id: 'open-a-pull-request',
+      title: {
+        'en-US': 'Open a pull request and read the changes',
+        'zh-CN': '发起 Pull Request 并查看改动',
+        'zh-Hant': '發起 Pull Request 並查看變更',
+        'ja-JP': 'プルリクエストを作成して変更を確認する',
+        'ko-KR': '풀 리퀘스트를 열고 변경 사항 읽기',
+        'de-DE': 'Einen Pull Request öffnen und die Änderungen lesen',
+        'fr-FR': 'Ouvrir une pull request et lire les changements',
+        'es-ES': 'Abre un pull request y lee los cambios',
+        'pt-BR': 'Abra um pull request e leia as mudanças',
+        'ru-RU': 'Создаём pull request и читаем изменения',
+      },
+    },
+    {
+      kind: 'lesson',
+      id: 'issues-forks-and-open-source',
+      title: {
+        'en-US': 'Issues, forks and open source',
+        'zh-CN': 'Issue、Fork 与开源',
+        'zh-Hant': 'Issue、Fork 與開源',
+        'ja-JP': 'Issue、フォーク、オープンソース',
+        'ko-KR': '이슈, 포크, 오픈소스',
+        'de-DE': 'Issues, Forks und Open Source',
+        'fr-FR': 'Issues, forks et open source',
+        'es-ES': 'Issues, forks y código abierto',
+        'pt-BR': 'Issues, forks e código aberto',
+        'ru-RU': 'Issues, форки и открытый исходный код',
+      },
+      elective: true,
+    },
+  ],
+};

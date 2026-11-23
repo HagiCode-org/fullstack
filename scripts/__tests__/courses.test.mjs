@@ -37,7 +37,7 @@ const flatCourse = () => ({ id: 'flat', title: titles('Flat'), demo: false, outl
 describe('registry helpers', () => {
   it('flattens lessons in outline order, depth first', () => {
     assert.deepEqual(lessonIds(nestedCourse()), ['one', 'two', 'three', 'four']);
-    assert.deepEqual(lessonIds(dockerForBeginners).slice(0, 4), ['what-is-docker', 'install-docker', 'your-first-container', 'run-nginx']);
+    assert.deepEqual(lessonIds(dockerForBeginners).slice(0, 4), ['what-is-docker', 'check-your-computer', 'install-docker', 'terminal-basics']);
   });
 
   it('finds neighbours across group boundaries and stops at the ends', () => {
@@ -60,7 +60,7 @@ describe('registry helpers', () => {
   it('counts lessons without counting groups', () => {
     assert.equal(lessonCount(nestedCourse().outline), 4);
     assert.equal(lessonCount(flatCourse().outline), 2);
-    assert.equal(lessonCount(dockerForBeginners.outline), 12);
+    assert.equal(lessonCount(dockerForBeginners.outline), 15);
   });
 
   it('looks courses up by id', () => {

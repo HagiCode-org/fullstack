@@ -6,39 +6,45 @@
 
 ## 第 1 题
 
-使用会挂载 Docker socket 的工具时应注意什么?
+运行 Dozzle 或其他使用 Docker 套接字的工具之前,应先读什么?
 
-- A. 没有任何风险
-- B. 它们能控制你电脑上的 Docker,要谨慎使用并了解风险
-- C. 只能在手机上使用
-- D. 必须先卸载 Docker
+- A. 镜像标签
+- B. 安全提示
+- C. 端口号
+- D. 费用说明
 
 **答案:B**
 
-解析:课程在安全提示里专门说明了 Docker socket 工具的风险。
+解析:使用 Docker 套接字的工具能控制全部容器,所以运行前要先读安全提示。
+
+依据:Security note: tools that use the Docker socket
 
 ## 第 2 题
 
-下面哪一项是课程中用卡片介绍的社区容器?
+为什么 Adminer 虽然不需要 Docker 套接字,仍然要妥善保护?
 
-- A. Photoshop
-- B. Chrome
-- C. Uptime Kuma
-- D. Excel
+- A. 因为它能修改数据库中的任何一行
+- B. 因为它会删除镜像
+- C. 因为它只能在 Windows 上运行
+- D. 因为它只能在网络上运行
 
-**答案:C**
+**答案:A**
 
-解析:卡片包括 Dozzle、Uptime Kuma、Adminer 和 Nginx Proxy Manager。
+解析:Adminer 不需要套接字,但它能修改数据库中的任何一行,所以页面只应留在本机。
+
+依据:Card: Adminer
 
 ## 第 3 题
 
-试用卡片里的社区容器之后,合理的做法是什么?
+哪个工具是反向代理,能把访问转交给正确的服务?
 
-- A. 不管它,让它一直运行
-- B. 把它们全部公开到互联网
-- C. 立即重装 Docker
-- D. 按需要清理掉,保持环境整洁
+- A. Dozzle
+- B. Uptime Kuma
+- C. Adminer
+- D. Nginx Proxy Manager
 
 **答案:D**
 
-解析:不再使用的容器和数据应按课程方法清理。
+解析:Nginx Proxy Manager 接收访问并转给对应服务,其指南还说明可以提供免费 SSL。
+
+依据:Card: Nginx Proxy Manager

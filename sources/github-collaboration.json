@@ -1,0 +1,103 @@
+{
+  "lessons": {
+    "work-on-a-branch": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "A branch is a separate line of work that lets you make changes without affecting the default branch, and you make a separate branch for each set of unrelated changes.",
+          "url": "https://docs.github.com/en/get-started/using-github/github-flow"
+        },
+        {
+          "claim": "Branch names should be short and descriptive, such as add-code-of-conduct, so collaborators can see the ongoing work at a glance.",
+          "url": "https://docs.github.com/en/get-started/using-github/github-flow"
+        },
+        {
+          "claim": "In GitHub Desktop, branches isolate development work, the first new branch is based on the default branch, and a new branch is created with Current Branch, then New Branch.",
+          "url": "https://docs.github.com/en/desktop/making-changes-in-a-branch/managing-branches-in-github-desktop"
+        },
+        {
+          "claim": "In GitHub Desktop, a branch that exists only on your computer must be published with Publish branch before collaborators can see it, and switching with saved uncommitted changes asks whether to leave them on the current branch or bring them to the new one.",
+          "url": "https://docs.github.com/en/desktop/making-changes-in-a-branch/managing-branches-in-github-desktop"
+        },
+        {
+          "claim": "On GitHub, the Branch menu on the repository page selects the branch that contains your commits, and a pull request compares a topic branch with a base branch.",
+          "url": "https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request"
+        }
+      ]
+    },
+    "open-a-pull-request": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "In GitHub Desktop, a pull request can be created after the commits are pushed and the branch is published, and Preview Pull Request shows the difference between the current branch and the base branch before Create Pull Request opens the browser.",
+          "url": "https://docs.github.com/en/desktop/working-with-your-remote-repository-on-github-or-github-enterprise/creating-an-issue-or-pull-request-from-github-desktop"
+        },
+        {
+          "claim": "On GitHub, a pull request is created by choosing the base branch and the compare branch, typing a title and description, and clicking Create Pull Request, with the option to create a draft instead.",
+          "url": "https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request"
+        },
+        {
+          "claim": "A draft pull request cannot be merged, and code owners are not automatically requested to review it until it is marked ready for review.",
+          "url": "https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests"
+        },
+        {
+          "claim": "A pull request page has Conversation, Commits, Checks, Files changed and Findings tabs.",
+          "url": "https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests"
+        },
+        {
+          "claim": "Reviewers examine each changed file, leave comments on specific changes, mark files as Viewed, and submit a review that approves the pull request or requests changes.",
+          "url": "https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/reviewing-changes-in-pull-requests/reviewing-proposed-changes-in-a-pull-request"
+        },
+        {
+          "claim": "Merging uses Merge pull request, or the merge menu for squash or rebase, and a repository's rules or branch protection can require reviews or status checks before merging.",
+          "url": "https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/incorporating-changes-from-a-pull-request/merging-a-pull-request"
+        },
+        {
+          "claim": "In GitHub Desktop, Fetch origin checks the remote branch for new commits and Pull origin brings them to the local branch, and only the local copy is updated until you push.",
+          "url": "https://docs.github.com/en/desktop/working-with-your-remote-repository-on-github-or-github-enterprise/syncing-your-branch-in-github-desktop"
+        },
+        {
+          "claim": "In GitHub Desktop you can open a pull request branch to view its commit history and checks, but you cannot comment on a pull request from the app.",
+          "url": "https://docs.github.com/en/desktop/working-with-your-remote-repository-on-github-or-github-enterprise/viewing-a-pull-request-in-github-desktop"
+        }
+      ]
+    },
+    "issues-forks-and-open-source": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "Issues can be used to keep track of bugs, enhancements or other requests, and people with read access can create an issue in a repository where issues are enabled.",
+          "url": "https://docs.github.com/en/issues/tracking-your-work-with-issues/using-issues/creating-an-issue"
+        },
+        {
+          "claim": "In GitHub Desktop, Repository, then Create Issue on GitHub opens a new issue on GitHub.",
+          "url": "https://docs.github.com/en/desktop/working-with-your-remote-repository-on-github-or-github-enterprise/creating-an-issue-or-pull-request-from-github-desktop"
+        },
+        {
+          "claim": "A fork is a repository that starts as a copy of an upstream repository, with its own settings, branches, issues and pull requests, and it stays connected to the upstream repository.",
+          "url": "https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/about-forks"
+        },
+        {
+          "claim": "A public repository can be forked by clicking Fork in the upper-right corner of the repository page, choosing the owner, and optionally copying only the default branch before clicking Create fork.",
+          "url": "https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo"
+        },
+        {
+          "claim": "If you have no write permission to a repository, you can fork it first to create a branch for a pull request to the original repository.",
+          "url": "https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request"
+        },
+        {
+          "claim": "In GitHub Desktop, cloning a repository is started from the File menu with Clone Repository, and pushing a change to a repository you cannot write to prompts you to create a fork.",
+          "url": "https://docs.github.com/en/desktop/adding-and-cloning-repositories/cloning-and-forking-repositories-from-github-desktop"
+        },
+        {
+          "claim": "Public repositories are often used to share open source software, and without a license the default copyright laws apply, so no one may reproduce, distribute or create derivative works without permission.",
+          "url": "https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/licensing-a-repository"
+        },
+        {
+          "claim": "The license text is usually placed in a file named LICENSE, LICENSE.md or LICENSE.txt in the root of the repository.",
+          "url": "https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/licensing-a-repository"
+        }
+      ]
+    }
+  }
+}

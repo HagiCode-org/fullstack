@@ -27,9 +27,16 @@ describe('progress island', () => {
     const island = buildProgressIsland('ja-JP', { courseId: 'docker-for-beginners' });
     assert.equal(island.courseId, 'docker-for-beginners');
     const docker = island.courses['docker-for-beginners'];
-    assert.deepEqual(docker.lessons.slice(0, 4), ['what-is-docker', 'install-docker', 'your-first-container', 'run-nginx']);
+    assert.deepEqual(docker.lessons.slice(0, 4), ['what-is-docker', 'check-your-computer', 'install-docker', 'terminal-basics']);
     assert.deepEqual(docker.groups['connect-services'], ['docker-networks', 'docker-compose']);
-    assert.deepEqual(docker.groups['get-started'], ['what-is-docker', 'install-docker', 'your-first-container']);
+    assert.deepEqual(docker.groups['get-started'], [
+      'what-is-docker',
+      'check-your-computer',
+      'install-docker',
+      'terminal-basics',
+      'your-first-container',
+      'read-errors-and-ask-for-help',
+    ]);
     assert.equal(docker.hrefs['docker-compose'], '/ja-JP/courses/docker-for-beginners/docker-compose/');
   });
 

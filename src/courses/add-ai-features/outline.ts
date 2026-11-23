@@ -4,6 +4,7 @@ import type { Course } from '../types.ts';
 export const addAiFeatures: Course = {
   id: 'add-ai-features',
   demo: false,
+  outcome: 'You will add a tested AI feature to a small app, with the key kept out of your project files and a spending limit set before you go live.',
   title: {
     'en-US': 'Add AI Features to Your App',
     'zh-CN': '给应用加上 AI 功能',

@@ -1,33 +1,38 @@
-Docker is a tool that runs programs in small, sealed packages called containers. A container holds a program together with the files and settings it needs, so the program runs the same way on any computer that has Docker. You will use Docker to run three kinds of program on your own computer without installing each one by hand: a web server (a program that sends web pages to a browser), a database (a program that stores data in organized tables) and a small Node.js program (a program written in JavaScript).
+---
+minutes: 10
+outcome: "You will know what a Docker image, container and volume are, and why the rest of this course uses them."
+terms: [image, container, volume]
+---
 
-In this lesson you will learn the handful of words the rest of the course uses. You will also see how to open a terminal, the window where you type commands. Nothing here needs to be installed yet.
+Docker is a tool that runs programs in small, sealed packages called [containers](../../../glossary/#docker-for-beginners-container). A container holds a program together with the files and settings it needs, so the same program runs the same way on any computer that has Docker. Docker's [concepts guide](https://docs.docker.com/get-started/docker-concepts/the-basics/what-is-a-container/) describes a container as an isolated process with its own filesystem, which is why one container does not disturb another or the rest of your computer.
+
+In this course you will use Docker to run three kinds of program on your own computer without installing each one by hand: a web server (a program that sends web pages to a browser), a database (a program that stores data in organized tables) and a small Node.js program (a program written in JavaScript). This lesson explains the three words you will meet most often. Nothing here needs to be installed yet.
 
 ## Words you will meet
 
-**Image.** A ready-made package of a program and its files. An image is a template that never changes while you use it. Docker downloads images from the internet when it needs them.
+**Image.** A package that holds a program and everything it needs to start: its files and settings. An [image](../../../glossary/#docker-for-beginners-image) is a template. Starting a container from it does not change the image, and Docker downloads an image from the internet the first time it needs it.
 
-**Container.** A running copy of an image. You can start several containers from the same image, and each one runs separately from the others and from the rest of your computer. When you remove a container, the copy is gone, but the image it came from stays.
+**Container.** A running copy of an image. You can start several containers from the same image, and each one runs separately from the others and from the rest of your computer. When you remove a container, that copy is gone, but the image it came from stays on your computer.
 
-**Volume.** A storage space that Docker keeps outside a container. Files stored in a volume are still there after the container is removed, so a database can keep its data across restarts.
+**Volume.** A storage space that Docker keeps outside a container. A [volume](../../../glossary/#docker-for-beginners-volume) keeps its files after the container that used it is removed. Docker's [volume guide](https://docs.docker.com/storage/volumes/) says that data in a volume persists after its container is removed, so a database can keep its data across restarts.
 
-**Port.** A numbered entrance on your computer, such as 8080. A container cannot receive visits from your browser until you connect one of your computer's ports to a port inside the container. This connection is called publishing a port.
+## Why beginners use containers
 
-**Network.** A private connection that lets containers talk to each other. On a network you create yourself, containers can reach each other by name.
+Without Docker, running a database means downloading its installer, choosing settings, and later removing it cleanly. With Docker, you name the image you want and start a container. When you have finished, you stop and remove the container. Your computer keeps its original set of programs, and you can try the same setup again in a few seconds.
 
-**Compose.** A tool that starts several containers together from one file named `compose.yaml`. The file lists each container, its image, its ports and its volumes, so one command starts the whole set.
+The course uses three more words, which are explained the first time they appear. A port is a numbered door on your computer, such as 8080. A network is a private connection that lets containers reach each other. Compose is a tool that starts several containers from one file named `compose.yaml`.
 
-## Open a terminal
+## Before you go on
 
-A terminal is a window where you type a command and press Enter. Most of this course uses a terminal. Commands are shown in boxes like this one. Type the text exactly as shown, press Enter, and read the answer the terminal prints.
-
-Do not type the characters you see at the start of a line in other guides, such as `$` or `>`. They only mark the prompt.
-
-- **Windows:** press the Start button, type `PowerShell`, and open **Windows PowerShell**. Every command in this course works there. The Portainer lesson also asks you to use a WSL terminal, and it explains when.
-- **macOS:** press Command and Space together, type `Terminal`, and press Enter to open the Terminal app.
-- **Linux:** open your application menu and search for `Terminal`. On many desktops you can press Ctrl, Alt and T together.
-
-If a command says `not recognized` or prints an error, the command was usually typed differently from the box. Read the message, correct the text and try again.
+Read this lesson once more and say each of the three words in your own sentence. You do not need to remember the exact wording, only the idea. If a word does not make sense later, come back here.
 
 ## What comes next
 
-Go on to **Install Docker** and follow only the section for your system. Read the official Docker overview at [Docker concepts: what is a container](https://docs.docker.com/get-started/docker-concepts/the-basics/what-is-a-container/) if you want more background now.
+Go on to **Can your computer run Docker?**, where you check that your computer can run Docker before you install anything.
+
+## What you learned
+
+- An image is a template, and a container is a running copy of an image.
+- Removing a container does not remove the image it came from.
+- A volume keeps data after a container is removed.
+- Docker lets you run a program without installing it by hand on your computer.

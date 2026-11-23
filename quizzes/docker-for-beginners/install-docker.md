@@ -6,39 +6,45 @@
 
 ## 第 1 题
 
-读这一课时,应该怎么看各系统的安装说明?
+在 Linux 上,把用户加入 docker 组的目的是什么?
 
-- A. Windows、macOS、Linux 三段都照着做一遍
-- B. 只看最短的那一节
-- C. 任选一节,三种系统的步骤是一样的
-- D. 只看自己系统对应的那一节
-
-**答案:D**
-
-解析:课程要求只跟随自己系统对应的小节。
-
-## 第 2 题
-
-如果课程里写的按钮或菜单名称和官方安装页面不一致,应该以谁为准?
-
-- A. 以官方页面为准
-- B. 以本课程为准
-- C. 以搜索结果里排第一的博客为准
-- D. 以朋友的电脑上的界面为准
-
-**答案:A**
-
-解析:官方页面是权威来源,名称变了就照官方页面做。
-
-## 第 3 题
-
-装完 Docker 之后为什么要做“检查是否成功”这一步?
-
-- A. 为了让 Docker 自动更新
-- B. 确认 Docker 能正常响应命令,再进入后面的课程
-- C. 为了删除安装文件
-- D. 为了注册一个 Docker 账号
+- A. 为了安装图形界面
+- B. 为了让普通用户不加 sudo 也能运行 Docker
+- C. 为了关闭系统防火墙
+- D. 为了删除旧版本的 Docker
 
 **答案:B**
 
-解析:先确认安装可用,后面的课才不会因为环境问题卡住。
+解析:加入 docker 组并重新登录后可以不用 sudo 运行 Docker 命令,但该组也能控制 Docker。
+
+依据:Linux
+
+## 第 2 题
+
+docker version 的输出分为哪两部分?
+
+- A. 输入和输出
+- B. Windows 和 Linux
+- C. 镜像和容器
+- D. Client 和 Server
+
+**答案:D**
+
+解析:Client 部分描述你输入的命令行,Server 部分描述后台运行的 Docker 引擎。
+
+依据:Check it worked
+
+## 第 3 题
+
+安装后的两项检查中,哪一条用来确认 Docker 能运行容器?
+
+- A. docker version
+- B. docker run hello-world
+- C. docker logs
+- D. docker volume ls
+
+**答案:B**
+
+解析:hello-world 会启动一个测试容器,能说明 Docker 可以运行容器。
+
+依据:Check it worked

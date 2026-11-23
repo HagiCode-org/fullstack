@@ -6,39 +6,45 @@
 
 ## 第 1 题
 
-用 `docker run` 运行 hello-world,它会做什么?
+哪个命令只列出正在运行的容器?
 
-- A. 只下载镜像,不运行
-- B. 永远在后台运行
-- C. 把你的电脑重启
-- D. 根据镜像创建容器并启动,打印一条消息后停止
-
-**答案:D**
-
-解析:`docker run` 创建并启动容器;hello-world 打印消息后就结束了。
-
-## 第 2 题
-
-hello-world 容器运行结束后,它还在你的电脑上吗?
-
-- A. 在,容器停止后仍然保留,直到你把它删除
-- B. 不在,容器结束后立刻消失
-- C. 只在重启之前保留
-- D. 会自动变成一个镜像
+- A. docker ps
+- B. docker ps -a
+- C. docker rm
+- D. docker run
 
 **答案:A**
 
-解析:容器停止后仍会留在电脑上,需要用 `docker rm` 删除。
+解析:docker ps 默认只显示正在运行的容器,加上 -a 才会显示全部容器。
 
-## 第 3 题
+依据:Step 3: List the running containers
 
-要看到包括已停止在内的所有容器,应该用哪个命令?
+## 第 2 题
 
-- A. `docker ps`
-- B. `docker ps -a`
-- C. `docker rm`
-- D. `docker stop`
+要删除已停止的 hello-world 容器,应使用哪个命令?
+
+- A. docker stop
+- B. docker rm,后面跟容器名
+- C. docker pull
+- D. docker version
 
 **答案:B**
 
-解析:`docker ps` 只显示正在运行的,`docker ps -a` 显示全部。
+解析:docker rm 按名称删除已停止的容器,镜像仍会保留在电脑上。
+
+依据:Step 5: Remove the container
+
+## 第 3 题
+
+STATUS 列显示 Exited (0) 表示什么?
+
+- A. 容器仍在运行
+- B. 镜像已被删除
+- C. 容器正常结束,没有报错
+- D. 端口已被占用
+
+**答案:C**
+
+解析:0 是退出码,表示程序正常结束;其他数字表示程序出现了问题。
+
+依据:Step 4: List all containers, including stopped ones

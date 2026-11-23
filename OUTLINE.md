@@ -184,7 +184,7 @@
 - **小节**:Step 1: Create a network / Step 2: Start a database on the network / Step 3: Reach the database by name from a second container / Step 4: Try the same thing on the default network / Step 5: Know which path is which / Step 6: Clean up / What you learned
 - **复习测验**:[`quizzes/docker-for-beginners/docker-networks.md`](quizzes/docker-for-beginners/docker-networks.md)(3 道单选)
 
-##### Docker Compose(Docker Compose)  `docker-compose`
+##### Docker Compose  `docker-compose`
 
 - **概述**:用一个 compose.yaml 描述 Nginx、Node.js 和 PostgreSQL,一条命令启动、查看、读日志和停止全部服务。
 - **小节**:Step 1: Create the project folder and its files / Step 2: Start all the services / Step 3: Check that everything is running / Step 4: Read the logs / Step 5: Stop the services, keeping the data / Step 6: Remove the services and the data / What you learned

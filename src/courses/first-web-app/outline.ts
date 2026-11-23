@@ -4,6 +4,7 @@ import type { Course } from '../types.ts';
 export const firstWebApp: Course = {
   id: 'first-web-app',
   demo: false,
+  outcome: 'You will build a small app that runs in the browser with an AI assistant, keep its data after a refresh, add a filter and totals, fix a planted problem and publish it.',
   title: {
     'en-US': 'Your First Web App',
     'zh-CN': '你的第一个 Web 应用',

@@ -1,0 +1,172 @@
+{
+  "lessons": {
+    "choose-your-project": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "GitHub's guide to creating a new repository says you can create a repository on your personal account or on any organization where you have sufficient permissions, and that you type a name and an optional description.",
+          "url": "https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-new-repository"
+        },
+        {
+          "claim": "GitHub's guide to creating a new repository says a repository name must not exceed 100 characters and can only contain ASCII letters, digits, and the characters . , - and _.",
+          "url": "https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-new-repository"
+        },
+        {
+          "claim": "GitHub's guide to creating your first repository using GitHub Desktop says GitHub Desktop can be used to create and manage a Git repository without using the command line.",
+          "url": "https://docs.github.com/en/desktop/overview/creating-your-first-repository-using-github-desktop"
+        }
+      ]
+    },
+    "write-the-spec": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "GitHub's guide to committing and reviewing changes in GitHub Desktop says you write a commit message in the Summary field, with an optional Description, and then click Commit to the branch.",
+          "url": "https://docs.github.com/en/desktop/making-changes-in-a-branch/committing-and-reviewing-changes-to-your-project-in-github-desktop"
+        },
+        {
+          "claim": "GitHub's guide to commits says a commit records changes to one or more files in a branch, with a commit message, and each commit has a unique ID called a SHA or hash.",
+          "url": "https://docs.github.com/en/pull-requests/committing-changes-to-your-project/creating-and-editing-commits/about-commits"
+        }
+      ]
+    },
+    "build-in-small-steps": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "GitHub's guide to GitHub flow says creating a branch gives you a space to work without affecting the default branch, and that a short, descriptive branch name lets collaborators see ongoing work at a glance.",
+          "url": "https://docs.github.com/en/get-started/using-github/github-flow"
+        },
+        {
+          "claim": "GitHub's guide to GitHub flow says to make a separate branch for each set of unrelated changes, which makes it easier for reviewers to give feedback.",
+          "url": "https://docs.github.com/en/get-started/using-github/github-flow"
+        },
+        {
+          "claim": "GitHub's guide to reviewing proposed changes in a pull request says reviewers examine each changed file, leave comments on specific changes, and submit a review that approves the pull request or requests changes.",
+          "url": "https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/reviewing-changes-in-pull-requests/reviewing-proposed-changes-in-a-pull-request"
+        },
+        {
+          "claim": "GitHub's guide to merging a pull request says a repository's rules or branch protection can require reviews or status checks before merging.",
+          "url": "https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/incorporating-changes-from-a-pull-request/merging-a-pull-request"
+        }
+      ]
+    },
+    "check-before-you-ship": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "GitHub's guide to removing sensitive data says sensitive data can be removed from the history of a repository if you can carefully coordinate with everyone who has cloned it and you are willing to manage the side effects.",
+          "url": "https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/removing-sensitive-data-from-a-repository"
+        },
+        {
+          "claim": "GitHub's guide to removing sensitive data says that if the sensitive data is a secret such as a password, token or credential, the first step is to revoke and/or rotate that secret.",
+          "url": "https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/removing-sensitive-data-from-a-repository"
+        },
+        {
+          "claim": "GitHub's secret scanning guide says secret scanning scans the entire Git history on all branches of a repository for hardcoded credentials, including API keys, passwords and tokens.",
+          "url": "https://docs.github.com/en/code-security/concepts/secret-security/secret-scanning"
+        },
+        {
+          "claim": "Anthropic lets you set your own monthly spend limit below your tier's cap on the spend limits page, and requests return HTTP 400 once a spend limit you set is reached.",
+          "url": "https://platform.claude.com/docs/en/api/rate-limits"
+        },
+        {
+          "claim": "OpenAI's spend-limits guide says a spend alert sends a notification and does not stop traffic, while a hard spend limit makes affected API requests return a 429 error.",
+          "url": "https://developers.openai.com/api/docs/guides/spend-limits"
+        }
+      ]
+    },
+    "launch": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "GitHub Pages is a static site hosting service that takes HTML, CSS and JavaScript files straight from a repository on GitHub and publishes a website, optionally running them through a build process.",
+          "url": "https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages"
+        },
+        {
+          "claim": "After a push, it can take up to 10 minutes for changes to a GitHub Pages site to publish.",
+          "url": "https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site"
+        },
+        {
+          "claim": "Connecting a Cloudflare Pages project to a GitHub repository makes Cloudflare automatically deploy the code every time a change is pushed to a branch.",
+          "url": "https://developers.cloudflare.com/pages/configuration/git-integration/"
+        },
+        {
+          "claim": "Each new branch receives a preview deployment with its own address, and preview deployments do not affect custom domains or the production site.",
+          "url": "https://developers.cloudflare.com/pages/configuration/preview-deployments/"
+        },
+        {
+          "claim": "A rollback instantly reverts a Cloudflare Pages project to a previous production deployment, and preview deployments are not valid rollback targets.",
+          "url": "https://developers.cloudflare.com/pages/configuration/rollbacks/"
+        }
+      ]
+    },
+    "show-your-work": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "GitHub's guide to READMEs says you can add a README file to your repository to tell other people why your project is useful, what they can do with your project, and how they can use it.",
+          "url": "https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes"
+        },
+        {
+          "claim": "GitHub's guide to READMEs says a README is often the first item a visitor will see when visiting your repository.",
+          "url": "https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes"
+        },
+        {
+          "claim": "GitHub's guide to managing your profile README says you can add a README to your GitHub profile to tell other people about yourself.",
+          "url": "https://docs.github.com/en/account-and-profile/how-tos/profile-customization/managing-your-profile-readme"
+        },
+        {
+          "claim": "GitHub's guide to pinning items to your profile says you can pin gists and repositories to your profile so other people can quickly see your best work.",
+          "url": "https://docs.github.com/en/account-and-profile/how-tos/profile-customization/pinning-items-to-your-profile"
+        }
+      ]
+    },
+    "team-collaboration": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "GitHub's guide to managing teams and people with access to a repository says that for each repository you administer, you can see every team or person with access, invite new people, change each person's role, or remove access.",
+          "url": "https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/managing-repository-settings/managing-teams-and-people-with-access-to-your-repository"
+        },
+        {
+          "claim": "GitHub's guide to requesting a pull request review says that to request a review you need write access to the repository, and the person you ask receives a notification.",
+          "url": "https://docs.github.com/en/pull-requests/how-tos/create-pull-requests/requesting-a-pull-request-review"
+        },
+        {
+          "claim": "GitHub's guide to protected branches says branch protection rules define whether collaborators can delete or force push to a branch and set requirements for pushes, and lists Require pull request reviews before merging as one option.",
+          "url": "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches"
+        },
+        {
+          "claim": "GitHub's guide to giving reviews says a comment leaves general feedback without approving or requesting changes, approve signals that the changes are ready to merge, and request changes flags feedback the author should address before merging.",
+          "url": "https://docs.github.com/en/pull-requests/concepts/giving-reviews"
+        },
+        {
+          "claim": "GitHub's guide to merge conflicts says Git cannot safely choose which version of conflicting content to keep, and you must resolve all merge conflicts before you can merge a pull request on GitHub.",
+          "url": "https://docs.github.com/en/pull-requests/reference/merge-conflicts"
+        },
+        {
+          "claim": "GitHub's guide to merge conflicts says simple line conflicts can often be resolved on GitHub, while more complex conflicts must be resolved in a local clone and pushed back to the pull request branch.",
+          "url": "https://docs.github.com/en/pull-requests/reference/merge-conflicts"
+        }
+      ]
+    },
+    "look-back": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "GitHub's guide to comparing commits says the repository commit history and a single file's commit history can show different results, because a file's history shows only the commits that affected that file.",
+          "url": "https://docs.github.com/en/pull-requests/how-tos/commit-changes/comparing-commits"
+        },
+        {
+          "claim": "A GitHub pull request page has Conversation, Commits, Checks, Files changed and Findings tabs.",
+          "url": "https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests"
+        },
+        {
+          "claim": "GitHub's guide to about commits says each commit has a unique ID called a SHA or hash.",
+          "url": "https://docs.github.com/en/pull-requests/committing-changes-to-your-project/creating-and-editing-commits/about-commits"
+        }
+      ]
+    }
+  }
+}

@@ -4,6 +4,7 @@ import type { Course } from '../types.ts';
 export const dockerForBeginners: Course = {
   id: 'docker-for-beginners',
   demo: false,
+  outcome: 'You will install Docker, run web, database and Node.js services as containers, connect them by name and manage them from a browser.',
   title: {
     'en-US': 'Docker for Beginners',
     'zh-CN': 'Docker 入门',
@@ -51,6 +52,22 @@ export const dockerForBeginners: Course = {
         },
         {
           kind: 'lesson',
+          id: 'check-your-computer',
+          title: {
+            'en-US': 'Can your computer run Docker?',
+            'zh-CN': '你的电脑能装 Docker 吗',
+            'zh-Hant': '你的電腦能裝 Docker 嗎',
+            'ja-JP': 'お使いのパソコンで Docker は動きますか？',
+            'ko-KR': '내 컴퓨터에서 Docker를 실행할 수 있을까?',
+            'de-DE': 'Kann dein Computer Docker ausführen?',
+            'fr-FR': 'Votre ordinateur peut-il faire tourner Docker ?',
+            'es-ES': '¿Puede tu computadora ejecutar Docker?',
+            'pt-BR': 'Seu computador consegue rodar o Docker?',
+            'ru-RU': 'Потянет ли ваш компьютер Docker?',
+          },
+        },
+        {
+          kind: 'lesson',
           id: 'install-docker',
           title: {
             'en-US': 'Install Docker',
@@ -67,6 +84,22 @@ export const dockerForBeginners: Course = {
         },
         {
           kind: 'lesson',
+          id: 'terminal-basics',
+          title: {
+            'en-US': 'Your first look at the terminal',
+            'zh-CN': '终端第一课',
+            'zh-Hant': '終端機第一課',
+            'ja-JP': 'ターミナル入門',
+            'ko-KR': '터미널 첫걸음',
+            'de-DE': 'Das Terminal kennenlernen',
+            'fr-FR': 'Premier contact avec le terminal',
+            'es-ES': 'Tu primer contacto con la terminal',
+            'pt-BR': 'Seu primeiro contato com o terminal',
+            'ru-RU': 'Первое знакомство с терминалом',
+          },
+        },
+        {
+          kind: 'lesson',
           id: 'your-first-container',
           title: {
             'en-US': 'Your first container',
@@ -79,6 +112,22 @@ export const dockerForBeginners: Course = {
             'es-ES': 'Tu primer contenedor',
             'pt-BR': 'Seu primeiro contêiner',
             'ru-RU': 'Первый контейнер',
+          },
+        },
+        {
+          kind: 'lesson',
+          id: 'read-errors-and-ask-for-help',
+          title: {
+            'en-US': 'Read an error and ask for help',
+            'zh-CN': '读懂报错,学会求助',
+            'zh-Hant': '讀懂報錯，學會求助',
+            'ja-JP': 'エラーを読み、助けを求める',
+            'ko-KR': '오류 메시지 읽기와 도움 요청하기',
+            'de-DE': 'Fehlermeldungen lesen und um Hilfe bitten',
+            'fr-FR': 'Lire une erreur et demander de l’aide',
+            'es-ES': 'Leer un error y pedir ayuda',
+            'pt-BR': 'Ler um erro e pedir ajuda',
+            'ru-RU': 'Как читать ошибку и просить помощь',
           },
         },
       ],

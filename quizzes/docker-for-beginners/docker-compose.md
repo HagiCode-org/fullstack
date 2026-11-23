@@ -6,39 +6,45 @@
 
 ## 第 1 题
 
-Docker Compose 的 `compose.yaml` 用来做什么?
+compose.yaml 文件的作用是什么?
 
-- A. 用一个文件描述多个服务,并一起启动、停止它们
-- B. 记录你一天用了多少流量
-- C. 给镜像加密
-- D. 把容器变成虚拟机
+- A. 记录所有镜像的密码
+- B. 描述多个服务及其设置,供 docker compose 一次启动
+- C. 备份数据库
+- D. 替代浏览器
 
-**答案:A**
+**答案:B**
 
-解析:一个文件描述多项服务,用一条命令统一管理。
+解析:文件中列出了 web、app 和 db 三个服务,docker compose 按它一次启动。
+
+依据:compose.yaml
 
 ## 第 2 题
 
-Compose 里的各个服务怎样互相访问?
+docker compose down 与 docker compose down -v 有什么区别?
 
-- A. 必须手动写 IP 地址
-- B. 只能通过浏览器
-- C. 互相之间无法访问
-- D. 通过 Compose 自动创建的网络,用服务名访问
+- A. 前者删除所有镜像,后者不删除
+- B. 两者都会删除数据
+- C. 后者只停止服务,前者删除容器
+- D. 前者保留命名卷,后者同时删除命名卷
 
 **答案:D**
 
-解析:Compose 为服务创建网络,服务之间可按服务名访问。
+解析:-v 会删除文件里声明的命名卷,不加 -v 时卷会保留。
+
+依据:Step 6: Remove the services and the data
 
 ## 第 3 题
 
-`down` 和 `down -v` 的区别是什么?
+在 Compose 网络中,Nginx 通过什么找到 Node.js 程序?
 
-- A. 没有区别
-- B. `down` 删除卷,`down -v` 保留卷
-- C. `down` 保留卷,`down -v` 还会删除卷及其中的数据
-- D. `down -v` 只重启服务
+- A. 服务的 IP 地址
+- B. 服务名 app
+- C. 电脑的 IP 地址
+- D. 镜像名
 
-**答案:C**
+**答案:B**
 
-解析:`down` 删除容器和网络但保留卷;加 `-v` 连数据一起删。
+解析:课文说明 Nginx 按服务名 app 找到 Node.js 程序,服务名就是容器之间的地址。
+
+依据:Step 3: Check that everything is running

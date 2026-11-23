@@ -1,0 +1,148 @@
+{
+  "lessons": {
+    "see-the-goal": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "Python is an easy to learn, powerful programming language.",
+          "url": "https://docs.python.org/3/tutorial/index.html"
+        }
+      ]
+    },
+    "what-a-language-and-runtime-are": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "When the Python interpreter is called with a file name argument, it reads and executes a script from that file.",
+          "url": "https://docs.python.org/3/tutorial/interpreter.html"
+        },
+        {
+          "claim": "On Windows, Python is obtained through the Python install manager, which can be installed from the Microsoft Store or from python.org/downloads; after it is installed, typing python in a terminal gets you started.",
+          "url": "https://docs.python.org/3/using/windows.html"
+        },
+        {
+          "claim": "The Windows page has a Troubleshooting section for when the python or py commands do not seem to work.",
+          "url": "https://docs.python.org/3/using/windows.html"
+        },
+        {
+          "claim": "Python for macOS is distributed as installer packages from the python.org downloads page.",
+          "url": "https://www.python.org/downloads/"
+        },
+        {
+          "claim": "Recent versions of macOS include a python3 command in /usr/bin/python3 that links to an older, incomplete Python used by Apple's development tools, which should never be modified or deleted.",
+          "url": "https://docs.python.org/3/using/mac.html"
+        },
+        {
+          "claim": "The default options of the python.org installer ensure that its python3 is used instead of the system python3.",
+          "url": "https://docs.python.org/3/using/mac.html"
+        },
+        {
+          "claim": "pip supports installing packages from PyPI.",
+          "url": "https://pip.pypa.io/en/stable/user_guide/"
+        }
+      ]
+    },
+    "write-the-brief-for-python": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "The official Python tutorial is published in the Python 3 documentation at docs.python.org/3/.",
+          "url": "https://docs.python.org/3/tutorial/index.html"
+        }
+      ]
+    },
+    "first-version": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "FastAPI is a modern, fast (high-performance) web framework for building APIs with Python based on standard Python type hints.",
+          "url": "https://fastapi.tiangolo.com/"
+        },
+        {
+          "claim": "When managing the environment and packages manually, create and activate a virtual environment, then install FastAPI with pip install \"fastapi[standard]\".",
+          "url": "https://fastapi.tiangolo.com/tutorial/"
+        },
+        {
+          "claim": "python -m venv creates a virtual environment in the given directory, with a bin subdirectory on POSIX and a Scripts subdirectory on Windows.",
+          "url": "https://docs.python.org/3/library/venv.html"
+        },
+        {
+          "claim": "Activating a virtual environment runs its activation script (source <venv>/bin/activate on POSIX, <venv>\\Scripts\\activate.bat on Windows) and prepends its directory to PATH, so that running python invokes the environment's interpreter.",
+          "url": "https://docs.python.org/3/library/venv.html"
+        },
+        {
+          "claim": "On Microsoft Windows, PowerShell may require the Activate.ps1 script to be enabled by setting the execution policy for the user.",
+          "url": "https://docs.python.org/3/library/venv.html"
+        },
+        {
+          "claim": "fastapi dev main.py reads the file, detects the FastAPI app in it and starts a development server using Uvicorn.",
+          "url": "https://fastapi.tiangolo.com/fastapi-cli/"
+        },
+        {
+          "claim": "The FastAPI home page example shows the server at http://127.0.0.1:8000 and the interactive API documentation at /docs.",
+          "url": "https://fastapi.tiangolo.com/"
+        },
+        {
+          "claim": "python -m pip freeze > requirements.txt writes the installed packages to a requirements file, which python -m pip install -r requirements.txt installs from.",
+          "url": "https://pip.pypa.io/en/stable/user_guide/#requirements-files"
+        }
+      ]
+    },
+    "add-a-feature": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "By default, fastapi dev starts with auto-reload enabled, which reloads the server when code changes.",
+          "url": "https://fastapi.tiangolo.com/fastapi-cli/"
+        },
+        {
+          "claim": "The server output shows 'Uvicorn running' with '(Press CTRL+C to quit)'.",
+          "url": "https://fastapi.tiangolo.com/"
+        },
+        {
+          "claim": "The /docs page is the automatic interactive API documentation provided by Swagger UI.",
+          "url": "https://fastapi.tiangolo.com/"
+        }
+      ]
+    },
+    "compare-with-the-first-version": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "The FastAPI development server is started with fastapi dev and prints the address http://127.0.0.1:8000, where it can be stopped with CTRL+C.",
+          "url": "https://fastapi.tiangolo.com/"
+        }
+      ]
+    },
+    "fix-a-planted-problem": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "The last line of the error message indicates what happened; the exception type is printed as part of the message.",
+          "url": "https://docs.python.org/3/tutorial/errors.html"
+        },
+        {
+          "claim": "ModuleNotFoundError is a subclass of ImportError which is raised by import when a module could not be located.",
+          "url": "https://docs.python.org/3/library/exceptions.html"
+        }
+      ]
+    },
+    "variation-challenge": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "Node.js is an asynchronous event-driven JavaScript runtime.",
+          "url": "https://nodejs.org/en/about"
+        },
+        {
+          "claim": "The Python Tutorial is the official tutorial for the Python language, published by the Python project.",
+          "url": "https://docs.python.org/3/tutorial/index.html"
+        },
+        {
+          "claim": "The FastAPI tutorial shows how to install FastAPI and build an app with it, step by step.",
+          "url": "https://fastapi.tiangolo.com/tutorial/"
+        }
+      ]
+    }
+  }
+}

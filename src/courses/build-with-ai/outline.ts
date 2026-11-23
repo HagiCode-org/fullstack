@@ -4,6 +4,7 @@ import type { Course } from '../types.ts';
 export const buildWithAi: Course = {
   id: 'build-with-ai',
   demo: false,
+  outcome: 'You can choose an AI coding assistant on purpose, write a clear brief, and check the result yourself before you accept it.',
   title: {
     'en-US': 'Build with an AI Partner',
     'zh-CN': '与 AI 搭档开发',

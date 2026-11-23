@@ -1,0 +1,75 @@
+{
+  "lessons": {
+    "choose-an-ai-coding-assistant": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        { "claim": "Claude Code charges by API token consumption; subscription plans (Pro, Max, Ultra, Team, Enterprise) are offered separately.", "url": "https://code.claude.com/docs/en/costs" },
+        { "claim": "Anthropic's Supported Regions Policy lists the countries where its products, including Claude Code, are available; any country not listed is unsupported, and mainland China is not listed.", "url": "https://www.anthropic.com/supported-countries" },
+        { "claim": "For consumer plans (Free, Pro, Max, Ultra) Claude Code data may be used to train new models when that setting is on; under commercial terms (Team, Enterprise, API) Anthropic does not train on code or prompts sent to Claude Code unless the customer opts in.", "url": "https://code.claude.com/docs/en/data-usage" },
+        { "claim": "Transcripts shared with Claude Code through /feedback, /bug or /share are retained for 5 years; session transcripts are stored locally in plaintext under ~/.claude/projects/ for 30 days.", "url": "https://code.claude.com/docs/en/data-usage" },
+        { "claim": "Claude Code has an uninstall section for each installation method and a step to remove configuration files.", "url": "https://code.claude.com/docs/en/setup" },
+        { "claim": "Codex is included in ChatGPT Free, Go, Plus, Pro, Business, Edu and Enterprise plans; eligible plans can extend usage with credits and pay-as-you-go.", "url": "https://developers.openai.com/codex/pricing" },
+        { "claim": "Codex supports two sign-in methods for OpenAI models: sign in with ChatGPT for subscription access, or sign in with an API key for usage-based access.", "url": "https://developers.openai.com/codex/auth" },
+        { "claim": "Running codex logout clears the stored Codex credentials.", "url": "https://developers.openai.com/codex/auth" },
+        { "claim": "OpenAI's supported-countries page for its API lists the countries and territories where access is supported; mainland China is not on the list.", "url": "https://platform.openai.com/docs/supported-countries" },
+        { "claim": "For Business, Enterprise and Edu accounts OpenAI does not use inputs or outputs from its products to improve models by default; Pro and Plus conversations may be used to improve models unless training is turned off in ChatGPT data controls.", "url": "https://help.openai.com/en/articles/11369540-using-codex-with-your-chatgpt-plan" },
+        { "claim": "Pi is published under the MIT license.", "url": "https://github.com/earendil-works/pi" },
+        { "claim": "To use Pi you need access to a model through a supported provider, which can be a subscription, an API key or a local model.", "url": "https://docs.pi.dev/latest/quickstart" },
+        { "claim": "If Pi was installed with npm, it is removed with npm uninstall -g @earendil-works/pi-coding-agent.", "url": "https://docs.pi.dev/latest/quickstart" },
+        { "claim": "Inside Pi, /logout removes a provider's stored credential; it does not unset environment variables or revoke the credential at the provider.", "url": "https://docs.pi.dev/latest/providers" },
+        { "claim": "PI_TELEMETRY controls install and update telemetry and provider attribution headers (0, false or no turns them off); PI_OFFLINE disables automatic network activity, including model catalog refreshes.", "url": "https://docs.pi.dev/latest/environment-variables" },
+        { "claim": "CodeBuddy has personal Free and Pro plans, each offered as a continuous monthly or annual subscription with monthly credits.", "url": "https://intl.cloud.tencent.com/ind/document/product/1256/77270" },
+        { "claim": "Tencent's CodeBuddy Enterprise Privacy Policy says inputs and outputs are kept for up to fourteen days.", "url": "https://intl.cloud.tencent.com/document/product/1316/82344" },
+        { "claim": "CodeBuddy Code is removed with npm uninstall -g @tencent-ai/codebuddy-code, and its default configuration directory is ~/.codebuddy.", "url": "https://intl.cloud.tencent.com/document/product/1316/84415" },
+        { "claim": "DeepSeek Harness official-model use requires a DeepSeek account; dialogue logs of the agent service are collected, and inputs and outputs may be used to optimise models after de-identification, with an opt-out.", "url": "https://deepseek.com/harness/privacy/" },
+        { "claim": "DeepSeek Harness stores personal information within mainland China and states that it does not currently transfer it abroad.", "url": "https://deepseek.com/harness/privacy/" },
+        { "claim": "With a custom model in DeepSeek Harness, the model service is provided by the model provider you call, not by DeepSeek Harness.", "url": "https://deepseek.com/harness/terms-of-use/" },
+        { "claim": "In DeepSeek Harness you enter a DeepSeek API key under Settings, Models; the key is stored in $DSH_HOME/.credentials.yaml.", "url": "https://deepseek-harness.github.io/deepseek-harness/guide/providers" },
+        { "claim": "DeepSeek Harness desktop uninstall: the app is removed by the normal uninstall steps, and clearing local data is optional.", "url": "https://deepseek-harness.github.io/deepseek-harness/guide/desktop-uninstall-cleanup" },
+        { "claim": "DeepSeek model prices are listed per 1M tokens, and a token is the smallest unit of text the model recognises.", "url": "https://api-docs.deepseek.com/quick_start/pricing" },
+        { "claim": "MiniMax Code requires a MiniMax account with available credits or your own compatible model API, and model calls may incur charges; the project is MIT licensed.", "url": "https://github.com/MiniMax-AI/minimax-code" },
+        { "claim": "MiniMax Code sign-in: a mainland China account uses mcode login, and a Global account uses mcode login --region global.", "url": "https://code.minimax.io/docs/cli/quick-start" },
+        { "claim": "For an npm installation of MiniMax Code, run npm uninstall -g @minimax-ai/code.", "url": "https://code.minimax.io/docs/cli/faq" },
+        { "claim": "Removing the MiniMax Code npm package leaves user data in place.", "url": "https://github.com/MiniMax-AI/minimax-code/blob/main/docs/installation.md" }
+      ]
+    },
+    "write-a-clear-brief": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        { "claim": "Anthropic's Claude Code best-practices guide advises telling the assistant what it cannot see and giving it a check to run.", "url": "https://code.claude.com/docs/en/best-practices" }
+      ]
+    },
+    "get-the-first-version": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        { "claim": "Claude Code tracks changes from its own edits automatically, and its rewind feature can return files and conversation to an earlier point.", "url": "https://code.claude.com/docs/en/checkpointing" },
+        { "claim": "Claude Code checkpoints are not a replacement for version control.", "url": "https://code.claude.com/docs/en/checkpointing" }
+      ]
+    },
+    "iterate-in-small-steps": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        { "claim": "In GitHub Desktop, a commit must include a commit message that briefly describes the changes.", "url": "https://docs.github.com/en/desktop/making-changes-in-a-branch/committing-and-reviewing-changes-to-your-project-in-github-desktop" },
+        { "claim": "GitHub Desktop shows which lines were added and removed before you commit.", "url": "https://docs.github.com/en/desktop/making-changes-in-a-branch/committing-and-reviewing-changes-to-your-project-in-github-desktop" }
+      ]
+    },
+    "when-something-breaks": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        { "claim": "Claude Code checkpoints are not a replacement for version control, and changes made by Bash commands are not tracked by checkpoints.", "url": "https://code.claude.com/docs/en/checkpointing" }
+      ]
+    },
+    "check-the-result": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        { "claim": "Anthropic's Claude Code best-practices guide advises giving the assistant a check to run, so it can verify its own work.", "url": "https://code.claude.com/docs/en/best-practices" }
+      ]
+    },
+    "keep-control": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        { "claim": "In Claude Code, a session's permission mode sets which actions Claude can take without asking you first.", "url": "https://code.claude.com/docs/en/security" }
+      ]
+    }
+  }
+}

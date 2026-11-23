@@ -1,0 +1,307 @@
+{
+  "lessons": {
+    "why-self-host": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "Reactive Resume is a free, open-source resume builder.",
+          "url": "https://docs.rxresu.me/getting-started"
+        },
+        {
+          "claim": "Reactive Resume can be run on your own server with Docker, Kubernetes or Vercel.",
+          "url": "https://docs.rxresu.me/use-cases/self-hosted-resume-builder"
+        },
+        {
+          "claim": "Memos is an open-source, self-hosted note-taking app, and says your data stays yours and you choose what to keep private or share.",
+          "url": "https://usememos.com/"
+        },
+        {
+          "claim": "Memos is open-source software under the MIT license, and hosting may still cost money depending on the hardware or provider chosen.",
+          "url": "https://usememos.com/"
+        },
+        {
+          "claim": "Uptime Kuma is described on its GitHub repository as a self-hosted monitoring tool.",
+          "url": "https://github.com/louislam/uptime-kuma"
+        },
+        {
+          "claim": "Before every upgrade, the Memos upgrade guide says to back up the database and attachments.",
+          "url": "https://usememos.com/docs/operations/upgrade"
+        }
+      ]
+    },
+    "read-the-compose-file": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "The default path for a Compose file is compose.yaml (preferred) or compose.yml in the working directory.",
+          "url": "https://docs.docker.com/compose/intro/compose-application-model/"
+        },
+        {
+          "claim": "The Compose services reference example maps host port 8080 to container port 80 with \"8080:80\".",
+          "url": "https://docs.docker.com/reference/compose-file/services/"
+        },
+        {
+          "claim": "The Compose services reference describes restart unless-stopped as restarting the container regardless of exit code until the service is stopped or removed.",
+          "url": "https://docs.docker.com/reference/compose-file/services/"
+        },
+        {
+          "claim": "A top-level volumes declaration configures named volumes that can be reused across multiple services.",
+          "url": "https://docs.docker.com/reference/compose-file/volumes/"
+        },
+        {
+          "claim": "Docker Compose reads a .env file in the project directory to substitute variables such as ${POSTGRES_PASSWORD} in the Compose file.",
+          "url": "https://docs.docker.com/compose/how-tos/environment-variables/variable-interpolation/"
+        },
+        {
+          "claim": "The Reactive Resume Docker guide runs two containers, the app and PostgreSQL, and PostgreSQL is reachable only from the app container.",
+          "url": "https://docs.rxresu.me/self-hosting/docker"
+        },
+        {
+          "claim": "The Reactive Resume Docker guide maps the app's container port 3000 to host port 3000 and says any free host port can be used.",
+          "url": "https://docs.rxresu.me/self-hosting/docker"
+        },
+        {
+          "claim": "In the Reactive Resume compose file, the app service depends on postgres with condition service_healthy.",
+          "url": "https://docs.rxresu.me/self-hosting/docker"
+        },
+        {
+          "claim": "Uploaded pictures live in the reactive_resume_data volume mounted at /app/data, and the app reads its settings with env_file .env.",
+          "url": "https://docs.rxresu.me/self-hosting/docker"
+        },
+        {
+          "claim": "Reactive Resume requires three settings: APP_URL, DATABASE_URL and AUTH_SECRET.",
+          "url": "https://docs.rxresu.me/self-hosting/environment-variables"
+        },
+        {
+          "claim": "Docker's published-ports documentation says the -p or --publish flag makes a port available outside the host.",
+          "url": "https://docs.docker.com/engine/network/"
+        },
+        {
+          "claim": "Memos stores its data in /var/opt/memos inside the container, and its Compose example maps ./data to that folder.",
+          "url": "https://usememos.com/docs/deploy/docker-compose"
+        }
+      ]
+    },
+    "deploy-reactive-resume": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "docker compose up with --wait exits once the services are running or healthy.",
+          "url": "https://docs.docker.com/reference/cli/docker/compose/up/"
+        },
+        {
+          "claim": "The Reactive Resume Docker guide's setup command is docker compose up -d --wait --wait-timeout 180.",
+          "url": "https://docs.rxresu.me/self-hosting/docker"
+        },
+        {
+          "claim": "The Reactive Resume image has a built-in health check, so Compose reports the app as healthy once it is ready.",
+          "url": "https://docs.rxresu.me/self-hosting/docker"
+        },
+        {
+          "claim": "The Reactive Resume Docker guide generates AUTH_SECRET with openssl rand -hex 32 on Linux and macOS, and gives a PowerShell 7 command for Windows.",
+          "url": "https://docs.rxresu.me/self-hosting/docker"
+        },
+        {
+          "claim": "The first start of the Reactive Resume app creates its database tables, and you are signed in right after creating an account.",
+          "url": "https://docs.rxresu.me/self-hosting/docker"
+        },
+        {
+          "claim": "Without SMTP settings, Reactive Resume sends no verification email, so the address stays unverified, while the app can still be used.",
+          "url": "https://docs.rxresu.me/self-hosting/docker"
+        },
+        {
+          "claim": "docker compose ps lists the containers of a Compose project with their current status and exposed ports.",
+          "url": "https://docs.docker.com/reference/cli/docker/compose/ps/"
+        },
+        {
+          "claim": "docker compose logs displays log output from the services.",
+          "url": "https://docs.docker.com/reference/cli/docker/compose/logs/"
+        }
+      ]
+    },
+    "configure-and-keep-secrets": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "Changing AUTH_SECRET signs everyone out and makes data encrypted with it unreadable, including two-factor authentication secrets.",
+          "url": "https://docs.rxresu.me/self-hosting/environment-variables"
+        },
+        {
+          "claim": "ENCRYPTION_SECRET must be at least 32 characters and different from AUTH_SECRET, and it is required for saving personal AI and web-access keys.",
+          "url": "https://docs.rxresu.me/self-hosting/environment-variables"
+        },
+        {
+          "claim": "Changes take effect after a restart, and with Docker Compose you run docker compose up -d to recreate the container with the new environment.",
+          "url": "https://docs.rxresu.me/self-hosting/environment-variables"
+        },
+        {
+          "claim": "FLAG_DISABLE_SIGNUPS set to true stops new accounts from being created, and existing accounts keep working.",
+          "url": "https://docs.rxresu.me/self-hosting/environment-variables"
+        },
+        {
+          "claim": "The Reactive Resume Docker guide suggests adding FLAG_DISABLE_SIGNUPS to .env after your own account exists, then running docker compose up -d.",
+          "url": "https://docs.rxresu.me/self-hosting/docker"
+        },
+        {
+          "claim": "The Reactive Resume repository's own compose file uses default passwords for PostgreSQL and SeaweedFS and keeps their ports off the host.",
+          "url": "https://docs.rxresu.me/self-hosting/docker"
+        },
+        {
+          "claim": "Docker Compose can mount a secret as a file under /run/secrets/<secret_name> inside the container.",
+          "url": "https://docs.docker.com/compose/how-tos/use-secrets/"
+        },
+        {
+          "claim": "Memos supports _FILE variable suffixes, so credentials can be passed from Docker secrets instead of plain environment variables.",
+          "url": "https://usememos.com/docs/deploy/docker"
+        },
+        {
+          "claim": "A .gitignore file in the root directory of a repository tells Git which files and directories to ignore when making a commit.",
+          "url": "https://docs.github.com/en/get-started/git-basics/ignoring-files"
+        }
+      ]
+    },
+    "back-up-upgrade-restore": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "The Reactive Resume Docker guide dumps the PostgreSQL database with pg_dump and restores it into an empty database with pg_restore.",
+          "url": "https://docs.rxresu.me/self-hosting/docker"
+        },
+        {
+          "claim": "The Reactive Resume Docker guide says the uploads can be backed up by copying the reactive_resume_data volume, or the folder you mounted yourself.",
+          "url": "https://docs.rxresu.me/self-hosting/docker"
+        },
+        {
+          "claim": "Without the same AUTH_SECRET and ENCRYPTION_SECRET, a restored Reactive Resume instance signs everyone out, breaks two-factor authentication and loses saved AI and Firecrawl keys.",
+          "url": "https://docs.rxresu.me/self-hosting/docker"
+        },
+        {
+          "claim": "pg_dump with the custom format writes a custom-format archive suitable for input into pg_restore.",
+          "url": "https://www.postgresql.org/docs/18/app-pgdump.html"
+        },
+        {
+          "claim": "pg_restore restores a PostgreSQL database from an archive created by pg_dump in one of the non-plain-text formats.",
+          "url": "https://www.postgresql.org/docs/18/app-pgrestore.html"
+        },
+        {
+          "claim": "Reactive Resume's image tags include latest for the newest release and v6, which pins the major version and gets fixes without jumping to the next major version.",
+          "url": "https://docs.rxresu.me/self-hosting/docker"
+        },
+        {
+          "claim": "docker compose pull pulls the images of services defined in a compose.yaml file without starting containers based on them.",
+          "url": "https://docs.docker.com/reference/cli/docker/compose/pull/"
+        },
+        {
+          "claim": "The Reactive Resume Docker guide says PostgreSQL is updated separately, and pulling a new app image does not change the database server's major version.",
+          "url": "https://docs.rxresu.me/self-hosting/docker"
+        },
+        {
+          "claim": "Volumes are easier to back up or migrate than bind mounts, and a Docker data volume persists after you delete the container that used it.",
+          "url": "https://docs.docker.com/engine/storage/volumes/"
+        },
+        {
+          "claim": "Docker's volume guide shows a backup pattern: a temporary container with --volumes-from reads the volume and writes a tar archive into a host folder mounted at /backup, and a restore pattern unpacks it.",
+          "url": "https://docs.docker.com/engine/storage/volumes/"
+        },
+        {
+          "claim": "Memos applies database migrations automatically on startup, downgrading after a migration has run is not supported, and the backup is the rollback path.",
+          "url": "https://usememos.com/docs/operations/upgrade"
+        },
+        {
+          "claim": "The Uptime Kuma update guide re-pulls the latest image and creates another container with the same volume.",
+          "url": "https://uptime.kuma.pet/docs/How-to-Update"
+        },
+        {
+          "claim": "Uptime Kuma recommends the tag 2 for the latest version 2 release, and says the latest tag is deprecated and points to version 1.",
+          "url": "https://uptime.kuma.pet/docs/Docker-Tags"
+        }
+      ]
+    },
+    "try-more-apps": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "The Memos Docker Compose example uses the image neosmemo/memos:stable, publishes port 5230 and maps ./data to /var/opt/memos.",
+          "url": "https://usememos.com/docs/deploy/docker-compose"
+        },
+        {
+          "claim": "The Memos Docker guide says the stable tag is the safest default for production, while latest is development-oriented.",
+          "url": "https://usememos.com/docs/deploy/docker"
+        },
+        {
+          "claim": "A fresh Memos instance started without MEMOS_INSTANCE_URL initializes private access.",
+          "url": "https://usememos.com/docs/deploy/docker"
+        },
+        {
+          "claim": "The Memos MEMOS_DRIVER variable defaults to sqlite, the default database backend.",
+          "url": "https://usememos.com/docs/deploy/docker"
+        },
+        {
+          "claim": "The Memos Docker Compose guide lists docker compose down, docker compose up -d and docker compose logs -f among its common operational commands.",
+          "url": "https://usememos.com/docs/deploy/docker-compose"
+        },
+        {
+          "claim": "Uptime Kuma's install page gives the command docker run -d --restart=unless-stopped -p 3001:3001 -v uptime-kuma:/app/data louislam/uptime-kuma:2, and says Uptime Kuma is then running on http://localhost:3001.",
+          "url": "https://uptime.kuma.pet/docs/How-to-Install"
+        },
+        {
+          "claim": "Uptime Kuma's install page says file locking support is required to avoid SQLite database corruption, and asks for the /app/data folder to map to a local directory or volume.",
+          "url": "https://uptime.kuma.pet/docs/How-to-Install"
+        },
+        {
+          "claim": "Reactive Resume is an open-source resume builder under the MIT license.",
+          "url": "https://docs.rxresu.me/use-cases/open-source-resume-builder"
+        },
+        {
+          "claim": "Uptime Kuma is described on its GitHub repository as a self-hosted monitoring tool.",
+          "url": "https://github.com/louislam/uptime-kuma"
+        }
+      ]
+    },
+    "troubleshoot-an-app": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "docker compose ps lists containers for a Compose project with their current status and exposed ports.",
+          "url": "https://docs.docker.com/reference/cli/docker/compose/ps/"
+        },
+        {
+          "claim": "docker compose logs --tail sets how many lines are shown from the end of each container's log, and -f follows the log output.",
+          "url": "https://docs.docker.com/reference/cli/docker/compose/logs/"
+        },
+        {
+          "claim": "The Reactive Resume Docker guide lists the log messages Invalid environment variables, Database migrations failed, ECONNREFUSED and Local storage path is not writable, and gives the cause of each.",
+          "url": "https://docs.rxresu.me/self-hosting/docker"
+        },
+        {
+          "claim": "The Reactive Resume Docker guide says the app runs as the node user with UID 1000, and that user must be able to write to the mounted data folder.",
+          "url": "https://docs.rxresu.me/self-hosting/docker"
+        },
+        {
+          "claim": "APP_URL must match the address in the browser's address bar exactly, including https://, or sign-in redirects go to the wrong place.",
+          "url": "https://docs.rxresu.me/self-hosting/docker"
+        },
+        {
+          "claim": "The Reactive Resume Docker guide says to map the app's container port 3000 to any free host port.",
+          "url": "https://docs.rxresu.me/self-hosting/docker"
+        },
+        {
+          "claim": "The health endpoint /api/health answers 200 when everything is healthy and 503 when any check fails, and restarting the app does not fix a database or storage outage.",
+          "url": "https://docs.rxresu.me/self-hosting/docker"
+        },
+        {
+          "claim": "Docker's published-ports documentation says the -p or --publish flag makes a port available outside the host.",
+          "url": "https://docs.docker.com/engine/network/"
+        },
+        {
+          "claim": "Uptime Kuma's install page shows how to change the published port with -p <YOUR_PORT>:3001.",
+          "url": "https://uptime.kuma.pet/docs/How-to-Install"
+        },
+        {
+          "claim": "A Docker data volume persists after you delete the container that used it.",
+          "url": "https://docs.docker.com/engine/storage/volumes/"
+        }
+      ]
+    }
+  }
+}

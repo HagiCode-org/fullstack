@@ -1,0 +1,232 @@
+{
+  "lessons": {
+    "see-the-finished-feature": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "Anthropic's glossary describes large language models as AI models trained on very large amounts of text that can answer questions, summarize information and generate human-like text.",
+          "url": "https://platform.claude.com/docs/en/about-claude/glossary"
+        },
+        {
+          "claim": "Anthropic's models overview states that all current Claude models accept text and image input and produce text output.",
+          "url": "https://platform.claude.com/docs/en/about-claude/models/overview"
+        },
+        {
+          "claim": "Anthropic's pricing page says its billing is based on actual monthly usage.",
+          "url": "https://platform.claude.com/docs/en/about-claude/pricing"
+        }
+      ]
+    },
+    "how-models-work-for-builders": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "Anthropic's glossary says tokens are the smallest individual units of a language model and can correspond to words, subwords, characters, or even bytes; the number of characters a token represents depends on the model and the language, and token counting gives exact counts.",
+          "url": "https://platform.claude.com/docs/en/about-claude/glossary"
+        },
+        {
+          "claim": "Anthropic's glossary describes the context window as the amount of text a language model can look back on and reference when generating new text, a working memory for the model.",
+          "url": "https://platform.claude.com/docs/en/about-claude/glossary"
+        },
+        {
+          "claim": "Anthropic's models overview lists a 1M-token context window and a reliable knowledge cutoff of Jun 2026 for Claude Sonnet 5.5 and Claude Haiku 5.5, and states that base prices are given per million tokens.",
+          "url": "https://platform.claude.com/docs/en/about-claude/models/overview"
+        },
+        {
+          "claim": "OpenAI's GPT-6.2 Sol page lists a 1,050,000-token context window, a maximum input of 922,000 tokens and a Jun 01, 2026 knowledge cutoff.",
+          "url": "https://developers.openai.com/api/docs/models/gpt-6.2-sol"
+        },
+        {
+          "claim": "Anthropic's guide to reducing hallucinations says that even the most advanced language models can sometimes generate text that is factually incorrect, a phenomenon known as hallucination, and that its techniques significantly reduce hallucinations but do not eliminate them entirely, so critical information must be validated.",
+          "url": "https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-hallucinations"
+        },
+        {
+          "claim": "Anthropic's pricing page says its billing is based on actual monthly usage.",
+          "url": "https://platform.claude.com/docs/en/about-claude/pricing"
+        }
+      ]
+    },
+    "write-the-feature-brief": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "Anthropic's guide to building evaluations says to be task-specific, designing evals that mirror the real-world task distribution and include edge cases.",
+          "url": "https://platform.claude.com/docs/en/test-and-evaluate/develop-tests"
+        },
+        {
+          "claim": "Anthropic's guide to building evaluations lists irrelevant or nonexistent input data, overly long input data or user input, and poor, harmful or irrelevant user input as example edge cases.",
+          "url": "https://platform.claude.com/docs/en/test-and-evaluate/develop-tests"
+        }
+      ]
+    },
+    "first-version": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "OpenAI's quickstart describes the OpenAI API as a consistent interface to state-of-the-art AI models.",
+          "url": "https://developers.openai.com/api/docs/quickstart"
+        },
+        {
+          "claim": "OpenAI's quickstart says to create an API key in the dashboard at platform.openai.com/api-keys, store the key in a safe location, and export it as an environment variable; it gives the macOS or Linux command export OPENAI_API_KEY and the Windows PowerShell command setx OPENAI_API_KEY.",
+          "url": "https://developers.openai.com/api/docs/quickstart"
+        },
+        {
+          "claim": "Anthropic's quickstart says to create an API key in the Claude Console at platform.claude.com/settings/keys.",
+          "url": "https://platform.claude.com/docs/en/get-started"
+        },
+        {
+          "claim": "Anthropic's models overview lists the current models Claude Sonnet 5.5 with API ID claude-sonnet-5-5 and Claude Haiku 5.5 with API ID claude-haiku-5-5.",
+          "url": "https://platform.claude.com/docs/en/about-claude/models/overview"
+        },
+        {
+          "claim": "OpenAI's models page lists GPT-6.2 Sol and GPT-6 Luna as current models, with model IDs gpt-6.2-sol and gpt-6-luna on their model pages.",
+          "url": "https://developers.openai.com/api/docs/models"
+        },
+        {
+          "claim": "OpenAI's GPT-6 Luna page gives the model ID gpt-6-luna.",
+          "url": "https://developers.openai.com/api/docs/models/gpt-6-luna"
+        },
+        {
+          "claim": "Z.AI's quick start tells you to access the Z.AI Open Platform, create a Standard API Key on the API Keys management page, and top up on the billing page if needed.",
+          "url": "https://docs.z.ai/guides/overview/quick-start"
+        },
+        {
+          "claim": "Z.AI's overview lists GLM-5.3-Flash among its featured models.",
+          "url": "https://docs.z.ai/guides/overview/overview"
+        },
+        {
+          "claim": "MiniMax's models page lists MiniMax-M3.1-Flash and MiniMax-M3 as its current language models.",
+          "url": "https://platform.minimax.io/docs/guides/models-intro"
+        },
+        {
+          "claim": "MiniMax's API overview tells you to create a pay-as-you-go API key under API Keys with Create new secret key, and says that the subscription key for M Plan is separate from pay-as-you-go API keys.",
+          "url": "https://platform.minimax.io/docs/api-reference/api-overview"
+        },
+        {
+          "claim": "Anthropic lets you set your own monthly spend limit below your tier's cap on the spend limits page, and requests return HTTP 400 once a spend limit you set is reached.",
+          "url": "https://platform.claude.com/docs/en/api/rate-limits"
+        },
+        {
+          "claim": "OpenAI's pricing page lists per-million-token prices for GPT-6.2 Sol and GPT-6 Luna, and its spend-limits guide describes the monthly spend controls.",
+          "url": "https://developers.openai.com/api/docs/pricing"
+        },
+        {
+          "claim": "Anthropic's quickstart links the Claude Console page for creating an API key at platform.claude.com/settings/keys.",
+          "url": "https://platform.claude.com/settings/keys"
+        },
+        {
+          "claim": "Anthropic's pricing page says its billing is based on actual monthly usage, and that credit card payment is accepted and purchased credits are managed on its Billing page.",
+          "url": "https://platform.claude.com/docs/en/about-claude/pricing"
+        },
+        {
+          "claim": "OpenAI's quickstart links the dashboard page for creating an API key at platform.openai.com/api-keys.",
+          "url": "https://platform.openai.com/api-keys"
+        },
+        {
+          "claim": "OpenAI's quickstart links its billing overview page at platform.openai.com/account/billing/overview for adding credits.",
+          "url": "https://platform.openai.com/account/billing/overview"
+        },
+        {
+          "claim": "OpenAI's spend-limits guide explains spend alerts and hard spend limits for an organization or project.",
+          "url": "https://developers.openai.com/api/docs/guides/spend-limits"
+        },
+        {
+          "claim": "Z.AI's quick start links the API Keys management page at z.ai/manage-apikey/apikey-list, where you create a Standard API Key.",
+          "url": "https://z.ai/manage-apikey/apikey-list"
+        },
+        {
+          "claim": "Z.AI's quick start links its billing page at z.ai/manage-apikey/billing for topping up.",
+          "url": "https://z.ai/manage-apikey/billing"
+        },
+        {
+          "claim": "Z.AI's pricing page gives prices per 1M tokens for its GLM models and states that all prices are in USD.",
+          "url": "https://docs.z.ai/guides/overview/pricing"
+        },
+        {
+          "claim": "MiniMax's API overview links the pay-as-you-go API key page at platform.minimax.io/user-center/basic-information/interface-key, where you create a new secret key.",
+          "url": "https://platform.minimax.io/user-center/basic-information/interface-key"
+        },
+        {
+          "claim": "Anthropic's rate-limits page links the Console spend limits page at platform.claude.com/settings/spend-limits, where you can set your own monthly spend limit.",
+          "url": "https://platform.claude.com/settings/spend-limits"
+        }
+      ]
+    },
+    "add-a-second-ability": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "Anthropic's guide to building evaluations recommends structuring questions to allow automated grading, for example multiple-choice, string match, code-graded or LLM-graded.",
+          "url": "https://platform.claude.com/docs/en/test-and-evaluate/develop-tests"
+        },
+        {
+          "claim": "Anthropic's guide to building evaluations says that more questions with slightly lower signal automated grading is better than fewer high-quality hand-graded evals.",
+          "url": "https://platform.claude.com/docs/en/test-and-evaluate/develop-tests"
+        },
+        {
+          "claim": "Anthropic's guide to reducing hallucinations suggests running the same prompt multiple times and comparing outputs, because inconsistencies across outputs could indicate hallucinations.",
+          "url": "https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-hallucinations"
+        }
+      ]
+    },
+    "keep-keys-and-costs-safe": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "OpenAI's quickstart tells you to store the API key in a safe location and to export it as an environment variable rather than writing it elsewhere.",
+          "url": "https://developers.openai.com/api/docs/quickstart"
+        },
+        {
+          "claim": "Anthropic lets you set your own monthly spend limit below your tier's cap on the Console spend limits page at platform.claude.com/settings/spend-limits; when the limit is reached, requests return HTTP 400 with a message that says you have reached your specified API usage limits.",
+          "url": "https://platform.claude.com/docs/en/api/rate-limits"
+        },
+        {
+          "claim": "OpenAI's spend-limits guide says a spend alert sends a notification and does not stop traffic, while a hard spend limit makes affected API requests return a 429 error.",
+          "url": "https://developers.openai.com/api/docs/guides/spend-limits"
+        },
+        {
+          "claim": "Z.AI's billing page is where you top up when needed, according to its quick start.",
+          "url": "https://z.ai/manage-apikey/billing"
+        },
+        {
+          "claim": "MiniMax's API overview says the subscription key used for M Plan is separate from pay-as-you-go API keys.",
+          "url": "https://platform.minimax.io/docs/api-reference/api-overview"
+        },
+        {
+          "claim": "Anthropic's guide to building evaluations lists overly long input data or user input as an edge case to test.",
+          "url": "https://platform.claude.com/docs/en/test-and-evaluate/develop-tests"
+        },
+        {
+          "claim": "Anthropic's rate-limits page links the Console spend limits page at platform.claude.com/settings/spend-limits, where you can set your own monthly spend limit.",
+          "url": "https://platform.claude.com/settings/spend-limits"
+        }
+      ]
+    },
+    "judge-the-output": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "Anthropic's guide to reducing hallucinations says its techniques significantly reduce hallucinations but do not eliminate them entirely, so critical information must be validated.",
+          "url": "https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-hallucinations"
+        },
+        {
+          "claim": "Anthropic's guide to building evaluations says to design evals that mirror the real-world task, to automate grading when possible, and to prioritize volume over quality.",
+          "url": "https://platform.claude.com/docs/en/test-and-evaluate/develop-tests"
+        },
+        {
+          "claim": "Anthropic's guide to mitigating jailbreaks and prompt injections describes indirect prompt injection as the case where the model processes third-party content, such as webpages, emails or documents, that contains adversarial instructions.",
+          "url": "https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/mitigate-jailbreaks"
+        }
+      ]
+    },
+    "variation-challenge": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "Anthropic's guide to building evaluations says to be task-specific, designing tests that mirror the real-world task distribution and do not forget the edge cases.",
+          "url": "https://platform.claude.com/docs/en/test-and-evaluate/develop-tests"
+        }
+      ]
+    }
+  }
+}

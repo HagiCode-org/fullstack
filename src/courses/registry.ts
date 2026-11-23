@@ -1,6 +1,7 @@
 import { dockerForBeginners } from './docker-for-beginners/outline.ts';
 import { dockerSelfHostedApps } from './docker-self-hosted-apps/outline.ts';
 import { githubDesktopAndGithub } from './github-desktop-and-github/outline.ts';
+import { githubCollaboration } from './github-collaboration/outline.ts';
 import { buildWithAi } from './build-with-ai/outline.ts';
 import { firstWebsite } from './first-website/outline.ts';
 import { publishYourWebsite } from './publish-your-website/outline.ts';
@@ -13,17 +14,20 @@ import type { Course, GroupNode, LessonNode, OutlineNode } from './types.ts';
 
 // The only list of courses. The course list, the course switcher, and the course routes all read from here.
 export const courses: readonly Course[] = [
+  // Main line, in learning order (1–10 in OUTLINE.md).
   dockerForBeginners,
-  dockerSelfHostedApps,
   githubDesktopAndGithub,
   buildWithAi,
   firstWebsite,
   publishYourWebsite,
   firstWebApp,
   appWithData,
-  anotherLanguage,
   addAiFeatures,
+  githubCollaboration,
   capstoneProject,
+  // Electives (11–12), after the main line.
+  dockerSelfHostedApps,
+  anotherLanguage,
 ];
 
 export function getCourse(id: string, list: readonly Course[] = courses): Course | undefined {

@@ -6,39 +6,45 @@
 
 ## 第 1 题
 
-本课程创建的东西包括哪些,需要清理?
+删除卷之前应该怎样做?
 
-- A. 只有镜像
-- B. 只有浏览器书签
-- C. 容器、网络和卷
-- D. 什么都不需要清理
-
-**答案:C**
-
-解析:课程创建了容器、网络和卷,最后要逐一清除。
-
-## 第 2 题
-
-清理完成后,应该做什么来确认?
-
-- A. 立刻关机
-- B. 再检查一遍确认没有残留
-- C. 不需要检查
-- D. 再创建一遍
+- A. 直接删除所有卷
+- B. 逐个检查卷名,确认其中的数据已不再需要
+- C. 先删除网络
+- D. 先运行 docker system prune
 
 **答案:B**
 
-解析:最后一步是检查是否还有残留。
+解析:卷保存着数据库等文件,删除后数据无法找回,所以要逐个确认。
+
+依据:Step 4: Remove the volumes the course created
+
+## 第 2 题
+
+docker system prune 有什么风险?
+
+- A. 它只删除本课程的容器
+- B. 它会删除 Docker 本身
+- C. 它会删除未使用的容器、网络和镜像,包括其他项目的
+- D. 它只能在 Windows 上运行
+
+**答案:C**
+
+解析:prune 会清理所有未使用的资源,包括其他项目的容器、网络和镜像。
+
+依据:Step 4: Remove the volumes the course created
 
 ## 第 3 题
 
-想删除 Compose 服务并连同它们的数据一起清掉,应该用什么?
+用哪组命令可以确认课程创建的内容是否已经删除?
 
-- A. `docker compose down -v`
-- B. `docker compose down`
-- C. `docker ps -a`
-- D. `docker logs`
+- A. docker run
+- B. docker ps -a、docker network ls 和 docker volume ls
+- C. docker compose up
+- D. docker logs
 
-**答案:A**
+**答案:B**
 
-解析:`down -v` 同时删除卷及其中的数据。
+解析:三条列表命令分别显示容器、网络和卷,课程的名称应从列表中消失。
+
+依据:Step 5: Check that nothing is left

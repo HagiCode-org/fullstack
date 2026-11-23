@@ -1,0 +1,367 @@
+{
+  "lessons": {
+    "what-is-docker": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "A container is an isolated process with its own filesystem, and an image is a package of everything a container needs to start.",
+          "url": "https://docs.docker.com/get-started/docker-concepts/the-basics/what-is-a-container/"
+        },
+        {
+          "claim": "Data stored in a volume persists after the container using it is removed.",
+          "url": "https://docs.docker.com/storage/volumes/"
+        }
+      ]
+    },
+    "check-your-computer": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "The Windows page requires Windows 10 64-bit version 22H2 or Windows 11 64-bit version 23H2 or higher, in the Enterprise, Pro or Education editions.",
+          "url": "https://docs.docker.com/desktop/setup/install/windows-install/"
+        },
+        {
+          "claim": "The Windows page requires a 64-bit processor with SLAT, 8GB of system RAM and hardware virtualization enabled in BIOS/UEFI for the WSL 2 backend.",
+          "url": "https://docs.docker.com/desktop/setup/install/windows-install/"
+        },
+        {
+          "claim": "The Windows page requires WSL version 2.1.5 or later for the WSL 2 backend.",
+          "url": "https://docs.docker.com/desktop/setup/install/windows-install/"
+        },
+        {
+          "claim": "The Windows page says the per-user installation of Docker Desktop does not require administrator privileges.",
+          "url": "https://docs.docker.com/desktop/setup/install/windows-install/"
+        },
+        {
+          "claim": "The Mac page offers Docker Desktop for Mac for Apple silicon and for Intel chips.",
+          "url": "https://docs.docker.com/desktop/setup/install/mac-install/"
+        },
+        {
+          "claim": "The Mac page says Docker Desktop is supported on the current and two previous major macOS releases.",
+          "url": "https://docs.docker.com/desktop/setup/install/mac-install/"
+        },
+        {
+          "claim": "The Docker Engine install page lists supported Linux distributions, including Ubuntu, Debian and Fedora.",
+          "url": "https://docs.docker.com/engine/install/"
+        }
+      ]
+    },
+    "install-docker": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "The Windows page says to double-click Docker Desktop Installer.exe, and that the Configuration page lets you choose the WSL 2 backend, which earlier versions label Use WSL 2 instead of Hyper-V.",
+          "url": "https://docs.docker.com/desktop/setup/install/windows-install/"
+        },
+        {
+          "claim": "The Windows page says that when the installation is successful you select Close to complete the installation.",
+          "url": "https://docs.docker.com/desktop/setup/install/windows-install/"
+        },
+        {
+          "claim": "The Windows page includes the command wsl --install, to be run in PowerShell or Windows Command Prompt in administrator mode, in its WSL install option.",
+          "url": "https://docs.docker.com/desktop/setup/install/windows-install/"
+        },
+        {
+          "claim": "The Mac page says to double-click Docker.dmg and drag the Docker icon to the Applications folder, where Docker Desktop is installed as Docker.app.",
+          "url": "https://docs.docker.com/desktop/setup/install/mac-install/"
+        },
+        {
+          "claim": "The Ubuntu page starts Docker with sudo systemctl start docker and verifies the installation by running the hello-world image.",
+          "url": "https://docs.docker.com/engine/install/ubuntu/"
+        },
+        {
+          "claim": "The Debian page sets up the Docker apt repository before installing Docker Engine.",
+          "url": "https://docs.docker.com/engine/install/debian/"
+        },
+        {
+          "claim": "The Fedora page is one of the distribution install pages for Docker Engine.",
+          "url": "https://docs.docker.com/engine/install/fedora/"
+        },
+        {
+          "claim": "The Docker Engine install page lists the supported Linux distributions and links to each distribution's install page.",
+          "url": "https://docs.docker.com/engine/install/"
+        },
+        {
+          "claim": "The post-installation page says to add your user to the docker group with sudo usermod -aG docker $USER, then log out and log back in.",
+          "url": "https://docs.docker.com/engine/install/linux-postinstall/"
+        },
+        {
+          "claim": "The post-installation page says the Docker daemon always runs as root, and other users can reach it only through sudo unless they are in the docker group.",
+          "url": "https://docs.docker.com/engine/install/linux-postinstall/"
+        },
+        {
+          "claim": "The post-installation page says that on systemd distributions that do not start Docker on boot by default, sudo systemctl enable docker.service starts it.",
+          "url": "https://docs.docker.com/engine/install/linux-postinstall/"
+        }
+      ]
+    },
+    "terminal-basics": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "The docker run command creates and runs a new container from an image.",
+          "url": "https://docs.docker.com/reference/cli/docker/container/run/"
+        }
+      ]
+    },
+    "your-first-container": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "The docker run command runs a command in a new container, pulling the image if needed and starting the container.",
+          "url": "https://docs.docker.com/reference/cli/docker/container/run/"
+        },
+        {
+          "claim": "The docker ps command lists only running containers by default, and the --all flag includes stopped containers.",
+          "url": "https://docs.docker.com/reference/cli/docker/container/ps/"
+        },
+        {
+          "claim": "The docker ps reference describes the exited status as an integer representing the container's exit code.",
+          "url": "https://docs.docker.com/reference/cli/docker/container/ps/"
+        },
+        {
+          "claim": "The docker rm command removes one or more containers.",
+          "url": "https://docs.docker.com/reference/cli/docker/container/rm/"
+        }
+      ]
+    },
+    "read-errors-and-ask-for-help": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "The Docker Desktop troubleshooting page describes how to diagnose and troubleshoot Docker Desktop and how to check the logs.",
+          "url": "https://docs.docker.com/desktop/troubleshoot-and-support/troubleshoot/"
+        },
+        {
+          "claim": "The docker logs reference describes the command as fetching the logs of a container.",
+          "url": "https://docs.docker.com/reference/cli/docker/container/logs/"
+        }
+      ]
+    },
+    "run-nginx": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "The Nginx documentation is published on nginx.org under /en/docs/.",
+          "url": "https://nginx.org/en/docs/"
+        },
+        {
+          "claim": "The Nginx download page describes a stable version and a mainline version.",
+          "url": "https://nginx.org/en/download.html"
+        },
+        {
+          "claim": "The official Nginx image page on Docker Hub lists the stable tag.",
+          "url": "https://hub.docker.com/_/nginx/tags"
+        },
+        {
+          "claim": "The docker volume option ro mounts a volume into the container as read-only.",
+          "url": "https://docs.docker.com/storage/volumes/"
+        }
+      ]
+    },
+    "run-postgres": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "The PostgreSQL image page says POSTGRES_PASSWORD is the only environment variable the image requires.",
+          "url": "https://hub.docker.com/_/postgres/tags"
+        },
+        {
+          "claim": "The PostgreSQL image page says the PGDATA path is version-specific from PostgreSQL 18 on, and gives /var/lib/postgresql/18/docker for version 18.",
+          "url": "https://hub.docker.com/_/postgres/tags"
+        },
+        {
+          "claim": "The PostgreSQL versioning page lists version 17 as supported, with end of life on November 8, 2029.",
+          "url": "https://www.postgresql.org/support/versioning/"
+        },
+        {
+          "claim": "The PostgreSQL documentation is published at postgresql.org/docs.",
+          "url": "https://www.postgresql.org/docs/"
+        }
+      ]
+    },
+    "run-nodejs": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "The official Node.js image page on Docker Hub lists node tags for the 24 release line.",
+          "url": "https://hub.docker.com/_/node/tags"
+        },
+        {
+          "claim": "The Node.js release schedule lists version 24 with the status LTS.",
+          "url": "https://nodejs.org/en/about/previous-releases"
+        },
+        {
+          "claim": "The Node.js HTTP module documentation describes http.createServer and server.listen.",
+          "url": "https://nodejs.org/api/http.html"
+        }
+      ]
+    },
+    "docker-networks": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "Containers on the default bridge network can communicate using container IP addresses but cannot refer to each other by name.",
+          "url": "https://docs.docker.com/engine/network/"
+        },
+        {
+          "claim": "On a user-defined network, containers can communicate with each other using container IP addresses or container names.",
+          "url": "https://docs.docker.com/engine/network/"
+        }
+      ]
+    },
+    "docker-compose": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "The default path for a Compose file is compose.yaml, which Compose prefers, and it is placed in the working directory.",
+          "url": "https://docs.docker.com/compose/intro/compose-application-model/"
+        },
+        {
+          "claim": "When docker compose up runs, Compose creates a network named <project-name>_default and attaches all services to it, where each service is discoverable by its service name.",
+          "url": "https://docs.docker.com/compose/how-tos/networking/"
+        },
+        {
+          "claim": "The docker compose down command removes named volumes declared in the volumes section of the Compose file when given the -v option.",
+          "url": "https://docs.docker.com/reference/cli/docker/compose/down/"
+        },
+        {
+          "claim": "Docker Compose is a tool for defining and running multi-container applications.",
+          "url": "https://docs.docker.com/compose/"
+        }
+      ]
+    },
+    "manage-with-portainer": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "The Portainer Docker install page uses the image portainer/portainer-ce:lts and publishes port 9443.",
+          "url": "https://docs.portainer.io/start/install-ce/server/docker/linux"
+        },
+        {
+          "claim": "The Portainer Docker install page mounts /var/run/docker.sock and the volume portainer_data to /data.",
+          "url": "https://docs.portainer.io/start/install-ce/server/docker/linux"
+        },
+        {
+          "claim": "The Portainer install page says Portainer generates a self-signed SSL certificate for port 9443 by default.",
+          "url": "https://docs.portainer.io/start/install-ce/server/docker/linux"
+        },
+        {
+          "claim": "The Portainer setup token FAQ says the setup token is found by searching the server logs for the line setup_token=.",
+          "url": "https://docs.portainer.io/faqs/installing/setup-token"
+        },
+        {
+          "claim": "The Portainer setup token FAQ says the administrator user must be created within 5 minutes.",
+          "url": "https://docs.portainer.io/faqs/installing/setup-token"
+        },
+        {
+          "claim": "The Portainer documentation index is at docs.portainer.io and covers version 2.45 LTS.",
+          "url": "https://docs.portainer.io/"
+        },
+        {
+          "claim": "The Docker WSL page says that docker commands work from Windows without a WSL distribution installed.",
+          "url": "https://docs.docker.com/desktop/features/wsl/"
+        },
+        {
+          "claim": "The image portainer/portainer-ce is listed on Docker Hub.",
+          "url": "https://hub.docker.com/r/portainer/portainer-ce/tags"
+        }
+      ]
+    },
+    "more-community-containers": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "The Dozzle getting started guide gives docker run with the socket mount, the dozzle_data volume, port 8080 and image amir20/dozzle:latest.",
+          "url": "https://dozzle.dev/guide/getting-started"
+        },
+        {
+          "claim": "The Dozzle getting started guide says Dozzle needs Docker Engine 19.03 or newer and that it can be opened at localhost port 8080.",
+          "url": "https://dozzle.dev/guide/getting-started"
+        },
+        {
+          "claim": "Docker Hub lists the amir20/dozzle image.",
+          "url": "https://hub.docker.com/r/amir20/dozzle/tags"
+        },
+        {
+          "claim": "The Uptime Kuma site shows the run command with the louislam/uptime-kuma:2 image, port 3001 and the uptime-kuma volume.",
+          "url": "https://uptime.kuma.pet/"
+        },
+        {
+          "claim": "Docker Hub lists version 2 tags for louislam/uptime-kuma.",
+          "url": "https://hub.docker.com/r/louislam/uptime-kuma/tags"
+        },
+        {
+          "claim": "The Adminer site gives the Docker command docker run -p 8080:8080 adminer and says Adminer supports PostgreSQL.",
+          "url": "https://www.adminer.org/en/"
+        },
+        {
+          "claim": "The Adminer site says Adminer does not allow connecting without a password, rate-limits connection attempts and should be kept inaccessible to the public.",
+          "url": "https://www.adminer.org/en/"
+        },
+        {
+          "claim": "Docker Hub has an image page for adminer.",
+          "url": "https://hub.docker.com/_/adminer/tags"
+        },
+        {
+          "claim": "The Nginx Proxy Manager guide shows a Compose file with image jc21/nginx-proxy-manager:2.17.1 and ports 80, 81 and 443.",
+          "url": "https://nginxproxymanager.com/guide/"
+        },
+        {
+          "claim": "The Nginx Proxy Manager guide says the tool can provide free SSL and that the admin interface is on port 81.",
+          "url": "https://nginxproxymanager.com/guide/"
+        },
+        {
+          "claim": "Docker Hub has an image page for jc21/nginx-proxy-manager.",
+          "url": "https://hub.docker.com/r/jc21/nginx-proxy-manager/tags"
+        },
+        {
+          "claim": "pgAdmin's documentation includes a container deployment guide.",
+          "url": "https://www.pgadmin.org/docs/pgadmin4/latest/container_deployment.html"
+        }
+      ]
+    },
+    "troubleshooting": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "The Docker Desktop troubleshooting page describes how to diagnose and troubleshoot Docker Desktop and how to check the logs.",
+          "url": "https://docs.docker.com/desktop/troubleshoot-and-support/troubleshoot/"
+        },
+        {
+          "claim": "The post-installation page gives the commands sudo chown and sudo chmod for the .docker folder, and the newgrp docker command.",
+          "url": "https://docs.docker.com/engine/install/linux-postinstall/"
+        }
+      ]
+    },
+    "clean-up-and-next-steps": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "The docker system prune reference says it removes all unused containers, networks and images, including dangling images.",
+          "url": "https://docs.docker.com/reference/cli/docker/system/prune/"
+        },
+        {
+          "claim": "The Docker concepts guide describes what a container is.",
+          "url": "https://docs.docker.com/get-started/docker-concepts/the-basics/what-is-a-container/"
+        },
+        {
+          "claim": "Docker Compose is a tool for defining and running multi-container applications.",
+          "url": "https://docs.docker.com/compose/"
+        },
+        {
+          "claim": "The Nginx documentation is published on nginx.org under /en/docs/.",
+          "url": "https://nginx.org/en/docs/"
+        },
+        {
+          "claim": "The PostgreSQL documentation is published at postgresql.org/docs.",
+          "url": "https://www.postgresql.org/docs/"
+        },
+        {
+          "claim": "The Node.js documentation is published at nodejs.org under /en/docs.",
+          "url": "https://nodejs.org/en/docs"
+        }
+      ]
+    }
+  }
+}

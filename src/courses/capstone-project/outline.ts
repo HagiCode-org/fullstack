@@ -4,6 +4,7 @@ import type { Course } from '../types.ts';
 export const capstoneProject: Course = {
   id: 'capstone-project',
   demo: false,
+  outcome: 'You will have chosen, specified, built, checked, launched and explained a small app of your own, and you will have a checklist to reuse on your next project.',
   title: {
     'en-US': 'Capstone: Build and Launch Your Own App',
     'zh-CN': '毕业项目：做出并上线你自己的应用',
@@ -96,6 +97,39 @@ export const capstoneProject: Course = {
         'pt-BR': 'Publique',
         'ru-RU': 'Запустите проект',
       },
+    },
+    {
+      kind: 'lesson',
+      id: 'show-your-work',
+      title: {
+        'en-US': 'Show your work',
+        'zh-CN': '把成果讲给别人',
+        'zh-Hant': '把成果講給別人聽',
+        'ja-JP': '成果を人に説明する',
+        'ko-KR': '결과물을 다른 사람에게 보여주기',
+        'de-DE': 'Deine Arbeit vorstellen',
+        'fr-FR': 'Présenter ton travail',
+        'es-ES': 'Presenta tu trabajo',
+        'pt-BR': 'Apresente o seu trabalho',
+        'ru-RU': 'Покажите свою работу',
+      },
+    },
+    {
+      kind: 'lesson',
+      id: 'team-collaboration',
+      title: {
+        'en-US': 'Work on a project with others',
+        'zh-CN': '小组协作',
+        'zh-Hant': '小組協作',
+        'ja-JP': 'チームでプロジェクトに取り組む',
+        'ko-KR': '다른 사람과 함께 프로젝트 하기',
+        'de-DE': 'An einem Projekt mit anderen arbeiten',
+        'fr-FR': 'Travailler sur un projet à plusieurs',
+        'es-ES': 'Trabajar en un proyecto con otros',
+        'pt-BR': 'Trabalhar em um projeto com outras pessoas',
+        'ru-RU': 'Работа над проектом в команде',
+      },
+      elective: true,
     },
     {
       kind: 'lesson',

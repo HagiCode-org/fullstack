@@ -1,0 +1,306 @@
+{
+  "lessons": {
+    "how-a-page-opens": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "A Uniform Resource Locator (URL) is a text string that specifies where a resource such as a web page, image or video can be found on the internet.",
+          "url": "https://developer.mozilla.org/en-US/docs/Glossary/URL"
+        },
+        {
+          "claim": "HTTPS is an encrypted version of the HTTP protocol that uses TLS to encrypt all communication between a client and a server.",
+          "url": "https://developer.mozilla.org/en-US/docs/Glossary/HTTPS"
+        },
+        {
+          "claim": "HTTP is a client-server protocol in which the messages sent by the client are called requests and the messages sent by the server as an answer are called responses.",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Overview"
+        },
+        {
+          "claim": "To display a web page, the browser sends an original request for the HTML document, then makes additional requests for scripts, CSS and sub-resources such as images contained in the page.",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Overview"
+        },
+        {
+          "claim": "The 404 Not Found status code means the server cannot find the requested resource.",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+        }
+      ]
+    },
+    "how-publishing-works": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "A domain name is a website's address on the internet, used in URLs to identify which server a webpage belongs to, for example developer.mozilla.org.",
+          "url": "https://developer.mozilla.org/en-US/docs/Glossary/Domain_name"
+        },
+        {
+          "claim": "DNS (Domain Name System) is a naming system that translates human-friendly domain names into numeric IP addresses.",
+          "url": "https://developer.mozilla.org/en-US/docs/Glossary/DNS"
+        },
+        {
+          "claim": "A CDN (Content Delivery Network) is a group of servers spread out over many locations that store duplicate copies of data so that requests are fulfilled by the servers closest to the end-users.",
+          "url": "https://developer.mozilla.org/en-US/docs/Glossary/CDN"
+        },
+        {
+          "claim": "GitHub Pages sites created with the default address have the form https://<owner>.github.io/<repositoryname> for project sites, and GitHub Pages is a static site hosting service that publishes HTML, CSS and JavaScript files from a repository.",
+          "url": "https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages"
+        },
+        {
+          "claim": "GitHub Pages sites are publicly available on the internet, even when the repository for the site is private.",
+          "url": "https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site"
+        }
+      ]
+    },
+    "publish-with-github-pages": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "GitHub Pages is a static site hosting service that takes HTML, CSS and JavaScript files straight from a repository on GitHub and publishes a website, optionally running them through a build process.",
+          "url": "https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages"
+        },
+        {
+          "claim": "GitHub Pages looks for an index.html, index.md or README.md file as the entry file, and the entry file must be at the top level of the publishing source.",
+          "url": "https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site"
+        },
+        {
+          "claim": "The index.html file name is case sensitive, so Index.html will not work.",
+          "url": "https://docs.github.com/en/pages/getting-started-with-github-pages/troubleshooting-404-errors-for-github-pages-sites"
+        },
+        {
+          "claim": "If the account uses GitHub Free, the repository for a GitHub Pages site must be public.",
+          "url": "https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site"
+        },
+        {
+          "claim": "Under Build and deployment, choose Deploy from a branch under Source, then select the branch and the root or /docs folder; GitHub recommends a branch when you do not need control over the build.",
+          "url": "https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site"
+        },
+        {
+          "claim": "After a push, it can take up to 10 minutes for changes to a GitHub Pages site to publish.",
+          "url": "https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site"
+        },
+        {
+          "claim": "When a site is published from a branch, GitHub uses Jekyll to build it by default, and an empty file called .nojekyll in the root of the publishing source disables that build.",
+          "url": "https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site"
+        },
+        {
+          "claim": "A project site is served at http(s)://<owner>.github.io/<repositoryname>, and a repository named <owner>.github.io is served at the owner's root address.",
+          "url": "https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages"
+        }
+      ]
+    },
+    "publish-on-every-push": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "GitHub Actions can run a workflow when an event happens in a repository, such as a push, and a workflow is a configurable automated process defined by a YAML file in the repository.",
+          "url": "https://docs.github.com/en/actions/get-started/understand-github-actions"
+        },
+        {
+          "claim": "Workflows are defined in the .github/workflows directory of a repository.",
+          "url": "https://docs.github.com/en/actions/get-started/understand-github-actions"
+        },
+        {
+          "claim": "A GitHub Pages workflow runs on a push to the default branch and uses the actions configure-pages, upload-pages-artifact and deploy-pages; the deploy job needs pages: write and id-token: write permissions.",
+          "url": "https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages"
+        },
+        {
+          "claim": "To publish with GitHub Actions, select GitHub Actions under Build and deployment and Source in the repository's Settings.",
+          "url": "https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site"
+        },
+        {
+          "claim": "Workflow run logs show the status of each job and step, failed steps are expanded automatically, and you can view and search the logs for each job.",
+          "url": "https://docs.github.com/en/actions/how-tos/monitor-workflows/use-workflow-run-logs"
+        }
+      ]
+    },
+    "fix-publishing-problems": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "GitHub Pages looks for an index.html file in the top level of the publishing source, and the entry file must be at the top level of the chosen source directory on the source branch.",
+          "url": "https://docs.github.com/en/pages/getting-started-with-github-pages/troubleshooting-404-errors-for-github-pages-sites"
+        },
+        {
+          "claim": "The branch used to publish a GitHub Pages site must be the main or default branch, and the repository must have a commit pushed by someone with admin permissions.",
+          "url": "https://docs.github.com/en/pages/getting-started-with-github-pages/troubleshooting-404-errors-for-github-pages-sites"
+        },
+        {
+          "claim": "Switching the repository's visibility from public to private or vice versa changes the URL of the GitHub Pages site, which results in broken links until the site is rebuilt.",
+          "url": "https://docs.github.com/en/pages/getting-started-with-github-pages/troubleshooting-404-errors-for-github-pages-sites"
+        },
+        {
+          "claim": "Commits pushed by a GitHub Actions workflow that uses the GITHUB_TOKEN do not trigger a GitHub Pages build.",
+          "url": "https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site"
+        },
+        {
+          "claim": "Reverting from a custom domain name to the default address can leave broken links, because changing the routing path does not by itself initiate a rebuild of the page.",
+          "url": "https://docs.github.com/en/pages/getting-started-with-github-pages/troubleshooting-404-errors-for-github-pages-sites"
+        },
+        {
+          "claim": "HTTP caching stores a response associated with a request and reuses the stored response for subsequent requests, so the browser may show an older copy.",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Caching"
+        },
+        {
+          "claim": "A public repository is accessible to everyone on the internet.",
+          "url": "https://docs.github.com/en/repositories/creating-and-managing-repositories/about-repositories"
+        }
+      ]
+    },
+    "the-gh-pages-branch": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "The source branch for a GitHub Pages site can be any branch in the repository, and the source folder can be the root of the repository or a /docs folder on the source branch.",
+          "url": "https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site"
+        },
+        {
+          "claim": "Most external CI workflows deploy to GitHub Pages by committing the build output to the gh-pages branch of the repository, typically including a .nojekyll file.",
+          "url": "https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site"
+        },
+        {
+          "claim": "A GitHub Pages site is always deployed with a GitHub Actions workflow run, and the Pages settings link to the workflow run that most recently deployed the site.",
+          "url": "https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site"
+        }
+      ]
+    },
+    "publish-with-cloudflare": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "Cloudflare Pages asks users to consider Workers for new projects, because Workers supports most Pages use cases and offers a broader feature set.",
+          "url": "https://developers.cloudflare.com/pages/"
+        },
+        {
+          "claim": "Connecting a Pages project to a GitHub repository makes Cloudflare automatically deploy the code every time a change is pushed to a branch.",
+          "url": "https://developers.cloudflare.com/pages/configuration/git-integration/"
+        },
+        {
+          "claim": "The build command is provided by the framework or entered by the user, the build output directory holds the built site, and if no preset is used the build command can be exit 0.",
+          "url": "https://developers.cloudflare.com/pages/configuration/build-configuration/"
+        },
+        {
+          "claim": "Each new branch receives a preview deployment with its own address, and preview deployments do not affect custom domains or the production site.",
+          "url": "https://developers.cloudflare.com/pages/configuration/preview-deployments/"
+        },
+        {
+          "claim": "Preview deployment access can be restricted to chosen people with Cloudflare Access, and by default preview deployment URLs are public.",
+          "url": "https://developers.cloudflare.com/pages/configuration/preview-deployments/"
+        },
+        {
+          "claim": "A rollback instantly reverts a Pages project to a previous production deployment, and preview deployments are not valid rollback targets.",
+          "url": "https://developers.cloudflare.com/pages/configuration/rollbacks/"
+        },
+        {
+          "claim": "Cloudflare Pages limits depend on the plan, including the number of builds and the number of custom domains per project.",
+          "url": "https://developers.cloudflare.com/pages/platform/limits/"
+        },
+        {
+          "claim": "Requests to Pages Functions are billed as Workers requests, and Workers plans and pricing are described in the Workers documentation.",
+          "url": "https://developers.cloudflare.com/pages/functions/pricing/"
+        }
+      ]
+    },
+    "publish-with-aliyun-esa": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "In the ESA console, you choose Edge Computing and AI, then Functions and Pages, click Create, and use the Import from GitHub Repo tab after activating Functions and Pages.",
+          "url": "https://help.aliyun.com/en/edge-security-acceleration/esa/user-guide/connect-pages-to-github"
+        },
+        {
+          "claim": "The repository list shows only public repositories by default, and a private repository can be selected by entering its name in the search box.",
+          "url": "https://help.aliyun.com/en/edge-security-acceleration/esa/user-guide/connect-pages-to-github"
+        },
+        {
+          "claim": "The Prod branch defaults to the main branch and builds are automatically triggered based on the selected branch, while new commits to non-production branches are not automatically deployed.",
+          "url": "https://help.aliyun.com/en/edge-security-acceleration/esa/user-guide/connect-pages-to-github"
+        },
+        {
+          "claim": "The Static Assets Dir is the directory in the build output to be statically hosted, such as ./dist, and it can also be set in the assets.directory field of esa.jsonc, which takes higher priority.",
+          "url": "https://help.aliyun.com/en/edge-security-acceleration/esa/user-guide/connect-pages-to-github"
+        },
+        {
+          "claim": "After the build completes, a public preview domain is generated for testing only, and accessing it requires a token that is valid for 60 minutes.",
+          "url": "https://help.aliyun.com/en/edge-security-acceleration/esa/user-guide/connect-pages-to-github"
+        },
+        {
+          "claim": "ESA lets you choose the Global, Global (Excluding the Chinese Mainland) or Chinese Mainland acceleration region based on where users are located, and the Chinese Mainland region uses POPs located only in the Chinese mainland.",
+          "url": "https://help.aliyun.com/en/edge-security-acceleration/esa/support/site-access-related-issues"
+        },
+        {
+          "claim": "ESA routes requests to the nearest point of presence (POP) through its globally distributed network.",
+          "url": "https://help.aliyun.com/en/edge-security-acceleration/esa/support/site-access-related-issues"
+        },
+        {
+          "claim": "ESA billing combines a subscription plan for base costs with pay-as-you-go billing for overage and value-added services, and overage fees are calculated and billed hourly.",
+          "url": "https://help.aliyun.com/en/edge-security-acceleration/esa/product-overview/billing-overview/"
+        },
+        {
+          "claim": "Individual identity verification must be completed before an individual can purchase cloud products, and Alipay verification requires the Alipay mobile app because the web version is not supported.",
+          "url": "https://help.aliyun.com/en/account/verify-your-identity-individual-account"
+        }
+      ]
+    },
+    "custom-domain-and-https": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "GitHub recommends verifying a custom domain before adding it to the repository, and DNS changes can take up to 24 hours to propagate.",
+          "url": "https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site"
+        },
+        {
+          "claim": "To set up an apex domain, create A records that point the apex domain to the IP addresses for GitHub Pages, 185.199.108.153, 185.199.109.153, 185.199.110.153 and 185.199.111.153.",
+          "url": "https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site"
+        },
+        {
+          "claim": "A www subdomain should be a CNAME record that points to <user>.github.io, without the repository name, and GitHub Pages redirects between the apex and www domains when both records are set.",
+          "url": "https://docs.github.com/en/pages/getting-started-with-github-pages/about-custom-domains-and-github-pages"
+        },
+        {
+          "claim": "Do not use wildcard DNS records such as *.example.com, because they put the domain at risk of takeover even when it is verified.",
+          "url": "https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site"
+        },
+        {
+          "claim": "Enforce HTTPS can take up to 24 hours before it is available, and GitHub Pages sites are served over HTTPS with a certificate requested from Let's Encrypt once the DNS check succeeds.",
+          "url": "https://docs.github.com/en/pages/getting-started-with-github-pages/securing-your-github-pages-site-with-https"
+        },
+        {
+          "claim": "The dig command is not included in Windows, so DNS records can be checked on Windows with the Resolve-DnsName PowerShell command or by installing BIND, and dig is the command the documentation uses for checking records.",
+          "url": "https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site"
+        },
+        {
+          "claim": "For the ESA Global and Chinese Mainland regions, the domain must have an ICP filing for the Chinese mainland, and the Global (Excluding the Chinese Mainland) region does not require an ICP filing.",
+          "url": "https://help.aliyun.com/en/edge-security-acceleration/esa/support/site-access-related-issues"
+        },
+        {
+          "claim": "ICP filing for acceleration within the Chinese mainland is required for the Global and Chinese Mainland regions regardless of where the origin server is located.",
+          "url": "https://help.aliyun.com/en/edge-security-acceleration/esa/product-overview/limits-on-using-esa"
+        }
+      ]
+    },
+    "choose-where-to-publish": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "GitHub Pages is available in public repositories with GitHub Free, and in public and private repositories with the paid GitHub plans.",
+          "url": "https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages"
+        },
+        {
+          "claim": "Cloudflare Pages connects each project to a GitHub or GitLab repository and deploys automatically on each push, and its limits differ by plan.",
+          "url": "https://developers.cloudflare.com/pages/platform/limits/"
+        },
+        {
+          "claim": "Cloudflare Pages preview deployments give each branch its own preview URL without affecting the production deployment.",
+          "url": "https://developers.cloudflare.com/pages/configuration/preview-deployments/"
+        },
+        {
+          "claim": "ESA billing uses a subscription plan with pay-as-you-go overage fees, and ESA requires a subscription plan to access its features.",
+          "url": "https://help.aliyun.com/en/edge-security-acceleration/esa/product-overview/billing-overview/"
+        },
+        {
+          "claim": "ESA's Chinese Mainland region is suitable when online services cater only to users in the Chinese mainland, and it requires an ICP filing for the domain.",
+          "url": "https://help.aliyun.com/en/edge-security-acceleration/esa/support/site-access-related-issues"
+        }
+      ]
+    }
+  }
+}

@@ -4,6 +4,7 @@ import type { Course } from '../types.ts';
 export const firstWebsite: Course = {
   id: 'first-website',
   demo: false,
+  outcome: 'You will have a personal homepage built with an AI partner, checked on a phone-sized screen and saved in your history, and you can explain what its files do.',
   title: {
     'en-US': 'Your First Website',
     'zh-CN': '你的第一个网站',
@@ -63,6 +64,22 @@ export const firstWebsite: Course = {
         'es-ES': 'Consigue la primera versión',
         'pt-BR': 'Obtenha a primeira versão',
         'ru-RU': 'Первая версия',
+      },
+    },
+    {
+      kind: 'lesson',
+      id: 'peek-at-the-files',
+      title: {
+        'en-US': 'A first look at the files the AI made',
+        'zh-CN': '看一眼 AI 做出的文件',
+        'zh-Hant': '看一眼 AI 做出的檔案',
+        'ja-JP': 'AI が作ったファイルをのぞいてみる',
+        'ko-KR': 'AI가 만든 파일 살펴보기',
+        'de-DE': 'Ein erster Blick auf die Dateien der KI',
+        'fr-FR': 'Un premier coup d’œil aux fichiers créés par l’IA',
+        'es-ES': 'Un primer vistazo a los archivos que hizo la IA',
+        'pt-BR': 'Um primeiro olhar sobre os arquivos que a IA criou',
+        'ru-RU': 'Первый взгляд на файлы, которые создал ИИ',
       },
     },
     {

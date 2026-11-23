@@ -6,39 +6,45 @@
 
 ## 第 1 题
 
-API 是什么?
+根据课文,在创建 API 密钥之前应该先做什么?
 
-- A. 一个程序向另一个程序请求东西的方式
-- B. 一种浏览器
-- C. 一个图标
-- D. 一个硬盘
+- A. 把密钥写进项目文件
+- B. 在服务那里设置消费上限
+- C. 把密钥发到网页上
+- D. 关闭互联网
 
-**答案:A**
+**答案:B**
 
-解析:你的应用通过模型服务的 API 发送 prompt 并接收回答。
+解析:课文要求先设好消费上限,再创建密钥,以免一次错误就产生无限的账单。
+
+依据:Set a spending limit before you create a key
 
 ## 第 2 题
 
-API 密钥应该放在哪里?
+在 Windows 的 PowerShell 中,课文给出的设置环境变量的命令是哪一个?
 
-- A. 写进网页
-- B. 写进公开仓库
-- C. 发在聊天群
-- D. 项目文件之外的地方,不写进项目文件
-
-**答案:D**
-
-解析:自检标准:密钥不写在任何你看得到的项目文件里。
-
-## 第 3 题
-
-想知道当前的价格和可选模型,应该怎么做?
-
-- A. 让助手凭记忆回答
-- B. 去问朋友
-- C. 去服务官方页面查看,而不是凭记忆问助手
-- D. 随便猜
+- A. export AI_API_KEY="your-key-here"
+- B. echo AI_API_KEY
+- C. setx AI_API_KEY "your-key-here"
+- D. 把密钥写进 config.js 文件
 
 **答案:C**
 
-解析:课程要求看服务自己的页面。
+解析:课文按 OpenAI 快速入门的形式,Windows 使用 setx,macOS 与 Linux 使用 export。
+
+依据:Put the key in an environment variable
+
+## 第 3 题
+
+课文说应用应当从环境变量读取哪三个值?
+
+- A. 颜色、字体和图标
+- B. 用户名、邮箱和密码
+- C. 页面标题、描述和关键词
+- D. 服务地址、密钥和模型名
+
+**答案:D**
+
+解析:课文中应用从环境变量读取 AI_SERVICE_URL、AI_API_KEY 和 AI_MODEL_NAME 三个值。
+
+依据:Put the key in an environment variable

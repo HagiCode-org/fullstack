@@ -3,7 +3,9 @@ import type { Course } from '../types.ts';
 // Course for readers who rebuild a small app, or write an automation script, in a language they do not know, with an AI doing the writing.
 export const anotherLanguage: Course = {
   id: 'another-language',
+  elective: true,
   demo: false,
+  outcome: 'You will rebuild a small app in Python with an AI assistant, judge a version you cannot read by running it and comparing it, fix a planted problem and explain what mattered more than the language.',
   title: {
     'en-US': 'The Same App in Another Language',
     'zh-CN': '用另一种语言做同一个应用',

@@ -1,0 +1,201 @@
+{
+  "lessons": {
+    "see-the-finished-app": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "MDN defines a database as a storage system that collects organized data, making it easier to search, structure and extend.",
+          "url": "https://developer.mozilla.org/en-US/docs/Glossary/Database"
+        },
+        {
+          "claim": "The PostgreSQL manual describes PostgreSQL as an object-relational database management system (ORDBMS).",
+          "url": "https://www.postgresql.org/docs/current/intro-whatis.html"
+        },
+        {
+          "claim": "Docker's port publishing guide says that when a port is published with the localhost address 127.0.0.1, only the Docker host can access the published container port.",
+          "url": "https://docs.docker.com/engine/network/port-publishing/"
+        }
+      ]
+    },
+    "front-end-and-back-end": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "MDN says most of the code that supports a dynamic website must run on the server, and that creating it is known as server-side programming or sometimes back-end scripting.",
+          "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Server-side/First_steps/Introduction"
+        },
+        {
+          "claim": "MDN says browsers communicate with web servers using HTTP, sending a request, and web servers reply with an HTTP response message.",
+          "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Server-side/First_steps/Introduction"
+        },
+        {
+          "claim": "MDN says data pulled from a database is sent to the client to be displayed via code such as HTML and JavaScript.",
+          "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Server-side/First_steps/Introduction"
+        },
+        {
+          "claim": "Node.js describes itself as an asynchronous, event-driven JavaScript runtime.",
+          "url": "https://nodejs.org/en/about"
+        },
+        {
+          "claim": "Docker's port publishing guide gives the example -p 8080:80, which maps port 8080 on the Docker host to port 80 in the container.",
+          "url": "https://docs.docker.com/engine/network/port-publishing/"
+        }
+      ]
+    },
+    "database-and-api": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "MDN describes an API as a set of features and rules, a contract between the application offering it and other items, that enables interaction with a software program.",
+          "url": "https://developer.mozilla.org/en-US/docs/Glossary/API"
+        },
+        {
+          "claim": "The PostgreSQL manual says a table in a relational database consists of rows and columns, and that each column has a data type that constrains the values it can hold.",
+          "url": "https://www.postgresql.org/docs/current/ddl-basics.html"
+        },
+        {
+          "claim": "MDN says that a request is made by calling fetch() with a URL, and that fetch() returns a Promise fulfilled with a Response object representing the server's response.",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch"
+        },
+        {
+          "claim": "Docker's Compose networking guide says each service is discoverable by its service name, and that the web service can connect to the database at postgres://db:5432.",
+          "url": "https://docs.docker.com/compose/how-tos/networking/"
+        },
+        {
+          "claim": "The PostgreSQL manual says the server listens on TCP port 5432 by default, and that listen_addresses defaults to localhost, allowing only local loopback connections.",
+          "url": "https://www.postgresql.org/docs/current/runtime-config-connection.html"
+        },
+        {
+          "claim": "Docker's port publishing guide says publishing container ports is insecure by default, because a published port becomes available to the outside world as well as to the Docker host.",
+          "url": "https://docs.docker.com/engine/network/port-publishing/"
+        },
+        {
+          "claim": "MDN says the browser sends an HTTP GET request specifying the URL when a user navigates to a page.",
+          "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Server-side/First_steps/Introduction"
+        }
+      ]
+    },
+    "write-the-app-brief": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "MDN says large-scale websites use server-side code to dynamically display different data, generally pulled out of a database stored on a server.",
+          "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Server-side/First_steps/Introduction"
+        },
+        {
+          "claim": "Docker's secrets guide defines a secret as any piece of data, such as a password, certificate or API key, that shouldn't be transmitted over a network or stored unencrypted in a Dockerfile or in the application's source code.",
+          "url": "https://docs.docker.com/compose/how-tos/use-secrets/"
+        }
+      ]
+    },
+    "first-version-with-compose": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "Docker's Compose overview says Compose lets you manage services, networks and volumes in a single YAML configuration file, and start all the services with a single command.",
+          "url": "https://docs.docker.com/compose/"
+        },
+        {
+          "claim": "Docker's Compose application model page says the default path for a Compose file is compose.yaml (preferred) or compose.yml, in the working directory.",
+          "url": "https://docs.docker.com/compose/intro/compose-application-model/"
+        },
+        {
+          "claim": "The official PostgreSQL image page on Docker Hub says POSTGRES_PASSWORD is the only environment variable the image requires.",
+          "url": "https://hub.docker.com/_/postgres"
+        },
+        {
+          "claim": "Docker's variable interpolation guide says the .env file should be placed at the root of the project directory, next to the compose.yaml file.",
+          "url": "https://docs.docker.com/compose/how-tos/environment-variables/variable-interpolation/"
+        },
+        {
+          "claim": "The docker compose up reference says --detach starts the containers in the background and leaves them running, and that --build builds images before starting containers.",
+          "url": "https://docs.docker.com/reference/cli/docker/compose/up/"
+        },
+        {
+          "claim": "The docker compose down reference says that by default the command removes containers and networks but not named volumes.",
+          "url": "https://docs.docker.com/reference/cli/docker/compose/down/"
+        },
+        {
+          "claim": "The docker compose logs reference says the command displays log output from services, and that -f (--follow) follows the log output.",
+          "url": "https://docs.docker.com/reference/cli/docker/compose/logs/"
+        }
+      ]
+    },
+    "add-a-feature": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "The PostgreSQL manual says each column has a data type that constrains the values that can be stored in it.",
+          "url": "https://www.postgresql.org/docs/current/ddl-basics.html"
+        },
+        {
+          "claim": "The PostgreSQL ALTER TABLE page shows ALTER TABLE ... ADD COLUMN for adding a column to an existing table, and says the new column is initially filled with its default value, or null if no DEFAULT clause is given.",
+          "url": "https://www.postgresql.org/docs/current/ddl-alter.html"
+        }
+      ]
+    },
+    "fix-a-planted-problem": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "The docker compose logs reference says the command displays log output from services, and that -f (--follow) keeps following the output.",
+          "url": "https://docs.docker.com/reference/cli/docker/compose/logs/"
+        }
+      ]
+    },
+    "protect-and-back-up-your-data": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "Docker's secrets guide defines a secret as any piece of data, such as a password, certificate or API key, that shouldn't be transmitted over a network or stored unencrypted in a Dockerfile or in the application's source code.",
+          "url": "https://docs.docker.com/compose/how-tos/use-secrets/"
+        },
+        {
+          "claim": "Docker's volume guide says that a volume's data is persisted even if the container using it is removed, and that unused volumes can be removed with docker volume prune.",
+          "url": "https://docs.docker.com/storage/volumes/"
+        },
+        {
+          "claim": "The official PostgreSQL image page on Docker Hub says that for PostgreSQL 18 and later the volume should target /var/lib/postgresql, and that for 17 and below it should target /var/lib/postgresql/data, because mounts at the other path will not persist data when the container is re-created.",
+          "url": "https://hub.docker.com/_/postgres"
+        },
+        {
+          "claim": "GitHub's guide to ignoring files says a .gitignore file in the repository's root directory tells Git which files and directories to ignore when you make a commit.",
+          "url": "https://docs.github.com/en/get-started/git-basics/ignoring-files"
+        },
+        {
+          "claim": "The PostgreSQL manual says pg_dump writes its result to standard output, and that text files created by pg_dump are intended to be read by the psql program.",
+          "url": "https://www.postgresql.org/docs/current/backup-dump.html"
+        },
+        {
+          "claim": "The PostgreSQL manual says that by default psql continues to execute after an SQL error, and that ON_ERROR_STOP can be set to change that.",
+          "url": "https://www.postgresql.org/docs/current/backup-dump.html"
+        },
+        {
+          "claim": "The PostgreSQL pg_dump reference says that script dumps are plain-text files containing the SQL commands required to reconstruct the database, and that they are restored by feeding them to psql.",
+          "url": "https://www.postgresql.org/docs/current/app-pgdump.html"
+        },
+        {
+          "claim": "The docker compose down reference says the -v option also removes the named volumes declared in the Compose file, and anonymous volumes attached to containers.",
+          "url": "https://docs.docker.com/reference/cli/docker/compose/down/"
+        },
+        {
+          "claim": "Docker's volume rm reference says you cannot remove a volume that is in use by a container.",
+          "url": "https://docs.docker.com/reference/cli/docker/volume/rm/"
+        }
+      ]
+    },
+    "variation-challenge": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "Docker's Compose overview says Compose manages services, networks and volumes in a single YAML configuration file, and starts all the services with a single command.",
+          "url": "https://docs.docker.com/compose/"
+        },
+        {
+          "claim": "MDN says most of the code that supports a dynamic website must run on the server, and that data is generally pulled out of a database stored on a server.",
+          "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Server-side/First_steps/Introduction"
+        }
+      ]
+    }
+  }
+}

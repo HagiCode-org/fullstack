@@ -1,0 +1,153 @@
+{
+  "lessons": {
+    "see-the-finished-site": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "MDN's How the web works says that when you type a web address in a browser, the browser finds the address of the server that holds the website before it can retrieve the website.",
+          "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Web_standards/How_the_web_works"
+        },
+        {
+          "claim": "MDN's How the web works says websites are built primarily from HTML, CSS and JavaScript, which the browser interprets and assembles into a web page.",
+          "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Web_standards/How_the_web_works"
+        },
+        {
+          "claim": "MDN's Basic HTML syntax article says HTML lives inside text files and that index.html is generally used to contain a website's home page content.",
+          "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content/Basic_HTML_syntax"
+        }
+      ]
+    },
+    "write-the-site-brief": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "MDN's Your first website tutorial covers creating the content, where HTML is the code that structures a web page and its content, and then styling the content, where CSS is the code that styles web content.",
+          "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Your_first_website"
+        }
+      ]
+    },
+    "first-version": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "MDN's Creating the content article asks the reader to open the index.html file inside a web browser.",
+          "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Your_first_website/Creating_the_content"
+        },
+        {
+          "claim": "GitHub's documentation says that when you make a commit you must include a commit message that briefly describes the changes, and that you can type it in the Summary field.",
+          "url": "https://docs.github.com/en/desktop/making-changes-in-a-branch/committing-and-reviewing-changes-to-your-project-in-github-desktop"
+        }
+      ]
+    },
+    "peek-at-the-files": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "MDN's Creating the content article places an images folder inside the same folder as index.html for pictures used by the page.",
+          "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Your_first_website/Creating_the_content"
+        },
+        {
+          "claim": "MDN says HTML tells web browsers how to structure the web pages you visit, and most HTML elements have an opening tag, content and a closing tag.",
+          "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content/Basic_HTML_syntax"
+        },
+        {
+          "claim": "MDN's Getting started with CSS article takes a simple HTML document and applies CSS to it.",
+          "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Getting_started"
+        },
+        {
+          "claim": "MDN's link element page says that to link an external stylesheet you include a link element inside the head with rel set to stylesheet.",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/link"
+        },
+        {
+          "claim": "MDN's What is JavaScript article says JavaScript is a scripting or programming language that allows you to implement complex features on web pages.",
+          "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/What_is_JavaScript"
+        },
+        {
+          "claim": "MDN's script element page says the script element is used to embed executable code or data, typically JavaScript, or to refer to it.",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/script"
+        },
+        {
+          "claim": "MDN's Document Object Model page says the DOM connects web pages to scripts or programming languages by representing a document as a logical tree.",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model"
+        }
+      ]
+    },
+    "add-a-projects-section": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "MDN's a element page says the a element, with its href attribute, creates a hyperlink to web pages, files, email addresses and other addresses.",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/a"
+        },
+        {
+          "claim": "MDN's img element page says the alt attribute defines text that can replace the image in the page, and that MDN recommends a useful alt value whenever possible.",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/img"
+        }
+      ]
+    },
+    "make-it-work-on-phones": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "MDN's Responsive design article describes responsive design as designing web layouts so that they are flexible and work well across different device screen sizes.",
+          "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/CSS_layout/Responsive_Design"
+        },
+        {
+          "claim": "MDN's viewport meta value page says the recommended setting width=device-width sets the viewport to match the device's width.",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/meta/name/viewport"
+        },
+        {
+          "claim": "MDN's Using media queries article says media queries apply CSS styles depending on conditions such as the viewport width, and its example applies styles when the viewport is equal to or narrower than 1250px.",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Media_queries/Using"
+        },
+        {
+          "claim": "MDN's max-width page says the max-width CSS property sets the maximum width of an element.",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/max-width"
+        }
+      ]
+    },
+    "fix-a-planted-problem": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "MDN's Basic HTML syntax article says HTML lives inside text files.",
+          "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content/Basic_HTML_syntax"
+        },
+        {
+          "claim": "MDN's Creating the content article asks the reader to open the index.html file inside a web browser.",
+          "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Your_first_website/Creating_the_content"
+        },
+        {
+          "claim": "MDN's Introduction to the CSS cascade says the cascade is an algorithm that defines how user agents combine property values originating from different sources.",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascade/Introduction"
+        }
+      ]
+    },
+    "check-and-save": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "GitHub's documentation says that keeping the checkbox at the top of the changed-files list selected adds all changes to one commit, and unselecting a file's checkbox leaves that file out.",
+          "url": "https://docs.github.com/en/desktop/making-changes-in-a-branch/committing-and-reviewing-changes-to-your-project-in-github-desktop"
+        },
+        {
+          "claim": "GitHub's documentation says each commit has a SHA or hash that identifies the specific changes, when they were made and who created them.",
+          "url": "https://docs.github.com/en/desktop/making-changes-in-a-branch/committing-and-reviewing-changes-to-your-project-in-github-desktop"
+        }
+      ]
+    },
+    "variation-challenge": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "MDN's a element page says the a element with an href attribute creates a hyperlink to web pages and files.",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/a"
+        },
+        {
+          "claim": "MDN's Basic concepts of flexbox article says flexbox deals with layout in one dimension at a time, either as a row or as a column.",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Flexible_box_layout/Basic_concepts"
+        }
+      ]
+    }
+  }
+}

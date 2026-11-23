@@ -25,6 +25,7 @@
     { "host": "developer.mozilla.org", "tool": "MDN Web Docs", "note": "MDN Web Docs, maintained by Mozilla; the reference for HTML, CSS and JavaScript" },
     { "host": "code.claude.com", "tool": "Claude Code", "note": "Claude Code official documentation" },
     { "host": "docs.anthropic.com", "tool": "Claude (Anthropic)", "note": "Anthropic official documentation, including model and pricing pages" },
+    { "host": "platform.claude.com", "tool": "Claude (Anthropic)", "note": "Claude Developer Platform: current model list, pricing, API key and spend-limit pages (Anthropic's own console and docs)" },
     { "host": "developers.openai.com", "tool": "Codex (OpenAI)", "note": "OpenAI developer documentation, including Codex" },
     { "host": "platform.openai.com", "tool": "GPT models (OpenAI)", "note": "OpenAI API platform: model list, API keys and pricing" },
     { "host": "pi.dev", "tool": "Pi", "note": "Pi coding agent official site and documentation" },
@@ -42,6 +43,20 @@
     { "host": "open.bigmodel.cn", "tool": "GLM (Zhipu AI)", "note": "Zhipu AI open platform API endpoint and key management (China site)" },
     { "host": "bigmodel.cn", "tool": "GLM (Zhipu AI)", "note": "Zhipu AI official website (China site)" },
     { "host": "docs.z.ai", "tool": "GLM (Z.AI)", "note": "Z.AI international documentation for GLM" },
-    { "host": "z.ai", "tool": "GLM (Z.AI)", "note": "Z.AI international official website" }
+    { "host": "z.ai", "tool": "GLM (Z.AI)", "note": "Z.AI international official website" },
+    { "host": "www.anthropic.com", "tool": "Claude (Anthropic)", "note": "Anthropic official website, including the Supported Regions Policy" },
+    { "host": "help.openai.com", "tool": "OpenAI (ChatGPT and Codex plans)", "note": "OpenAI Help Center, including the article on using Codex with a ChatGPT plan and training data settings" },
+    { "host": "docs.pi.dev", "tool": "Pi", "note": "Pi official documentation (quickstart, providers, environment variables, security)" },
+    { "host": "code.minimax.io", "tool": "MiniMax Code", "note": "MiniMax Code official documentation site (CLI quick start, FAQ, configuration)" },
+    { "host": "deepseek-harness.github.io", "tool": "DeepSeek harness (dsh)", "note": "DeepSeek Harness official documentation site (guides for providers, network proxy, uninstall)" },
+    { "host": "api-docs.deepseek.com", "tool": "DeepSeek API", "note": "DeepSeek API official documentation, including model prices per million tokens (the DeepSeek models DeepSeek harness calls by default)" },
+    { "host": "react.dev", "tool": "React", "note": "React official website and learning guide" },
+    { "host": "www.typescriptlang.org", "tool": "TypeScript", "note": "TypeScript official website and handbook" },
+    { "host": "docs.rxresu.me", "tool": "Reactive Resume", "note": "Reactive Resume official documentation, including the Docker self-hosting guide and the environment variable reference (linked from the project's GitHub repository)" },
+    { "host": "usememos.com", "tool": "Memos", "note": "Memos official website and documentation, including the Docker, Docker Compose, backup and upgrade guides (linked from the project's GitHub repository)" },
+    { "host": "docs.python.org", "tool": "Python", "note": "Python official documentation: tutorial, interpreter, venv, Windows and macOS setup pages" },
+    { "host": "www.python.org", "tool": "Python", "note": "Python official website, including the downloads page" },
+    { "host": "pip.pypa.io", "tool": "pip", "note": "pip official user guide, maintained by the Python Packaging Authority (requirements files, installing from PyPI)" },
+    { "host": "fastapi.tiangolo.com", "tool": "FastAPI", "note": "FastAPI official documentation (tutorial, first steps, the fastapi dev command)" }
   ]
 }

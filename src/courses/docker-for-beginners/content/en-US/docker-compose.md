@@ -1,10 +1,18 @@
-In this lesson you start three services together: Nginx as a web server, a Node.js program, and a PostgreSQL database. You describe them once in a file called `compose.yaml`, and Docker Compose starts, lists, reads and stops all of them with one command. Compose also creates a network for the services, so Nginx reaches the Node.js program by its name.
+---
+minutes: 30
+outcome: "You will describe three services in one compose.yaml file, start them with one command and reach each one through its service name."
+terms: [compose-file, service]
+---
 
-Compose is part of Docker. Use the current command, `docker compose` with a space. The older `docker-compose` command is no longer used in this course. Every key used in the file is described in the [Compose file reference](https://docs.docker.com/reference/compose-file/).
+In this lesson you start three [services](../../../glossary/#docker-for-beginners-service) together: Nginx as a web server, a Node.js program, and a PostgreSQL database. You describe them once in a [Compose file](../../../glossary/#docker-for-beginners-compose-file) called `compose.yaml`. Then `docker compose` starts, shows, reads and stops all of them with one command.
+
+Docker's [Compose application model](https://docs.docker.com/compose/intro/compose-application-model/) says the default file name is `compose.yaml`, and that Compose prefers it when another file with a similar name is present. Compose also creates a network for the services in the file. Each service joins that network and can be reached by its service name, so Nginx can reach the Node.js program by the name `app`. The [Compose networking guide](https://docs.docker.com/compose/how-tos/networking/) describes this default network.
+
+Use the current command, `docker compose` with a space. The older `docker-compose` command is not used in this course.
 
 ## Step 1: Create the project folder and its files
 
-Create a folder named `docker-course`. Inside it, create the files below. Each file is plain text, and each one is shown with its exact name and location. Use any plain-text editor, and do not add formatting. The Windows Notepad editor and macOS TextEdit both work if you choose plain text.
+Create a folder named `docker-course`. Inside it, create the files below. Each file is plain text, and each one is shown with its exact name and location. Use any plain-text editor, and do not add formatting.
 
 Your folder will look like this when you finish:
 
@@ -52,19 +60,19 @@ volumes:
 Here is what each key does:
 
 - `services:` starts the list of containers. Each name under it, `web`, `app` and `db`, is the service name. Other services use that name to reach it.
-- `image:` is the image and tag to start, the same idea as in the earlier lessons. This file uses `nginx:stable`, `node:24` and `postgres:17`.
+- `image:` is the image and tag to start, the same idea as in the earlier lessons.
 - `ports:` publishes a port. `"8080:80"` connects port 8080 on your computer to port 80 inside the `web` container. The quotes keep the value as text.
-- `volumes:` attaches storage. `./nginx.conf:/etc/nginx/conf.d/default.conf:ro` copies the path of your file into the container, read-only (`ro`). `./app:/app:ro` attaches your `app` folder the same way. A path starting with `./` means "in the same folder as this file", on every operating system.
+- `volumes:` attaches storage. `./nginx.conf:/etc/nginx/conf.d/default.conf:ro` copies your file into the container, read-only. `./app:/app:ro` attaches your `app` folder the same way. A path that starts with `./` means "in the same folder as this file".
 - `depends_on:` tells Compose to start `app` before `web`.
 - `working_dir:` sets the folder where `command` runs.
 - `command:` is the program the container runs. Here it runs `server.js` with Node.js.
 - `environment:` sets environment variables. `POSTGRES_PASSWORD` sets the password for the database administrator. Use it only for this practice, and never reuse it.
-- `pgdata:/var/lib/postgresql/data` attaches a named volume called `pgdata` to the folder where PostgreSQL stores its data.
+- `pgdata:/var/lib/postgresql/data` attaches the named volume `pgdata` to the folder where PostgreSQL 17 stores its data.
 - `volumes:` at the bottom declares the named volume `pgdata`, so Docker creates it and keeps it between runs.
 
 ### nginx.conf
 
-This file tells Nginx what to do with a visit. It replaces the welcome page you saw in the **Run Nginx** lesson.
+This file tells Nginx what to do with a visit. It replaces the welcome page you saw in **Run Nginx**.
 
 ```nginx
 server {
@@ -78,7 +86,7 @@ server {
 
 - `listen 80;` makes Nginx accept visits on port 80 inside its container.
 - `location / { ... }` applies to every address on the site.
-- `proxy_pass http://app:3000;` sends each visit to the service named `app` on port 3000. Nginx does not know an address for `app`; Compose's network answers the name `app` with the address of the Node.js container.
+- `proxy_pass http://app:3000;` sends each visit to the service named `app` on port 3000. Nginx does not need an address for `app`, because Compose's network answers the name with the address of the Node.js container.
 
 ### app/server.js
 
@@ -108,7 +116,7 @@ Open your terminal in the `docker-course` folder. Use `cd` followed by the folde
 docker compose up -d
 ```
 
-Compose creates a network, downloads any missing images, and starts the three containers. Lines such as `Container docker-course-web-1 Started` show each step. The name of each container is the project name, which comes from the folder name, followed by the service name and a number.
+The `-d` option starts the services in the background. Compose creates the network, downloads any missing images and starts the containers. The network is named after the folder, followed by `_default`, and each container name combines the folder name, the service name and a number.
 
 ## Step 3: Check that everything is running
 
@@ -118,7 +126,7 @@ Type this command and press Enter:
 docker compose ps
 ```
 
-You should see three rows, one for each service, with `running` or `Up` in the status column. The `web` row shows `0.0.0.0:8080->80/tcp`, which means port 8080 is published.
+You should see three rows, one for each service. The `web` row shows the published port `8080`.
 
 Open a browser and go to **http://localhost:8080**. You should see:
 
@@ -134,7 +142,7 @@ Now check the database. Type this command and press Enter:
 docker compose exec db psql -U postgres -c "SELECT 1 AS ok;"
 ```
 
-It prints a table with one row, `ok` and `1`. The database accepts queries from inside its own container, and no other program on your computer can reach it, because the `db` service publishes no port.
+It prints a table with one row, `ok` and `1`. The database accepts queries from inside its own container, and no program on your computer can reach it directly, because the `db` service publishes no port.
 
 ## Step 4: Read the logs
 
@@ -144,9 +152,9 @@ Type this command and press Enter:
 docker compose logs
 ```
 
-Compose prints the output of all three services, each line marked with its service name. Look for `app-1  | Listening on port 3000` and for lines from `web-1` that show `GET /` answered with `200`. To see the logs of one service, add its name at the end, for example `docker compose logs app`.
+Compose prints the output of all three services, and each line shows the service that wrote it. To read the logs of one service, add its name at the end, for example `docker compose logs app`.
 
-## Step 5: Stop the services, keeping the data
+## Step 5: Stop the services and keep the data
 
 Type this command and press Enter:
 
@@ -154,23 +162,23 @@ Type this command and press Enter:
 docker compose down
 ```
 
-Compose stops and removes the three containers and the network. The named volume `pgdata` is kept, so the database data survives.
+`down` stops and removes the containers and the network that Compose created. It does not remove named volumes, so the database data survives.
 
 ## Step 6: Remove the services and the data
 
-Compose removes the volume only when you ask it to. Type this command and press Enter:
+Type this command only when you no longer need the data:
 
 ```
 docker compose down -v
 ```
 
-**Warning:** `-v` deletes the named volume `pgdata`, so every table and row in the database is deleted for good. Use it only when you no longer need the data. After this command, `docker compose ps` lists no services, and `docker volume ls` no longer lists `docker-course_pgdata`.
+**Warning:** the `-v` option also removes the named volumes that the file declares, including `pgdata`. Every table and row in the database is deleted for good. The [`docker compose down` reference](https://docs.docker.com/reference/cli/docker/compose/down/) says the same thing: it removes named volumes declared in the file.
 
 ## What you learned
 
 - One file describes several services, and `docker compose` starts, shows, reads, stops and removes them together.
 - Compose creates a network for the services, so each service reaches the others by its service name.
-- `down` removes containers and networks and keeps volumes. `down -v` also removes volumes and their data.
+- `down` removes containers and networks and keeps volumes, and `down -v` also removes the named volumes.
 
 ## What comes next
 

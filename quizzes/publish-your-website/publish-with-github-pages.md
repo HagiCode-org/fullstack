@@ -6,39 +6,45 @@
 
 ## 第 1 题
 
-GitHub Pages 发布后,地址大致是什么样?
+仓库名不是 `your-name.github.io` 时,项目站点的默认地址通常是什么形式?
 
 - A. `localhost:8080`
-- B. `file:///`
-- C. `ftp://`
-- D. `your-name.github.io`
-
-**答案:D**
-
-解析:课程说明地址形如 `your-name.github.io`。
-
-## 第 2 题
-
-怎样验证网站真的发布成功了?
-
-- A. 在另一台设备上打开这个 `github.io` 地址
-- B. 只在自己电脑上打开本地文件
-- C. 看仓库图标
-- D. 重启电脑
-
-**答案:A**
-
-解析:自检标准:能在另一台设备上打开。
-
-## 第 3 题
-
-发布之前应该检查仓库里什么?
-
-- A. 有没有大图片
-- B. 没有任何私人内容
-- C. 有几个分支
-- D. 有没有表情符号
+- B. `your-name.github.io/仓库名`
+- C. `ftp://仓库名`
+- D. `file:///仓库名`
 
 **答案:B**
 
-解析:自检标准:确认仓库里没有私密内容。
+解析:GitHub 说明项目站点的默认地址是账号的 github.io 地址后面加上仓库名。
+
+依据:Two addresses you can get
+
+## 第 2 题
+
+在 GitHub 的 Settings 中,要让站点直接从某个分支发布,应选择哪个 Source 选项?
+
+- A. Deploy from a branch
+- B. Upload a zip file
+- C. Install a plugin
+- D. Restart the repository
+
+**答案:A**
+
+解析:Build and deployment 下的 Source 选择 Deploy from a branch,然后再选分支和文件夹。
+
+依据:What you will do
+
+## 第 3 题
+
+纯手写的 HTML 站点,是否还需要构建步骤?
+
+- A. 必须安装 Node.js 才能发布
+- B. 必须使用 Cloudflare 才能发布
+- C. 必须先把文件改名为 gh-pages
+- D. 不需要,仓库里的文件就是最终要发布的文件
+
+**答案:D**
+
+解析:没有框架或模板的站点,文件本身已经是浏览器可以直接读取的最终文件,所以不需要构建。
+
+依据:Build is not needed for this site

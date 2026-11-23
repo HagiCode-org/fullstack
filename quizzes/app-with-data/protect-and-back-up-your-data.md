@@ -6,39 +6,45 @@
 
 ## 第 1 题
 
-含有密钥的设置文件应该怎样?
+数据库的 volume 应该挂载到哪个路径,取决于什么?
 
-- A. 不要出现在要保存到 GitHub 的改动里
-- B. 提交到公开仓库
-- C. 发给朋友
-- D. 写进网页
+- A. 电脑的颜色设置
+- B. PostgreSQL 的版本(18 及以后与 17 及以前的路径不同)
+- C. 你使用的浏览器
+- D. 你的 GitHub 用户名
 
-**答案:A**
+**答案:B**
 
-解析:自检标准:密钥所在的设置文件不在保存到 GitHub 的改动中。
+解析:官方 Docker Hub 页面说明,PostgreSQL 18 及以后与 17 及以前的数据路径不同。挂错路径时,重新创建容器后数据可能无法保留。
+
+依据:Where your data lives
 
 ## 第 2 题
 
-为什么要做备份并恢复一次?
+下面哪个命令会在删除容器的同时删除命名 volume 中的数据?
 
-- A. 为了让应用变快
-- B. 为了清空数据库
-- C. 为了换设计
-- D. 确认备份真的能把数据找回来
+- A. docker compose up --detach
+- B. docker compose logs
+- C. docker compose ps
+- D. docker compose down -v
 
 **答案:D**
 
-解析:自检标准:做过备份并从中恢复过一个条目。
+解析:Compose 参考说明,-v 会删除 Compose 文件中声明的命名 volume,数据会随之消失。
+
+依据:Commands that can delete data
 
 ## 第 3 题
 
-哪类命令你要“每次都先读再运行”?
+应该把哪个文件加入 .gitignore,以免保存到 GitHub 时把密码一起提交?
 
-- A. 显示时间的命令
-- B. 显示版本的命令
-- C. 会悄悄删除数据的命令
-- D. 打开记事本的命令
+- A. .env
+- B. README.md
+- C. compose.yaml
+- D. brief.md
 
-**答案:C**
+**答案:A**
 
-解析:自检标准:能说出每次先读再运行的命令。
+解析:.env 文件保存着真实的密码。GitHub 的文档说明,.gitignore 可以告诉 Git 提交时忽略哪些文件。
+
+依据:What you will do

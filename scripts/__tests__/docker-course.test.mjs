@@ -14,6 +14,10 @@ const coursesDir = path.join(root, 'src', 'courses');
 const contentDir = path.join(coursesDir, 'docker-for-beginners', 'content', 'en-US');
 const bodies = readBodyKeys(coursesDir);
 const lessonIds = flattenLessons(dockerForBeginners.outline).map((lesson) => lesson.id);
+// Lessons whose body is still an outline. Empty now that the DOCKER work item has written all fifteen lessons, so every
+// lesson gets the link and content checks below.
+const OUTLINE_ONLY_LESSONS = new Set();
+const writtenLessonIds = lessonIds.filter((id) => !OUTLINE_ONLY_LESSONS.has(id));
 // Lessons that may link to the community tools' own documentation. Every other lesson links only to core hosts.
 const communityLessons = new Set(['manage-with-portainer', 'more-community-containers']);
 const CORE_HOSTS = ['docs.docker.com', 'hub.docker.com', 'www.docker.com', 'nginx.org', 'www.postgresql.org', 'nodejs.org'];
@@ -49,11 +53,14 @@ describe('docker-for-beginners registration', () => {
     assert.equal(dockerForBeginners.demo, false);
   });
 
-  it('lists the twelve lessons in learning order', () => {
+  it('lists the fifteen lessons in learning order', () => {
     assert.deepEqual(lessonIds, [
       'what-is-docker',
+      'check-your-computer',
       'install-docker',
+      'terminal-basics',
       'your-first-container',
+      'read-errors-and-ask-for-help',
       'run-nginx',
       'run-postgres',
       'run-nodejs',
@@ -76,7 +83,9 @@ describe('docker-for-beginners lesson bodies', () => {
     it(`lesson "${id}" has an en-US body`, () => {
       assert.ok(bodies.has(`docker-for-beginners/en-US/${id}`), `lesson "${id}" has no en-US body`);
     });
+  }
 
+  for (const id of writtenLessonIds) {
     it(`lesson "${id}" links to official documentation over https`, () => {
       const urls = linksIn(readBody(id));
       assert.ok(urls.some((url) => url.startsWith('https://')), `lesson "${id}" has no https documentation link`);

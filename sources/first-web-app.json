@@ -1,0 +1,128 @@
+{
+  "lessons": {
+    "see-the-finished-app": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "MDN's What is JavaScript article says JavaScript is a scripting language that enables you to create dynamically updating content.",
+          "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/What_is_JavaScript"
+        },
+        {
+          "claim": "React's State: A Component's Memory guide says that in React, the component-specific memory is called state.",
+          "url": "https://react.dev/learn/state-a-components-memory"
+        },
+        {
+          "claim": "React's Learn guide says a component is a piece of the UI (user interface) that has its own logic and appearance.",
+          "url": "https://react.dev/learn"
+        },
+        {
+          "claim": "MDN's Web Storage API article says each origin has its own separate storage area, and that localStorage data persists even when the browser is closed and reopened.",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API"
+        },
+        {
+          "claim": "MDN's Storage quotas and eviction criteria article says best-effort data persists as long as the origin is below its quota, the device has enough storage space, and the user does not delete the data through the browser's settings.",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/API/Storage_API/Storage_quotas_and_eviction_criteria"
+        },
+        {
+          "claim": "The TypeScript handbook says the goal of TypeScript is to be a static typechecker for JavaScript programs, meaning a tool that runs before your code runs.",
+          "url": "https://www.typescriptlang.org/docs/handbook/intro.html"
+        }
+      ]
+    },
+    "write-the-app-brief": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "GitHub's guide to committing in GitHub Desktop says that when you make a commit you must include a commit message that briefly describes the changes.",
+          "url": "https://docs.github.com/en/desktop/making-changes-in-a-branch/committing-and-reviewing-changes-to-your-project-in-github-desktop"
+        }
+      ]
+    },
+    "first-version": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "GitHub's guide to committing in GitHub Desktop says Git assigns each commit a unique ID, called a SHA or hash, that identifies the specific changes, when they were made and who created them.",
+          "url": "https://docs.github.com/en/desktop/making-changes-in-a-branch/committing-and-reviewing-changes-to-your-project-in-github-desktop"
+        }
+      ]
+    },
+    "add-saving-in-the-browser": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "MDN's Web Storage API article says all data stored in a private window is deleted when the browser or browser tab is closed.",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API"
+        },
+        {
+          "claim": "MDN's Storage quotas and eviction criteria article says the Web Storage API provides mechanisms to store string-only key and value pairs.",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/API/Storage_API/Storage_quotas_and_eviction_criteria"
+        },
+        {
+          "claim": "MDN's Storage quotas and eviction criteria article says that when the browser needs to evict best-effort data it does so without interrupting the user, and the user can delete the data through the browser's settings.",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/API/Storage_API/Storage_quotas_and_eviction_criteria"
+        }
+      ]
+    },
+    "add-filters-and-totals": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "MDN's Array.prototype.filter() page says the method calls a provided function once for each element and constructs a new array of all the values for which the function returns a value that coerces to true.",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter"
+        },
+        {
+          "claim": "MDN's Array.prototype.reduce() page says the return value of the callback becomes the value of the accumulator parameter on the next invocation.",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce"
+        },
+        {
+          "claim": "GitHub's guide to committing in GitHub Desktop says that when you make a commit you must include a commit message that briefly describes the changes.",
+          "url": "https://docs.github.com/en/desktop/making-changes-in-a-branch/committing-and-reviewing-changes-to-your-project-in-github-desktop"
+        }
+      ]
+    },
+    "fix-a-planted-problem": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "GitHub's guide to resetting to a commit in GitHub Desktop says resetting to a commit restores the changes in the subsequent commits to your working directory and resets the branch to the selected commit.",
+          "url": "https://docs.github.com/en/desktop/managing-commits/resetting-to-a-commit-in-github-desktop"
+        },
+        {
+          "claim": "GitHub's guide to resetting to a commit in GitHub Desktop says you can then make changes before committing again, or discard the changes that you do not want to keep.",
+          "url": "https://docs.github.com/en/desktop/managing-commits/resetting-to-a-commit-in-github-desktop"
+        }
+      ]
+    },
+    "check-and-publish": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "MDN's How the web works article says that when a client wants to access a webpage, a copy of the webpage code is downloaded from the server to the client machine, where it is rendered by the browser.",
+          "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Web_standards/How_the_web_works"
+        },
+        {
+          "claim": "Cloudflare's build configuration guide for Pages says you should provide a build command to tell Cloudflare Pages how to build your application, and that you may tell it where the output files will be located.",
+          "url": "https://developers.cloudflare.com/pages/configuration/build-configuration/"
+        },
+        {
+          "claim": "Cloudflare's Pages documentation says you can deploy a Pages project by connecting it to your Git provider.",
+          "url": "https://developers.cloudflare.com/pages/"
+        },
+        {
+          "claim": "Alibaba Cloud's help centre describes individual identity verification for an account.",
+          "url": "https://help.aliyun.com/en/account/verify-your-identity-individual-account"
+        }
+      ]
+    },
+    "variation-challenge": {
+      "checkedOn": "2026-11-23",
+      "facts": [
+        {
+          "claim": "GitHub's guide to committing in GitHub Desktop says that when you make a commit you must include a commit message that briefly describes the changes.",
+          "url": "https://docs.github.com/en/desktop/making-changes-in-a-branch/committing-and-reviewing-changes-to-your-project-in-github-desktop"
+        }
+      ]
+    }
+  }
+}
